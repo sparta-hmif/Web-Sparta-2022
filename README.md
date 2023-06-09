@@ -1,9 +1,8 @@
 ## Branching and Commit Messages
 
-Setiap membuat branch baru harus ambil base dari `develop`. Untuk penamaan commit dan branch mengikuti format berikut.
-Format branch: `<type>/<title>`
-Format commit: `<type>: <subject>`
-Penamaan menggunakan kebab case
+Setiap membuat branch baru harus ambil base dari `develop`. Untuk penamaan commit dan branch menggunakan kebab case serta mengikuti format berikut.      
+- Format branch: `<type>/<title>`
+- Format commit: `<type>: <subject>`
 
 Untuk type mengikuti semantic berikut.
 - `feat`: (new feature for the user, not a new feature for build script)
