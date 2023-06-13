@@ -1,18 +1,97 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      colors: {
+        primary: {
+          100: "#FCF874",
+          200: "#F5E362",
+          300: "#EDCE4F",
+          400: "#E6B93D",
+          500: "#DFA42B",
+          600: "#D78F18",
+          700: "#D07A06",
+        },
+        primaryDark: {
+          100: "#C2394E",
+          200: "#A33042",
+          300: "#842735",
+          400: "#661E29",
+          500: "#48151D",
+          600: "#290C10",
+          700: "#0A0304",
+        },
+        primaryLight: {
+          100: "#FEFEFE",
+          200: "#FAFAFA",
+          300: "#F6F6F6",
+          400: "#F2F2F2",
+          500: "#EEEEEE",
+          600: "#EAEAEA",
+          700: "#E6E6E6",
+        },
+        secondary: {
+          100: "#F37620",
+          200: "#D1631B",
+          300: "#AE5016",
+          400: "#8C3E11",
+          500: "#6A2C0C",
+          600: "#471907",
+          700: "#250602",
+        },
+        secondaryDark: {
+          100: "#AFAFAF",
+          200: "#939393",
+          300: "#777777",
+          400: "#5C5C5C",
+          500: "#414141",
+          600: "#252525",
+          700: "#090909",
+        },
+        success: {
+          100: "#D4F5E9",
+          200: "#3DD598",
+          300: "#00BC71",
+        },
+        danger: {
+          100: "#FFE5E7",
+          200: "#FF575F",
+          300: "#FF1C26",
+        },
+        warning: {
+          100: "#A88B4E",
+          200: "#8D5209",
+          300: "#673900",
+        },
+      },
+      fontFamily: {
+        koulen: ["var(--font-koulen)"],
+        hammersmith: ["var(--font-hammersmith)"],
+        sen: ["var(--font-sen)"],
+      },
+      fontSize: {
+        h1: "96px",
+        h2: "64px",
+        h3: "48px",
+        h4: "36px",
+        h5: "24px",
+        h6: "20px",
+        "sub-1": "16px",
+        "sub-2": "14px",
+        "body-1": "16px",
+        "body-2": "14px",
+        button: "14px",
+        caption: "12px",
+        overline: "10px",
+        tag: "10px",
+        label: "8px",
       },
     },
   },
   plugins: [],
-}
+};
