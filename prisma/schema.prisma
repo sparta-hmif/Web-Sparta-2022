@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+// Enums
+enum Role {
+  PESERTA
+  MAMET
+  MENTOR
+  KASUH
+}
+
+enum MateriType {
+  PDF
+  VIDEO
+}
+
+// Models
+model User {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  nim        String    @unique
+  email      String
+  password   String
+  fullName   String
+  shortName  String?
+  score      Int       @default(0)
+  role       Role      @default(PESERTA)
+  evalUser   EvalDay[]
+  kelompok   Kelompok? @relation(fields: [kelompokId], references: [id])
+  kelompokId String?   @db.ObjectId
+}
+
+model Tugas {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String?
+  startTime   DateTime
+  endTime     DateTime
+}
+
+model Materi {
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String?
+  expiredDate DateTime?
+  link        String
+  type        MateriType
+}
+
+model Day {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  number      Int
+  description String?
+  date        DateTime
+  EvalDay     EvalDay[]
+}
+
+model EvalDay {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  rating     Int
+  evaluation String
+  user       User   @relation(fields: [userId], references: [id])
+  userId     String @db.ObjectId
+  day        Day    @relation(fields: [dayId], references: [id])
+  dayId      String @db.ObjectId
+}
+
+model Kelompok {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  number Int
+  User   User[]
+}
