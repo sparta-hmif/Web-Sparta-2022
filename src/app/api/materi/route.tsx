@@ -2,6 +2,26 @@ import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
+export async function GET() {  
+    const date = new Date();
+    
+    const materi = await prisma.materi.findMany({
+      select: {
+        title: true,
+        description: true,
+        expiredDate: true,
+        link: true,
+        type: true
+      },
+      where: {
+        expiredDate: {
+          gt: date
+        }
+      }
+    });
+  
+    return NextResponse.json(materi);
+}
 
 export async function POST(req: NextRequest) {
     try {
