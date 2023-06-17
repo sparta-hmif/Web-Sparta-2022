@@ -13,10 +13,12 @@ export async function GET() {
 export async function POST() {
   await prisma.user.create({
     data: {
-      nim: "111111111",
-      email: "test@gmail.com",
+      nim: "222000555",
+      email: "testadmin@gmail.com",
       password: "hehe",
-      fullName: "test",
+      fullName: "testadmin",
+      score: 40,
+      role: "MAMET",
     },
   });
   return NextResponse.json({ message: "success" });
