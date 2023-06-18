@@ -38,7 +38,7 @@ const AddModule = () => {
 
   return (
     <>
-      <div className="m-7 lg:mx-64 lg:py-10">
+      <div className="p-7 lg:px-64 lg:py-10">
         <h1 className="text-[40px] text-primaryDark-400 lg:text-[64px]">
           NEW MODULE
         </h1>
