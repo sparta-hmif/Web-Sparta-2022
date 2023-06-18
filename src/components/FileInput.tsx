@@ -1,16 +1,33 @@
 "use client";
 import { useDropzone, FileWithPath } from "react-dropzone";
 
-const FileInput = () => {
-  const { getRootProps, getInputProps, open, acceptedFiles } = useDropzone({
-    maxFiles: 1, // SET NUMBER OF FILE UPLOAD
-    // accept: {
-    //   "image/*": [],  // SET FILE TYPE
-    // },
-    // Disable click and keydown behavior
-    noClick: true,
-    noKeyboard: true,
-  });
+interface FileInputProps {
+  type?: string;
+}
+
+const FileInput = ({ type }: FileInputProps) => {
+  const { getRootProps, getInputProps, open, acceptedFiles } =
+    type === "image"
+      ? useDropzone({
+          maxFiles: 1, // SET NUMBER OF FILE UPLOAD
+
+          accept: {
+            "image/*": [], // SET FILE TYPE
+          },
+          // Disable click and keydown behavior
+          noClick: true,
+          noKeyboard: true,
+        })
+      : useDropzone({
+          maxFiles: 1, // SET NUMBER OF FILE UPLOAD
+
+          // accept: {
+          //   "image/*": [],  // SET FILE TYPE
+          // },
+          // Disable click and keydown behavior
+          noClick: true,
+          noKeyboard: true,
+        });
 
   const files = acceptedFiles.map((file: FileWithPath) => (
     <li key={file.path}>
@@ -25,7 +42,18 @@ const FileInput = () => {
     </li>
   ));
 
-  return (
+  return type === "image" ? (
+    <button type="button" onClick={open}>
+      <div {...getRootProps({ className: "dropzone" })}></div>
+      <input {...getInputProps()} />
+      <div className="edit p-3 rounded-[12px] bg-secondary-400 flex items-center justify-center">
+        <img src="/pencil.svg" alt="" />
+      </div>
+      <style jsx>
+        {".edit {box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);}"}
+      </style>
+    </button>
+  ) : (
     <div className="container">
       <div {...getRootProps({ className: "dropzone" })}>
         <input {...getInputProps()} />
