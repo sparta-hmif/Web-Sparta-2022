@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Button from "./Button";
 import { MdClose } from "react-icons/md";
+import FileInput from "./FileInput";
 
 const AddModule = () => {
   const [contentFocus, setContenFocus] = useState(-1);
@@ -37,7 +38,7 @@ const AddModule = () => {
 
   return (
     <>
-      <div className="m-7 lg:mx-64 lg:my-10">
+      <div className="m-7 lg:mx-64 lg:py-10">
         <h1 className="text-[40px] text-primaryDark-400 lg:text-[64px]">
           NEW MODULE
         </h1>
@@ -119,6 +120,15 @@ const AddModule = () => {
               isPrimary={true}
               text={"Add Section"}
             ></Button>
+          </div>
+          <div className="flex flex-col">
+            <label
+              htmlFor="attachment"
+              className="sub-1 text-[14px] my-1 lg:text-[24px] lg:my-3"
+            >
+              Attachment
+            </label>
+            <FileInput></FileInput>
           </div>
           <div className="flex justify-center gap-2 my-7 lg:justify-end">
             <Button isPrimary={false} text={"Cancel"}></Button>
