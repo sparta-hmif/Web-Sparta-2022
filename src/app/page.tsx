@@ -1,3 +1,8 @@
+import Checkbox from "@/components/Checkbox";
 export default function Home() {
-  return <h1 className="text-green-500 text-7xl">HELLO</h1>;
+  return (
+    <div className="bg-black">
+      <Checkbox />
+    </div>
+  );
 }
