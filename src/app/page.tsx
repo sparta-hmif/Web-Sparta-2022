@@ -1,9 +1,9 @@
-import FileInput from "@/components/FileInput";
+import AddAssignment from "@/components/AddAssignment";
 
 export default function Home() {
   return (
     <>
-      <FileInput />
+      <AddAssignment />
     </>
   );
 }
