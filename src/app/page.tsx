@@ -1,4 +1,4 @@
-import EditProfile from "@/components/edit_profile/EditProfile";
+import EditProfile from "@/components/EditProfile";
 import FileInput from "@/components/FileInput";
 
 export default function Home() {
