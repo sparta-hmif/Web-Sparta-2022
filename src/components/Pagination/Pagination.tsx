@@ -83,7 +83,7 @@ const Pagination = ({
     : 0;
 
   return (
-    <div className="flex gap-[11px]">
+    <div className="flex gap-[13px]">
       <PaginationButton
         isDirectionRight={false}
         onClick={onPrev}
@@ -92,7 +92,7 @@ const Pagination = ({
 
       {paginationRange?.map((pageNum, idx) => {
         if (pageNum === "DOTS") {
-          return <PaginationNumber isDots={true} key={idx} />;
+          return <PaginationNumber isDots={true} key={idx} isDisabled={true} />;
         }
 
         return (
