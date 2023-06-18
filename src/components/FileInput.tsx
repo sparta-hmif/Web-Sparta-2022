@@ -26,7 +26,7 @@ const FileInput = () => {
   ));
 
   return (
-    <div className="container pt-24">
+    <div className="container">
       <div {...getRootProps({ className: "dropzone" })}>
         <input {...getInputProps()} />
         <div className="wrapper w-full bg-primaryLight-400 rounded-xl py-[36px] md:py-[45px]  flex gap-1 items-center justify-center border border-secondaryDark-200 border-dashed">
