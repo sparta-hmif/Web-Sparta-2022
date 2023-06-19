@@ -1,8 +1,12 @@
-import Checkbox from "@/components/Checkbox/Checkbox";
+
+import EditProfile from "@/components/EditProfile";
+import FileInput from "@/components/FileInput";
+
 export default function Home() {
   return (
-    <div className="bg-black">
-      <Checkbox />
-    </div>
+    <>
+      {/* <FileInput /> */}
+      <EditProfile />
+    </>
   );
 }
