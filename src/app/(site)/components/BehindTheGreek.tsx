@@ -53,6 +53,8 @@ const BehindTheGreek = () => {
           height={100}
           className="mx-auto min-w-[20rem] w-5/12"
         />
+
+        {/* Masukinn ke sini rap kalo mau nyoba" */}
       </div>
     </div>
   );
