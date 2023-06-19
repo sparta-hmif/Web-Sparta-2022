@@ -10,6 +10,12 @@ const AddAssignment = () => {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
 
+  const [data, setData] = useState<string>();
+
+  const childToParent = (childData: string) => {
+    setData(childData);
+  };
+
   return (
     <>
       <div className="p-7 lg:px-64 lg:py-10">
@@ -110,7 +116,7 @@ const AddAssignment = () => {
             >
               Attachment
             </label>
-            <FileInput></FileInput>
+            <FileInput childToParent={childToParent}></FileInput>
           </div>
           <div className="flex justify-center gap-2 my-7 lg:justify-end">
             <Button isPrimary={false} text={"Cancel"}></Button>
