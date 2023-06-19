@@ -128,7 +128,7 @@ const AddModule = () => {
             >
               Attachment
             </label>
-            <FileInput></FileInput>
+            <FileInput childToParent={undefined}></FileInput>
           </div>
           <div className="flex justify-center gap-2 my-7 lg:justify-end">
             <Button isPrimary={false} text={"Cancel"}></Button>
