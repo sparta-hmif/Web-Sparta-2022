@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
+import moment from 'moment';
 
 const prisma = new PrismaClient();
 
@@ -10,29 +11,33 @@ const prisma = new PrismaClient();
  * Data day yang baru ditambahin disimpen ke database
  * [Sementara] Buat endpoint ini gaperlu validasi role, tapi nanti perlu ditambahin validasi
  */
-// aman
 async function POST(req: NextRequest) {
   try {
     const { number, date, description } = await req.json();
 
-    // number hrs bs 0
-    if (!(number && date)) {
+    if (!((number || number === 0) && date))
       return NextResponse.json(
         { message: "Request body must at least contain 'number' and 'date'" },
         { status: 400 }
       );
-    }
+
+    if (!(number >= 0 && number % 1 === 0 && moment(date).isValid()))
+      return NextResponse.json(
+        { message: "Invalid 'number' or 'date'" },
+        { status: 400 }
+      );
 
     await prisma.day.create({
       data: {
         number: number,
-        description: description ? description : null,
-        date: new Date(date),
+        description: description,
+        date: new Date(date), // TODO: time zone
       },
     });
 
     return NextResponse.json({ message: "success" });
   } catch (err) {
+    console.log(err);
     return NextResponse.json(
       { message: "Internal Server Error" },
       { status: 500 }
@@ -57,18 +62,11 @@ async function GET(req: Request) {
       include: {
         EvalDay: {
           where: {
-            userId: String(userId),
+            userId: String(userId), // TODO: time zone
           },
         },
       },
     });
-
-    if (!days) {
-      NextResponse.json(
-        { message: "gaada days" },
-        { status: 400 }
-      );
-    }
 
     return NextResponse.json(days);
   } catch (error) {
@@ -80,4 +78,4 @@ async function GET(req: Request) {
   }
 }
 
-export { GET, POST }
+export { POST, GET };
