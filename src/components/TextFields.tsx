@@ -5,26 +5,28 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 
 interface TextFieldsProps {
   type?: string;
-  placeholder: string;
+  placeholder?: string;
   width?: string;
   height?: string;
+  value: string;
+  onChange: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  disabled?: boolean;
   regex?: RegExp;
 }
 
-// TODO:
-// Ngirin hasil inputnya kemana
-// Scrollbar
-// Labelnya
-// Error
 const TextFields = ({
   type = "text",
   placeholder,
   width,
   height,
   regex = /^.*$/,
+  value,
+  onChange,
+  disabled,
 }: TextFieldsProps) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [inputValue, setInputValue] = useState("");
   const [labelClass, setLabelClass] = useState("");
   const [inputClass, setInputClass] = useState("");
 
@@ -34,13 +36,13 @@ const TextFields = ({
       : regex;
 
   const baseLabelClass =
-    "absolute left-4 top-2.5 py-0 bg-primaryLight-400 cursor-text pointer-events-none peer-focus:text-secondary-400 peer-focus:tag peer-focus:-top-0.5 peer-focus:left-3 peer-focus:px-1 transition-all";
+    "absolute py-0 bg-primaryLight-400 cursor-text pointer-events-none peer-focus:text-secondary-400 peer-focus:tag peer-focus:-top-0.5 peer-focus:left-3 peer-focus:px-1 transition-all peer-disabled:bg-transparent peer-disabled:opacity-70";
   const baseInputClass =
-    "w-full resize-none border-2 focus:outline-none px-4 py-2 rounded-xl bg-primaryLight-400 text-secondaryDark-400 text-left peer";
+    "w-full resize-none border-2 focus:outline-none focus:ring-0 px-4 py-2 rounded-xl bg-primaryLight-400 text-secondaryDark-400 text-left peer disabled:cursor-not-allowed disabled:bg-primaryLight-700 disabled:border-secondaryDark-400 disabled:opacity-70";
 
   useEffect(() => {
     if (regexString !== null) {
-      if (!regexString?.test(inputValue) && inputValue !== "") {
+      if (!regexString?.test(value) && value !== "") {
         setInputClass(
           `${baseInputClass} border-danger-200 hover:border-danger-200 focus:border-danger-200`
         );
@@ -50,20 +52,16 @@ const TextFields = ({
         );
       }
     }
-    if (inputValue !== "") {
+    if (value) {
       setLabelClass(
         `${baseLabelClass} text-secondary-400 tag -top-0.5 px-1 left-3`
       );
     } else {
-      setLabelClass(`${baseLabelClass} text-secondaryDark-200 body-1`);
+      setLabelClass(
+        `${baseLabelClass} text-secondaryDark-200 top-2.5 body-1 left-4`
+      );
     }
-  }, [inputValue]);
-
-  const handleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setInputValue(event.target.value);
-  };
+  }, [value]);
 
   const style: CSSProperties = {
     width: width || "100%",
@@ -74,14 +72,16 @@ const TextFields = ({
     <div className="flex relative font-sen" style={style}>
       {type === "textarea" ? (
         <textarea
-          value={inputValue}
-          onChange={handleInputChange}
-          className="w-full resize-none border-2 border-secondaryDark-400 hover:border-secondary-400 focus:outline-none focus:border-secondary-400 px-4 py-2 rounded-xl bg-primaryLight-400 text-secondaryDark-400 text-left peer "
+          disabled={disabled}
+          onChange={onChange}
+          value={value}
+          className="w-full resize-none border-2 border-secondaryDark-400 hover:border-secondary-400 focus:outline-none focus:ring-0 focus:border-secondary-400 px-4 py-2 rounded-xl bg-primaryLight-400  text-secondaryDark-400 text-left peer disabled:cursor-not-allowed disabled:bg-primaryLight-700 disabled:border-secondaryDark-400 disabled:opacity-70"
         />
       ) : (
         <input
-          value={inputValue}
-          onChange={handleInputChange}
+          disabled={disabled}
+          onChange={onChange}
+          value={value}
           className={inputClass}
           type={isVisible ? "text" : type}
         />
