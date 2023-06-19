@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import Button from "./Button";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import FileInput from "./FileInput";
 
 const AddAssignment = () => {
   const [startDate, setStartDate] = useState<Date | null>(null);
@@ -11,7 +12,7 @@ const AddAssignment = () => {
 
   return (
     <>
-      <div className="m-7 lg:mx-64 lg:my-10">
+      <div className="p-7 lg:px-64 lg:py-10">
         <h1 className="text-[40px] text-primaryDark-400 lg:text-[64px]">
           NEW ASSIGNMENT
         </h1>
@@ -101,6 +102,15 @@ const AddAssignment = () => {
               className="py-2 px-3 h-[100px] text-[8px] font-sen text-secondaryDark-400 bg-primaryLight-400 rounded-lg border-secondaryDark-400 border-[1px] placeholder:text-secondaryDark-200 focus:outline-none focus:border-[1px] focus:border-secondary-400 lg:text-[16px] lg:h-[234px]"
               placeholder="Description"
             />
+          </div>
+          <div className="flex flex-col">
+            <label
+              htmlFor="attachment"
+              className="sub-1 text-[14px] my-1 lg:text-[24px] lg:my-3"
+            >
+              Attachment
+            </label>
+            <FileInput></FileInput>
           </div>
           <div className="flex justify-center gap-2 my-7 lg:justify-end">
             <Button isPrimary={false} text={"Cancel"}></Button>
