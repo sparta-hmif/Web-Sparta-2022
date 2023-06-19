@@ -21,7 +21,7 @@ async function POST(req: NextRequest) {
         { status: 400 }
       );
 
-    if (!(number >= 0 && number % 1 === 0 && moment(date).isValid()))
+    if (!(number >= 0 && Number.isInteger(number) && moment(date).isValid()))
       return NextResponse.json(
         { message: "Invalid 'number' or 'date'" },
         { status: 400 }
@@ -70,7 +70,6 @@ async function GET(req: Request) {
 
     return NextResponse.json(days);
   } catch (error) {
-    console.log(error);
     return NextResponse.json(
       { message: "Internal Server Error" },
       { status: 500 }

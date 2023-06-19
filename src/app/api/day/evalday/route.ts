@@ -7,13 +7,13 @@ const prisma = new PrismaClient();
  * Endpoint Penambahan Evaluasi Day
  * Endpoint dipake di page day buat peserta bisa ngasih evaluasi personal tentang keberlangsungan day
  * Rating diantara 1-5
- */ // aman
+ */
 async function POST(req: NextRequest) {
   try {
     const { rating, evaluation, userId, dayId } = await req.json();
     console.log(rating, evaluation, userId, dayId);
 
-    if (!(userId && dayId && rating && evaluation)) {
+    if (!(userId && dayId && (rating || rating === 0) && evaluation))
       return NextResponse.json(
         {
           message:
@@ -21,10 +21,12 @@ async function POST(req: NextRequest) {
         },
         { status: 400 }
       );
-    }
 
-    if (rating < 1 || rating > 5) {
-      return NextResponse.json({ message: "Invalid rating" }, { status: 400 });
+    if (!(rating >= 1 && rating <= 5 && Number.isInteger(rating))) {
+      return NextResponse.json(
+        { message: "Invalid 'rating'" },
+        { status: 400 }
+      );
     }
 
     await prisma.evalDay.create({
@@ -45,6 +47,7 @@ async function POST(req: NextRequest) {
   }
 }
 
+
 /**
  * Endpoint Edit Evaluasi Day
  * Endpoint dipake di page day buat peserta bisa ngasih evaluasi personal tentang keberlangsungan day
@@ -54,7 +57,7 @@ async function PATCH(req: NextRequest) {
   try {
     const { id, rating, evaluation } = await req.json();
 
-    if (!(id && (rating || evaluation))) {
+    if (!(id && (rating || rating === 0 || evaluation)))
       return NextResponse.json(
         {
           message:
@@ -62,11 +65,12 @@ async function PATCH(req: NextRequest) {
         },
         { status: 400 }
       );
-    }
 
-    if (rating < 1 || rating > 5) {
-      return NextResponse.json({ message: "Invalid rating" }, { status: 400 });
-    }
+    if (rating && !(rating >= 1 && rating <= 5 && Number.isInteger(rating)) || rating === 0)
+      return NextResponse.json(
+        { message: "Invalid 'rating'" },
+        { status: 400 }
+      );
 
     await prisma.evalDay.update({
       where: {
@@ -74,8 +78,8 @@ async function PATCH(req: NextRequest) {
       },
 
       data: {
-        rating: rating ? rating : undefined,
-        evaluation: evaluation ? evaluation : undefined,
+        rating: rating || undefined,
+        evaluation: evaluation || undefined,
       },
     });
 
