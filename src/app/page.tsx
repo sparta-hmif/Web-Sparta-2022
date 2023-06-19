@@ -1,3 +1,11 @@
+import EditProfile from "@/components/EditProfile";
+import FileInput from "@/components/FileInput";
+
 export default function Home() {
-  return <h1 className="text-green-500 text-7xl">HELLO</h1>;
+  return (
+    <>
+      {/* <FileInput /> */}
+      <EditProfile />
+    </>
+  );
 }
