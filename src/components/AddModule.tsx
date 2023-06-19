@@ -36,6 +36,12 @@ const AddModule = () => {
     setContent(temp);
   };
 
+  const [data, setData] = useState<string>();
+
+  const childToParent = (childData: string) => {
+    setData(childData);
+  };
+
   return (
     <>
       <div className="p-7 lg:px-64 lg:py-10">
@@ -128,7 +134,7 @@ const AddModule = () => {
             >
               Attachment
             </label>
-            <FileInput childToParent={undefined}></FileInput>
+            <FileInput childToParent={childToParent}></FileInput>
           </div>
           <div className="flex justify-center gap-2 my-7 lg:justify-end">
             <Button isPrimary={false} text={"Cancel"}></Button>
