@@ -1,11 +1,13 @@
 "use client";
+import { useEffect } from "react";
 import { useDropzone, FileWithPath } from "react-dropzone";
 
 interface FileInputProps {
   type?: string;
+  childToParent: any;
 }
 
-const FileInput = ({ type }: FileInputProps) => {
+const FileInput = ({ type, childToParent }: FileInputProps) => {
   const { getRootProps, getInputProps, open, acceptedFiles } =
     type === "image"
       ? useDropzone({
@@ -14,6 +16,7 @@ const FileInput = ({ type }: FileInputProps) => {
           accept: {
             "image/*": [], // SET FILE TYPE
           },
+
           // Disable click and keydown behavior
           noClick: true,
           noKeyboard: true,
@@ -21,26 +24,13 @@ const FileInput = ({ type }: FileInputProps) => {
       : useDropzone({
           maxFiles: 1, // SET NUMBER OF FILE UPLOAD
 
-          // accept: {
-          //   "image/*": [],  // SET FILE TYPE
-          // },
-          // Disable click and keydown behavior
           noClick: true,
           noKeyboard: true,
         });
 
-  const files = acceptedFiles.map((file: FileWithPath) => (
-    <li key={file.path}>
-      <div className="flex">
-        <div className=" ml-1">
-          <p>
-            {file.path} - {file.size} bytes
-          </p>
-          <p className=" text-success font-[8px]">Successfully uploaded!</p>
-        </div>
-      </div>
-    </li>
-  ));
+  const files = acceptedFiles.map((file) => {
+    childToParent(URL.createObjectURL(file));
+  });
 
   return type === "image" ? (
     <button type="button" onClick={open}>
