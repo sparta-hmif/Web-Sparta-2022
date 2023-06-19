@@ -1,10 +1,11 @@
 .container {
+  /*mengatur font size dan font family*/
   display: block;
   position: relative;
   padding-left: 35px;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
   cursor: pointer;
-  font-size: 22px;
+  font-size: 16px;
   user-select: none;
 }
 
@@ -17,6 +18,7 @@
 }
 
 .checkmark {
+  /*checkmark*/
   position: absolute;
   top: 0;
   left: 0;

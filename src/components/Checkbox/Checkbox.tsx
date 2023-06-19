@@ -1,14 +1,18 @@
-import React from 'react'
-import styles from './Checkbox.module.css'
+import React from 'react';
+import styles from './Checkbox.module.css';
 
-const Checkbox = () => {
-  return (
-
-    <label className={styles.container}>
-      <input type="checkbox"/>
-      <span className={styles.checkmark}></span>
-    </label>
-  )
+interface CheckboxProps {
+  text: string;
 }
 
-export default Checkbox
+const Checkbox: React.FC<CheckboxProps> = ({ text }) => {
+  return (
+    <label className={styles.container}>
+      {text}
+      <input type="checkbox" />
+      <span className={styles.checkmark}></span>
+    </label>
+  );
+};
+
+export default Checkbox;
