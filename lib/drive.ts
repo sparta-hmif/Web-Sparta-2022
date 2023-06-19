@@ -1,13 +1,16 @@
-import { google, drive_v3 } from "googleapis";
-import { File } from "formidable";
-import fs from "fs";
+import { google } from "googleapis";
+import { Readable } from "stream";
 
 const auth = new google.auth.GoogleAuth({
-  keyFile: "",
+  keyFile: "website-sparta-2022-c233419ce4b5.json",
   scopes: ["https://www.googleapis.com/auth/drive"],
 });
 
-export async function searchFolderByName(_parentId: string, _filename: string) {
+export async function searchFolderIdByName(
+  _parentId: string,
+  _foldername: string // folder
+) {
+  // Menginisialisasi Google Drive API
   const drive = google.drive({ version: "v3", auth });
 
   // buffer untuk nyimpen list folder/file
@@ -20,41 +23,103 @@ export async function searchFolderByName(_parentId: string, _filename: string) {
       fields: "files(id, name)",
     });
 
-    // mencari file dengan nama sesuai
     if (res.data.files) {
       Array.prototype.push.apply(folders, res.data.files);
-      console.info(folders);
-      if (folders.find(({ name }) => name === _filename)) {
-        return folders.find(({ name }) => name === _filename);
-        // return File datatype from googleapi : { id, name }
+
+      // folder found
+      if (folders.find(({ name }) => name === _foldername)) {
+        return {
+          status: 200,
+          data: folders.find(({ name }) => name === _foldername),
+        };
       }
+      // folder not found
+      else {
+        return { status: 204 };
+      }
+    }
+    // query failed
+    else {
+      throw new Error();
     }
   } catch (error) {
     console.error("Error searching folder:", error);
+    return { status: 500 };
   }
 }
 
-export async function postFile2Drive(parentID: string, file: File) {
-  // Menginisialisasi Google Drive API    // Membuat klien Google Drive
+export async function postFile2Drive(
+  parentID: string,
+  file: File,
+  onTimeSign: boolean
+) {
+  // Menginisialisasi Google Drive API
   const drive = google.drive({ version: "v3", auth });
-  // const folders: drive_v3.Schema$File[] = [];
-  // Melakukan pencarian menggunakan query berdasarkan nama folder
+
+  // convert file buff to file stream
+  let filestream = await arrBuff2Stream(file);
+
   let metadata = {
-    name: file.originalFilename as string,
+    name: file.name as string,
     parents: [parentID as string],
   };
+
+  // add sign to late upload
+  if (!onTimeSign) metadata.name = "(Telat)_" + metadata.name;
+
   let media = {
-    mimeType: file.mimetype as string,
-    body: fs.createReadStream(file.filepath),
+    mimeType: file.type as string,
+    body: filestream,
   };
 
   try {
+    // query
     const res = await drive.files.create({
       requestBody: metadata,
       media: media,
       fields: "name",
     });
+
+    return { status: res.status };
   } catch (error) {
     console.error("Error searching folder:", error);
+    return { status: 500 };
   }
+}
+
+export async function newDriveFolder(parentID: string, _foldername: string) {
+  // Menginisialisasi Google Drive API
+  const drive = google.drive({ version: "v3", auth });
+
+  let metadata = {
+    name: _foldername,
+    parents: [parentID as string],
+    mimeType: "application/vnd.google-apps.folder", // mimetype for gdrive folder
+  };
+
+  try {
+    // query
+    const res = await drive.files.create({
+      requestBody: metadata,
+      fields: "id",
+    });
+
+    return { status: 200, data: res.data.id };
+  } catch (error) {
+    console.error("Error searching folder:", error);
+    return { status: 500 };
+  }
+}
+
+async function arrBuff2Stream(file: File) {
+  let buf8 = new Uint8Array(await file.arrayBuffer());
+
+  const fst = new Readable();
+
+  fst._read = function () {
+    this.push(buf8);
+    this.push(null);
+  };
+
+  return fst;
 }
