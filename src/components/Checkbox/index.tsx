@@ -2,7 +2,7 @@ import React from 'react'
 
 const Checkbox = () => {
   return (
-    <input type="checkbox" className='w-4 h-4 border-2 border-[#661E29] text-[#661E29] rounded hover:bg-red-600' />
+    <input type="checkbox" className='w-4 h-4 border-2 border-secondary-600 text-secondary-600 rounded hover:bg-primary-600' />
   )
 }
 
