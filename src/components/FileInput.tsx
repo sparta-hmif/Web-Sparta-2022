@@ -29,7 +29,9 @@ const FileInput = ({ type, childToParent }: FileInputProps) => {
         });
 
   const files = acceptedFiles.map((file) => {
-    childToParent(URL.createObjectURL(file));
+    type === "image"
+      ? childToParent(URL.createObjectURL(file))
+      : childToParent(file);
   });
 
   return type === "image" ? (
