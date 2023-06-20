@@ -1,6 +1,6 @@
 // NGE-TEST PRISMA
 
-import { prisma } from "../../lib/prisma";
+import { prisma } from "../lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -9,18 +9,6 @@ export async function GET() {
 }
 
 export async function POST() {
-  //   id         String    @id @default(auto()) @map("_id") @db.ObjectId
-  //   nim        String    @unique
-  //   email      String
-  //   password   String
-  //   fullName   String
-  //   shortName  String?
-  //   score      Int       @default(0)
-  //   role       Role      @default(PESERTA)
-  //   evalUser   EvalDay[]
-  //   kelompok   Kelompok? @relation(fields: [kelompokId], references: [id])
-  //   kelompokId String?   @db.ObjectId
-  // }
   await prisma.user.create({
     data: {
       nim: "18222001",
@@ -28,7 +16,6 @@ export async function POST() {
       fullName: "Test User",
       email: "18222001@gmail.com",
       role: "PESERTA",
-      // ... 
     },
   });
   return NextResponse.json({ message: "success" });
