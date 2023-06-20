@@ -45,4 +45,54 @@ body,
   h6 {
     @apply text-h6;
   }
+
+  .sub-1 {
+    @apply text-sub-1;
+    @apply font-sen;
+    @apply font-bold;
+  }
+
+  .sub-2 {
+    @apply text-sub-2;
+    @apply font-sen;
+    @apply font-bold;
+  }
+
+  .body-1 {
+    @apply text-body-1;
+    @apply font-sen;
+  }
+
+  .body-2 {
+    @apply text-body-2;
+    @apply font-sen;
+  }
+
+  .button {
+    @apply text-button;
+    @apply font-sen;
+    @apply font-bold;
+    @apply uppercase;
+  }
+
+  .caption {
+    @apply text-caption;
+    @apply font-sen;
+  }
+
+  .overline {
+    @apply text-overline;
+    @apply font-sen;
+    @apply font-bold;
+  }
+
+  .tag {
+    @apply text-tag;
+    @apply font-sen;
+  }
+
+  .label {
+    @apply text-label;
+    @apply font-sen;
+  }
 }
