@@ -1,3 +1,4 @@
+import Provider from "./components/Provider";
 import "./globals.css";
 import { Koulen, Hammersmith_One, Sen } from "next/font/google";
 
@@ -37,7 +38,9 @@ export default function RootLayout({
       <body
         className={`${koulen.variable} ${hammersmith.variable} ${sen.variable}`}
       >
-        <div>{children}</div>
+        <Provider>
+          <div>{children}</div>
+        </Provider>
       </body>
     </html>
   );
