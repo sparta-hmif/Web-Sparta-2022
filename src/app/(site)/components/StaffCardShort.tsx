@@ -1,4 +1,5 @@
 import Image from "next/image";
+import clsx from "clsx";
 
 // Asset imports
 import CardBackground from "@/../public/images/landing/staff-card-bg.svg";
@@ -6,15 +7,17 @@ import SpartaLogo from "@/../public/images/landing/sparta.png";
 import CardLine from "@/../public/images/landing/card-line.svg";
 import JabatanBackground from "@/../public/images/landing/card-jabatan-bg.svg";
 
-type ComponentProps = {
+export type StaffShortProps = {
   divisi: string;
   yunani: string;
   imageURL?: string;
   jabatan: string;
   namaLengkap: string;
   nim: string;
+  flipped?: boolean;
 };
 
+//! BELOM ADA SHADOW
 export default function StaffCardShort({
   divisi,
   yunani,
@@ -22,10 +25,16 @@ export default function StaffCardShort({
   jabatan,
   namaLengkap,
   nim,
-}: ComponentProps): JSX.Element {
+  flipped,
+}: StaffShortProps): JSX.Element {
   return (
-    <div className="relative w-[52.2vw] h-auto aspect-[319/484] min-w-[188px] min-h-[292px] max-w-[319px] max-h-[484px] flex flex-col items-center md:w-[22.1vw]">
-      <div className="-z-10 w-[52.2vw] h-auto aspect-[319/484] absolute left-0 top-0 min-w-[188px] min-h-[292px] max-w-[319px] max-h-[484px] md:w-[22.1vw]">
+    <div className="relative w-[52.2vw] h-auto aspect-[319/484] min-w-[188px] min-h-[292px] max-w-[319px] max-h-[484px] flex flex-col items-center drop-shadow-[0_8px_10px_rgba(0,0,0,0.25)] md:w-[22.1vw]">
+      <div
+        className={clsx(
+          "-z-10 w-[52.2vw] h-auto aspect-[319/484] absolute left-0 top-0 min-w-[188px] min-h-[292px] max-w-[319px] max-h-[484px] md:w-[22.1vw]",
+          flipped ? "-scale-x-100" : ""
+        )}
+      >
         <Image src={CardBackground} fill={true} alt="" />
       </div>
 
