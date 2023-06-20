@@ -1,50 +1,51 @@
 // NGE-TEST PRISMA
 
 import { PrismaClient } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
-  const { id } = req.query;
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const userId = searchParams.get("id");
 
   try {
     const user = await prisma.user.findUnique({
-      where: { id: String(id) },
+      where: { id: String(userId) },
     });
 
     if (!user) {
       console.log('User Not Found');
-      return res.status(404).json({ message: 'User not found' });
+      return NextResponse.json({ message: 'User not found' });
     }
 
-    return res.status(200).json(user);
+    return NextResponse.json(user);
   } catch (error) {
     console.log('Error');
-    return res.status(500).json({ message: 'Failed to fetch user', error });
+    return NextResponse.json({ message: 'Failed to fetch user', error });
   }
 }
 
-export async function PUT(req: NextApiRequest, res: NextApiResponse) {
-  const { id } = req.query;
-  const { nim, email, password, fullName, shortName } = req.body;
+export async function PUT(req: NextRequest, res: NextResponse) {
+  const { searchParams } = new URL(req.url);
+  const userId = searchParams.get("id");
+  const { nim, email, password, fullName, shortName } = await req.json();
 
   try {
     // Mengupdate data user berdasarkan ID
     const updatedUser = await prisma.user.update({
-      where: { id: String(id) },
+      where: { id: String(userId) },
       data: {
-        nim,
-        email,
-        password,
-        fullName,
-        shortName
+        nim: nim,
+        email: email,
+        password: password,
+        fullName: fullName,
+        shortName: shortName
       },
     });
 
-    return res.status(200).json({ message: 'User updated successfully', user: updatedUser });
+    return NextResponse.json({ message: 'User updated successfully', user: updatedUser });
   } catch (error) {
-    return res.status(500).json({ message: 'Failed to update user', error });
+    return NextResponse.json({ message: 'Failed to update user', error });
   }
 }
