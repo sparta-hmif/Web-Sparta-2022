@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 8888",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -16,10 +16,12 @@
     "@types/react": "18.2.9",
     "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
+    "bcryptjs": "^2.4.3",
     "clsx": "^1.2.1",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.4",
     "next": "13.4.4",
+    "next-auth": "^4.22.1",
     "postcss": "8.4.24",
     "react": "18.2.0",
     "react-datepicker": "^4.14.0",
@@ -31,6 +33,7 @@
   },
   "devDependencies": {
     "@types/react-datepicker": "^4.11.2",
+    "@types/bcryptjs": "^2.4.2",
     "prisma": "^4.15.0"
   }
 }
