@@ -3,8 +3,12 @@ import Image from 'next/image'
 
 const Login = () => {
   return (
-    <div>
-        <div className=" overflow-hidden min-h-screen bg-[url('/images/landing/HeroBackground.svg')] bg-no-repeat bg-center bg-cover relative ">
+    <>
+    <div className='relative overflow-hidden max-h-screen'>
+       <div className='absolute top-0 z-30 bg-red-600 w-screen' >
+        Navbar
+       </div>
+        <div className="hidden sm:block overflow-hidden min-h-screen bg-[url('/images/landing/HeroBackground.svg')] bg-no-repeat bg-center bg-cover ">
             <Image
                 alt="mountain"
                 src="/images/landing/MountainHero.svg"
@@ -55,7 +59,12 @@ const Login = () => {
                 className="absolute bottom-0 w-1/4 z-30 left-0 top-1/4 translate-x-[50%]"
             />
         </div>
+        <div className='min-h-full w-1/2 bg-white absolute z-20 top-0 right-0 flex flex-row'>
+            <div className="bg-repeat-y w-8 bg-center bg-[url('/images/landing/Border.svg')]" ></div>
+            <h1>Login</h1>
+        </div>
     </div>
+    </>
   )
 }
 
