@@ -25,7 +25,7 @@ export default function StaffCardLong({
   cardFlow = 1,
 }: StaffLongProps): JSX.Element {
   return (
-    <div className="flex">
+    <div className="flex mt-3 mb-5">
       <StaffCardShort {...ketua} />
       <div className="relative w-[32.2vw] h-auto aspect-[446/493] -mt-3 -mx-3 flex flex-col items-center">
         <div className="top-0 left-0 w-[32.2vw] h-auto aspect-[446/493] absolute">
