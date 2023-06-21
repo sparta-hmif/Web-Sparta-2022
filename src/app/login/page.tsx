@@ -59,9 +59,11 @@ const Login = () => {
                 className="absolute bottom-0 w-1/4 z-30 left-0 top-1/4 translate-x-[50%]"
             />
         </div>
-        <div className='min-h-full w-1/2 bg-white absolute z-20 top-0 right-0 flex flex-row'>
-            <div className="bg-repeat-y w-8 bg-center bg-[url('/images/landing/Border.svg')]" ></div>
-            <h1>Login</h1>
+        <div className='min-h-full w-1/2 bg-white sm:absolute sm:z-20 sm:top-0 sm:right-0 flex flex-row'>
+            <div className="hidden sm:block bg-repeat-y w-8 bg-center bg-[url('/images/landing/Border.svg')]" ></div>
+            <div className='flex flex-col py-12 items-center w-full'>
+                <h1 className='text-primary-400'>Login</h1>
+            </div>
         </div>
     </div>
     </>
