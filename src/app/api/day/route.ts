@@ -40,7 +40,7 @@ async function POST(req: NextRequest) {
     let msg = "Internal Server Error";
 
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
-      msg = err.message.split("\n").join(" ").trim();
+      msg = err.message.replace(/\s{2,}/g, ' ').slice(1);
     }
 
     return NextResponse.json(
@@ -78,7 +78,7 @@ async function GET(req: Request) {
     let msg = "Internal Server Error";
 
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
-      msg = err.message.split("\n").join(" ").trim();
+      msg = err.message.replace(/\s{2,}/g, ' ').slice(1);
     }
 
     return NextResponse.json(
