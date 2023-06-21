@@ -17,7 +17,6 @@ export type StaffShortProps = {
   flipped?: boolean;
 };
 
-//! BELOM ADA SHADOW
 export default function StaffCardShort({
   divisi,
   yunani,
@@ -28,7 +27,7 @@ export default function StaffCardShort({
   flipped,
 }: StaffShortProps): JSX.Element {
   return (
-    <div className="relative w-[52.2vw] h-auto aspect-[319/484] min-w-[188px] min-h-[292px] max-w-[319px] max-h-[484px] flex flex-col items-center drop-shadow-[0_8px_10px_rgba(0,0,0,0.25)] md:w-[22.1vw]">
+    <div className="z-10 relative w-[52.2vw] h-auto aspect-[319/484] min-w-[188px] min-h-[292px] max-w-[319px] max-h-[484px] flex flex-col items-center drop-shadow-[0_8px_10px_rgba(0,0,0,0.25)] md:w-[22.1vw]">
       <div
         className={clsx(
           "-z-10 w-[52.2vw] h-auto aspect-[319/484] absolute left-0 top-0 min-w-[188px] min-h-[292px] max-w-[319px] max-h-[484px] md:w-[22.1vw]",
@@ -57,12 +56,12 @@ export default function StaffCardShort({
         <div className="-z-10 absolute left-0 top-0 w-full h-auto aspect-[190/30]">
           <Image src={JabatanBackground} fill={true} alt="" />
         </div>
-        <p className="sub-1 text-primary-400 w-full text-center text-[10px] mt-0.5 md:text-xs lg:mt-0 lg:text-sub-1">
+        <p className="sub-1 text-primary-400 w-full text-center text-[10px] mt-0.5 md:text-xs lg:mt-0 lg:text-sm xl:text-sub-1">
           {jabatan}
         </p>
       </div>
 
-      <p className="w-full text-center text-secondaryDark-400 mt-0.5 font-bold text-sm md:text-base lg:mt-2.5 lg:text-xl">
+      <p className="w-full text-center text-secondaryDark-400 mt-0.5 font-bold text-sm md:text-base lg:mt-2.5 lg:text-lg xl:text-xl">
         {namaLengkap}
       </p>
       <p className="w-full text-center text-secondaryDark-400 text-xs lg:text-sm xl:mt-2">

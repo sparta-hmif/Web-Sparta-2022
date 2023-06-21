@@ -1,4 +1,120 @@
 import Image from "next/image";
+import Carousel from "./Carousel";
+
+const operasional = {
+  namaLengkap: "Fajar Maulana",
+  nim: "13521080",
+  jabatan: "Ketua Bidang",
+  divisi: "Operasional",
+  yunani: "Icarus",
+};
+
+const IT = {
+  ketua: {
+    namaLengkap: "Rava Maulana",
+    nim: "13521149",
+    jabatan: "Ketua Divisi",
+    divisi: "IT",
+    yunani: "Poseidon",
+  },
+  wakil: {
+    namaLengkap: "Kevin Sebastian",
+    nim: "18221143",
+    jabatan: "Wakil Ketua Divisi",
+    divisi: "IT",
+    yunani: "Poseidon",
+  },
+  staff: [
+    {
+      namaLengkap: "Sundaymorning O",
+      nim: "135182165",
+    },
+    {
+      namaLengkap: "Sundaymorning O",
+      nim: "135182165",
+    },
+    {
+      namaLengkap: "Sundaymorning O",
+      nim: "135182165",
+    },
+    {
+      namaLengkap: "Sundaymorning O",
+      nim: "135182165",
+    },
+    {
+      namaLengkap: "Sundaymorning O",
+      nim: "135182165",
+    },
+    {
+      namaLengkap: "Sundaymorning O",
+      nim: "135182165",
+    },
+    {
+      namaLengkap: "Sundaymorning O",
+      nim: "135182165",
+    },
+    {
+      namaLengkap: "Sundaymorning O",
+      nim: "135182165",
+    },
+    {
+      namaLengkap: "Sundaymorning O",
+      nim: "135182165",
+    },
+    {
+      namaLengkap: "Sundaymorning O",
+      nim: "135182165",
+    },
+  ],
+};
+
+const logistik = {
+  ketua: {
+    namaLengkap: "Ariel Jovananda",
+    nim: "13521086",
+    jabatan: "Ketua Divisi",
+    divisi: "Logistik",
+    yunani: "Hades",
+  },
+  wakil: {
+    namaLengkap: "Raka Admiharfan",
+    nim: "18221094",
+    jabatan: "Wakil Ketua Divisi",
+    divisi: "Logistik",
+    yunani: "Hades",
+  },
+  staff: [
+    {
+      namaLengkap: "Sundaymorning Okinawa",
+      nim: "135182165",
+    },
+    {
+      namaLengkap: "Sundaymorning Okinawa",
+      nim: "135182165",
+    },
+    {
+      namaLengkap: "Sundaymorning Okinawa",
+      nim: "135182165",
+    },
+    {
+      namaLengkap: "Sundaymorning Okinawa",
+      nim: "135182165",
+    },
+    {
+      namaLengkap: "Sundaymorning Okinawa",
+      nim: "135182165",
+    },
+    {
+      namaLengkap: "Sundaymorning Okinawa",
+      nim: "135182165",
+    },
+  ],
+};
+
+const data = {
+  kabid: operasional,
+  divisiList: [IT, logistik],
+};
 
 const BehindTheGreek = () => {
   return (
@@ -45,7 +161,8 @@ const BehindTheGreek = () => {
         height={100}
         className="absolute w-full max-w-[60rem] top-[85%] right-0"
       />
-      <div className="container text-center mx-auto pt-[30%]">
+      {/* INI TADINYA ADA MX AUTO */}
+      <div className="text-center pt-[30%] w-full">
         <Image
           alt="background"
           src="/images/landing/BehindTheGreek.svg"
@@ -55,6 +172,9 @@ const BehindTheGreek = () => {
         />
 
         {/* Masukinn ke sini rap kalo mau nyoba" */}
+        <div className="w-full mt-16">
+          <Carousel {...data} />
+        </div>
       </div>
     </div>
   );
