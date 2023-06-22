@@ -1,5 +1,8 @@
+"use client";
 import React from 'react'
 import Image from 'next/image'
+import TextFields from '@/components/TextFields'
+import Button from '@/components/Button';
 
 const Login = () => {
   return (
@@ -59,12 +62,73 @@ const Login = () => {
                 className="absolute bottom-0 w-1/4 z-30 left-0 top-1/4 translate-x-[50%]"
             />
         </div>
-        <div className='min-h-full w-1/2 bg-white sm:absolute sm:z-20 sm:top-0 sm:right-0 flex flex-row'>
-            <div className="hidden sm:block bg-repeat-y w-8 bg-center bg-[url('/images/landing/Border.svg')]" ></div>
-            <div className='flex flex-col py-12 items-center w-full'>
-                <h1 className='text-primary-400'>Login</h1>
+        <div className='min-h-full sm:w-1/2 bg-white sm:absolute sm:z-20 sm:top-0 sm:right-0 sm:flex sm:flex-row'>
+        <div className="hidden sm:block bg-repeat-y w-8 bg-center mx-0 bg-[url('/images/landing/Border.svg')]"></div>
+        <div className='sm:flex-auto flex flex-col pt-12 min-w-screen min-h-screen'>
+            <div className='flex items-center justify-center gap-4 mx-4'>
+                <Image
+                    alt="mountain"
+                    src="/images/landing/Sling.svg"
+                    width={100}
+                    height={100}
+                />
+                <h2 className='text-primary-400'>Login</h2>
+                <Image
+                    alt="mountain"
+                    src="/images/landing/Sling.svg"
+                    width={100}
+                    height={100}
+                    className='transform rotate-180'
+                />
             </div>
+            <div className='flex flex-col items-center justify-center gap-4 mx-12 mt-12 sm:mt-36'>
+                <form className='flex flex-col gap-4 items-center'>
+                    <TextFields
+                        placeholder="Email"
+                        width="150%"
+                        height="50px"
+                        value=''
+                        onChange={() => {}}
+                    />
+                    <TextFields
+                        placeholder="Password"
+                        type='password'
+                        width="150%"
+                        height="50px"
+                        value=''
+                        onChange={() => {}}
+                    />
+                    <Button
+                        text="Login"
+                        isPrimary={true}
+                        type="submit"
+                        onClick={() => {}}
+                    />
+                </form>
+                <div className='flex flex-col items-center justify-center'>
+                    <p className='body-1 text-center w-2/3'>Silakan cek email Anda untuk mendapatkan <span className='text-primary-400'>username</span> dan <span className='text-primary-400'>password</span></p>
+                    
+                </div>
+            </div>
+            <div className='order-last flex-auto relative'>
+                    <Image
+                        alt="mountain"
+                        src="/images/landing/Union.svg"
+                        width={100}
+                        height={100}
+                        className='absolute bottom-0 left-0 translate-x-[-45%] translate-y-[5%]  w-1/2'
+                    />
+                    <Image
+                        alt="mountain"
+                        src="/images/landing/Union.svg"
+                        width={100}
+                        height={100}
+                        className='absolute bottom-0 right-0 scale-x-[-1] translate-x-[45%] translate-y-[5%] w-1/2'
+                    />
+                </div>
         </div>
+        </div>
+
     </div>
     </>
   )
