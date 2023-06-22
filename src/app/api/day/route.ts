@@ -38,14 +38,16 @@ async function POST(req: NextRequest) {
     return NextResponse.json({ message: "success" });
   } catch (err) {
     let msg = "Internal Server Error";
+    let status = 500;
 
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       msg = err.message.replace(/\s{2,}/g, ' ').slice(1);
+      status = 400;
     }
 
     return NextResponse.json(
       { message: msg },
-      { status: 500 }
+      { status: status }
     );
   }
 }
@@ -76,14 +78,16 @@ async function GET(req: Request) {
     return NextResponse.json(days);
   } catch (err) {
     let msg = "Internal Server Error";
+    let status = 500;
 
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       msg = err.message.replace(/\s{2,}/g, ' ').slice(1);
+      status = 400;
     }
 
     return NextResponse.json(
       { message: msg },
-      { status: 500 }
+      { status: status }
     );
   }
 }
