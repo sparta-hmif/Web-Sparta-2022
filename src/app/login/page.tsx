@@ -106,7 +106,7 @@ const Login = () => {
                     />
                 </form>
                 <div className='flex flex-col items-center justify-center'>
-                    <p className='body-1 text-center w-2/3'>Silakan cek email Anda untuk mendapatkan <span className='text-primary-400'>username</span> dan <span className='text-primary-400'>password</span></p>
+                    <p className='body-1 text-center  sm:w-2/3'>Silakan cek email Anda untuk mendapatkan <span className='text-primary-400'>username</span> dan <span className='text-primary-400'>password</span></p>
                     
                 </div>
             </div>
