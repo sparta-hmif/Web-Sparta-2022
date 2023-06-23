@@ -1,13 +1,12 @@
-import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import {
   searchFolderIdByName,
   postFile2Drive,
   newDriveFolder,
-} from "../../../../../lib/drive";
+} from "@/app/lib/drive";
 import moment from "moment-timezone";
+import { prisma } from "@/app/lib/prisma";
 
-const prisma = new PrismaClient();
 const parent_id: string = process.env.PARENTID as string;
 
 export async function POST(req: NextRequest) {
@@ -42,7 +41,6 @@ export async function POST(req: NextRequest) {
       else if (newfolder.data) {
         // upload file to drive
         upload = await postFile2Drive(newfolder.data, file, valid);
-
         // failed upload
         if (upload.status === 500)
           throw new Error("Google API Error While Uploading");
@@ -65,6 +63,8 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ status: upload.status });
   } catch (err) {
+    console.error(err);
+
     return NextResponse.json(
       { message: "Internal Server Error" },
       { status: 500 }
