@@ -50,17 +50,20 @@ export default function Carousel({
       }
     }
   };
+
   return (
-    <div className="flex items-center justify-between px-10">
+    <div className="flex items-center justify-between px-10 relative">
       <button
         onClick={() => handleClick("left")}
-        className="z-40 w-[100px] h-[100px] bg-white rounded-full flex items-center justify-center"
+        className="z-40 w-[7vw] min-w-[63px] max-w-[100px] left-4 h-auto aspect-square bg-white rounded-full flex items-center justify-center"
       >
-        <Image src={ArrowLeft} width={68} height={68} alt="" />
+        <div className="w-[4.7vw] h-auto aspect-square relative max-w-[68px] max-h-[68px]">
+          <Image src={ArrowLeft} fill={true} alt="" />
+        </div>
       </button>
-      <div className="w-[79vw] flex overflow-hidden">
+      <div className="w-[79vw] flex shrink-0 overflow-hidden gap-2">
         <div
-          style={{ transform: `translateX(-${carouselFlow * 79}vw)` }}
+          style={{ transform: `translateX(-${carouselFlow * 79.5}vw)` }}
           className="flex items-center justify-center min-w-full transition-all duration-200"
         >
           <StaffCardShort {...kabid} />
@@ -68,7 +71,7 @@ export default function Carousel({
         {divisiList.map((divisi, idx) => (
           <div
             key={idx}
-            style={{ transform: `translateX(-${carouselFlow * 79}vw)` }}
+            style={{ transform: `translateX(-${carouselFlow * 79.5}vw)` }}
             className="flex items-center justify-center min-w-full transition-all duration-200"
           >
             <StaffCardLong {...divisi} cardFlow={cardFlow[idx + 1]} />
@@ -77,9 +80,11 @@ export default function Carousel({
       </div>
       <button
         onClick={() => handleClick("right")}
-        className="z-40 w-[100px] h-[100px] bg-white rounded-full flex items-center justify-center"
+        className="z-40 w-[7vw] min-w-[63px] max-w-[100px] h-auto aspect-square right-4 bg-white rounded-full flex items-center justify-center"
       >
-        <Image src={ArrowRight} width={68} height={68} alt="" />
+        <div className="w-[4.7vw] h-auto aspect-square relative max-w-[68px] max-h-[68px]">
+          <Image src={ArrowRight} fill={true} alt="" />
+        </div>
       </button>
     </div>
   );

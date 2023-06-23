@@ -26,43 +26,43 @@ const IT = {
   },
   staff: [
     {
-      namaLengkap: "Sundaymorning O",
+      namaLengkap: "Sunday Okinawa",
       nim: "135182165",
     },
     {
-      namaLengkap: "Sundaymorning O",
+      namaLengkap: "Sunday Okinawa",
       nim: "135182165",
     },
     {
-      namaLengkap: "Sundaymorning O",
+      namaLengkap: "Sunday Okinawa",
       nim: "135182165",
     },
     {
-      namaLengkap: "Sundaymorning O",
+      namaLengkap: "Sunday Okinawa",
       nim: "135182165",
     },
     {
-      namaLengkap: "Sundaymorning O",
+      namaLengkap: "Sunday Okinawa",
       nim: "135182165",
     },
     {
-      namaLengkap: "Sundaymorning O",
+      namaLengkap: "Sunday Okinawa",
       nim: "135182165",
     },
     {
-      namaLengkap: "Sundaymorning O",
+      namaLengkap: "Sunday Okinawa",
       nim: "135182165",
     },
     {
-      namaLengkap: "Sundaymorning O",
+      namaLengkap: "Sunday Okinawa",
       nim: "135182165",
     },
     {
-      namaLengkap: "Sundaymorning O",
+      namaLengkap: "Sunday Okinawa",
       nim: "135182165",
     },
     {
-      namaLengkap: "Sundaymorning O",
+      namaLengkap: "Sunday Okinawa",
       nim: "135182165",
     },
   ],
@@ -85,27 +85,27 @@ const logistik = {
   },
   staff: [
     {
-      namaLengkap: "Sundaymorning Okinawa",
+      namaLengkap: "Sunday Okinawa",
       nim: "135182165",
     },
     {
-      namaLengkap: "Sundaymorning Okinawa",
+      namaLengkap: "Sunday Okinawa",
       nim: "135182165",
     },
     {
-      namaLengkap: "Sundaymorning Okinawa",
+      namaLengkap: "Sunday Okinawa",
       nim: "135182165",
     },
     {
-      namaLengkap: "Sundaymorning Okinawa",
+      namaLengkap: "Sunday Okinawa",
       nim: "135182165",
     },
     {
-      namaLengkap: "Sundaymorning Okinawa",
+      namaLengkap: "Sunday Okinawa",
       nim: "135182165",
     },
     {
-      namaLengkap: "Sundaymorning Okinawa",
+      namaLengkap: "Sunday Okinawa",
       nim: "135182165",
     },
   ],
