@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Prisma } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
@@ -11,7 +11,6 @@ const prisma = new PrismaClient();
 async function POST(req: NextRequest) {
   try {
     const { rating, evaluation, userId, dayId } = await req.json();
-    console.log(rating, evaluation, userId, dayId);
 
     if (!(userId && dayId && (rating || rating === 0) && evaluation))
       return NextResponse.json(
@@ -40,9 +39,17 @@ async function POST(req: NextRequest) {
 
     return NextResponse.json({ message: "success" });
   } catch (err) {
+    let msg = "Internal Server Error";
+    let status = 500;
+
+    if (err instanceof Prisma.PrismaClientKnownRequestError) {
+      msg = err.message.replace(/\s{2,}/g, ' ').slice(1);
+      status = 400;
+    }
+
     return NextResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 }
+      { message: msg },
+      { status: status }
     );
   }
 }
@@ -85,9 +92,17 @@ async function PATCH(req: NextRequest) {
 
     return NextResponse.json({ message: "success" });
   } catch (err) {
+    let msg = "Internal Server Error";
+    let status = 500;
+
+    if (err instanceof Prisma.PrismaClientKnownRequestError) {
+      msg = err.message.replace(/\s{2,}/g, ' ').slice(1);
+      status = 400;
+    }
+
     return NextResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 }
+      { message: msg },
+      { status: status }
     );
   }
 }
