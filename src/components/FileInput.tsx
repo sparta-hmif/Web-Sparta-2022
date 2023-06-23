@@ -38,7 +38,7 @@ const FileInput = ({ type, childToParent }: FileInputProps) => {
     <button type="button" onClick={open}>
       <div {...getRootProps({ className: "dropzone" })}></div>
       <input {...getInputProps()} />
-      <div className="edit p-3 rounded-[12px] bg-secondary-400 flex items-center justify-center">
+      <div className="edit p-1 md:p-2 lg:p-3 rounded-[12px] bg-secondary-400 flex items-center justify-center">
         <img src="/pencil.svg" alt="" />
       </div>
       <style jsx>
