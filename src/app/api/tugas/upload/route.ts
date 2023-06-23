@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
     // folder found
     else if (folder.status == 200) {
       // file to drive
-      upload = await postFile2Drive(folder.data, file, valid);
+      upload = await postFile2Drive(folder.data.id, file, valid);
 
       // failed upload
       if (upload.status === 500)
