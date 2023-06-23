@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Prisma } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import moment from 'moment';
 
@@ -37,10 +37,17 @@ async function POST(req: NextRequest) {
 
     return NextResponse.json({ message: "success" });
   } catch (err) {
-    console.log(err);
+    let msg = "Internal Server Error";
+    let status = 500;
+
+    if (err instanceof Prisma.PrismaClientKnownRequestError) {
+      msg = err.message.replace(/\s{2,}/g, ' ').slice(1);
+      status = 400;
+    }
+
     return NextResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 }
+      { message: msg },
+      { status: status }
     );
   }
 }
@@ -69,10 +76,18 @@ async function GET(req: Request) {
     });
 
     return NextResponse.json(days);
-  } catch (error) {
+  } catch (err) {
+    let msg = "Internal Server Error";
+    let status = 500;
+
+    if (err instanceof Prisma.PrismaClientKnownRequestError) {
+      msg = err.message.replace(/\s{2,}/g, ' ').slice(1);
+      status = 400;
+    }
+
     return NextResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 }
+      { message: msg },
+      { status: status }
     );
   }
 }
