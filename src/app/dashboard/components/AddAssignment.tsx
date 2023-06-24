@@ -1,19 +1,31 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Button from "./Button";
+import Button from "../../../components/Button";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import FileInput from "./FileInput";
+import LinkAttachment from "@/components/LinkAttachment";
 
 const AddAssignment = () => {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
 
-  const [data, setData] = useState<string>();
+  // const [data, setData] = useState<string>();
 
-  const childToParent = (childData: string) => {
-    setData(childData);
+  // const childToParent = (childData: string) => {
+  //   setData(childData);
+  // };
+
+  const [attachment, setAttachment] = useState<Array<string>>([]);
+
+  const addAttachment = (val: string) => {
+    setAttachment([...attachment, val]);
+  };
+
+  const deleteAttachment = (idx: number) => {
+    const temp = [...attachment];
+    temp.splice(idx, 1);
+    setAttachment(temp);
   };
 
   return (
@@ -116,7 +128,13 @@ const AddAssignment = () => {
             >
               Attachment
             </label>
-            <FileInput childToParent={childToParent}></FileInput>
+            <div className="w-full">
+              <LinkAttachment
+                linkArray={attachment}
+                addLink={addAttachment}
+                deleteLink={deleteAttachment}
+              />
+            </div>
           </div>
           <div className="flex justify-center gap-2 my-7 lg:justify-end">
             <Button isPrimary={false} text={"Cancel"}></Button>
