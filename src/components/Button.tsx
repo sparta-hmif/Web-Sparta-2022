@@ -1,3 +1,6 @@
+"use client"
+
+import clsx from "clsx";
 import { MouseEventHandler } from "react";
 
 const Button = ({
@@ -11,19 +14,28 @@ const Button = ({
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
   type?: "button" | "reset" | "submit" | undefined;
 }) => {
-  return isPrimary ? (
+  return (
     <button
       type={type}
       onClick={onClick}
-      className="bg-secondary-400 rounded-lg font-sen font-bold text-white text-[8px] py-2 px-6 hover:drop-shadow-[0_4px_6px_rgba(188,83,23,0.75)] active:bg-[#BC5317] lg:text-[16px] lg:py-[15px] lg:px-[50px] lg:rounded-[15px]"
-    >
-      {text}
-    </button>
-  ) : (
-    <button
-      type={type}
-      onClick={onClick}
-      className="border-[3px] border-secondary-400 rounded-lg bg-white font-sen font-bold text-secondary-400 text-[8px] py-2 px-6 hover:drop-shadow-[0_4px_6px_rgba(188,83,23,0.75)] active:text-white active:bg-secondary-400 lg:text-[16px] lg:py-[15px] lg:px-[50px] lg:rounded-[15px]"
+      className={clsx(
+        `
+        transition
+        w-full 
+        py-3 
+        border-4
+        border-secondary-400
+        bg-white
+        rounded-2xl
+        font-bold 
+        text-secondary-400
+        text-button 
+        hover:drop-shadow-[0_3px_6px_rgba(188,83,23,0.55)] 
+        active:bg-secondary-400
+        active:text-white
+        `,
+        isPrimary && "text-white bg-[#8C3E12] border-none active:bg-[#BC5318]"
+      )}
     >
       {text}
     </button>
