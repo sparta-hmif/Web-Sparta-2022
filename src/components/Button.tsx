@@ -18,24 +18,23 @@ const Button = ({
     <button
       type={type}
       onClick={onClick}
-      className={clsx(
+      className={
         `
         transition
         w-full 
         py-3 
-        border-4
+        ${isPrimary ? "border-none" : "border-[3px]"}
         border-secondary-400
-        bg-white
+        ${isPrimary ? "bg-secondary-400" : "bg-white"}
         rounded-2xl
         font-bold 
-        text-secondary-400
+        ${isPrimary ? "text-white" : "text-secondary-400"}
         text-button 
-        hover:drop-shadow-[0_3px_6px_rgba(188,83,23,0.55)] 
-        active:bg-secondary-400
+        hover:drop-shadow-[0_3px_6px_rgba(188,83,23,0.55)]
+        ${isPrimary ? "active:bg-[#BC5317]" : "active:bg-secondary-400"}       
         active:text-white
-        `,
-        isPrimary && "text-white bg-[#8C3E12] border-none active:bg-[#BC5318]"
-      )}
+        `
+      }
     >
       {text}
     </button>

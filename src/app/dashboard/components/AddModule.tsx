@@ -1,15 +1,16 @@
 "use client";
+
 import { useState } from "react";
-import Button from "./Button";
+import Button from "../../../components/Button";
 import { MdClose } from "react-icons/md";
-import FileInput from "./FileInput";
+import LinkAttachment from "@/components/LinkAttachment";
 
 const AddModule = () => {
   const [contentFocus, setContenFocus] = useState(-1);
 
   const [content, setContent] = useState<
     Array<{ title: string; desc: string }>
-  >([{ title: "aku", desc: "opo iki le" }]);
+  >([{ title: "", desc: "" }]);
 
   const addContent = () => {
     setContent([...content, { title: "", desc: "" }]);
@@ -36,10 +37,21 @@ const AddModule = () => {
     setContent(temp);
   };
 
-  const [data, setData] = useState<string>();
+  // const [data, setData] = useState<string>();
 
-  const childToParent = (childData: string) => {
-    setData(childData);
+  // const childToParent = (childData: string) => {
+  //   setData(childData);
+  // };
+  const [attachment, setAttachment] = useState<Array<string>>([]);
+
+  const addAttachment = (val: string) => {
+    setAttachment([...attachment, val]);
+  };
+
+  const deleteAttachment = (idx: number) => {
+    const temp = [...attachment];
+    temp.splice(idx, 1);
+    setAttachment(temp);
   };
 
   return (
@@ -65,7 +77,7 @@ const AddModule = () => {
           </div>
           <div className="flex justify-between items-center my-1 lg:my-4">
             <p className="sub-1 text-[14px] lg:text-[24px] ">Content</p>
-            <div className="hidden lg:block">
+            <div className="hidden lg:block w-[10%]">
               <Button
                 type="button"
                 onClick={addContent}
@@ -134,7 +146,13 @@ const AddModule = () => {
             >
               Attachment
             </label>
-            <FileInput childToParent={childToParent}></FileInput>
+            <div className="w-full">
+              <LinkAttachment
+                linkArray={attachment}
+                addLink={addAttachment}
+                deleteLink={deleteAttachment}
+              />
+            </div>
           </div>
           <div className="flex justify-center gap-2 my-7 lg:justify-end">
             <Button isPrimary={false} text={"Cancel"}></Button>
