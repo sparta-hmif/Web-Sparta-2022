@@ -54,7 +54,7 @@ model Materi {
 
 model Day {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  number      Int
+  number      Int       @unique
   description String?
   date        DateTime
   EvalDay     EvalDay[]
