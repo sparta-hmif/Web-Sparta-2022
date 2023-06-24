@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Background = () => {
   return (
-    <div className="overflow-hidden min-h-screen bg-[url('/images/landing/HeroBackground.svg')] bg-no-repeat bg-center bg-cover relative select-none">
+    <div className="overflow-hidden h-full w-full bg-[url('/images/landing/HeroBackground.svg')] bg-no-repeat bg-center bg-cover relative select-none">
       <div className="z-0">
         <Image
           alt="mountain"
@@ -23,14 +23,14 @@ const Background = () => {
           src="/images/landing/CloudLeft.svg"
           width={100}
           height={100}
-          className="fixed w-[200px] bottom-[150px] right-0 scale-x-[-1] md:hidden"
+          className="absolute w-[200px] bottom-[150px] right-0 scale-x-[-1] md:hidden"
         />
         <Image
           alt="mountain"
           src="/images/landing/CloudRight.svg"
           width={100}
           height={100}
-          className="fixed w-[200px] bottom-[80px] left-0 scale-x-[-1] md:hidden"
+          className="absolute w-[200px] bottom-[80px] left-0 scale-x-[-1] md:hidden"
         />
       </div>
       <div className="z-[1]">
@@ -39,18 +39,18 @@ const Background = () => {
           src="/images/landing/MountainHero.svg"
           width={200}
           height={200}
-          className="absolute w-screen bottom-[8%] inset-x-[0] scale-[1.05] lg:bottom-[13%]"
+          className="absolute w-full bottom-[8%] inset-x-[0] scale-[1.05] lg:bottom-[13%]"
         />
         <Image
           alt="mountain"
           src="/images/landing/GroundHero.svg"
           width={400}
           height={400}
-          className="absolute inset-x-[0] w-screen bottom-0 2xl:-bottom-[16%]"
+          className="absolute inset-x-[0] w-full bottom-0 2xl:-bottom-[16%]"
         />
       </div>
       <div className="z-[2]">
-        <div className="absolute inset-x-[0] w-screen bottom-0">
+        <div className="absolute inset-x-[0] w-full bottom-0">
           <Image
             alt="mountain"
             src="/images/landing/Batu1.svg"
