@@ -12,6 +12,7 @@ interface ProfileDetailProps {
   usernameIG?: string;
   tanggalLahir?: Date;
   skor?: number;
+  editButton?: () => void;
 }
 
 const ProfileDetail = ({
@@ -23,6 +24,7 @@ const ProfileDetail = ({
   usernameIG = "NAMA_IG",
   tanggalLahir = new Date(),
   skor = 13521,
+  editButton,
 }: ProfileDetailProps) => {
   const defaultProfilePict = "/images/landing/placeholder.jpg";
   const defaultAlt = "Foto Profil";
@@ -76,11 +78,11 @@ const ProfileDetail = ({
             </p>
           </div>
         </div>
-        <div className="hidden md:block">
+        <div className="hidden md:block w-[130px]">
           <Button
             isPrimary={true}
             text="Edit"
-            // onClick={handleClick}
+            onClick={editButton}
             type="button"
           />
         </div>
