@@ -8,9 +8,8 @@ import TextFields from "@/components/TextFields";
 import FilterButton from "./components/FilterButton";
 import SingleRow from "./components/SingleRow";
 import ScoreboardHeader from "./components/ScoreboardHeader";
-import Button from "@/components/Button";
-import { IconContext } from "react-icons";
-import { LuChevronDown } from "react-icons/lu";
+import DashboardHeader from "./components/DashboardHeader";
+import NavDashboard from "../components/NavDashboard";
 
 let pageSize = 10;
 let originalData = sortData(testData);
@@ -42,13 +41,13 @@ export interface dataProp {
 export default function Scoreboard() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeIndex, setActiveIndex] = useState(3);
 
   const handleSearchQueryChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setSearchQuery(event.target.value);
     setCurrentPage(1);
-    console.log(event.target);
   };
 
   const filteredData = useMemo(() => {
@@ -70,37 +69,44 @@ export default function Scoreboard() {
   }, [currentPage, filteredData]);
 
   return (
-    <div className="mx-[15px] lg:mx-[100px]">
-      <div className="flex gap-2 max-h-[35px] mt-3">
-        <TextFields
-          onChange={handleSearchQueryChange}
-          value={searchQuery}
-          placeholder="Search"
-        />
-        <FilterButton />
-      </div>
-      <div className=" text-label lg:text-sub-1 font-bold font-sen text-primaryDark-400 ">
-        <ScoreboardHeader />
-        {currentShowingData.map((data, idx) => {
-          return (
-            <SingleRow
-              rank={pageSize * (currentPage - 1) + idx + 1}
-              nim={data.nim}
-              name={data.name}
-              score={data.score}
-              key={idx}
-            />
-          );
-        })}
-        <div className="flex justify-center mt-3 align-center">
-          <Pagination
-            totalDataCount={filteredData.length}
-            currentPage={currentPage}
-            pageSize={pageSize}
-            onPageChange={(page) => setCurrentPage(page)}
+    <>
+      <DashboardHeader />
+      <NavDashboard
+        activeIndex={activeIndex}
+        handleItemClick={(index) => setActiveIndex(index)}
+      />
+      <div className="mx-[15px] md:mx-[100px] lg:mx-[235px]">
+        <div className="flex gap-2 max-h-[35px] lg:max-h-[45px] mt-6 mb-6">
+          <TextFields
+            onChange={handleSearchQueryChange}
+            value={searchQuery}
+            placeholder="Search"
           />
+          <FilterButton />
+        </div>
+        <div className="text-caption lg:text-sub-1 font-bold font-sen text-primaryDark-400 ">
+          <ScoreboardHeader />
+          {currentShowingData.map((data, idx) => {
+            return (
+              <SingleRow
+                rank={pageSize * (currentPage - 1) + idx + 1}
+                nim={data.nim}
+                name={data.name}
+                score={data.score}
+                key={idx}
+              />
+            );
+          })}
+          <div className="flex justify-center mt-5 align-center pb-5">
+            <Pagination
+              totalDataCount={filteredData.length}
+              currentPage={currentPage}
+              pageSize={pageSize}
+              onPageChange={(page) => setCurrentPage(page)}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
