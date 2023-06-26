@@ -19,9 +19,9 @@ export default function PaginationNumber({
     <button
       disabled={isDisabled}
       onClick={onClick}
-      className={`flex w-[21px] h-[21px] md:w-[24px] md:h-[24px] lg:w-[32px] lg:h-[32px] ${
+      className={`flex w-[24px] h-[24px] md:w-[28px] md:h-[28px] lg:w-[32px] lg:h-[32px] ${
         isActive ? "bg-primaryLight-700" : ""
-      } justify-center items-center text-[9px] lg:text-[13px] font-bold text-secondary-400 font-sen ${
+      } justify-center items-center text-[12px] lg:text-[14px] font-bold text-secondary-400 font-sen ${
         !isDots ? "border border-black rounded-full " : ""
       } ${
         !isActive && !isDots
