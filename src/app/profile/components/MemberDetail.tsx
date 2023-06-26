@@ -1,15 +1,15 @@
 import Image from "next/image";
 
 interface MemberDetailProps {
-  profilePictMember?: string;
-  namaMember?: string;
-  nimMember?: string;
+  profile?: string;
+  nama?: string;
+  nim?: string;
 }
 
 const MemberDetail = ({
-  profilePictMember,
-  namaMember = "Nama Member",
-  nimMember = "13518221",
+  profile,
+  nama = "Nama Member",
+  nim = "13518221",
 }: MemberDetailProps) => {
   const defaultProfilePict = "/images/landing/placeholder.jpg";
   return (
@@ -17,14 +17,14 @@ const MemberDetail = ({
       <div className="overflow-hidden rounded-full">
         <Image
           alt="Pict"
-          src={profilePictMember || defaultProfilePict}
+          src={profile || defaultProfilePict}
           width={58}
           height={58}
         />
       </div>
       <div className="flex flex-col justify-center gap-0">
-        <h6 className="font-koulen text-black">{namaMember}</h6>
-        <p className="font-sen font-bold text-black text-sub-2">{nimMember}</p>
+        <h6 className="font-koulen text-black">{nama}</h6>
+        <p className="font-sen font-bold text-black text-sub-2">{nim}</p>
       </div>
     </div>
   );

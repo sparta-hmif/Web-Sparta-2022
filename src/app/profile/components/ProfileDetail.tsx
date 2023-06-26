@@ -1,5 +1,7 @@
+"use client";
+
 import Image from "next/image";
-import MemberDetail from "./MemberDetail";
+import { useRouter } from "next/navigation";
 import { BsInstagram, BsGift } from "react-icons/bs";
 import Button from "@/components/Button";
 
@@ -12,40 +14,40 @@ interface ProfileDetailProps {
   usernameIG?: string;
   tanggalLahir?: Date;
   skor?: number;
-  editButton?: () => void;
 }
 
 const ProfileDetail = ({
   profilePicture,
-  namaLengkap = "NAMA LENGKAP DARI PENGGUNA",
-  namaPanggilan = "NAMA PANGGILAN",
-  nim = "13521000",
-  jurusan = "STIF",
-  usernameIG = "NAMA_IG",
+  namaLengkap = "",
+  namaPanggilan = "",
+  nim = "",
+  jurusan = "",
+  usernameIG = "",
   tanggalLahir = new Date(),
-  skor = 13521,
-  editButton,
+  skor = 0,
 }: ProfileDetailProps) => {
-  const defaultProfilePict = "/images/landing/placeholder.jpg";
-  const defaultAlt = "Foto Profil";
+  const router = useRouter();
   return (
-    <div className="flex flex-col md:flex-row w-fit h-fit p-5 md:p-8 bg-white border-primaryDark-400 border-[5px] rounded-xl text-left gap-8 items-center justify-center">
-      <div className="overflow-hidden w-[160px] h-[160px] md:w-[240px] md:h-[320px] rounded-xl">
-        <img
-          alt={namaPanggilan || defaultAlt}
-          src={profilePicture || defaultProfilePict}
-          className="w-full h-full object-cover"
-        />
-      </div>
-      <div className="flex flex-col items-end gap-5">
-        <div className="flex flex-col rounded-md bg-[#D9D9D9] p-5 w-[250px] md:w-[530px]">
+    <div className="bg-white border-primaryDark-400 border-[5px] rounded-xl flex flex-col items-center lg:items-end px-2 py-8 md:p-10 gap-8">
+      <div className="flex flex-col md:flex-row w-full text-left gap-8 items-center justify-center ">
+        <div className="overflow-hidden w-1/2 aspect-square lg:w-[35%] lg:h-[22rem] rounded-xl">
+          <Image
+            alt="profileSpartan"
+            src={profilePicture || "/images/landing/placeholder.jpg"}
+            height={400}
+            width={400}
+            className="w-full h-full object-cover object-center"
+            unoptimized={true}
+          />
+        </div>
+        <div className="flex flex-col rounded-md lg:bg-[#D9D9D9] p-5 w-full lg:flex-1">
           <div className="flex flex-row justify-between font-koulen items-center text-h6">
             <div className="flex flex-row items-center justify-center gap-1">
               <div className="flex bg-black rounded-md p-1">
                 <BsInstagram size={20} color="white" />
               </div>
-              <p className="font-koulen text-black text-sub-1 md:text-h6">
-                {usernameIG.toUpperCase()}
+              <p className="font-koulen text-black text-sub-1 md:text-h6 uppercase">
+                {usernameIG}
               </p>
             </div>
 
@@ -78,14 +80,14 @@ const ProfileDetail = ({
             </p>
           </div>
         </div>
-        <div className="hidden md:block w-[130px]">
-          <Button
-            isPrimary={true}
-            text="Edit"
-            onClick={editButton}
-            type="button"
-          />
-        </div>
+      </div>
+      <div className="w-2/12 min-w-[10rem]">
+        <Button
+          isPrimary={true}
+          text="Edit"
+          onClick={() => router.push("/profile/edit")}
+          type="button"
+        />
       </div>
     </div>
   );
