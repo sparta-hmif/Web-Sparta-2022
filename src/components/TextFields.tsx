@@ -6,6 +6,7 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 interface TextFieldsProps {
   type?: string;
   placeholder?: string;
+  name?: string;
   width?: string;
   height?: string;
   value: string;
@@ -18,6 +19,7 @@ interface TextFieldsProps {
 const TextFields = ({
   type = "text",
   placeholder,
+  name,
   width,
   height,
   value,
@@ -48,6 +50,7 @@ const TextFields = ({
           type={isVisible ? "text" : type}
           placeholder=" "
           id={placeholder}
+          name={name}
           className="
             border-secondary-400
             focus:border-secondary-400 

@@ -1,66 +1,57 @@
-"use client";
-
-import EditProfile from "@/components/EditProfile";
-import Background from "./components/Background";
 import MemberList from "./components/MemberList";
 import ProfileDetail from "./components/ProfileDetail";
-import { useState, MouseEventHandler } from "react";
 
 export default function Home() {
   // Property for each component
   const profileDetailProps = {
-    // profilePicture,
-    // namaLengkap,
-    // namaPanggilan,
-    // nim,
-    // jurusan,
-    // usernameIG,
-    // tanggalLahir,
-    // skor,
+    profilePicture: "",
+    namaLengkap: "Nama Lengkap",
+    namaPanggilan: "Nama Panggilan",
+    nim: "123456789",
+    jurusan: "Jurusan",
+    usernameIG: "usernameIG",
+    tanggalLahir: new Date(),
+    skor: 9999,
   };
   const memberListProps = {
-    // nomorKelompok,
-    // anggotaMentor,
-    // kakakAsuh,
+    nomorKelompok: 1,
+    anggotaMentor: [
+      {
+        nama: "Anggota 1",
+        nim: "123456789",
+      },
+      {
+        nama: "Anggota 2",
+        nim: "123456789",
+      },
+    ],
+    kakakAsuh: [
+      {
+        nama: "Kakak 1",
+        nim: "123456789",
+      },
+      {
+        nama: "Kakak 2",
+        nim: "123456789",
+      },
+    ],
   };
 
-  const [editProfile, setEditProfile] = useState(false);
-
-  const editButtonHandle = () => {
-    setEditProfile(true);
-  };
   return (
     <>
-      <div className="w-screen h-screen overflow-x-hidden overflow-y-scroll">
-        <div>{/* NAVBAR */}</div>
-        <div className="relative top-10 z-0 flex items-center justify-center flex-col w-full overflow-x-hidden pb-10">
-          <h1 className="font-koulen bg-gradient-to-b from-white to-[#D39947] text-transparent bg-clip-text hidden sm:block">
-            PROFILE
-          </h1>
-          {!editProfile ? (
-            <div className="flex flex-col lg:flex-row w-full items-center lg:items-start justify-center gap-5">
-              <div className="hidden lg:block">
-                <MemberList {...memberListProps} />
-              </div>
-              <ProfileDetail
-                {...profileDetailProps}
-                editButton={editButtonHandle}
-              />
-
-              <div className="lg:hidden">
-                <MemberList {...memberListProps} />
-              </div>
-            </div>
-          ) : (
-            <div className="flex w-full items-center justify-center bg-white">
-              <EditProfile />
-            </div>
-          )}
+      <div className="w-full min-h-screen bg-[url('/images/profile/Background.svg')] bg-no-repeat bg-bottom bg-cover pt-20 pb-10">
+        {/* <div className="relative top-10 z-0 flex items-center justify-center flex-col w-full overflow-x-hidden pb-10"> */}
+        <h1 className="text-center font-koulen bg-gradient-to-b from-white to-[#D39947] from-[35%] text-transparent bg-clip-text hidden sm:block">
+          PROFILE
+        </h1>
+        <div className="flex flex-col lg:flex-row justify-center gap-5 container mx-auto px-20">
+          <div className="order-2 lg:order-1 w-full lg:w-1/3">
+            <MemberList {...memberListProps} />
+          </div>
+          <div className="order-1 lg:order-2 lg:flex-1 w-full">
+            <ProfileDetail {...profileDetailProps} />
+          </div>
         </div>
-        <div className="absolute w-full h-full top-0 z-[-100]">
-          <Background />
-        </div>
-        <div>{/* FOOTER */}</div>
       </div>
     </>
   );
