@@ -1,5 +1,5 @@
 import Button from "@/components/Button";
-import { dataProp } from "../page";
+import { dataProp } from "./Scoreboard";
 
 const SingleRow = ({ rank, nim, name, score }: dataProp) => {
   return (

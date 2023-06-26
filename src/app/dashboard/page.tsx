@@ -5,6 +5,7 @@ import AddAssignment from "./components/AddAssignment";
 import NavDashboard from "./components/NavDashboard";
 import AddModule from "./components/AddModule";
 import DashboardHeader from "@/components/DashboardHeader";
+import Scoreboard from "./components/Scoreboard";
 
 const Dashboard = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -18,6 +19,7 @@ const Dashboard = () => {
       <NavDashboard activeIndex={activeIndex} handleItemClick={handleItemClick}/>
       {activeIndex === 0 && <AddModule />}
       {activeIndex === 1 && <AddAssignment />}
+      {activeIndex === 3 && <Scoreboard />}
     </div>
   );
 };
