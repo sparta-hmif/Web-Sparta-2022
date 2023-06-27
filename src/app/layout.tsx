@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import Provider from "./components/Provider";
 import "./globals.css";
 import { Koulen, Hammersmith_One, Sen } from "next/font/google";
@@ -39,6 +40,7 @@ export default function RootLayout({
         className={`${koulen.variable} ${hammersmith.variable} ${sen.variable}`}
       >
         <Provider>
+          <Navbar />
           <div>{children}</div>
         </Provider>
       </body>
