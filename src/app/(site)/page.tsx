@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import About from "./components/About";
 import BehindTheGreek from "./components/BehindTheGreek";
 import Hero from "./components/Hero";

@@ -15,26 +15,27 @@ export default function PaginationButton({
   onClick,
   isDisabled = false,
 }: PaginationButtonProps) {
-  const [iconSize, setIconSize] = useState(getIconSize());
+  const [iconSize, setIconSize] = useState("20px");
   useEffect(() => {
+    function getIconSize() {
+      if (window.innerWidth < 768) {
+        return "20px";
+      } else if (window.innerWidth >= 768 && window.innerWidth < 1024) {
+        return "24px";
+      } else {
+        return "28px";
+      }
+    }
+
+    function handleResize() {
+      setIconSize(getIconSize());
+    }
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  function getIconSize() {
-    if (window.innerWidth < 768) {
-      return "20px";
-    } else if (window.innerWidth >= 768 && window.innerWidth < 1024) {
-      return "24px";
-    } else {
-      return "28px";
-    }
-  }
-
-  function handleResize() {
-    setIconSize(getIconSize());
-  }
 
   return (
     <button
