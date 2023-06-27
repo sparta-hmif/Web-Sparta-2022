@@ -1,11 +1,25 @@
 "use client";
 
 import { useState } from "react";
+import { signOut } from "next-auth/react";
 import React from "react";
 import Dropdown from "@/components/Dropdown";
 import Image from "next/image";
 import { IoMenu, IoClose } from "react-icons/io5";
 import { FaChevronDown } from "react-icons/fa";
+import { useRouter } from "next/navigation";
+
+interface UserSession {
+  id: string;
+  email: string;
+  fullName: string;
+  nim: string;
+  role: string;
+}
+
+interface NavbarProps {
+  user: UserSession | null;
+}
 
 const dataPage = [
   {
@@ -30,11 +44,11 @@ const dataPage = [
     href: "/",
   },
 ];
-const Navbar = () => {
-  const [username, setUsername] = useState("John Doe");
+const Navbar = ({ user }: NavbarProps) => {
   const [showMenu, setShowMenu] = useState(false);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(-1);
+  const router = useRouter();
 
   const menuElements = (item: {
     name: string;
@@ -77,6 +91,10 @@ const Navbar = () => {
   const toggleDropdown = () => {
     setIsUserDropdownOpen(!isUserDropdownOpen);
   };
+
+  const handleSignOut = async () => {
+    await signOut();
+  };
   
   return (
     <div className="fixed top-0 left-0 right-0 z-50 w-full text-h5 font-koulen text-primary-400 bg-primaryDark-400 shadow-xl">
@@ -94,7 +112,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="hidden md:block w-[15rem] relative">
-          {username ? (
+          {user ? (
             <div
               className="w-full flex items-center justify-between border-2 border-primary-400 px-3 rounded-full hover:bg-primary-400 transition cursor-pointer hover:text-primaryDark-400"
               onClick={toggleDropdown}
@@ -107,12 +125,12 @@ const Navbar = () => {
                   className="w-7 rounded-full "
                   alt="Profile Picture"
                 />
-                <p className="mt-0.5">{username}</p>
+                <p className="mt-0.5">{user.fullName}</p>
               </div>
               <FaChevronDown size={15} />
             </div>
           ) : (
-            <div className="w-11/12 mx-auto border-2 border-primary-400 text-center rounded-full cursor-pointer hover:bg-primary-400 hover:text-primaryDark-400 transition">
+            <div onClick={() => {router.push("/login")}} className="w-11/12 mx-auto border-2 border-primary-400 text-center rounded-full cursor-pointer hover:bg-primary-400 hover:text-primaryDark-400 transition">
               LOGIN
             </div>
           )}
@@ -122,8 +140,8 @@ const Navbar = () => {
               <div className="absolute h-1 rounded-t-lg w-full top-0 bg-primaryDark-400" />
 
               <div
-                onClick={() => {}}
-                className="w-full pt-2 pb-1 items-center text-danger-300 text-lg px-2"
+                onClick={() => {handleSignOut()}}
+                className="w-full pt-2 pb-1 items-center text-danger-300 text-lg px-2 cursor--pointer"
               >
                 LOGOUT
               </div>
@@ -183,10 +201,10 @@ const Navbar = () => {
                 </>
               );
             })}
-            {username && <div className="py-2 px-6 text-xl text-danger-200 hover:bg-primary-400/20 transition">LOGOUT</div>}
+            {user && <div onClick={() => {handleSignOut()}} className="py-2 px-6 text-xl text-danger-200 hover:bg-primary-400/20 transition">LOGOUT</div>}
           </div>
           <div className="mt-auto w-full bg-primary-400/[15%] border-t-[1px] border-primary-400 px-4 py-2 flex items-center gap-3">
-            {username ? (
+            {user ? (
               <>
                 <Image
                   width={50}
@@ -195,10 +213,10 @@ const Navbar = () => {
                   className="w-2/12 rounded-full "
                   alt="Profile Picture"
                 />
-                <p className="text-lg">{username}</p>
+                <p className="text-lg">{user.fullName}</p>
               </>
             ) : (
-              <div className="text-xl text-center w-full">LOGIN</div>
+              <div onClick={() => {router.push("/login")}} className="text-xl text-center w-full">LOGIN</div>
             )}
           </div>
         </div>

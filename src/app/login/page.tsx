@@ -1,7 +1,17 @@
 import Image from "next/image";
 import LoginForm from "./components/LoginForm";
+import { authOptions } from '../api/auth/[...nextauth]/route';
+import { getServerSession } from 'next-auth/next';
+import { redirect } from "next/navigation";
 
-const Login = () => {
+const Login = async () => {
+  const session = await getServerSession(authOptions)
+  console.log('pageLOGIN', session)
+  
+  if (session) {
+    redirect('/')
+  }
+
   return (
     <>
       <div className="relative overflow-hidden max-h-screen">
@@ -77,7 +87,7 @@ const Login = () => {
               />
             </div>
             <div className="flex flex-col items-center justify-center gap-4 mx-12 mt-11 sm:mt-20">
-              <LoginForm />
+              <LoginForm session={session}/>
               <div className="flex flex-col items-center justify-center">
                 <p className="body-1 text-center  sm:w-2/3">
                   Silakan cek email Anda untuk mendapatkan{" "}
