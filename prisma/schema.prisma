@@ -15,41 +15,81 @@ enum Role {
   KASUH
 }
 
-enum MateriType {
-  PDF
-  VIDEO
+enum Jabatan {
+  ZEUS
+  SEKJEN
+  SEKRETARIS
+  BENDAHARA
+  KABID
+  WAKABID
+  KADIV
+  WAKADIV
+  STAFF
+}
+
+enum Bidang {
+  KETUA_DAN_SEKJEN
+  MAMET
+  KONSEPTOR
+  LAPANGAN
+  PENSUASANAAN
+  OPERASIONAL
+}
+
+enum Divisi {
+  KESEKJENAN
+  MSDM_PANITIA
+  MAMET
+  ACARA
+  MSDM_KADER
+  MENTOR
+  KEAMANAN
+  MEDIK
+  GRAFIS
+  PUBDOK
+  IT
+  LOGISTIK
+}
+
+// Types
+type Section {
+  title       String
+  description String?
 }
 
 // Models
 model User {
-  id         String    @id @default(auto()) @map("_id") @db.ObjectId
-  nim        String    @unique
-  email      String
-  password   String
-  fullName   String
-  shortName  String?
-  score      Int       @default(0)
-  role       Role      @default(PESERTA)
-  evalUser   EvalDay[]
-  kelompok   Kelompok? @relation(fields: [kelompokId], references: [id])
-  kelompokId String?   @db.ObjectId
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  nim       String    @unique
+  email     String
+  password  String
+  fullName  String
+  shortName String?
+  instagram String?
+  imageURL  String?
+  score     Int       @default(0)
+  role      Role      @default(PESERTA)
+  kelompok  String[]
+  evalUser  EvalDay[]
 }
 
 model Tugas {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   title       String
+  day         Day      @relation(fields: [dayId], references: [id])
+  dayId       String   @db.ObjectId
   description String?
   startTime   DateTime
   endTime     DateTime
+  links       String[]
+  uploadCount Int
 }
 
 model Materi {
-  id          String     @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  description String?
-  expiredDate DateTime?
-  link        String
-  type        MateriType
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  title    String
+  sections Section[]
+  links    String[]
 }
 
 model Day {
@@ -57,7 +97,8 @@ model Day {
   number      Int       @unique
   description String?
   date        DateTime
-  EvalDay     EvalDay[]
+  evalDay     EvalDay[]
+  tugas       Tugas[]
 }
 
 model EvalDay {
@@ -70,8 +111,13 @@ model EvalDay {
   dayId      String @db.ObjectId
 }
 
-model Kelompok {
-  id     String @id @default(auto()) @map("_id") @db.ObjectId
-  number Int
-  User   User[]
+model Panitia {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  namaLengkap String
+  namaPendek  String
+  nim         String
+  jabatan     Jabatan
+  bidang      Bidang
+  divisi      Divisi?
+  imageURL    String
 }
