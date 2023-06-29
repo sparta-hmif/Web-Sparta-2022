@@ -24,6 +24,13 @@ const IT = {
     divisi: "IT",
     yunani: "Poseidon",
   },
+  wakil_2: {
+    namaLengkap: "Kevin Sebastian",
+    nim: "18221143",
+    jabatan: "Wakil Ketua Divisi",
+    divisi: "IT",
+    yunani: "Poseidon",
+  },
   staff: [
     {
       namaLengkap: "Sunday Okinawa",
