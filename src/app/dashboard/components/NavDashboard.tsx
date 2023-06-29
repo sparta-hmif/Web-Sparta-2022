@@ -1,14 +1,13 @@
 "use client";
 import React, { useState } from "react";
-import './Nav.css'
 
-const NavDashboard = () => {
-    const [activeIndex, setActiveIndex] = useState<number>(0);
-
-    const handleItemClick = (index:number) => {
-      setActiveIndex(index);
-    };
-
+const NavDashboard = ({
+    activeIndex,
+    handleItemClick,
+} : {
+    activeIndex: number;
+    handleItemClick: (index: number) => void;
+}) => {
     return(
         <>
             <div className="w-full overflow-auto">
@@ -16,7 +15,7 @@ const NavDashboard = () => {
             <ul className="w-full h-auto flex items-center lg:justify-center py-0 gap-0">
                 <button className="w-1/3 lg:w-1/6 max-w-60 hover:bg-[#E8DDDF]" onClick={() => handleItemClick(0)}>
                     <li className="w-full h-auto flex flex-col justify-center items-center pt-0 pb-3 gap-y-2">
-                        <div className={`w-full h-[6px] bg-[#E6B93D] ${activeIndex === 1 ? 'translate-x-[100%]' : ''} ${activeIndex === 2 ? 'translate-x-[200%]' : ''} ${activeIndex === 3 ? 'translate-x-[300%]' : ''} ${activeIndex === 4 ? 'translate-x-[400%]' : ''} transisi`}>
+                        <div className={`w-full h-[6px] bg-[#E6B93D] ${activeIndex === 1 ? 'translate-x-[100%]' : ''} ${activeIndex === 2 ? 'translate-x-[200%]' : ''} ${activeIndex === 3 ? 'translate-x-[300%]' : ''} ${activeIndex === 4 ? 'translate-x-[400%]' : ''} transition`}>
                             
                         </div>
                         <p className="font-koulen text-[14px] lg:text-[24px] text-[#E6B93D]">ADD MODULE</p>
