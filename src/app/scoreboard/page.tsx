@@ -90,7 +90,7 @@ const Scoreboard = async () => {
     },
     {
       rank: 12,
-      name: "Kevin Sebastian Sheva Tjahyana",
+      name: "Kevin Rachel",
       nim: "18221143",
       score: 999,
     },
