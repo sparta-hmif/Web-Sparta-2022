@@ -6,14 +6,6 @@ import { authOptions } from '../api/auth/[...nextauth]/route';
 import { getServerSession } from 'next-auth/next';
 import { redirect } from "next/navigation";
 
-interface UserSession {
-  id: string;
-  email: string;
-  fullName: string;
-  nim: string;
-  role: string;
-}
-
 const Scoreboard = async () => {
   const session = await getServerSession(authOptions);
 
