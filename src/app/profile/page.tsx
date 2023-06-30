@@ -1,7 +1,31 @@
 import MemberList from "./components/MemberList";
 import ProfileDetail from "./components/ProfileDetail";
+import { authOptions } from '../api/auth/[...nextauth]/route';
+import { getServerSession } from 'next-auth/next';
+import { redirect } from "next/navigation";
 
-export default function Home() {
+interface UserSession {
+  id: string;
+  email: string;
+  fullName: string;
+  nim: string;
+  role: string;
+}
+
+export default async function Home() {
+  const session = await getServerSession(authOptions);
+  const user = session?.user as UserSession;
+
+  if (!session) {
+    redirect('/login')
+  }
+
+  const roleAccess = user.role === 'PESERTA';
+
+  if (session && !roleAccess) {
+    redirect('/')
+  }
+
   // Property for each component
   const profileDetailProps = {
     profilePicture: "",
@@ -13,6 +37,7 @@ export default function Home() {
     tanggalLahir: new Date(),
     skor: 9999,
   };
+
   const memberListProps = {
     nomorKelompok: 1,
     anggotaMentor: [
