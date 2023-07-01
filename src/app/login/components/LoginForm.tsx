@@ -6,7 +6,7 @@ import { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-const LoginForm = ({ session }: any) => {
+const LoginForm = () => {
   const [nim, setNim] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();

@@ -6,7 +6,6 @@ import { redirect } from "next/navigation";
 
 const Login = async () => {
   const session = await getServerSession(authOptions)
-  console.log('pageLOGIN', session)
   
   if (session) {
     redirect('/')
@@ -87,7 +86,7 @@ const Login = async () => {
               />
             </div>
             <div className="flex flex-col items-center justify-center gap-4 mx-12 mt-11 sm:mt-20">
-              <LoginForm session={session}/>
+              <LoginForm/>
               <div className="flex flex-col items-center justify-center">
                 <p className="body-1 text-center  sm:w-2/3">
                   Silakan cek email Anda untuk mendapatkan{" "}

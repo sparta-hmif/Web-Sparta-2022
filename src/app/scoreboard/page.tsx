@@ -2,8 +2,17 @@ import Image from "next/image";
 import Pillar from "./components/Pillar";
 import ScoreList from "./components/ScoreList";
 import ScorePillar from "./components/ScorePillar";
+import { authOptions } from '../api/auth/[...nextauth]/route';
+import { getServerSession } from 'next-auth/next';
+import { redirect } from "next/navigation";
 
-const Scoreboard = () => {
+const Scoreboard = async () => {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    redirect('/login')
+  }
+
   const dummy = [
     {
       rank: 1,
@@ -73,7 +82,7 @@ const Scoreboard = () => {
     },
     {
       rank: 12,
-      name: "Kevin Sebastian Sheva Tjahyana",
+      name: "Kevin Rachel",
       nim: "18221143",
       score: 999,
     },
@@ -108,6 +117,7 @@ const Scoreboard = () => {
       score: 999,
     },
   ];
+
   return (
     <div>
       <div className="bg-[url('/images/scoreboard/Background.svg')] h-[30rem] md:h-[50rem] lg:h-[52rem] flex flex-col items-center w-full bg-cover bg-no-repeat bg-center relative">
