@@ -1,5 +1,12 @@
 import Button from "@/components/Button";
 import React from "react";
+import AttachmentList from "./AttachmentList";
+
+interface AttachmentProps {
+  link: string;
+  title?: string;
+  type?: string;
+}
 
 interface AssignmentProps {
   judulTugas: string;
@@ -7,7 +14,7 @@ interface AssignmentProps {
   startDate: Date;
   endDate: Date;
   deskripsi: string;
-  attachment: string[];
+  attachment: AttachmentProps[];
   submission: string[];
   isSubmitted: boolean;
 }
@@ -37,7 +44,7 @@ const Assignment = ({
       <div className="flex flex-col w-full max-w-[1000px] justify-center items-start">
         <div className="flex flex-row md:flex-col justify-between w-full">
           <div className="hidden md:flex flex-row w-fit items-center gap-5">
-            <div className="text-h5 md:text-h4 font-hammersmith">
+            <div className="text-h5 md:text-h4 font-hammersmith pt-1">
               Day {dayTugas}
             </div>
             <div
@@ -84,7 +91,7 @@ const Assignment = ({
         <div className="font-sen text-h6 md:text-h5 text-black font-bold pt-5 md:pt-8">
           Attachment
         </div>
-        <div>atasmen</div>
+        <AttachmentList attachmentProps={attachment} />
 
         <div className="font-sen text-h6 md:text-h5 text-black font-bold pt-5 md:pt-8">
           Submission
@@ -93,7 +100,7 @@ const Assignment = ({
 
         <div className="flex flex-row py-5 w-full justify-end font-sen gap-5">
           <div className="w-[150px]">
-            <Button isPrimary={false} text="Save" type="button" />
+            <Button isPrimary={false} text="Cancel" type="button" />
           </div>
           <div className="w-[150px]">
             <Button isPrimary={true} text="Submit" type="button" />
