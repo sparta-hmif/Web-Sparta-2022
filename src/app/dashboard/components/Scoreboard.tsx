@@ -12,7 +12,7 @@ import testData from "./testData";
 let pageSize = 10;
 let originalData = sortData(testData);
 
-function sortData(arr: Array<retrievedData>) {
+export function sortData(arr: Array<retrievedData>) {
   return arr.sort((a, b) => {
     if (a.score < b.score) {
       return 1;
@@ -57,7 +57,7 @@ export default function Scoreboard() {
         data.nim.toString().includes(searchQuery.toLowerCase())
     );
     return sortData(newArray);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [originalData, searchQuery]);
 
   const currentShowingData = useMemo(() => {
