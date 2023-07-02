@@ -28,7 +28,8 @@ enum Jabatan {
 }
 
 enum Bidang {
-  KETUA_DAN_SEKJEN
+  KETUA
+  KESEKJENAN
   MAMET
   KONSEPTOR
   LAPANGAN
@@ -115,9 +116,9 @@ model Panitia {
   id          String  @id @default(auto()) @map("_id") @db.ObjectId
   namaLengkap String
   namaPendek  String
-  nim         String
+  nim         String  @unique
   jabatan     Jabatan
   bidang      Bidang
   divisi      Divisi?
-  imageURL    String
+  imageURL    String?
 }
