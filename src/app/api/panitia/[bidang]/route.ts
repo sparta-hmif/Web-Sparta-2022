@@ -28,6 +28,7 @@ export async function GET(
         namaPendek: true,
         nim: true,
         jabatan: true,
+        imageURL: true,
       },
       where: {
         bidang: bidang.toUpperCase() as Bidang,
@@ -40,6 +41,7 @@ export async function GET(
         namaPendek: true,
         nim: true,
         jabatan: true,
+        imageURL: true,
       },
       where: {
         bidang: bidang.toUpperCase() as Bidang,
@@ -52,6 +54,7 @@ export async function GET(
         namaPendek: true,
         nim: true,
         jabatan: true,
+        imageURL: true,
       },
       where: {
         bidang: bidang.toUpperCase() as Bidang,
@@ -64,6 +67,7 @@ export async function GET(
         namaPendek: true,
         nim: true,
         jabatan: true,
+        imageURL: true,
       },
       where: {
         bidang: bidang.toUpperCase() as Bidang,
@@ -88,6 +92,7 @@ export async function GET(
               nim: true,
               jabatan: true,
               divisi: true,
+              imageURL: true,
             },
             where: {
               bidang: bidang.toUpperCase() as Bidang,
@@ -128,6 +133,7 @@ export async function GET(
         namaPendek: true,
         nim: true,
         jabatan: true,
+        imageURL: true,
       },
       where: {
         bidang: bidang.toUpperCase() as Bidang,
@@ -136,6 +142,12 @@ export async function GET(
     });
 
     const divisiList = await prisma.panitia.findMany({
+      select: {
+        namaPendek: true,
+        nim: true,
+        jabatan: true,
+        imageURL: true,
+      },
       where: {
         bidang: bidang.toUpperCase() as Bidang,
       },
@@ -159,6 +171,7 @@ export async function GET(
         namaPendek: true,
         nim: true,
         jabatan: true,
+        imageURL: true,
       },
       where: {
         bidang: bidang.toUpperCase() as Bidang,
@@ -183,6 +196,7 @@ export async function GET(
               nim: true,
               jabatan: true,
               divisi: true,
+              imageURL: true,
             },
             where: {
               bidang: bidang.toUpperCase() as Bidang,
