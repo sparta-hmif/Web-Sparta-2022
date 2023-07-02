@@ -2,13 +2,19 @@ import React from "react";
 import Link from "next/link";
 import Button from "@/components/Button";
 
+interface AttachmentProps {
+  link: string;
+  title?: string;
+  type?: string;
+}
+
 interface AssignmentProps {
   judulTugas: string;
   dayTugas: number;
   startDate: Date;
   endDate: Date;
   deskripsi: string;
-  attachment: string[];
+  attachment: AttachmentProps[];
   submission: string[];
   isSubmitted: boolean;
 }
@@ -24,13 +30,14 @@ function formatDate(date: Date) {
 const Preview = (props: AssignmentProps) => {
   const { judulTugas, dayTugas, endDate, isSubmitted } = props;
   const today = new Date();
+  const isExpired = endDate.getTime() < today.getTime();
   return (
     <div className="w-full max-w-[1200px] px-10">
       <div
         className={`flex flex-col justify-start ${
           isSubmitted
             ? "bg-primaryLight-400"
-            : endDate!.getTime() < today.getTime()
+            : isExpired
             ? "bg-danger-100"
             : "bg-white"
         } rounded-2xl border-2 border-primaryDark-400 py-5 px-8`}
@@ -44,9 +51,19 @@ const Preview = (props: AssignmentProps) => {
         <div className="font-sen text-body-2 md:text-body-1">
           Due Date : {formatDate(endDate!)}
         </div>
-        <div className="flex justify-end w-full font-sen pt-2">
+        <div className="flex justify-end w-full pt-2">
           <Link href="/assignment/detail" className="w-[150px]">
-            <Button isPrimary={true} text="Open" type="button" />
+            <button
+              className={`w-full py-3 px-4 rounded-xl font-sen text-white text-button font-bold transition ${
+                isSubmitted
+                  ? "bg-success-200 hover:drop-shadow-[0_3px_6px_rgba(61,213,152,0.55)]"
+                  : isExpired
+                  ? "bg-primaryDark-200 hover:drop-shadow-[0_3px_6px_rgba(163,48,66,0.55)]"
+                  : "bg-secondary-400 hover:drop-shadow-[0_3px_6px_rgba(140,62,17,0.55)]"
+              }`}
+            >
+              Open
+            </button>
           </Link>
         </div>
       </div>

@@ -1,13 +1,19 @@
 import React from "react";
 import Preview from "./Preview";
 
+interface AttachmentProps {
+  link: string;
+  title?: string;
+  type?: string;
+}
+
 interface AssignmentProps {
   judulTugas: string;
   dayTugas: number;
   startDate: Date;
   endDate: Date;
   deskripsi: string;
-  attachment: string[];
+  attachment: AttachmentProps[];
   submission: string[];
   isSubmitted: boolean;
 }

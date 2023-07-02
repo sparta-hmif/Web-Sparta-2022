@@ -1,6 +1,5 @@
 import DashboardHeader from "@/components/DashboardHeader";
 import Assignment from "./components/Assignment";
-import { type } from "os";
 
 interface AttachmentProps {
   link: string;
@@ -79,10 +78,14 @@ const expiredAssignment: AssignmentProps = {
 // END OF DUMMY
 
 const Dashboard = () => {
+  const assignmentData: AssignmentProps = {
+    // Ambil dari backendnya disini (mungkin)
+    ...ongoingAssignment,
+  };
   return (
     <div className="mt-[50px] md:mt-[65px] h-fit overflow-x-hidden">
       <DashboardHeader title="ASSIGNMENTS" />
-      <Assignment {...ongoingAssignment} />
+      <Assignment {...assignmentData} />
     </div>
   );
 };

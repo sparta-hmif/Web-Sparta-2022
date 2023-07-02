@@ -1,6 +1,10 @@
+"use client";
+
+import React, { useRef } from "react";
 import Button from "@/components/Button";
-import React from "react";
 import AttachmentList from "./AttachmentList";
+import Submission from "./Submission";
+import Link from "next/link";
 
 interface AttachmentProps {
   link: string;
@@ -39,6 +43,24 @@ const Assignment = ({
   submission,
   isSubmitted,
 }: AssignmentProps) => {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleSubmission = () => {
+    const files = fileInputRef.current?.files;
+    if (files && files.length > 0) {
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        console.log(file);
+      }
+    }
+  };
+
+  const handleButtonSubmissionClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
   return (
     <div className="flex flex-col w-full justify-center items-center py-[50px] px-10">
       <div className="flex flex-col w-full max-w-[1000px] justify-center items-start">
@@ -60,7 +82,7 @@ const Assignment = ({
           <div className="text-h3 md:text-h2 font-koulen text-primaryDark-400 py-3 leading-[50px]">
             {judulTugas.toUpperCase()}
           </div>
-          <div className="md:hidden flex flex-col w-fit items-end gap-0">
+          <div className="md:hidden flex flex-col w-fit items-end gap-0 pt-3">
             <div className="text-h5 md:text-h4 font-hammersmith">
               Day {dayTugas}
             </div>
@@ -91,20 +113,30 @@ const Assignment = ({
         <div className="font-sen text-h6 md:text-h5 text-black font-bold pt-5 md:pt-8">
           Attachment
         </div>
-        <AttachmentList attachmentProps={attachment} />
+        <div className="w-full h-[70px]">
+          <AttachmentList attachmentProps={attachment} />
+        </div>
 
-        <div className="font-sen text-h6 md:text-h5 text-black font-bold pt-5 md:pt-8">
+        <div className="font-sen text-h6 md:text-h5 text-black font-bold pt-1 md:pt-3">
           Submission
         </div>
-        <div>submisi</div>
+        <Submission
+          fileInputRef={fileInputRef}
+          handleButtonSubmissionClick={handleButtonSubmissionClick}
+        />
 
         <div className="flex flex-row py-5 w-full justify-end font-sen gap-5">
-          <div className="w-[150px]">
+          <Link href={"/assignment"} className="w-[150px]">
             <Button isPrimary={false} text="Cancel" type="button" />
-          </div>
-          <div className="w-[150px]">
-            <Button isPrimary={true} text="Submit" type="button" />
-          </div>
+          </Link>
+          <Link href={"/assignment"} className="w-[150px]">
+            <Button
+              isPrimary={true}
+              text="Submit"
+              type="button"
+              onClick={handleSubmission}
+            />
+          </Link>
         </div>
       </div>
     </div>

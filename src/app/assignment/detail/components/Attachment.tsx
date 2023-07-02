@@ -22,7 +22,7 @@ const Attachment = ({
 }: AttachmentProps) => {
   return (
     <button
-      className="flex flex-row bg-primaryLight-600 rounded-2xl py-3 px-4 w-[200px] gap-2 items-center"
+      className="flex flex-row bg-primaryLight-600 rounded-xl py-3 px-4 w-[200px] gap-2 items-center hover:scale-[1.05] active:scale-[0.98] transition-all"
       onClick={() => {
         window.open(link, "_blank");
       }}

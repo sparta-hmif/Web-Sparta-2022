@@ -1,5 +1,6 @@
 import React from "react";
 import Attachment from "./Attachment";
+import styles from "./AttachmentList.module.css";
 
 interface AttachmentProps {
   link: string;
@@ -13,7 +14,7 @@ interface AttachmentListProps {
 
 const AttachmentList = ({ attachmentProps }: AttachmentListProps) => {
   return (
-    <div className="flex flex-row w-full overflow-x-auto gap-2">
+    <div className={styles.custom}>
       {attachmentProps.map((attachment, index) => (
         <Attachment key={index} {...attachment} />
       ))}
