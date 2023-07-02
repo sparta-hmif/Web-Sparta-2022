@@ -58,6 +58,11 @@ type Section {
   description String?
 }
 
+type Attachment {
+  title String
+  link  String
+}
+
 // Models
 model User {
   id        String    @id @default(auto()) @map("_id") @db.ObjectId
@@ -87,10 +92,11 @@ model Tugas {
 }
 
 model Materi {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  title    String
-  sections Section[]
-  links    String[]
+  id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  expiredDate DateTime
+  sections    Section[]
+  attachments Attachment[]
 }
 
 model Day {
