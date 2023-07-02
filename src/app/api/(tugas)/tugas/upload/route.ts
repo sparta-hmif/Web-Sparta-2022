@@ -61,6 +61,56 @@ export async function POST(req: NextRequest) {
       throw new Error("Google API Error While Searching");
     }
 
+    if (upload.status === 200) {
+      const lastSubmission = await prisma.submisiTugas.findFirst({
+        where: {
+          user: {
+            nim: _nim,
+          },
+          tugasId: _tugas,
+        },
+      });
+
+      if (!lastSubmission) {
+        const user = await prisma.user.findUnique({
+          select: {
+            id: true,
+          },
+          where: {
+            nim: _nim,
+          },
+        });
+
+        if (!user) {
+          return NextResponse.json(
+            { message: "User not found" },
+            { status: 404 }
+          );
+        }
+
+        await prisma.submisiTugas.create({
+          data: {
+            userId: user.id,
+            tugasId: _tugas,
+            link: upload.link,
+          },
+        });
+
+        return NextResponse.json({ status: upload.status });
+      }
+
+      await prisma.submisiTugas.update({
+        where: {
+          id: lastSubmission.id,
+        },
+        data: {
+          link: upload.link,
+        },
+      });
+
+      return NextResponse.json({ status: upload.status });
+    }
+
     return NextResponse.json({ status: upload.status });
   } catch (err) {
     console.error(err);
