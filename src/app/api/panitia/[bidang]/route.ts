@@ -78,8 +78,6 @@ export async function GET(
       },
     });
 
-    console.log(dbDivisiList);
-
     const divisiList = await Promise.all(
       dbDivisiList
         .filter(({ divisi }) => divisi && (divisi as string) !== "KESEKJENAN")
@@ -120,8 +118,8 @@ export async function GET(
 
     return NextResponse.json({
       kabid,
-      sekreList,
-      bendList,
+      sekretaris: sekreList,
+      bendahara: bendList,
       divisiList: mappedDivisiList,
     });
   } else if (bidang === "mamet") {

@@ -70,7 +70,7 @@ model User {
   imageURL  String?
   score     Int       @default(0)
   role      Role      @default(PESERTA)
-  kelompok  String[]
+  kelompok  String?
   evalUser  EvalDay[]
 }
 
