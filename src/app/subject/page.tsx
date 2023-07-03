@@ -1,39 +1,66 @@
+"use client"
+import {useState,useEffect, use} from 'react'
 import DashboardHeader from "@/components/DashboardHeader"
 import Card from "./components/card"
+import CardSkeleton from './components/cardSkeleton'
 
 
-
+const today = new Date();
+const futureDay = new Date(today.getTime() + 1000 * 60 * 60 * 24 * 10);
+const pastDay = new Date(today.getTime() - 1000 * 60 * 60 * 24 * 10);
 const dummyData = [
   {
     id:"1",
     namaMateri: "Berpacu dalam melodi yang memiliki melodi sangat indah sehingga dapat bersinergi menggapai mimpi di pantai indah kapuk",
-    tanggalRilis: "2023-07-10",
+    tanggalRilis: today,
   },
   {
     id:"2",
     namaMateri: "Materi 2",
-    tanggalRilis: "2023-07-15",
+    tanggalRilis: futureDay,
   },
   {
     id:"3",
     namaMateri: "Materi 3",
-    tanggalRilis: "2023-07-20",
+    tanggalRilis: pastDay,
   },
   {
     id:"4",
     namaMateri: "Materi 4",
-    tanggalRilis: "2023-07-20"
+    tanggalRilis: futureDay
   }
 ];
 
+interface Data {
+  id:string,
+  namaMateri:string,
+  tanggalRilis:Date
+}
 
-const Assignment = () => {
+const Subject = () => {
+  const [loading,setLoading] = useState<Boolean>(true)
+  const [data,setData] = useState<Data[]>([])
+  useEffect(()=>{
+    setTimeout(()=>{
+      setLoading(false)
+      setData(dummyData)
+    },5000)
+  },[])
+
   return (
     <div>
         <DashboardHeader title="SUBJECT" />
         <div className="flex flex-col items-center py-10">
           {
-            dummyData.map((data, index) => (
+            loading ? 
+            <>
+              <CardSkeleton/>
+              <CardSkeleton/>
+              <CardSkeleton/>
+              <CardSkeleton/>
+            </>
+            :
+            data.map((data, index) => (
               <Card
                 key={index}
                 id={data.id}
@@ -47,4 +74,4 @@ const Assignment = () => {
   )
 }
 
-export default Assignment
+export default Subject

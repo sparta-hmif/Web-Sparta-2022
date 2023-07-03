@@ -5,8 +5,16 @@ import Button from '@/components/Button'
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   namaMateri: string;
-  tanggalRilis: string;
+  tanggalRilis: Date;
   id:string;
+}
+
+function formatDate(date: Date) {
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+
+  return `${day}-${month}-${year}`;
 }
 
 const Card = ({namaMateri,tanggalRilis,id,...props}:CardProps) => {
@@ -16,7 +24,7 @@ const Card = ({namaMateri,tanggalRilis,id,...props}:CardProps) => {
         <h4 className='text-[25px] sm:text-[32px] line-clamp-2'>
           {namaMateri}
         </h4>
-        <p className='text-xs sm:text-[15px] body-1'>Tanggal : {tanggalRilis}</p>
+        <p className='text-xs sm:text-[15px] body-1'>Tanggal : {formatDate(tanggalRilis)}</p>
         <div className='flex justify-end'>
           <div className="w-4/12 sm:w-2/12 ">
             <Button
