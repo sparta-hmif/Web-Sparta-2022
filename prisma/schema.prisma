@@ -13,6 +13,7 @@ enum Role {
   MAMET
   MENTOR
   KASUH
+  ADMIN
 }
 
 enum Jabatan {
@@ -28,7 +29,8 @@ enum Jabatan {
 }
 
 enum Bidang {
-  KETUA_DAN_SEKJEN
+  KETUA
+  KESEKJENAN
   MAMET
   KONSEPTOR
   LAPANGAN
@@ -57,39 +59,55 @@ type Section {
   description String?
 }
 
+type Attachment {
+  title String
+  link  String
+}
+
 // Models
 model User {
-  id        String    @id @default(auto()) @map("_id") @db.ObjectId
-  nim       String    @unique
-  email     String
-  password  String
-  fullName  String
-  shortName String?
-  instagram String?
-  imageURL  String?
-  score     Int       @default(0)
-  role      Role      @default(PESERTA)
-  kelompok  String[]
-  evalUser  EvalDay[]
+  id           String         @id @default(auto()) @map("_id") @db.ObjectId
+  nim          String         @unique
+  email        String
+  password     String
+  fullName     String
+  shortName    String?
+  instagram    String?
+  imageURL     String?
+  score        Int            @default(0)
+  role         Role           @default(PESERTA)
+  kelompok     String?
+  evalUser     EvalDay[]
+  submisiTugas SubmisiTugas[]
 }
 
 model Tugas {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  day         Day      @relation(fields: [dayId], references: [id])
-  dayId       String   @db.ObjectId
-  description String?
-  startTime   DateTime
-  endTime     DateTime
-  links       String[]
-  uploadCount Int
+  id           String         @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  day          Day            @relation(fields: [dayId], references: [id])
+  dayId        String         @db.ObjectId
+  description  String?
+  startTime    DateTime
+  endTime      DateTime
+  attachments  Attachment[]
+  submisiTugas SubmisiTugas[]
+}
+
+model SubmisiTugas {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  tugas   Tugas  @relation(fields: [tugasId], references: [id])
+  tugasId String @db.ObjectId
+  user    User   @relation(fields: [userId], references: [id])
+  userId  String @db.ObjectId
+  link    String
 }
 
 model Materi {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  title    String
-  sections Section[]
-  links    String[]
+  id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  expiredDate DateTime
+  sections    Section[]
+  attachments Attachment[]
 }
 
 model Day {
@@ -115,9 +133,9 @@ model Panitia {
   id          String  @id @default(auto()) @map("_id") @db.ObjectId
   namaLengkap String
   namaPendek  String
-  nim         String
+  nim         String  @unique
   jabatan     Jabatan
   bidang      Bidang
   divisi      Divisi?
-  imageURL    String
+  imageURL    String?
 }
