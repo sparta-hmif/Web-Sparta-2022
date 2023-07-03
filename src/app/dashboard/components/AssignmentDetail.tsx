@@ -2,12 +2,14 @@
 
 import TextFields from "@/components/TextFields";
 import FilterButton from "../components/FilterButton";
-import ScoreboardHeader from "../components/ScoreboardHeader";
 import Pagination from "@/components/Pagination/Pagination";
 import { useMemo, useState } from "react";
-import testData from "@/components/Pagination/testData";
+import testData from "./testData";
 import { sortData } from "./Scoreboard";
 import Button from "@/components/Button";
+import { BsChevronLeft } from "react-icons/bs";
+import { FaChevronLeft } from "react-icons/fa";
+import { type } from "os";
 
 interface assignmentProps {
   rank: number;
@@ -56,6 +58,7 @@ interface AssignmentDetailProps {
   haveUploaded?: number;
   startTime?: Date;
   endTime?: Date;
+  onClose: () => void;
 }
 
 const AssignmentDetail = ({
@@ -64,6 +67,7 @@ const AssignmentDetail = ({
   haveUploaded,
   startTime,
   endTime,
+  onClose,
 }: AssignmentDetailProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
@@ -86,7 +90,7 @@ const AssignmentDetail = ({
         data.nim.toString().includes(searchQuery.toLowerCase())
     );
     return sortData(newArray);
-  }, [originalData, searchQuery]);
+  }, [searchQuery]);
 
   const currentShowingData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * pageSize;
@@ -94,15 +98,22 @@ const AssignmentDetail = ({
     return filteredData.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, filteredData]);
   return (
-    <div className="mt-2">
+    <div className="">
+      <div
+        className="flex mx-[10px] md:mx-[100px] lg:mx-[220px] items-center gap-2 mb-4 cursor-pointer"
+        onClick={onClose}
+      >
+        <FaChevronLeft size={20} className="text-primaryDark-400" />
+        <p className="font-sen font-bold text-xl text-primaryDark-400">Back</p>
+      </div>
       <div className="">
         <div className="flex flex-wrap lg:flex-col-reverse justify-between mx-[20px] md:mx-[110px] lg:mx-[245px] pt-2">
           <div className="font-koulen break-words leading-[44px] lg:leading-normal max-w-[65%] text-[40px] md:text-[50px] md:max-w-[420px] font-bold text-primaryDark-400 lg:text-h2 lg:font-normal">
-            JUDUL TUGAS TUGAS1TUGAS2TUGAS3TUGAS4
+            {judul}
           </div>
           <div className="font-hammersmith text-[14px] lg:flex lg:gap-5 lg:items-center ">
             <div className="text-right lg:text-left md:text-[22px] lg:text-h4">
-              DAY X
+              DAY {dayNumber}
             </div>
             <div className="text-primary-400 border-2 text-[10px] md:text-[13px] lg:text-[16px] lg:flex lg:items-center lg:h-[50%] border-primary-400 rounded-xl px-4 py-[2px]">
               {haveUploaded ? haveUploaded : 0} / 999
@@ -144,7 +155,11 @@ const AssignmentDetail = ({
                 totalDataCount={filteredData.length}
                 currentPage={currentPage}
                 pageSize={pageSize}
-                onPageChange={(page) => setCurrentPage(page)}
+                onPageChange={(page) => {
+                  if (typeof page === "number") {
+                    setCurrentPage(page);
+                  }
+                }}
               />
             </div>
           </div>

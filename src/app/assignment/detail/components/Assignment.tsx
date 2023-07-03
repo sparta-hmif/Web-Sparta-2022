@@ -1,16 +1,13 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Button from "@/components/Button";
 import AttachmentList from "./AttachmentList";
 import Submission from "./Submission";
 import Link from "next/link";
-
-interface AttachmentProps {
-  link: string;
-  title?: string;
-  type?: string;
-}
+import { AttachmentProps } from "@/components/LinkAttachment";
+import Dropzone from "@/components/Dropzone";
+import { FileRejection } from "react-dropzone";
 
 interface AssignmentProps {
   judulTugas: string;
@@ -19,7 +16,6 @@ interface AssignmentProps {
   endDate: Date;
   deskripsi: string;
   attachment: AttachmentProps[];
-  submission: string[];
   isSubmitted: boolean;
 }
 
@@ -40,25 +36,27 @@ const Assignment = ({
   endDate,
   deskripsi,
   attachment,
-  submission,
   isSubmitted,
 }: AssignmentProps) => {
+  const today = new Date();
+  const isExpired = endDate.getTime() < today.getTime();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [file, setFile] = useState<File>();
 
-  const handleSubmission = () => {
-    const files = fileInputRef.current?.files;
-    if (files && files.length > 0) {
-      for (let i = 0; i < files.length; i++) {
-        const file = files[i];
-        console.log(file);
-      }
-    }
+  const handleSubmission = () => {};
+
+  const handleFileSelected = (file: File) => {
+    // Do something with the selected file
+    setFile(file);
   };
 
-  const handleButtonSubmissionClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
+  const handleDeleteFile = () => {
+    setFile(undefined);
+  };
+
+  const handleFileRejected = (fileRejections: FileRejection[]) => {
+    // Handle rejected files
+    console.log(fileRejections);
   };
 
   return (
@@ -117,27 +115,35 @@ const Assignment = ({
           <AttachmentList attachmentProps={attachment} />
         </div>
 
-        <div className="font-sen text-h6 md:text-h5 text-black font-bold pt-1 md:pt-3">
-          Submission
-        </div>
-        <Submission
-          fileInputRef={fileInputRef}
-          handleButtonSubmissionClick={handleButtonSubmissionClick}
-        />
-
-        <div className="flex flex-row py-5 w-full justify-end font-sen gap-5">
-          <Link href={"/assignment"} className="w-[150px]">
+        {isExpired ? (
+          <Link href={"/assignment"} className="w-[150px] mt-10">
             <Button isPrimary={false} text="Cancel" type="button" />
           </Link>
-          <Link href={"/assignment"} className="w-[150px]">
-            <Button
-              isPrimary={true}
-              text="Submit"
-              type="button"
-              onClick={handleSubmission}
+        ) : (
+          <>
+            <div className="font-sen text-h6 md:text-h5 text-black font-bold pt-1 md:pt-3">
+              Submission
+            </div>
+            <Dropzone
+              onFileSelected={handleFileSelected}
+              onFileRejected={handleFileRejected}
+              onFileDeleted={handleDeleteFile}
             />
-          </Link>
-        </div>
+            <div className="flex flex-row py-5 w-full justify-end font-sen gap-5">
+              <Link href={"/assignment"} className="w-[150px]">
+                <Button isPrimary={false} text="Cancel" type="button" />
+              </Link>
+              <Link href={"/assignment"} className="w-[150px]">
+                <Button
+                  isPrimary={true}
+                  text="Submit"
+                  type="button"
+                  onClick={handleSubmission}
+                />
+              </Link>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ const Journey = () => {
 
   return (
     <div className="pt-10 relative">
-      <Day day={1} onOpen={onOpen}/>
+      <Day day={3} onOpen={onOpen}/>
       {showModal !== 0 && <DayModal day={showModal} date="10/03/2023" content={contentData} onClose={onClose}/>}
     </div>
   );
