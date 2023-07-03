@@ -62,7 +62,7 @@ const Preview = (props: AssignmentProps) => {
                   : "bg-secondary-400 hover:drop-shadow-[0_3px_6px_rgba(140,62,17,0.55)]"
               }`}
             >
-              Open
+              {isSubmitted ? "Submitted" : isExpired ? "Expired" : "Open"}
             </button>
           </Link>
         </div>

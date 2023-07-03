@@ -1,24 +1,13 @@
 "use client";
 
 import React from "react";
-import {
-  BsFileEarmarkPdfFill,
-  BsFileEarmarkImageFill,
-  BsFileEarmarkPlayFill,
-  BsFileEarmarkMusicFill,
-  BsFileEarmarkTextFill,
-} from "react-icons/bs";
+import Image from "next/image";
+import { AttachmentProps } from "@/components/LinkAttachment";
 
-interface AttachmentProps {
-  link: string;
-  title?: string;
-  type?: string;
-}
 
 const Attachment = ({
   link,
-  title = "Attachment Title",
-  type = "other",
+  judul = "Attachment",
 }: AttachmentProps) => {
   return (
     <button
@@ -27,20 +16,14 @@ const Attachment = ({
         window.open(link, "_blank");
       }}
     >
-      <div>
-        {type === "video" ? (
-          <BsFileEarmarkPlayFill size={30} color="#661E29" />
-        ) : type === "image" ? (
-          <BsFileEarmarkImageFill size={30} color="#661E29" />
-        ) : type === "pdf" ? (
-          <BsFileEarmarkPdfFill size={30} color="#661E29" />
-        ) : type === "audio" ? (
-          <BsFileEarmarkMusicFill size={30} color="#661E29" />
-        ) : (
-          <BsFileEarmarkTextFill size={30} color="#661E29" />
-        )}
-      </div>
-      <div className="font-sen text-button font-bold truncate">{title}</div>
+      <Image
+        src={"/images/assignment/File.svg"}
+        alt="File"
+        width={100}
+        height={100}
+        className="w-2/12"
+      />
+      <div className="font-sen text-button font-bold truncate text-primaryDark-400">{judul}</div>
     </button>
   );
 };

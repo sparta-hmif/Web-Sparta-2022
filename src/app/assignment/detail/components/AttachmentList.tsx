@@ -1,12 +1,8 @@
 import React from "react";
 import Attachment from "./Attachment";
 import styles from "./AttachmentList.module.css";
+import { AttachmentProps } from "@/components/LinkAttachment";
 
-interface AttachmentProps {
-  link: string;
-  title?: string;
-  type?: string;
-}
 
 interface AttachmentListProps {
   attachmentProps: AttachmentProps[];

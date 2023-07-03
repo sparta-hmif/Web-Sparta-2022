@@ -28,13 +28,13 @@ const Scoreboard = async () => {
     },
     {
       rank: 3,
-      name: "Kevin Sebastian Sheva Tjahyana",
+      name: "Kevin Sebastian Sheva Tjahyana Apa Kek Gitu",
       nim: "18221143",
       score: 999,
     },
     {
       rank: 4,
-      name: "Kevin Sebastian Sheva Tjahyana Apa Kek",
+      name: "Kevin Sebastian Sheva Tjahyana Apa Kek Panjang Banget Pokoknya",
       nim: "18221143",
       score: 999,
     },
@@ -82,7 +82,7 @@ const Scoreboard = async () => {
     },
     {
       rank: 12,
-      name: "Kevin Rachel",
+      name: "Kevin",
       nim: "18221143",
       score: 999,
     },
@@ -120,7 +120,7 @@ const Scoreboard = async () => {
 
   return (
     <div>
-      <div className="bg-[url('/images/scoreboard/Background.svg')] h-[30rem] md:h-[50rem] lg:h-[52rem] flex flex-col items-center w-full bg-cover bg-no-repeat bg-center relative">
+      <div className="bg-[url('/images/scoreboard/Background.svg')] h-[33rem] md:h-[50rem] lg:h-[58rem] flex flex-col items-center w-full bg-cover bg-no-repeat bg-center relative pt-20">
         <h1 className="bg-gradient-to-b from-white to-[#D39947] bg-clip-text text-transparent from-40% font-koulen md:text-[105px] sm:text-[70px] text-[45px]">
           SCOREBOARD
         </h1>
@@ -132,10 +132,10 @@ const Scoreboard = async () => {
           className="absolute bottom-0 w-full translate-y-[20%] md:translate-y-1/3"
           alt="mountain"
         />
-        <div className="shadow-lg px-4 py-3 md:px-7 md:py-5 font-koulen text-primaryDark-400 w-[90%] h-[35%] md:h-[45%] max-w-[38rem] bg-white flex border-primaryDark-400 border-4 rounded-xl md:rounded-3xl mx-auto absolute bottom-0 translate-y-[120%] left-1/2 -translate-x-1/2">
+        <div className="shadow-lg px-4 py-3 md:px-7 md:py-5 font-koulen text-primaryDark-400 w-[90%] max-w-[38rem] bg-white flex border-primaryDark-400 border-4 rounded-xl md:rounded-3xl mx-auto absolute bottom-0 translate-y-[120%] left-1/2 -translate-x-1/2">
           <div className="w-1/2 flex flex-col items-start justify-between">
             <div className="w-5/12 rounded-full aspect-square bg-primaryDark-400"></div>
-            <p className="text-xl md:text-4xl">
+            <p className="text-xl md:text-4xl mt-20">
               NAMA KEK SABEB BANYAK JG GAPAPA
             </p>
           </div>
