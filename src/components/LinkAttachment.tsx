@@ -5,9 +5,14 @@ import Button from "./Button";
 import LinkElement from "./LinkElement";
 
 interface LinkAttachmentProps {
-  linkArray: Array<string>;
-  addLink: (link: string) => void;
+  linkArray: Array<AttachmentProps>;
+  addLink: (link: AttachmentProps) => void;
   deleteLink: (index: number) => void;
+}
+
+export interface AttachmentProps {
+  judul: string;
+  link: string;
 }
 
 const LinkAttachment: React.FC<LinkAttachmentProps> = ({
@@ -15,32 +20,55 @@ const LinkAttachment: React.FC<LinkAttachmentProps> = ({
   addLink,
   deleteLink,
 }) => {  
-  const [link, setLink] = useState<string>("");
+  const [link, setLink] = useState<AttachmentProps>({
+    judul: "",
+    link: "",
+  });
 
   const handleAddLink = () => {
-    if (link === "") return;
+    if (link.judul === "" || link.link === "") return;
     addLink(link);
-    setLink("");
+    setLink({
+      judul: "",
+      link: "",
+    });
   };
+
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    setLink((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
 
   return (
     <div>
       <div className="flex flex-wrap gap-2">
         {linkArray.map((link, idx) => (
-          <LinkElement key={idx} link={link} deleteLink={deleteLink} idx={idx}/>
+          <LinkElement key={idx} link={link.judul} deleteLink={deleteLink} idx={idx}/>
         ))}
       </div>
-      <div className="flex mt-3">
+      <div className="flex flex-col md:flex-row mt-3 gap-4">
         <input
           type="text"
-          id="judul"
-          className="w-full py-2 px-3 text-[8px] font-sen text-secondaryDark-400 bg-primaryLight-400 rounded-l-lg border-secondaryDark-400 border-[1px] placeholder:text-secondaryDark-200 focus:outline-none focus:border-[1px] focus:border-secondary-400 lg:text-[16px]"
-          placeholder="Tambahkan Link"
-          value={link}
-          onChange={(e) => setLink(e.target.value)}
+          name="judul"
+          className="w-full py-2 px-3 text-sm font-sen text-secondaryDark-400 bg-primaryLight-400 rounded-lg border-secondaryDark-400 border-[1px] placeholder:text-secondaryDark-200 focus:outline-none focus:border-[1px] focus:border-secondary-400"
+          placeholder="Tambahkan Judul"
+          value={link.judul}
+          onChange={handleChange}
         />
-        <button type="button" className="bg-secondary-400 w-3/12 sm:w-2/12 lg:w-1/12 text-button text-white font-bold rounded-r-lg" onClick={handleAddLink}>
-          Add
+        <input
+          type="text"
+          name="link"
+          className="w-full py-2 px-3 text-sm font-sen text-secondaryDark-400 bg-primaryLight-400 rounded-lg border-secondaryDark-400 border-[1px] placeholder:text-secondaryDark-200 focus:outline-none focus:border-[1px] focus:border-secondary-400"
+          placeholder="Tambahkan Link"
+          value={link.link}
+          onChange={handleChange}
+        />
+        
+        <button type="button" className="bg-secondary-400 w-full md:w-1/4 py-2 text-button text-white font-bold rounded-xl" onClick={handleAddLink}>
+          Add Link
         </button>
       </div>
     </div>

@@ -77,10 +77,10 @@ export async function postFile2Drive(
     const res = await drive.files.create({
       requestBody: metadata,
       media: media,
-      fields: "name",
+      fields: "name, webViewLink",
     });
 
-    return { status: res.status };
+    return { status: res.status, link: res.data.webViewLink };
   } catch (error) {
     console.error("Error searching folder:", error);
     return { status: 500 };

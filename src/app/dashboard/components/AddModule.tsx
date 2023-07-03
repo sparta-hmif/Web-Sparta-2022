@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Button from "../../../components/Button";
 import { MdClose } from "react-icons/md";
-import LinkAttachment from "@/components/LinkAttachment";
+import LinkAttachment, { AttachmentProps } from "@/components/LinkAttachment";
 
 const AddModule = () => {
   const [contentFocus, setContenFocus] = useState(-1);
@@ -42,9 +42,9 @@ const AddModule = () => {
   // const childToParent = (childData: string) => {
   //   setData(childData);
   // };
-  const [attachment, setAttachment] = useState<Array<string>>([]);
+  const [attachment, setAttachment] = useState<Array<AttachmentProps>>([]);
 
-  const addAttachment = (val: string) => {
+  const addAttachment = (val: AttachmentProps) => {
     setAttachment([...attachment, val]);
   };
 

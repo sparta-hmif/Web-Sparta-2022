@@ -1,27 +1,31 @@
-"use client"
+import DashboardClient from "./components/DashboardClient";
+import { authOptions } from '../api/auth/[...nextauth]/route';
+import { getServerSession } from 'next-auth/next';
+import { redirect } from "next/navigation";
 
-import { useState } from "react";
-import AddAssignment from "./components/AddAssignment";
-import NavDashboard from "./components/NavDashboard";
-import AddModule from "./components/AddModule";
-import DashboardHeader from "@/components/DashboardHeader";
-import Scoreboard from "./components/Scoreboard";
+interface UserSession {
+  id: string;
+  email: string;
+  fullName: string;
+  nim: string;
+  role: string;
+}
 
-const Dashboard = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+const Dashboard = async () => {
+  const session = await getServerSession(authOptions);
+  const user = session?.user as UserSession;
 
-  const handleItemClick = (index: number) => {
-    setActiveIndex(index);
-  };
-  return (
-    <div>
-      <DashboardHeader title="DASHBOARD" />
-      <NavDashboard activeIndex={activeIndex} handleItemClick={handleItemClick}/>
-      {activeIndex === 0 && <AddModule />}
-      {activeIndex === 1 && <AddAssignment />}
-      {activeIndex === 3 && <Scoreboard />}
-    </div>
-  );
+  if (!session) {
+    redirect('/login')
+  }
+
+  const roleAccess = user.role === 'MENTOR' || user.role === 'MAMET';
+  
+  if (session && !roleAccess) {
+    redirect('/')
+  }
+
+  return <DashboardClient />;
 };
 
 export default Dashboard;
