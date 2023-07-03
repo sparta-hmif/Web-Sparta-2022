@@ -9,6 +9,8 @@ import { IoMenu, IoClose } from "react-icons/io5";
 import { FaChevronDown } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
+import DefaultProfPic from "@/../public/images/landing/sparta.png";
+
 interface UserSession {
   id: string;
   email: string;
@@ -95,7 +97,7 @@ const Navbar = ({ user }: NavbarProps) => {
   const handleSignOut = async () => {
     await signOut();
   };
-  
+
   return (
     <div className="fixed top-0 left-0 right-0 z-50 w-full text-h5 font-koulen text-primary-400 bg-primaryDark-400 shadow-xl">
       <div className="px-8 relative items-center flex flex-row justify-between py-2">
@@ -121,7 +123,7 @@ const Navbar = ({ user }: NavbarProps) => {
                 <Image
                   width={50}
                   height={50}
-                  src="/images/Landing/placeholder.jpg"
+                  src={DefaultProfPic}
                   className="w-7 rounded-full "
                   alt="Profile Picture"
                 />
@@ -130,7 +132,12 @@ const Navbar = ({ user }: NavbarProps) => {
               <FaChevronDown size={15} />
             </div>
           ) : (
-            <div onClick={() => {router.push("/login")}} className="w-11/12 mx-auto border-2 border-primary-400 text-center rounded-full cursor-pointer hover:bg-primary-400 hover:text-primaryDark-400 transition">
+            <div
+              onClick={() => {
+                router.push("/login");
+              }}
+              className="w-11/12 mx-auto border-2 border-primary-400 text-center rounded-full cursor-pointer hover:bg-primary-400 hover:text-primaryDark-400 transition"
+            >
               LOGIN
             </div>
           )}
@@ -140,7 +147,9 @@ const Navbar = ({ user }: NavbarProps) => {
               <div className="absolute h-1 rounded-t-lg w-full top-0 bg-primaryDark-400" />
 
               <div
-                onClick={() => {handleSignOut()}}
+                onClick={() => {
+                  handleSignOut();
+                }}
                 className="w-full pt-2 pb-1 items-center text-danger-300 text-lg px-2 cursor--pointer"
               >
                 LOGOUT
@@ -201,7 +210,16 @@ const Navbar = ({ user }: NavbarProps) => {
                 </>
               );
             })}
-            {user && <div onClick={() => {handleSignOut()}} className="py-2 px-6 text-xl text-danger-200 hover:bg-primary-400/20 transition">LOGOUT</div>}
+            {user && (
+              <div
+                onClick={() => {
+                  handleSignOut();
+                }}
+                className="py-2 px-6 text-xl text-danger-200 hover:bg-primary-400/20 transition"
+              >
+                LOGOUT
+              </div>
+            )}
           </div>
           <div className="mt-auto w-full bg-primary-400/[15%] border-t-[1px] border-primary-400 px-4 py-2 flex items-center gap-3">
             {user ? (
@@ -209,14 +227,21 @@ const Navbar = ({ user }: NavbarProps) => {
                 <Image
                   width={50}
                   height={50}
-                  src="/images/Landing/placeholder.jpg"
+                  src={DefaultProfPic}
                   className="w-2/12 rounded-full "
                   alt="Profile Picture"
                 />
                 <p className="text-lg">{user.fullName}</p>
               </>
             ) : (
-              <div onClick={() => {router.push("/login")}} className="text-xl text-center w-full">LOGIN</div>
+              <div
+                onClick={() => {
+                  router.push("/login");
+                }}
+                className="text-xl text-center w-full"
+              >
+                LOGIN
+              </div>
             )}
           </div>
         </div>

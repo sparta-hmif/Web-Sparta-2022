@@ -13,11 +13,13 @@ import { useState } from "react";
 type CarouselProps = {
   kabid: StaffShortProps;
   divisiList: StaffLongProps[];
+  bidang: string;
 };
 
 export default function Carousel({
   kabid,
   divisiList,
+  bidang,
 }: CarouselProps): JSX.Element {
   const [carouselFlow, setCarouselFlow] = useState(0);
 
@@ -29,7 +31,7 @@ export default function Carousel({
   ];
   const maxMobileFlow = [
     0,
-    ...divisiList.map((divisi) => (divisi.wakil_2 ? 3 : 2)),
+    ...divisiList.map((divisi) => (divisi.wakil2 ? 3 : 2)),
   ];
 
   const [cardFlow, setCardFlow] = useState(
@@ -116,7 +118,7 @@ export default function Carousel({
           }}
           className="flex items-center justify-center min-w-full transition-all duration-200"
         >
-          <StaffCardShort {...kabid} />
+          <StaffCardShort {...kabid} bidang={bidang} />
         </div>
         {divisiList.map((divisi, idx) => (
           <div
@@ -140,7 +142,8 @@ export default function Carousel({
       <button
         style={{
           display: !isMobile
-            ? carouselFlow === maxCarouselFlow - 1
+            ? carouselFlow === maxCarouselFlow - 1 &&
+              cardFlow[carouselFlow] === maxCardFlow[carouselFlow]
               ? "none"
               : "flex"
             : carouselFlow === maxCarouselFlow - 1 &&
