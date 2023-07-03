@@ -6,6 +6,9 @@ import {
 } from "@/app/lib/drive";
 import moment from "moment-timezone";
 import { prisma } from "@/app/lib/prisma";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { User } from "@prisma/client";
 
 const parent_id: string = process.env.PARENTID as string;
 
@@ -16,6 +19,17 @@ export async function POST(req: NextRequest) {
     // parse query param
     const _nim: string = req.nextUrl.searchParams.get("nim") as string;
     const _tugas: string = req.nextUrl.searchParams.get("tugas") as string;
+
+    const session = await getServerSession(authOptions);
+
+    // Route protection
+    if (
+      !session?.user ||
+      ((session.user as User).nim !== _nim &&
+        (session.user as User).role !== "ADMIN")
+    ) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
 
     // validasi telat
     let valid: boolean = await lateUploadCheck(_tugas);

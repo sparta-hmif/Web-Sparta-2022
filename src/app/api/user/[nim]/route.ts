@@ -1,12 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
 import { hash } from "bcryptjs";
 import { prisma } from "@/app/lib/prisma";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../auth/[...nextauth]/route";
+import { User } from "@prisma/client";
 
 export async function GET(
   req: NextRequest,
   { params }: { params: { nim: string } }
 ) {
   const { nim } = params;
+
+  const session = await getServerSession(authOptions);
+
+  // Route protection
+  if (
+    !session?.user ||
+    ((session.user as User).nim !== nim &&
+      (session.user as User).role !== "ADMIN")
+  ) {
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  }
 
   try {
     const user = await prisma.user.findUnique({
@@ -57,6 +71,18 @@ export async function PATCH(
 ) {
   const { nim } = params;
   const { email, password, fullName, shortName, instagram } = await req.json();
+
+  const session = await getServerSession(authOptions);
+
+  // Route protection
+  if (
+    !session ||
+    (session.user &&
+      (session.user as User).nim !== nim &&
+      (session.user as User).role !== "ADMIN")
+  ) {
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  }
 
   const hashedPassword = await hash(password, 10);
 

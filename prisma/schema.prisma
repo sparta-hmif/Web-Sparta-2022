@@ -13,6 +13,7 @@ enum Role {
   MAMET
   MENTOR
   KASUH
+  ADMIN
 }
 
 enum Jabatan {

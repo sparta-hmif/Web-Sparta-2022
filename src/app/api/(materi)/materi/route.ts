@@ -1,9 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/app/lib/prisma";
+import { authOptions } from "../../auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
+import { User } from "@prisma/client";
 
 export async function POST(req: NextRequest) {
   try {
     const { title, expiredDate, sections, attachments } = await req.json();
+
+    const session = await getServerSession(authOptions);
+
+    // Route protection
+    if (
+      !session?.user ||
+      ((session.user as User).role !== "MAMET" &&
+        (session.user as User).role !== "ADMIN")
+    ) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
 
     const date = new Date();
 
