@@ -1,6 +1,6 @@
 import DashboardClient from "./components/DashboardClient";
-import { authOptions } from '../api/auth/[...nextauth]/route';
-import { getServerSession } from 'next-auth/next';
+import { authOptions } from "../api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
 
 interface UserSession {
@@ -16,13 +16,14 @@ const Dashboard = async () => {
   const user = session?.user as UserSession;
 
   if (!session) {
-    redirect('/login')
+    redirect("/login");
   }
 
-  const roleAccess = user.role === 'MENTOR' || user.role === 'MAMET';
-  
+  const roleAccess =
+    user.role === "MENTOR" || user.role === "MAMET" || user.role === "ADMIN";
+
   if (session && !roleAccess) {
-    redirect('/')
+    redirect("/");
   }
 
   return <DashboardClient />;
