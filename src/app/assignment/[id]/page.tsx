@@ -31,7 +31,7 @@ const attachment: AttachmentProps[] = [
     judul: "Dummy Attachment 3",
     link: "https://www.google.com/",
   },
-]
+];
 
 const ongoingAssignment: AssignmentProps = {
   judulTugas: "Judul Tugas Ongoing",
@@ -59,7 +59,7 @@ const expiredAssignment: AssignmentProps = {
 };
 // END OF DUMMY
 
-const Dashboard = () => {
+const Page = ({ params }: { params: { id: string } }) => {
   const assignmentData: AssignmentProps = {
     // Ambil dari backendnya disini (mungkin)
     ...ongoingAssignment,
@@ -72,4 +72,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Page;

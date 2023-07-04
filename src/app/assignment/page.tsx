@@ -35,6 +35,7 @@ const attachment: AttachmentProps[] = [
 
 const data = [
   {
+    id: "1",
     judulTugas: "Judul Tugas 1",
     dayTugas: 1,
     startDate: today,
@@ -45,6 +46,7 @@ const data = [
     isSubmitted: false,
   },
   {
+    id: "2",
     judulTugas: "Judul Tugas 2",
     dayTugas: 2,
     startDate: pastDay,
@@ -55,6 +57,7 @@ const data = [
     isSubmitted: false,
   },
   {
+    id: "3",
     judulTugas: "Judul Tugas 3",
     dayTugas: 3,
     startDate: today,
