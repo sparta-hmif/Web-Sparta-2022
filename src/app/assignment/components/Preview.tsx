@@ -1,25 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import Button from "@/components/Button";
+import { AssignmentProps } from "./List";
 
-interface AttachmentProps {
-  link: string;
-  title?: string;
-  type?: string;
-}
-
-interface AssignmentProps {
-  judulTugas: string;
-  dayTugas: number;
-  startDate: Date;
-  endDate: Date;
-  deskripsi: string;
-  attachment: AttachmentProps[];
-  submission: string[];
-  isSubmitted: boolean;
-}
-
-function formatDate(date: Date) {
+export function formatDate(date: Date) {
   const day = String(date.getDate()).padStart(2, "0");
   const month = String(date.getMonth() + 1).padStart(2, "0");
   const year = date.getFullYear();
@@ -28,11 +11,11 @@ function formatDate(date: Date) {
 }
 
 const Preview = (props: AssignmentProps) => {
-  const { judulTugas, dayTugas, endDate, isSubmitted } = props;
+  const { id, judulTugas, dayTugas, endDate, isSubmitted } = props;
   const today = new Date();
   const isExpired = endDate.getTime() < today.getTime();
   return (
-    <div className="w-full max-w-[1200px] px-10">
+    <div className="w-full px-10">
       <div
         className={`flex flex-col justify-start ${
           isSubmitted
@@ -40,7 +23,7 @@ const Preview = (props: AssignmentProps) => {
             : isExpired
             ? "bg-danger-100"
             : "bg-white"
-        } rounded-2xl border-2 border-primaryDark-400 py-5 px-8`}
+        } rounded-2xl border-2 border-primaryDark-400 py-3 md:py-5 px-5 md:px-8`}
       >
         <div className="font-sen text-sub-1 md:text-h6 font-bold">
           DAY {dayTugas}
@@ -52,7 +35,7 @@ const Preview = (props: AssignmentProps) => {
           Due Date : {formatDate(endDate!)}
         </div>
         <div className="flex justify-end w-full pt-2">
-          <Link href="/assignment/detail" className="w-[150px]">
+          <Link href={`/assignment/${id}`} className="w-4/12 md:w-2/12 mt-2">
             <button
               className={`w-full py-3 px-4 rounded-xl font-sen text-white text-button font-bold transition ${
                 isSubmitted

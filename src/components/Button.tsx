@@ -26,7 +26,7 @@ const Button = ({
         ${isPrimary ? "border-none" : "border-[3px]"}
         border-secondary-400
         ${isPrimary ? "bg-secondary-400" : "bg-white"}
-        rounded-2xl
+        rounded-xl md:rounded-2xl
         font-bold 
         ${isPrimary ? "text-white" : "text-secondary-400"}
         text-xs md:text-base
