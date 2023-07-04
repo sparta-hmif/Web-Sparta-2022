@@ -26,21 +26,25 @@ const GradeAssignment = () => {
       haveUploaded: 20,
       startTime: new Date(),
       endTime: new Date(),
-    }
-
-  ]
+    },
+  ];
   const [isDetail, setIsDetail] = useState(-1);
 
-  if (isDetail !== -1) return (
-    <div className="container mx-auto py-10">
-      <AssignmentDetail {...data[isDetail]} onClose={() => setIsDetail(-1)}/>
-    </div>
-  );
-  
+  if (isDetail !== -1)
+    return (
+      <div className="container mx-auto py-10">
+        <AssignmentDetail {...data[isDetail]} onClose={() => setIsDetail(-1)} />
+      </div>
+    );
+
   return (
     <div className="container mx-auto py-10">
       {data.map((assignment, index) => (
-        <Assignment key={assignment.judul} {...assignment} onClick={() => setIsDetail(index)}/>
+        <Assignment
+          key={assignment.judul}
+          {...assignment}
+          onClick={() => setIsDetail(index)}
+        />
       ))}
     </div>
   );

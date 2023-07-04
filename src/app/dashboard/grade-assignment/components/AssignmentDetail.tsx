@@ -1,21 +1,16 @@
 "use client";
 
 import TextFields from "@/components/TextFields";
-import FilterButton from "../components/FilterButton";
 import Pagination from "@/components/Pagination/Pagination";
 import { useMemo, useState } from "react";
-import testData from "./testData";
-import { sortData } from "./Scoreboard";
 import Button from "@/components/Button";
-import { BsChevronLeft } from "react-icons/bs";
 import { FaChevronLeft } from "react-icons/fa";
-import { type } from "os";
 
 interface assignmentProps {
   rank: number;
   nim: number;
   name: string;
-  status: string;
+  status: boolean;
 }
 
 const AssignmentRow = ({ rank, nim, name, status }: assignmentProps) => {
@@ -27,9 +22,9 @@ const AssignmentRow = ({ rank, nim, name, status }: assignmentProps) => {
         <div className="">{name}</div>
       </div>
 
-      <div className="col-span-2">{status}</div>
+      <div className="col-span-2">{status ? "Submitted" : "Missing"}</div>
       <div className="col-span-2 lg:mx-5">
-        <Button isPrimary={true} text="Edit" />
+        <Button isPrimary={true} text="Open" />
       </div>
     </div>
   );
@@ -49,7 +44,28 @@ const AssignmentScoreboardHeader = () => {
   );
 };
 
-let originalData = testData;
+let originalData = [
+  { nim: 18222013, name: "Riva Hacksby", status: false },
+  { nim: 18222017, name: "Craig Goodered", status: true },
+  { nim: 18222017, name: "Huntlee Bollis", status: false },
+  { nim: 18222007, name: "Derk Chate", status: true },
+  { nim: 18222008, name: "Wainwright Eastop", status: true },
+  { nim: 18222003, name: "Giorgi Donnel", status: false },
+  { nim: 18222020, name: "Bria Dunbar", status: false },
+  { nim: 18222014, name: "Saxe Hallen", status: false },
+  { nim: 18222019, name: "Cahra Sickamore", status: true },
+  { nim: 18222008, name: "Jane Zimmerman", status: true },
+  { nim: 18222010, name: "Ema Heeps", status: false },
+  { nim: 18222002, name: "Elenore Franciotti", status: false },
+  { nim: 18222016, name: "Lottie Brodie", status: true },
+  { nim: 18222009, name: "Dex Scoble", status: false },
+  { nim: 18222016, name: "Mick Scrinage", status: true },
+  { nim: 18222019, name: "Alasdair Scorah", status: true },
+  { nim: 18222006, name: "Brannon Josse", status: true },
+  { nim: 18222017, name: "Adora De Ferrari", status: true },
+  { nim: 18222017, name: "Slade Chaters", status: true },
+  { nim: 18222014, name: "Lemmie Badsworth", status: true },
+];
 let pageSize = 10;
 
 interface AssignmentDetailProps {
@@ -89,7 +105,7 @@ const AssignmentDetail = ({
         data.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         data.nim.toString().includes(searchQuery.toLowerCase())
     );
-    return sortData(newArray);
+    return newArray;
   }, [searchQuery]);
 
   const currentShowingData = useMemo(() => {
@@ -135,7 +151,6 @@ const AssignmentDetail = ({
               value={searchQuery}
               placeholder="Search"
             />
-            <FilterButton />
           </div>
           <div className="text-caption lg:text-sub-1 font-bold font-sen text-primaryDark-400 ">
             <AssignmentScoreboardHeader />
