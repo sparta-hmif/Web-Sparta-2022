@@ -26,6 +26,7 @@ export async function GET(req: NextRequest) {
         nim: true,
         fullName: true,
         score: true,
+        imageURL: true,
       },
       where: {
         role: "PESERTA",
