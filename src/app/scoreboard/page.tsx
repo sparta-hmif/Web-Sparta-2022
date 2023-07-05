@@ -1,16 +1,15 @@
 import Image from "next/image";
-import Pillar from "./components/Pillar";
 import ScoreList from "./components/ScoreList";
 import ScorePillar from "./components/ScorePillar";
-import { authOptions } from '../api/auth/[...nextauth]/route';
-import { getServerSession } from 'next-auth/next';
+import { authOptions } from "../api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
 
 const Scoreboard = async () => {
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    redirect('/login')
+    redirect("/login");
   }
 
   const dummy = [
@@ -19,102 +18,140 @@ const Scoreboard = async () => {
       name: "Kevin Sebastian",
       nim: "18221143",
       score: 999,
+      image: "",
     },
     {
       rank: 2,
       name: "Kevin Sebastian Sheva",
       nim: "18221143",
       score: 999,
+      image: "",
     },
     {
       rank: 3,
       name: "Kevin Sebastian Sheva Tjahyana Apa Kek Gitu",
       nim: "18221143",
       score: 999,
+      image: "",
     },
     {
       rank: 4,
       name: "Kevin Sebastian Sheva Tjahyana Apa Kek Panjang Banget Pokoknya",
       nim: "18221143",
       score: 999,
+      image: "",
     },
     {
       rank: 5,
       name: "Kevin Sebastian Sheva Tjahyana Apa Kek",
       nim: "18221143",
       score: 999,
+      image: "",
     },
     {
       rank: 6,
       name: "Kevin Sebastian Sheva Tjahyana Apa Kek",
       nim: "18221143",
       score: 999,
+      image: "",
     },
     {
       rank: 7,
       name: "Kevin",
       nim: "18221143",
       score: 999,
+      image: "",
     },
     {
       rank: 8,
       name: "Kevin Sebastian Sheva",
       nim: "18221143",
       score: 999,
+      image: "",
     },
     {
       rank: 9,
       name: "Kevin Sebastian Sheva Tjahyana",
       nim: "18221143",
       score: 999,
+      image: "",
     },
     {
       rank: 10,
       name: "Kevin",
       nim: "18221143",
       score: 999,
+      image: "",
     },
     {
       rank: 11,
       name: "Kevin Sebastian Sheva",
       nim: "18221143",
       score: 999,
+      image: "",
     },
     {
       rank: 12,
       name: "Kevin",
       nim: "18221143",
       score: 999,
+      image: "",
     },
     {
       rank: 13,
       name: "Kevin",
       nim: "18221143",
       score: 999,
+      image: "",
     },
     {
       rank: 14,
       name: "Kevin Sebastian Sheva",
       nim: "18221143",
       score: 999,
+      image: "",
     },
     {
       rank: 15,
       name: "Kevin Sebastian Sheva Tjahyana",
       nim: "18221143",
       score: 999,
+      image: "",
     },
     {
       rank: 16,
       name: "Kevin",
       nim: "18221143",
       score: 999,
+      image: "",
     },
     {
       rank: 17,
       name: "Kevin Sebastian Sheva",
       nim: "18221143",
       score: 999,
+      image: "",
+    },
+    {
+      rank: 18,
+      name: "Kevin",
+      nim: "18221143",
+      score: 999,
+      image: "",
+    },
+    {
+      rank: 19,
+      name: "Kevin",
+      nim: "18221143",
+      score: 999,
+      image: "",
+    },
+    {
+      rank: 20,
+      name: "Kevin Sebastian Sheva",
+      nim: "18221143",
+      score: 999,
+      image: "",
     },
   ];
 
@@ -124,7 +161,7 @@ const Scoreboard = async () => {
         <h1 className="bg-gradient-to-b from-white to-[#D39947] bg-clip-text text-transparent from-40% font-koulen md:text-[105px] sm:text-[70px] text-[45px]">
           SCOREBOARD
         </h1>
-        <ScorePillar users={dummy.slice(0,3)}/>
+        <ScorePillar users={dummy.slice(0, 3)} />
         <Image
           src="/images/scoreboard/Cobain.svg"
           width={100}
@@ -132,10 +169,20 @@ const Scoreboard = async () => {
           className="absolute bottom-0 w-full translate-y-[20%] md:translate-y-1/3"
           alt="mountain"
         />
-        <div className="shadow-lg px-4 py-3 md:px-7 md:py-5 font-koulen text-primaryDark-400 w-[90%] max-w-[38rem] bg-white flex border-primaryDark-400 border-4 rounded-xl md:rounded-3xl mx-auto absolute bottom-0 translate-y-[120%] left-1/2 -translate-x-1/2">
+      </div>
+      <div className="container mx-auto relative mt-16 md:mt-20 pb-10">
+        <div className="shadow-lg px-4 py-3 md:px-7 md:py-5 mb-10 font-koulen text-primaryDark-400 w-[90%] max-w-[38rem] bg-white flex border-primaryDark-400 border-4 rounded-xl md:rounded-3xl mx-auto">
           <div className="w-1/2 flex flex-col items-start justify-between">
-            <div className="w-5/12 rounded-full aspect-square bg-primaryDark-400"></div>
-            <p className="text-xl md:text-4xl mt-20">
+            <div className="w-5/12 rounded-full aspect-square bg-primaryDark-400 overflow-hidden">
+              <Image
+                src={"/images/landing/placeholder.jpg"}
+                alt="user"
+                width={200}
+                height={200}
+                className="object-cover object-center"
+              />
+            </div>
+            <p className="text-2xl md:text-4xl mt-5 md:mt-10 lg:mt-15 line-clamp-2">
               NAMA KEK SABEB BANYAK JG GAPAPA
             </p>
           </div>
@@ -146,9 +193,7 @@ const Scoreboard = async () => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="container mx-auto">
-        <ScoreList users={dummy.slice(3)}/>
+        <ScoreList users={dummy.slice(3)} userRank={15} />
       </div>
     </div>
   );
