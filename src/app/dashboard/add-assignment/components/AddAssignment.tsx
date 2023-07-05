@@ -1,10 +1,10 @@
 "use client";
 
-import { useRef, useState } from "react";
-import Button from "../../../components/Button";
+import { useState } from "react";
+import Button from "../../../../components/Button";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import LinkAttachment from "@/components/LinkAttachment";
+import LinkAttachment, { AttachmentProps } from "@/components/LinkAttachment";
 
 const AddAssignment = () => {
   const [startDate, setStartDate] = useState<Date | null>(null);
@@ -16,9 +16,9 @@ const AddAssignment = () => {
   //   setData(childData);
   // };
 
-  const [attachment, setAttachment] = useState<Array<string>>([]);
+  const [attachment, setAttachment] = useState<Array<AttachmentProps>>([]);
 
-  const addAttachment = (val: string) => {
+  const addAttachment = (val: AttachmentProps) => {
     setAttachment([...attachment, val]);
   };
 

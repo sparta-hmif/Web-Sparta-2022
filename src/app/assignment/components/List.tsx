@@ -1,13 +1,10 @@
 import React from "react";
 import Preview from "./Preview";
+import { AttachmentProps } from "@/components/LinkAttachment";
 
-interface AttachmentProps {
-  link: string;
-  title?: string;
-  type?: string;
-}
 
-interface AssignmentProps {
+export interface AssignmentProps {
+  id: string;
   judulTugas: string;
   dayTugas: number;
   startDate: Date;
@@ -24,9 +21,9 @@ interface AssignmentListProps {
 
 const AssignmentList = ({ assignments }: AssignmentListProps) => {
   return (
-    <div className="flex flex-col justify-center items-center w-full py-10 gap-5">
-      {assignments.map((assignment) => (
-        <Preview {...assignment} />
+    <div className="flex flex-col justify-center items-center w-full py-10 gap-5 container mx-auto max-w-[60rem]">
+      {assignments.map((assignment, index) => (
+        <Preview key={index} {...assignment} />
       ))}
     </div>
   );

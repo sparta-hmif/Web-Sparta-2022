@@ -2,12 +2,11 @@
 
 import Pagination from "@/components/Pagination/Pagination";
 import React, { useMemo } from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import TextFields from "@/components/TextFields";
-import FilterButton from "./FilterButton";
 import SingleRow from "./SingleRow";
 import ScoreboardHeader from "./ScoreboardHeader";
-import testData from "./testData";
+import testData from "../../testData";
 
 let pageSize = 10;
 let originalData = sortData(testData);
@@ -74,7 +73,6 @@ export default function Scoreboard() {
           value={searchQuery}
           placeholder="Search"
         />
-        <FilterButton />
       </div>
       <div className="text-caption lg:text-sub-1 font-bold font-sen text-primaryDark-400 ">
         <ScoreboardHeader />

@@ -61,7 +61,7 @@ const Navbar = ({ user }: NavbarProps) => {
     }[];
   }) => {
     return (
-      <div className="">
+      <>
         <button className="relative inline-block hover:bg-primaryDark-300 hover:text-primary-300 px-4 py-1 rounded-md peer">
           {item.name}
         </button>
@@ -86,7 +86,7 @@ const Navbar = ({ user }: NavbarProps) => {
             </div>
           </div>
         )}
-      </div>
+      </>
     );
   };
 
@@ -110,7 +110,9 @@ const Navbar = ({ user }: NavbarProps) => {
             src="/images/Logo/Logo.svg"
           />
           <div className="hidden md:flex flex-row items-end justify-start gap-10 pt-2">
-            {dataPage.map((item) => menuElements(item))}
+            {dataPage.map((item, index) => (
+              <div key={index}>{menuElements(item)}</div>
+            ))}
           </div>
         </div>
         <div className="hidden md:block w-[15rem] relative">

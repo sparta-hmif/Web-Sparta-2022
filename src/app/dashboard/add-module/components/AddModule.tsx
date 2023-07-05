@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Button from "../../../components/Button";
+import Button from "../../../../components/Button";
 import { MdClose } from "react-icons/md";
-import LinkAttachment from "@/components/LinkAttachment";
+import LinkAttachment, { AttachmentProps } from "@/components/LinkAttachment";
 
 const AddModule = () => {
   const [contentFocus, setContenFocus] = useState(-1);
@@ -42,9 +42,9 @@ const AddModule = () => {
   // const childToParent = (childData: string) => {
   //   setData(childData);
   // };
-  const [attachment, setAttachment] = useState<Array<string>>([]);
+  const [attachment, setAttachment] = useState<Array<AttachmentProps>>([]);
 
-  const addAttachment = (val: string) => {
+  const addAttachment = (val: AttachmentProps) => {
     setAttachment([...attachment, val]);
   };
 
@@ -77,7 +77,7 @@ const AddModule = () => {
           </div>
           <div className="flex justify-between items-center my-1 lg:my-4">
             <p className="sub-1 text-[14px] lg:text-[24px] ">Content</p>
-            <div className="hidden lg:block w-[10%]">
+            <div className="hidden lg:block w-[14%]">
               <Button
                 type="button"
                 onClick={addContent}

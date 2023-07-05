@@ -1,4 +1,5 @@
-import DashboardClient from "./components/DashboardClient";
+import DashboardHeader from "@/components/DashboardHeader";
+import NavDashboard from "./components/NavDashboard";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
@@ -11,7 +12,7 @@ interface UserSession {
   role: string;
 }
 
-const Dashboard = async () => {
+const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
   const session = await getServerSession(authOptions);
   const user = session?.user as UserSession;
 
@@ -19,14 +20,18 @@ const Dashboard = async () => {
     redirect("/login");
   }
 
-  const roleAccess =
-    user.role === "MENTOR" || user.role === "MAMET" || user.role === "ADMIN";
+  const roleAccess = user.role === "MENTOR" || user.role === "MAMET";
 
   if (session && !roleAccess) {
     redirect("/");
   }
-
-  return <DashboardClient />;
+  return (
+    <div>
+      <DashboardHeader title="DASHBOARD" />
+      <NavDashboard />
+      {children}
+    </div>
+  );
 };
 
-export default Dashboard;
+export default DashboardLayout;
