@@ -114,11 +114,11 @@ const Navbar = ({ user }: NavbarProps) => {
         {item.dropdown && (
           <div className="scale-y-0 absolute pt-3 w-[10%] rounded-lg peer-hover:scale-y-100 hover:scale-y-100 transition origin-top">
             <div className="bg-primaryDark-400 rounded-tr-xl rounded-b-2xl shadow-lg relative overflow-hidden">
-              <div className="absolute h-2 w-full top-0 bg-primary-400 rounded-tr-2xl y"/>
+              <div className="absolute h-2 w-full top-0 bg-primary-400 rounded-tr-2xl y" />
               <ul className="pt-2 text-sm flex flex-col divide-y-2 divide-primary-400/30">
-                {item.dropdown.map((item) => {
+                {item.dropdown.map((item, idx) => {
                   return (
-                    <li key={item.name}>
+                    <li key={idx}>
                       <Link
                         href={item.href}
                         className="px-4 py-2 hover:bg-primaryDark-300 w-full text-left inline-flex items-center text-primary-400 text-lg"
@@ -229,9 +229,8 @@ const Navbar = ({ user }: NavbarProps) => {
           <div className="py-2">
             {dataPage.map((item, index) => {
               return (
-                <>
+                <div key={index}>
                   <div
-                    key={item.name}
                     className={`py-2 px-6 text-xl ${
                       showDropdown === index && "bg-primary-400/20"
                     } hover:bg-primary-400/20 transition`}
@@ -248,10 +247,10 @@ const Navbar = ({ user }: NavbarProps) => {
                   </div>
                   {showDropdown === index && (
                     <div className="">
-                      {item.dropdown?.map((dropdown) => {
+                      {item.dropdown?.map((dropdown, idx) => {
                         return (
                           <div
-                            key={dropdown.name}
+                            key={idx}
                             className="bg-primary-400/10 px-12 text-xl py-2"
                             onClick={() => {}}
                           >
@@ -261,7 +260,7 @@ const Navbar = ({ user }: NavbarProps) => {
                       })}
                     </div>
                   )}
-                </>
+                </div>
               );
             })}
             {user && (
