@@ -7,16 +7,20 @@ import "react-datepicker/dist/react-datepicker.css";
 import LinkAttachment, { AttachmentProps } from "@/components/LinkAttachment";
 
 const AddAssignment = () => {
+  // Component states
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
+
+  const [attachment, setAttachment] = useState<Array<AttachmentProps>>([]);
+  const [title, setTitle] = useState<string>("");
+  const [day, setDay] = useState<string>("");
+  const [desc, setDesc] = useState<string>("");
 
   // const [data, setData] = useState<string>();
 
   // const childToParent = (childData: string) => {
   //   setData(childData);
   // };
-
-  const [attachment, setAttachment] = useState<Array<AttachmentProps>>([]);
 
   const addAttachment = (val: AttachmentProps) => {
     setAttachment([...attachment, val]);
@@ -28,13 +32,51 @@ const AddAssignment = () => {
     setAttachment(temp);
   };
 
+  // Handle form reset
+  const handleReset = () => {
+    setStartDate(null);
+    setEndDate(null);
+    setAttachment([]);
+    setTitle("");
+    setDay("");
+    setDesc("");
+  };
+
+  // Handle form submision
+  const handlePost = async () => {
+    const data = {
+      title,
+      description: desc,
+      startTime: startDate,
+      endTime: endDate,
+      attachments: attachment.map((val) => ({
+        title: val.judul,
+        link: val.link,
+      })),
+      dayNum: day,
+    };
+    const res = await fetch("http://localhost:3000/api/tugas", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const resJson = await res.json();
+    console.log(resJson);
+
+    if (resJson.message === "success") {
+      handleReset();
+    }
+  };
+
   return (
     <>
       <div className="p-7 lg:px-64 lg:py-10">
         <h1 className="text-[40px] text-primaryDark-400 lg:text-[64px]">
           NEW ASSIGNMENT
         </h1>
-        <form>
+        <form onSubmit={(e) => e.preventDefault()}>
           <div className="flex flex-col">
             <label
               htmlFor="judul"
@@ -47,6 +89,8 @@ const AddAssignment = () => {
               id="judul"
               className="py-2 px-3 text-[8px] font-sen text-secondaryDark-400 bg-primaryLight-400 rounded-lg border-secondaryDark-400 border-[1px] placeholder:text-secondaryDark-200 focus:outline-none focus:border-[1px] focus:border-secondary-400 lg:text-[16px]"
               placeholder="Judul"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </div>
           <div className="flex gap-[10px] lg:gap-[22px]">
@@ -62,6 +106,8 @@ const AddAssignment = () => {
                 id="Day"
                 className="py-2 px-3 text-[8px] font-sen text-secondaryDark-400 bg-primaryLight-400 rounded-lg border-secondaryDark-400 border-[1px] placeholder:text-secondaryDark-200 focus:outline-none focus:border-[1px] focus:border-secondary-400 lg:text-[16px]"
                 placeholder="Day"
+                value={day}
+                onChange={(e) => setDay(e.target.value)}
               />
             </div>
             <div className="flex flex-col w-2/5">
@@ -119,6 +165,8 @@ const AddAssignment = () => {
               id="Description"
               className="py-2 px-3 h-[100px] text-[8px] font-sen text-secondaryDark-400 bg-primaryLight-400 rounded-lg border-secondaryDark-400 border-[1px] placeholder:text-secondaryDark-200 focus:outline-none focus:border-[1px] focus:border-secondary-400 lg:text-[16px] lg:h-[234px]"
               placeholder="Description"
+              value={desc}
+              onChange={(e) => setDesc(e.target.value)}
             />
           </div>
           <div className="flex flex-col">
@@ -137,8 +185,18 @@ const AddAssignment = () => {
             </div>
           </div>
           <div className="flex justify-center gap-2 my-7 lg:justify-end">
-            <Button isPrimary={false} text={"Cancel"}></Button>
-            <Button isPrimary={true} text={"Post"}></Button>
+            <Button
+              isPrimary={false}
+              text={"Cancel"}
+              type="button"
+              onClick={handleReset}
+            ></Button>
+            <Button
+              isPrimary={true}
+              text={"Post"}
+              type="button"
+              onClick={handlePost}
+            ></Button>
           </div>
         </form>
       </div>
