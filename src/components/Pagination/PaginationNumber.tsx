@@ -19,13 +19,13 @@ export default function PaginationNumber({
     <button
       disabled={isDisabled}
       onClick={onClick}
-      className={`flex w-[24px] h-[24px] md:w-[28px] md:h-[28px] lg:w-[32px] lg:h-[32px] ${
-        isActive ? "bg-primaryLight-700" : ""
-      } justify-center items-center text-[12px] lg:text-[14px] font-bold text-secondary-400 font-sen ${
-        !isDots ? "border border-black rounded-full " : ""
+      className={`flex w-[9%] max-w-[3rem] aspect-square text-base md:text-xl text-primaryDark-400 ${
+        isActive ? "bg-primaryLight-700 scale-110" : ""
+      } justify-center items-center font-bold font-sen ${
+        !isDots ? "border-[3px] border-primaryDark-400 rounded-full " : ""
       } ${
         !isActive && !isDots
-          ? "border-2 border-primaryLight-700 hover:bg-primaryLight-400 ease-out duration-500"
+          ? "border-2 border-primaryLight-700 hover:bg-primaryLight-400 ease-out duration-300"
           : ""
       }`}
     >

@@ -83,7 +83,7 @@ const Pagination = ({
     : 0;
 
   return (
-    <div className="flex gap-[13px]">
+    <div className="flex gap-2 md:gap-5 w-full justify-center items-center">
       <PaginationButton
         isDirectionRight={false}
         onClick={onPrev}
