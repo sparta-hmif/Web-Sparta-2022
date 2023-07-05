@@ -24,7 +24,7 @@ const Card = ({ namaMateri, tanggalRilis, id, ...props }: CardProps) => {
     >
       <h4 className="text-[25px] sm:text-[32px] line-clamp-2">{namaMateri}</h4>
       <p className="text-xs md:text-lg body-1 pt-2 pb-2 md:pb-5">
-        Tanggal : {formatDate(tanggalRilis)}
+        Tanggal Rilis : {formatDate(tanggalRilis)}
       </p>
       <div className="flex justify-end">
         <Link href={`/subject/${id}`} className="w-4/12 sm:w-2/12">

@@ -5,7 +5,6 @@ import SubjectContent from "./components/SubjectContent";
 const Subject = async () => {
   return (
     <div>
-      <DashboardHeader title="SUBJECT" />
       <SubjectContent />
     </div>
   );

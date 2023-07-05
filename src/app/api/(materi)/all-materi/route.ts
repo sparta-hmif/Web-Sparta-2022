@@ -18,7 +18,7 @@ export async function GET() {
       releaseDate: true,
     },
     orderBy: {
-      releaseDate: "asc",
+      releaseDate: "desc",
     },
   });
 

@@ -22,7 +22,7 @@ export default function SubjectContent(): JSX.Element {
     data?.map((data: any) => ({
       id: data.id,
       namaMateri: data.title,
-      tanggalRilis: data.expiredDate,
+      tanggalRilis: data.releaseDate,
     })) || [];
 
   return (
