@@ -1,13 +1,14 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Button from "@/components/Button";
 import AttachmentList from "./AttachmentList";
-import Submission from "./Submission";
 import Link from "next/link";
 import { AttachmentProps } from "@/components/LinkAttachment";
 import Dropzone from "@/components/Dropzone";
 import { FileRejection } from "react-dropzone";
+import { useSession } from "next-auth/react";
+import { User } from "@prisma/client";
 
 interface AssignmentProps {
   judulTugas: string;
@@ -17,6 +18,7 @@ interface AssignmentProps {
   deskripsi: string;
   attachment: AttachmentProps[];
   isSubmitted: boolean;
+  tugasId: string;
 }
 
 function formatDate(date: Date): string {
@@ -37,17 +39,42 @@ const Assignment = ({
   deskripsi,
   attachment,
   isSubmitted,
+  tugasId,
 }: AssignmentProps) => {
   const today = new Date();
   const isExpired = endDate.getTime() < today.getTime();
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File>();
 
-  const handleSubmission = () => {};
+  const session = useSession();
 
-  const handleFileSelected = (file: File) => {
+  const handleSubmission = async () => {
+    if (!file) {
+      return;
+    }
+    if (file.type !== "application/pdf") {
+      alert("File must be in PDF format");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("media", file);
+
+    const res = await fetch(
+      `http://localhost:3000/api/tugas/upload?nim=${
+        (session.data?.user as User)?.nim
+      }&tugas=${tugasId}`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+    const resJson = await res.json();
+    console.log(resJson);
+  };
+
+  const handleFileSelected = (newFile: File) => {
     // Do something with the selected file
-    setFile(file);
+    setFile(newFile);
   };
 
   const handleDeleteFile = () => {
@@ -133,14 +160,14 @@ const Assignment = ({
               <Link href={"/assignment"} className="w-[150px]">
                 <Button isPrimary={false} text="Cancel" type="button" />
               </Link>
-              <Link href={"/assignment"} className="w-[150px]">
+              <div className="w-[150px]">
                 <Button
                   isPrimary={true}
                   text="Submit"
                   type="button"
                   onClick={handleSubmission}
                 />
-              </Link>
+              </div>
             </div>
           </>
         )}
