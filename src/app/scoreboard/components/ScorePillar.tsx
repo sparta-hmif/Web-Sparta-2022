@@ -6,6 +6,7 @@ interface PillarProps {
     name: string;
     nim: string;
     score: number;
+    image?: string;
   }[];
 }
 
@@ -15,9 +16,7 @@ const ScorePillar: React.FC<PillarProps> = ({ users }) => {
       {users.map((user) => (
         <Pillar
           key={user.nim}
-          name={user.name}
-          nim={user.nim}
-          score={user.score}
+          {...user}
           order={user.rank}
         />
       ))}

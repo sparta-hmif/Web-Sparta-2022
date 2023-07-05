@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import ListContent from "./ListContent";
 import Pagination from "@/components/Pagination/Pagination";
 
@@ -10,33 +10,51 @@ interface ScoreListProps {
     name: string;
     nim: string;
     score: number;
+    image?: string;
   }[];
+  userRank: number;
 }
 
-const ScoreList: React.FC<ScoreListProps> = ({ users }) => {
+const ScoreList: React.FC<ScoreListProps> = ({ users, userRank }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage, setPostPerPage] = useState(10);
+  const [postPerPage, setPostPerPage] = useState(20);
 
-  const lastPostIndex = currentPage * postPerPage;
-  const firstPostIndex = lastPostIndex - postPerPage;
-
-  const handlePageChange = (page: number | string) => {};
+  const currentShowingData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * postPerPage;
+    const lastPageIndex = firstPageIndex + postPerPage;
+    return users.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, postPerPage, users]);
 
   return (
     <>
-      <div className="w-full h-[15rem] md:h-[30rem] lg:h-[30rem]"></div>
-      <div className="w-full flex flex-col justify-center items-center gap-4">
-        {users.slice(firstPostIndex, lastPostIndex).map((user) => (
-          <ListContent
-            key={user.nim}
-            name={user.name}
-            nim={user.nim}
-            score={user.score}
-            rank={user.rank}
+      <div className="w-[95%] mx-auto flex flex-col justify-center items-center gap-4">
+        {currentShowingData.map((user) => {
+          let isUser = false;
+          if (user.rank === userRank) {
+            isUser = true;
+          }
+          return (
+            <ListContent
+              key={user.rank}
+              {...user}
+              isUser={isUser}
+            />
+          );
+        })}
+        <div className="my-5 w-full flex items-center justify-center">
+          <Pagination
+            totalDataCount={users.length}
+            currentPage={currentPage}
+            pageSize={postPerPage}
+            onPageChange={(page) => {
+              if (typeof page === "string") {
+                return;
+              }
+              setCurrentPage(page);
+            }}
           />
-        ))}
+        </div>
       </div>
-      {/* <Pagination totalDataCount={users.length} currentPage={currentPage} pageSize={postPerPage} onPageChange={handlePageChange}/> */}
     </>
   );
 };
