@@ -1,16 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, RefObject } from "react";
 import Button from "../../../../components/Button";
 import { MdClose } from "react-icons/md";
 import LinkAttachment, { AttachmentProps } from "@/components/LinkAttachment";
 
 const AddModule = () => {
+  // Component states
   const [contentFocus, setContenFocus] = useState(-1);
+  const [title, setTitle] = useState<string>("");
 
   const [content, setContent] = useState<
     Array<{ title: string; desc: string }>
   >([{ title: "", desc: "" }]);
+  const [attachment, setAttachment] = useState<Array<AttachmentProps>>([]);
+
+  // Component refs
+  let titleRef = useRef<HTMLInputElement>(null);
+  let linkRef = useRef<HTMLInputElement>(null);
 
   const addContent = () => {
     setContent([...content, { title: "", desc: "" }]);
@@ -42,7 +49,6 @@ const AddModule = () => {
   // const childToParent = (childData: string) => {
   //   setData(childData);
   // };
-  const [attachment, setAttachment] = useState<Array<AttachmentProps>>([]);
 
   const addAttachment = (val: AttachmentProps) => {
     setAttachment([...attachment, val]);
@@ -54,13 +60,54 @@ const AddModule = () => {
     setAttachment(temp);
   };
 
+  // Handle form submission
+  const handleSubmit = async () => {
+    const data = {
+      title,
+      expiredDate: new Date(2024, 7, 3),
+      sections: content.map((val) => ({
+        title: val.title,
+        description: val.desc,
+      })),
+      attachments: attachment.map((val) => ({
+        title: val.judul,
+        link: val.link,
+      })),
+    };
+    const res = await fetch("http://localhost:3000/api/materi", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const resJson = await res.json();
+    console.log(resJson);
+
+    if (resJson.message === "success") {
+      handleReset();
+    }
+  };
+
+  // Handle form reset
+  const handleReset = () => {
+    setTitle("");
+    setContent([{ title: "", desc: "" }]);
+    setAttachment([]);
+    if (titleRef.current && linkRef.current) {
+      titleRef.current.value = "";
+      linkRef.current.value = "";
+      console.log(titleRef);
+    }
+  };
+
   return (
     <>
       <div className="p-7 lg:px-64 lg:py-10">
         <h1 className="text-[40px] text-primaryDark-400 lg:text-[64px]">
           NEW MODULE
         </h1>
-        <form>
+        <form onSubmit={(e) => e.preventDefault()}>
           <div className="flex flex-col">
             <label
               htmlFor="judul"
@@ -73,6 +120,8 @@ const AddModule = () => {
               id="judul"
               className="py-2 px-3 text-[8px] font-sen text-secondaryDark-400 bg-primaryLight-400 rounded-lg border-secondaryDark-400 border-[1px] placeholder:text-secondaryDark-200 focus:outline-none focus:border-[1px] focus:border-secondary-400 lg:text-[16px]"
               placeholder="Judul"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </div>
           <div className="flex justify-between items-center my-1 lg:my-4">
@@ -155,8 +204,18 @@ const AddModule = () => {
             </div>
           </div>
           <div className="flex justify-center gap-2 my-7 lg:justify-end">
-            <Button isPrimary={false} text={"Cancel"}></Button>
-            <Button isPrimary={true} text={"Post"}></Button>
+            <Button
+              isPrimary={false}
+              text={"Cancel"}
+              type="button"
+              onClick={handleReset}
+            ></Button>
+            <Button
+              isPrimary={true}
+              text={"Post"}
+              type="button"
+              onClick={handleSubmit}
+            ></Button>
           </div>
         </form>
       </div>
