@@ -6,7 +6,7 @@ import { User } from "@prisma/client";
 
 export async function POST(req: NextRequest) {
   try {
-    const { title, expiredDate, sections, attachments } = await req.json();
+    const { title, sections, attachments } = await req.json();
 
     const session = await getServerSession(authOptions);
 
@@ -19,19 +19,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
-    const date = new Date();
-
-    if (date.getTime() > new Date(expiredDate).getTime()) {
-      return NextResponse.json(
-        { message: "Expired Date invalid" },
-        { status: 400 }
-      );
-    }
-
     await prisma.materi.create({
       data: {
         title: title,
-        expiredDate: expiredDate,
+        releaseDate: new Date(),
         sections: sections,
         attachments: attachments,
       },

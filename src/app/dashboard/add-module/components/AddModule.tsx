@@ -64,7 +64,6 @@ const AddModule = () => {
   const handleSubmit = async () => {
     const data = {
       title,
-      expiredDate: new Date(2024, 7, 3),
       sections: content.map((val) => ({
         title: val.title,
         description: val.desc,
