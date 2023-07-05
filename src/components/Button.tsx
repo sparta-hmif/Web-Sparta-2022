@@ -22,14 +22,14 @@ const Button = ({
         `
         transition
         w-full 
-        py-3 
+        py-3 px-2
         ${isPrimary ? "border-none" : "border-[3px]"}
         border-secondary-400
         ${isPrimary ? "bg-secondary-400" : "bg-white"}
-        rounded-2xl
+        rounded-xl md:rounded-2xl
         font-bold 
         ${isPrimary ? "text-white" : "text-secondary-400"}
-        text-button 
+        text-xs md:text-base
         hover:drop-shadow-[0_3px_6px_rgba(188,83,23,0.55)]
         ${isPrimary ? "active:bg-[#BC5317]" : "active:bg-secondary-400"}       
         active:text-white

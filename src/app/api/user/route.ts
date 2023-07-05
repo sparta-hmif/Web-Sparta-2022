@@ -1,66 +1,49 @@
-import { NextRequest, NextResponse } from "next/server";
-import { hash } from "bcryptjs";
 import { prisma } from "@/app/lib/prisma";
+import { hash } from "bcryptjs";
+import { NextRequest, NextResponse } from "next/server";
+import { authOptions } from "../auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
+import { User } from "@prisma/client";
 
-export async function GET(req: NextRequest) {
-  const { searchParams } = new URL(req.url);
-  const userId = searchParams.get("id");
+export async function POST(req: NextRequest) {
+  const {
+    nim,
+    email,
+    password,
+    fullName,
+    shortName,
+    instagram,
+    imageURL,
+    kelompok,
+    role,
+  } = await req.json();
 
-  try {
-    const user = await prisma.user.findUnique({
-      select: {
-        id: true,
-        nim: true,
-        email: true,
-        fullName: true,
-        shortName: true,
-        score: true,
-        role: true,
-        kelompokId: true,
-      },
-      where: { id: String(userId) },
-    });
+  const session = await getServerSession(authOptions);
 
-    if (!user) {
-      console.log("User Not Found");
-      return NextResponse.json({ message: "User not found" }, { status: 400 });
-    }
-
-    return NextResponse.json(user);
-  } catch (error) {
-    console.log("Error");
-    return NextResponse.json(
-      { message: "Failed to fetch user", error },
-      { status: 500 }
-    );
+  // Route protection
+  if (!session?.user || (session.user as User).role !== "ADMIN") {
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
-}
-
-export async function PUT(req: NextRequest, res: NextResponse) {
-  const { searchParams } = new URL(req.url);
-  const userId = searchParams.get("id");
-  const { nim, email, password, fullName, shortName } = await req.json();
 
   const hashedPassword = await hash(password, 10);
 
   try {
-    // Mengupdate data user berdasarkan ID
-    await prisma.user.update({
-      where: { id: String(userId) },
+    await prisma.user.create({
       data: {
-        nim: nim,
-        email: email,
+        email,
+        nim,
         password: hashedPassword,
-        fullName: fullName,
-        shortName: shortName,
+        fullName,
+        shortName,
+        instagram,
+        imageURL,
+        kelompok,
+        role,
       },
     });
 
-    return NextResponse.json({ message: "User updated successfully" });
-  } catch (error) {
-    return NextResponse.json(
-      { message: "Failed to update user", error },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "success" });
+  } catch (err) {
+    return NextResponse.json({ error: err }, { status: 500 });
   }
 }

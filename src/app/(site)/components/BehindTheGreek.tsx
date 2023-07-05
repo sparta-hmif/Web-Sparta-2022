@@ -125,7 +125,7 @@ const data = {
 
 const BehindTheGreek = () => {
   return (
-    <div className="bg-gradient-to-b from-[#CA8E46] to-[#5E252A] relative h-[400rem] bg-no-repeat bg-cover bg-top">
+    <div className="bg-gradient-to-b from-[#CA8E46] to-[#6F332E] relative h-[300rem] bg-no-repeat bg-cover bg-top">
       <Image
         alt="background"
         src="/images/landing/CahayaPanitia.svg"
@@ -145,28 +145,28 @@ const BehindTheGreek = () => {
         src="/images/landing/AwanAtas.svg"
         width={100}
         height={100}
-        className="absolute w-full max-w-[80rem] top-1/2 right-0"
+        className="absolute w-full max-w-[80rem] top-[35%] right-0"
       />
       <Image
         alt="background"
         src="/images/landing/Bulan.svg"
         width={100}
         height={100}
-        className="absolute w-1/2 max-w-[40rem] top-[60%] left-0"
+        className="absolute w-1/2 max-w-[40rem] top-[45%] left-0"
       />
       <Image
         alt="background"
         src="/images/landing/CloudLeft.svg"
         width={100}
         height={100}
-        className="absolute w-full max-w-[60rem] top-[80%] left-0"
+        className="absolute w-full max-w-[50rem] top-[65%] left-0"
       />
       <Image
         alt="background"
         src="/images/landing/CloudRight.svg"
         width={100}
         height={100}
-        className="absolute w-full max-w-[60rem] top-[85%] right-0"
+        className="absolute w-full max-w-[50rem] top-[75%] right-0"
       />
       {/* INI TADINYA ADA MX AUTO */}
       <div className="text-center pt-[30%] w-full">
