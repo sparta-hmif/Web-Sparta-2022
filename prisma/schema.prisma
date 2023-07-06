@@ -1,0 +1,141 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+// Enums
+enum Role {
+  PESERTA
+  MAMET
+  MENTOR
+  KASUH
+  ADMIN
+}
+
+enum Jabatan {
+  ZEUS
+  SEKJEN
+  SEKRETARIS
+  BENDAHARA
+  KABID
+  WAKABID
+  KADIV
+  WAKADIV
+  STAFF
+}
+
+enum Bidang {
+  KETUA
+  KESEKJENAN
+  MAMET
+  KONSEPTOR
+  LAPANGAN
+  PENSUASANAAN
+  OPERASIONAL
+}
+
+enum Divisi {
+  KESEKJENAN
+  MSDM_PANITIA
+  MAMET
+  ACARA
+  MSDM_KADER
+  MENTOR
+  KEAMANAN
+  MEDIK
+  GRAFIS
+  PUBDOK
+  IT
+  LOGISTIK
+}
+
+// Types
+type Section {
+  title       String
+  description String?
+}
+
+type Attachment {
+  title String
+  link  String
+}
+
+// Models
+model User {
+  id           String         @id @default(auto()) @map("_id") @db.ObjectId
+  nim          String         @unique
+  email        String
+  password     String
+  fullName     String
+  shortName    String?
+  instagram    String?
+  imageURL     String?
+  score        Int            @default(0)
+  role         Role           @default(PESERTA)
+  kelompok     String?
+  evalUser     EvalDay[]
+  submisiTugas SubmisiTugas[]
+}
+
+model Tugas {
+  id           String         @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  day          Day            @relation(fields: [dayId], references: [id])
+  dayId        String         @db.ObjectId
+  description  String?
+  startTime    DateTime
+  endTime      DateTime
+  attachments  Attachment[]
+  submisiTugas SubmisiTugas[]
+}
+
+model SubmisiTugas {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  tugas   Tugas  @relation(fields: [tugasId], references: [id])
+  tugasId String @db.ObjectId
+  user    User   @relation(fields: [userId], references: [id])
+  userId  String @db.ObjectId
+  link    String
+}
+
+model Materi {
+  id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  releaseDate DateTime
+  sections    Section[]
+  attachments Attachment[]
+}
+
+model Day {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  number      Int       @unique
+  description String?
+  date        DateTime
+  evalDay     EvalDay[]
+  tugas       Tugas[]
+}
+
+model EvalDay {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  rating     Int
+  evaluation String
+  user       User   @relation(fields: [userId], references: [id])
+  userId     String @db.ObjectId
+  day        Day    @relation(fields: [dayId], references: [id])
+  dayId      String @db.ObjectId
+}
+
+model Panitia {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  namaLengkap String
+  namaPendek  String
+  nim         String  @unique
+  jabatan     Jabatan
+  bidang      Bidang
+  divisi      Divisi?
+  imageURL    String?
+}
