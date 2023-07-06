@@ -84,7 +84,7 @@ const StaffModal = ({
 
           <div className="flex px-5 flex-col z-10 mt-20 sm:mt-[53px] sm:ml-[20px] sm:px-0 md:ml-[30px] md:mt-[68px] lg:ml-[50px] lg:mt-[78px] xl:ml-[60px] xl:mt-[98px]">
             <p className="font-sen text-secondaryDark-400 uppercase font-bold w-full text-center text-3xl tracking-tight sm:text-left sm:text-xl lg:text-2xl xl:text-3xl">
-              {divisi}
+              {divisi?.split("_").join(" ")}
             </p>
             <p className="font-sen text-secondaryDark-400 uppercase w-full text-center text-xl tracking-tight sm:text-left sm:text-base md:text-base lg:text-xl xl:text-2xl">
               {yunani}

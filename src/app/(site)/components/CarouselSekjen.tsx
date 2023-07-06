@@ -12,23 +12,27 @@ import StaffCardShort, { StaffShortProps } from "./StaffCardShort";
 import StaffCardLong, { StaffLongProps } from "./StaffCardLong";
 import StaffModal, { StaffModalProps } from "./StaffModal";
 
-type CarouselProps = {
+type CarouselSekjenProps = {
   kabid: StaffShortProps;
+  sekretaris: StaffShortProps[];
+  bendahara: StaffShortProps[];
   divisiList: StaffLongProps[];
   bidang: string;
 };
 
-export default function Carousel({
+export default function CarouselSekjen({
   kabid,
+  sekretaris,
+  bendahara,
   divisiList,
   bidang,
-}: CarouselProps): JSX.Element {
+}: CarouselSekjenProps): JSX.Element {
   const isMobile = window.innerWidth < 640;
 
   // Component states
   const [carouselFlow, setCarouselFlow] = useState(0);
   const [cardFlow, setCardFlow] = useState(
-    new Array<number>(divisiList.length + 1).fill(0)
+    new Array<number>(divisiList.length + (isMobile ? 7 : 3)).fill(0)
   );
   const [mobileCardFlow, setMobileCardFlow] = useState(0);
 
@@ -41,13 +45,13 @@ export default function Carousel({
     isOpen: false,
   });
 
-  const maxCarouselFlow = divisiList.length + 1;
+  const maxCarouselFlow = divisiList.length + (isMobile ? 7 : 3);
   const maxCardFlow = [
-    0,
+    ...new Array(isMobile ? 7 : 3).fill(0),
     ...divisiList.map((divisi) => Math.floor(divisi.staff.length / 8)),
   ];
   const maxMobileFlow = [
-    0,
+    ...new Array(isMobile ? 7 : 3).fill(0),
     ...divisiList.map((divisi) => (divisi.wakil2 ? 3 : 2)),
   ];
 
@@ -144,12 +148,13 @@ export default function Carousel({
             <Image src={ArrowLeft} fill={true} alt="" />
           </div>
         </button>
+
         <div className="w-[225vw] flex shrink-0 overflow-hidden gap-2 sm:w-[79vw]">
           <div
             style={{
               transform: isMobile
                 ? `translateX(-${Math.max(
-                    (carouselFlow - 1) * 226 +
+                    (carouselFlow - 1) * 227 +
                       Math.min(mobileCardFlow * 60, 172) +
                       141,
                     0
@@ -160,13 +165,83 @@ export default function Carousel({
           >
             <StaffCardShort {...kabid} bidang={bidang} />
           </div>
+
+          {/* Sekretaris-Bendahara Mobile */}
+          {sekretaris.map((sekre, idx) => (
+            <div
+              key={idx}
+              style={{
+                transform: `translateX(-${Math.max(
+                  (carouselFlow - 1) * 227 +
+                    Math.min(mobileCardFlow * 60, 172) +
+                    141,
+                  0
+                )}vw)`,
+              }}
+              className="flex items-center justify-start min-w-full py-5 transition-all duration-200 sm:hidden"
+            >
+              <StaffCardShort {...sekre} bidang={bidang} />
+            </div>
+          ))}
+          {bendahara.map((sekre, idx) => (
+            <div
+              key={idx}
+              style={{
+                transform: `translateX(-${Math.max(
+                  (carouselFlow - 1) * 227 +
+                    Math.min(mobileCardFlow * 60, 172) +
+                    141,
+                  0
+                )}vw)`,
+              }}
+              className="flex items-center justify-start min-w-full py-5 transition-all duration-200 sm:hidden"
+            >
+              <StaffCardShort {...sekre} bidang={bidang} />
+            </div>
+          ))}
+
+          {/* Sekretaris-Bendahara Desktop */}
+          <div
+            style={{
+              transform: `translateX(-${carouselFlow * 79.5}vw)`,
+            }}
+            className="hidden items-center justify-start min-w-full transition-all py-5 duration-200 gap-6 sm:justify-center sm:flex md:gap-8 lg:gap-10 xl:gap-16"
+          >
+            <div className="order-2">
+              <StaffCardShort {...sekretaris[0]} bidang={bidang} />
+            </div>
+            <div className="order-1 mt-4 rotate-[3deg]">
+              <StaffCardShort {...sekretaris[1]} bidang={bidang} />
+            </div>
+            <div className="order-3 mt-10 rotate-[-3deg]">
+              <StaffCardShort {...sekretaris[2]} bidang={bidang} />
+            </div>
+          </div>
+          <div
+            style={{
+              transform: `translateX(-${carouselFlow * 79.5}vw)`,
+            }}
+            className="hidden items-center justify-start min-w-full transition-all py-5 duration-200 gap-6 sm:justify-center sm:flex md:gap-8 lg:gap-10 xl:gap-16"
+          >
+            <div className="order-2">
+              <StaffCardShort {...bendahara[0]} bidang={bidang} />
+            </div>
+            <div className="order-1 mt-4 rotate-[3deg]">
+              <StaffCardShort {...bendahara[1]} bidang={bidang} />
+            </div>
+            <div className="order-3 mt-10 rotate-[-3deg]">
+              <StaffCardShort {...bendahara[2]} bidang={bidang} />
+            </div>
+          </div>
+
+          {/* Divis MSDM Panitia */}
           {divisiList.map((divisi, idx) => (
             <div
               key={idx}
               style={{
                 transform: isMobile
                   ? `translateX(-${Math.max(
-                      (carouselFlow - 1) * 226 +
+                      (carouselFlow - 1) * 227 +
                         Math.min(mobileCardFlow * 60, 172) +
                         141,
                       0
@@ -178,7 +253,7 @@ export default function Carousel({
               <StaffCardLong
                 handleOpen={handleOpenModal}
                 {...divisi}
-                cardFlow={cardFlow[idx + 1]}
+                cardFlow={cardFlow[cardFlow.length - 1]}
               />
             </div>
           ))}

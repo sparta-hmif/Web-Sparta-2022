@@ -1,7 +1,15 @@
 import Image from "next/image";
+
+// Component imports
 import Carousel from "./Carousel";
+import CarouselSekjen from "./CarouselSekjen";
 
 const BehindTheGreek = async () => {
+  // Fetch zeus data
+  const resZeus = await fetch("http://localhost:3000/api/panitia/ketua");
+  const dataZeus = await resZeus.json();
+  console.log(dataZeus);
+
   // Fetch konseptor data
   const resKonseptor = await fetch(
     "http://localhost:3000/api/panitia/konseptor"
@@ -19,6 +27,12 @@ const BehindTheGreek = async () => {
     "http://localhost:3000/api/panitia/operasional"
   );
   const dataOperasional = await resOperasional.json();
+
+  // Fetch kesekjenan data
+  const resKesekjenan = await fetch(
+    "http://localhost:3000/api/panitia/kesekjenan"
+  );
+  const dataKesekjenan = await resKesekjenan.json();
 
   return (
     <div className="bg-gradient-to-b from-[#CA8E46] to-[#6F332E] relative h-[300rem] bg-no-repeat bg-cover bg-top">
@@ -82,31 +96,31 @@ const BehindTheGreek = async () => {
         />
 
         {/* Masukinn ke sini rap kalo mau nyoba" */}
-        <div className="w-full mt-[220px]">
-          <Carousel {...dataKonseptor} bidang="konseptor" />
+        <div className="w-full mt-[90px]">
+          <Carousel kabid={dataZeus.ketua} divisiList={[]} bidang="zeus" />
         </div>
 
-        <div className="w-full mt-[220px]">
+        <div className="w-full mt-[200px]">
+          <CarouselSekjen {...dataKesekjenan} bidang="kesekjenan" />
+        </div>
+
+        <div className="w-full mt-[200px]">
           <Carousel {...dataPensuasanaan} bidang="pensuasanaan" />
         </div>
 
-        <div className="w-full mt-[220px]">
+        <div className="w-full mt-[200px]">
           <Carousel {...dataOperasional} bidang="operasional" />
         </div>
 
-        <div className="w-full mt-[220px]">
+        <div className="w-full mt-[200px]">
           <Carousel {...dataKonseptor} bidang="konseptor" />
         </div>
 
-        <div className="w-full mt-[220px]">
+        <div className="w-full mt-[200px]">
           <Carousel {...dataKonseptor} bidang="konseptor" />
         </div>
 
-        <div className="w-full mt-[220px]">
-          <Carousel {...dataKonseptor} bidang="konseptor" />
-        </div>
-
-        <div className="w-full mt-[220px]">
+        <div className="w-full mt-[200px]">
           <Carousel {...dataKonseptor} bidang="konseptor" />
         </div>
       </div>

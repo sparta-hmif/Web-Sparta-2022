@@ -22,6 +22,10 @@ const jabatanMap = new Map<string, string>([
   ["KADIV", "Ketua Divisi"],
   ["WAKADIV", "Wakil Ketua Divisi"],
   ["KABID", "Ketua Bidang"],
+  ["SEKJEN", "Sekretaris Jendral"],
+  ["SEKRETARIS", "Sekretaris"],
+  ["BENDAHARA", "Bendahara"],
+  ["ZEUS", "Ketua SPARTA"],
 ]);
 
 export default function StaffCardShort({
