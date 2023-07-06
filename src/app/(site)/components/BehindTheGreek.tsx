@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+import useSWR from "swr";
+import fetcher from "@/app/lib/fetcher";
 
 // Component imports
 import Carousel from "./Carousel";
@@ -6,63 +10,46 @@ import CarouselSekjen from "./CarouselSekjen";
 
 const BehindTheGreek = async () => {
   // Fetch zeus data
-  const resZeus = await fetch("https://sparta22hmif.com/api/panitia/ketua");
-  if (!resZeus.ok) {
-    return <div></div>;
-  }
-  const dataZeus = await resZeus.json();
+  const { data: dataZeus } = useSWR(
+    "https://sparta22hmif.com/api/panitia/ketua",
+    fetcher
+  );
 
   // Fetch konseptor data
-  const resKonseptor = await fetch(
-    "https://sparta22hmif.com/api/panitia/konseptor"
+  const { data: dataKonseptor } = useSWR(
+    "https://sparta22hmif.com/api/panitia/konseptor",
+    fetcher
   );
-  if (!resKonseptor.ok) {
-    return <div></div>;
-  }
-  const dataKonseptor = await resKonseptor.json();
 
   // Fetch mamet data
-  const resMamet = await fetch("https://sparta22hmif.com/api/panitia/mamet");
-  if (!resMamet.ok) {
-    return <div></div>;
-  }
-  const dataMamet = await resMamet.json();
+  const { data: dataMamet } = useSWR(
+    "https://sparta22hmif.com/api/panitia/mamet",
+    fetcher
+  );
 
   // Fetch lapangan data
-  const resLapangan = await fetch(
-    "https://sparta22hmif.com/api/panitia/lapangan"
+  const { data: dataLapangan } = useSWR(
+    "https://sparta22hmif.com/api/panitia/lapangan",
+    fetcher
   );
-  if (!resLapangan.ok) {
-    return <div></div>;
-  }
-  const dataLapangan = await resLapangan.json();
 
   // Fetch pensuasanaan data
-  const resPensuasanaan = await fetch(
-    "https://sparta22hmif.com/api/panitia/pensuasanaan"
+  const { data: dataPensuasanaan } = useSWR(
+    "https://sparta22hmif.com/api/panitia/pensuasanaan",
+    fetcher
   );
-  if (!resPensuasanaan.ok) {
-    return <div></div>;
-  }
-  const dataPensuasanaan = await resPensuasanaan.json();
 
   // Fetch operasional data
-  const resOperasional = await fetch(
-    "https://sparta22hmif.com/api/panitia/operasional"
+  const { data: dataOperasional } = useSWR(
+    "https://sparta22hmif.com/api/panitia/operasional",
+    fetcher
   );
-  if (!resOperasional.ok) {
-    return <div></div>;
-  }
-  const dataOperasional = await resOperasional.json();
 
   // Fetch kesekjenan data
-  const resKesekjenan = await fetch(
-    "https://sparta22hmif.com/api/panitia/kesekjenan"
+  const { data: dataKesekjenan } = useSWR(
+    "https://sparta22hmif.com/api/panitia/kesekjenan",
+    fetcher
   );
-  if (!resKesekjenan.ok) {
-    return <div></div>;
-  }
-  const dataKesekjenan = await resKesekjenan.json();
 
   return (
     <div className="bg-gradient-to-b from-[#CA8E46] to-[#6F332E] relative h-[300rem] bg-no-repeat bg-cover bg-top">
