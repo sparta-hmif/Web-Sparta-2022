@@ -29,7 +29,7 @@ const jabatanMap = new Map<string, string>([
 ]);
 
 const yunaniMap = new Map<string, string>([
-  ["ZEUS", "Zeus"],
+  ["KETUA", "Zeus"],
   ["KESEKJENAN", "Hermes"],
   ["SEKRETARIS", "Epiphron"],
   ["BENDAHARA", "Orthosie"],
@@ -39,10 +39,10 @@ const yunaniMap = new Map<string, string>([
   ["IT", "Hephaestus"],
   ["GRAFIS", "Charites"],
   ["PUBDOK", "Pheme"],
-  ["MAMET", "Athena"],
+  ["MATERI DAN METODE", "Athena"],
   ["MSDM_KADER", "Themis"],
   ["MENTOR", "Chiron"],
-  ["Konseptor", "Artemis"],
+  ["KONSEPTOR", "Artemis"],
   ["MEDIK", "Hestia"],
   ["LAPANGAN", "Chronos"],
   ["LOGISTIK", "Demeter"],
