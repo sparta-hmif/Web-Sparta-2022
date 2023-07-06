@@ -7,6 +7,7 @@ import Separator from "@/../public/images/landing/separator.svg";
 
 // Component imports
 import StaffCardShort, { StaffShortProps } from "./StaffCardShort";
+import { StaffModalProps } from "./StaffModal";
 
 export type StaffLongProps = {
   ketua: StaffShortProps;
@@ -25,7 +26,10 @@ export default function StaffCardLong({
   wakil2,
   staff,
   cardFlow = 1,
-}: StaffLongProps): JSX.Element {
+  handleOpen,
+}: StaffLongProps & {
+  handleOpen: (props: StaffModalProps) => void;
+}): JSX.Element {
   const isMobile = window.innerWidth < 640;
 
   return (
@@ -50,22 +54,32 @@ export default function StaffCardLong({
 
         <div className="overflow-hidden flex flex-col mt-5 z-10 w-[65vw] flex-wrap h-auto aspect-[386/268] gap-x-[1vw] sm:w-[20vw] sm:mt-3 md:mt-4 lg:mt-7 xl:mt-11">
           {staff.map(({ namaPendek, nim }, idx) => (
-            <div
+            <button
+              onClick={() =>
+                handleOpen({
+                  name: namaPendek,
+                  nim,
+                  divisi: ketua.divisi,
+                  imageURL: "",
+                  yunani: ketua.yunani,
+                  isOpen: true,
+                })
+              }
               key={idx}
               style={{
                 transform: `translateX(-${
                   cardFlow * (isMobile ? 65.5 : 21)
                 }vw)`,
               }}
-              className="w-[31.9vw] sm:w-[9.5vw] sm:min-w-0 transition-all duration-200 basis-1/4"
+              className="w-[31.9vw] group sm:w-[9.5vw] sm:min-w-0 transition-all duration-200 basis-1/4"
             >
-              <p className="font-sen text-[10px] font-bold text-capitalize text-secondaryDark-400 sm:text-[6px] md:text-[8px] lg:text-[10px] xl:text-xs">
+              <p className="font-sen text-[10px] group-hover:text-primary-600 font-bold text-capitalize text-secondaryDark-400 sm:text-[6px] md:text-[8px] lg:text-[10px] xl:text-xs">
                 {namaPendek}
               </p>
-              <p className="font-sen text-[10px] text-secondaryDark-400 sm:text-[6px] md:text-[8px] lg:text-xs">
+              <p className="font-sen text-[10px] group-hover:text-primary-600 text-secondaryDark-400 sm:text-[6px] md:text-[8px] lg:text-xs">
                 {nim}
               </p>
-            </div>
+            </button>
           ))}
         </div>
       </div>
