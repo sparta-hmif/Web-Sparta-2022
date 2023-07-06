@@ -105,7 +105,7 @@ model SubmisiTugas {
 model Materi {
   id          String       @id @default(auto()) @map("_id") @db.ObjectId
   title       String
-  expiredDate DateTime
+  releaseDate DateTime
   sections    Section[]
   attachments Attachment[]
 }

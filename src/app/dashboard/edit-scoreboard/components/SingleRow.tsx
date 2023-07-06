@@ -9,9 +9,18 @@ const SingleRow = ({ rank, nim, name, score }: dataProp) => {
   const [scoreEdit, setScoreEdit] = useState(score);
   const lastScoreSaved = useRef(score);
 
-  const handleSave = () => {
-    setIsEdit(false);
-    lastScoreSaved.current = scoreEdit;
+  const handleSave = async () => {
+    const res = await fetch(`http://localhost:3000/api/score/${nim}`, {
+      method: "PATCH",
+      credentials: "include",
+      body: JSON.stringify({
+        score: scoreEdit,
+      }),
+    });
+    if (res.status === 200) {
+      setIsEdit(false);
+      lastScoreSaved.current = scoreEdit;
+    }
   };
 
   const handleCancel = () => {
@@ -42,8 +51,14 @@ const SingleRow = ({ rank, nim, name, score }: dataProp) => {
       <div className="col-span-2 lg:mx-5 ">
         {isEdit ? (
           <div className="w-full flex justify-center gap-3">
-            <IoMdCloseCircleOutline className="text-xl md:text-3xl text-neutral-400 hover:text-danger-300 transition duration-300 cursor-pointer" onClick={handleCancel}/>
-            <IoMdCheckboxOutline className="text-xl md:text-3xl text-neutral-400 hover:text-success-300 transition duration-300 cursor-pointer" onClick={handleSave}/>
+            <IoMdCloseCircleOutline
+              className="text-xl md:text-3xl text-neutral-400 hover:text-danger-300 transition duration-300 cursor-pointer"
+              onClick={handleCancel}
+            />
+            <IoMdCheckboxOutline
+              className="text-xl md:text-3xl text-neutral-400 hover:text-success-300 transition duration-300 cursor-pointer"
+              onClick={handleSave}
+            />
           </div>
         ) : (
           <Button

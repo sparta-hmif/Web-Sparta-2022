@@ -26,9 +26,5 @@ export async function GET(
     return NextResponse.json({ message: "Materi not found" }, { status: 400 });
   }
 
-  if (new Date().getTime() > materi.expiredDate.getTime()) {
-    return NextResponse.json({ message: "Materi expired" }, { status: 400 });
-  }
-
   return NextResponse.json(materi);
 }

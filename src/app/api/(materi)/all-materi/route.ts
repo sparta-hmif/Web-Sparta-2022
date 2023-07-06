@@ -15,10 +15,10 @@ export async function GET() {
     select: {
       id: true,
       title: true,
-      expiredDate: true,
+      releaseDate: true,
     },
     orderBy: {
-      expiredDate: "asc",
+      releaseDate: "desc",
     },
   });
 

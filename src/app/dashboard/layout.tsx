@@ -3,6 +3,7 @@ import NavDashboard from "./components/NavDashboard";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 interface UserSession {
   id: string;
@@ -20,7 +21,8 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
     redirect("/login");
   }
 
-  const roleAccess = user.role === "MENTOR" || user.role === "MAMET";
+  const roleAccess =
+    user.role === "MENTOR" || user.role === "MAMET" || user.role === "ADMIN";
 
   if (session && !roleAccess) {
     redirect("/");

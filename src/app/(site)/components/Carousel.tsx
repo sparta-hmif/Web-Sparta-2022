@@ -1,5 +1,8 @@
 "use client";
 
+import Image from "next/image";
+import { useState } from "react";
+
 // Asset imports
 import ArrowLeft from "@/../public/images/landing/arrow-left-yellow.svg";
 import ArrowRight from "@/../public/images/landing/arrow-right-yellow.svg";
@@ -7,36 +10,47 @@ import ArrowRight from "@/../public/images/landing/arrow-right-yellow.svg";
 // Component imports
 import StaffCardShort, { StaffShortProps } from "./StaffCardShort";
 import StaffCardLong, { StaffLongProps } from "./StaffCardLong";
-import Image from "next/image";
-import { useState } from "react";
+import StaffModal, { StaffModalProps } from "./StaffModal";
 
 type CarouselProps = {
   kabid: StaffShortProps;
   divisiList: StaffLongProps[];
+  bidang: string;
 };
 
 export default function Carousel({
   kabid,
   divisiList,
+  bidang,
 }: CarouselProps): JSX.Element {
+  const isMobile = window.innerWidth < 640;
+
+  // Component states
   const [carouselFlow, setCarouselFlow] = useState(0);
+  const [cardFlow, setCardFlow] = useState(
+    new Array<number>(divisiList.length + 1).fill(0)
+  );
+  const [mobileCardFlow, setMobileCardFlow] = useState(0);
 
-  const isMobile = window.innerWidth < 768;
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState<StaffModalProps>({
+    name: "",
+    nim: "",
+    imageURL: "",
+    divisi: "",
+    yunani: "",
+    isOpen: false,
+  });
 
+  const maxCarouselFlow = divisiList.length + 1;
   const maxCardFlow = [
     0,
     ...divisiList.map((divisi) => Math.floor(divisi.staff.length / 8)),
   ];
   const maxMobileFlow = [
     0,
-    ...divisiList.map((divisi) => (divisi.wakil_2 ? 3 : 2)),
+    ...divisiList.map((divisi) => (divisi.wakil2 ? 3 : 2)),
   ];
-
-  const [cardFlow, setCardFlow] = useState(
-    new Array<number>(divisiList.length + 1).fill(0)
-  );
-  const [mobileCardFlow, setMobileCardFlow] = useState(0);
-  const maxCarouselFlow = divisiList.length + 1;
 
   const handleClick = (direction: string) => {
     if (direction === "left" && carouselFlow > 0) {
@@ -91,36 +105,48 @@ export default function Carousel({
     }
   };
 
+  const handleOpenModal = ({
+    name,
+    nim,
+    imageURL,
+    divisi,
+    yunani,
+  }: StaffModalProps) => {
+    setModalContent({
+      name,
+      nim,
+      imageURL,
+      divisi,
+      yunani,
+      isOpen: true,
+    });
+  };
+
+  const handleCloseModal = () =>
+    setModalContent({
+      name: "",
+      nim: "",
+      imageURL: "",
+      divisi: "",
+      yunani: "",
+      isOpen: false,
+    });
+
   return (
-    <div className="flex overflow-hidden items-center justify-center px-10 relative">
-      <button
-        style={{ display: carouselFlow === 0 ? "none" : "flex" }}
-        onClick={() => handleClick("left")}
-        className="z-40 w-[6vw] min-w-[63px] max-w-[100px] h-auto aspect-square bg-white rounded-full flex items-center justify-center absolute left-4 lg:left-10"
-      >
-        <div className="w-[4.7vw] min-w-[42px] h-auto aspect-square relative max-w-[68px] max-h-[68px]">
-          <Image src={ArrowLeft} fill={true} alt="" />
-        </div>
-      </button>
-      <div className="w-[225vw] flex shrink-0 overflow-hidden gap-2 lg:w-[79vw]">
-        <div
-          style={{
-            transform: isMobile
-              ? `translateX(-${Math.max(
-                  (carouselFlow - 1) * 226 +
-                    Math.min(mobileCardFlow * 60, 172) +
-                    141,
-                  0
-                )}vw)`
-              : `translateX(-${carouselFlow * 79.5}vw)`,
-          }}
-          className="flex items-center justify-center min-w-full transition-all duration-200"
+    <>
+      <StaffModal {...modalContent} handleClose={handleCloseModal} />
+      <div className="flex overflow-hidden items-center justify-center px-10 relative">
+        <button
+          style={{ display: carouselFlow === 0 ? "none" : "flex" }}
+          onClick={() => handleClick("left")}
+          className="z-30 w-[6vw] min-w-[63px] max-w-[100px] h-auto aspect-square bg-white rounded-full flex items-center justify-center absolute left-4 lg:left-10"
         >
-          <StaffCardShort {...kabid} />
-        </div>
-        {divisiList.map((divisi, idx) => (
+          <div className="w-[4.7vw] min-w-[42px] h-auto aspect-square relative max-w-[68px] max-h-[68px]">
+            <Image src={ArrowLeft} fill={true} alt="" />
+          </div>
+        </button>
+        <div className="w-[225vw] flex shrink-0 overflow-hidden gap-2 sm:w-[79vw]">
           <div
-            key={idx}
             style={{
               transform: isMobile
                 ? `translateX(-${Math.max(
@@ -131,30 +157,53 @@ export default function Carousel({
                   )}vw)`
                 : `translateX(-${carouselFlow * 79.5}vw)`,
             }}
-            className="flex items-center justify-start min-w-full transition-all duration-200 lg:justify-center"
+            className="flex items-center justify-center min-w-full transition-all duration-200"
           >
-            <StaffCardLong {...divisi} cardFlow={cardFlow[idx + 1]} />
+            <StaffCardShort {...kabid} bidang={bidang} />
           </div>
-        ))}
-      </div>
-      <button
-        style={{
-          display: !isMobile
-            ? carouselFlow === maxCarouselFlow - 1
-              ? "none"
-              : "flex"
-            : carouselFlow === maxCarouselFlow - 1 &&
-              mobileCardFlow === maxMobileFlow[carouselFlow]
-            ? "none"
-            : "flex",
-        }}
-        onClick={() => handleClick("right")}
-        className="z-40 w-[6vw] min-w-[63px] max-w-[100px] h-auto aspect-square bg-white rounded-full flex items-center justify-center absolute right-4 lg:right-10"
-      >
-        <div className="w-[4.7vw] min-w-[42px] h-auto aspect-square relative max-w-[68px] max-h-[68px]">
-          <Image src={ArrowRight} fill={true} alt="" />
+          {divisiList.map((divisi, idx) => (
+            <div
+              key={idx}
+              style={{
+                transform: isMobile
+                  ? `translateX(-${Math.max(
+                      (carouselFlow - 1) * 226 +
+                        Math.min(mobileCardFlow * 60, 172) +
+                        141,
+                      0
+                    )}vw)`
+                  : `translateX(-${carouselFlow * 79.5}vw)`,
+              }}
+              className="flex items-center justify-start min-w-full transition-all py-5 duration-200 sm:justify-center"
+            >
+              <StaffCardLong
+                handleOpen={handleOpenModal}
+                {...divisi}
+                cardFlow={cardFlow[idx + 1]}
+              />
+            </div>
+          ))}
         </div>
-      </button>
-    </div>
+        <button
+          style={{
+            display: !isMobile
+              ? carouselFlow === maxCarouselFlow - 1 &&
+                cardFlow[carouselFlow] === maxCardFlow[carouselFlow]
+                ? "none"
+                : "flex"
+              : carouselFlow === maxCarouselFlow - 1 &&
+                mobileCardFlow === maxMobileFlow[carouselFlow]
+              ? "none"
+              : "flex",
+          }}
+          onClick={() => handleClick("right")}
+          className="z-30 w-[6vw] min-w-[63px] max-w-[100px] h-auto aspect-square bg-white rounded-full flex items-center justify-center absolute right-4 lg:right-10"
+        >
+          <div className="w-[4.7vw] min-w-[42px] h-auto aspect-square relative max-w-[68px] max-h-[68px]">
+            <Image src={ArrowRight} fill={true} alt="" />
+          </div>
+        </button>
+      </div>
+    </>
   );
 }

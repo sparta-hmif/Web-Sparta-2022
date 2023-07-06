@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect, RefObject } from "react";
 import Button from "./Button";
 import LinkElement from "./LinkElement";
 
@@ -19,11 +19,18 @@ const LinkAttachment: React.FC<LinkAttachmentProps> = ({
   linkArray,
   addLink,
   deleteLink,
-}) => {  
+}) => {
   const [link, setLink] = useState<AttachmentProps>({
-    judul: "",
-    link: "",
+    judul: linkArray[0]?.judul || "",
+    link: linkArray[0]?.link || "",
   });
+
+  useEffect(() => {
+    setLink({
+      judul: linkArray[0]?.judul || "",
+      link: linkArray[0]?.link || "",
+    });
+  }, [linkArray]);
 
   const handleAddLink = () => {
     if (link.judul === "" || link.link === "") return;
@@ -40,13 +47,18 @@ const LinkAttachment: React.FC<LinkAttachmentProps> = ({
       ...prev,
       [name]: value,
     }));
-  }
+  };
 
   return (
     <div>
       <div className="flex flex-wrap gap-2">
         {linkArray.map((link, idx) => (
-          <LinkElement key={idx} link={link.judul} deleteLink={deleteLink} idx={idx}/>
+          <LinkElement
+            key={idx}
+            link={link.judul}
+            deleteLink={deleteLink}
+            idx={idx}
+          />
         ))}
       </div>
       <div className="flex flex-col md:flex-row mt-3 gap-4">
@@ -66,8 +78,12 @@ const LinkAttachment: React.FC<LinkAttachmentProps> = ({
           value={link.link}
           onChange={handleChange}
         />
-        
-        <button type="button" className="bg-secondary-400 w-full md:w-1/4 py-2 text-button text-white font-bold rounded-xl" onClick={handleAddLink}>
+
+        <button
+          type="button"
+          className="bg-secondary-400 w-full md:w-1/4 py-2 text-button text-white font-bold rounded-xl"
+          onClick={handleAddLink}
+        >
           Add Link
         </button>
       </div>

@@ -44,6 +44,7 @@ export async function GET(
         },
       },
       description: true,
+      startTime: true,
       endTime: true,
       attachments: true,
       submisiTugas: {

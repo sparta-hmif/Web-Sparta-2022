@@ -1,5 +1,5 @@
 import Navbar from "@/components/Navbar";
-import Provider from "./components/Provider";
+import Provider from "../components/Provider";
 import UserFetcher from "@/components/UserFetcher";
 import "./globals.css";
 import { Koulen, Hammersmith_One, Sen } from "next/font/google";
@@ -41,9 +41,7 @@ export default function RootLayout({
         className={`${koulen.variable} ${hammersmith.variable} ${sen.variable}`}
       >
         <Provider>
-          <UserFetcher>
-            {({ user }) => <Navbar user={user} />}
-          </UserFetcher>
+          <UserFetcher>{({ user }) => <Navbar user={user} />}</UserFetcher>
           <div>{children}</div>
         </Provider>
       </body>

@@ -1,17 +1,17 @@
 "use client";
 
+import useSWR from "swr";
+import fetcher from "@/app/lib/fetcher";
 import Pagination from "@/components/Pagination/Pagination";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useState } from "react";
 import TextFields from "@/components/TextFields";
 import SingleRow from "./SingleRow";
 import ScoreboardHeader from "./ScoreboardHeader";
-import testData from "../../testData";
 
 let pageSize = 10;
-let originalData = sortData(testData);
 
-export function sortData(arr: Array<retrievedData>) {
+export function sortData(arr: Array<dataProp>) {
   return arr.sort((a, b) => {
     if (a.score < b.score) {
       return 1;
@@ -35,7 +35,7 @@ export interface dataProp {
   score: number;
 }
 
-export default function Scoreboard() {
+export default function Scoreboard({ data }: { data: dataProp[] }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -46,23 +46,26 @@ export default function Scoreboard() {
     setCurrentPage(1);
   };
 
-  const filteredData = useMemo(() => {
+  const [filteredData, setFilteredData] = useState<dataProp[]>(data);
+  const [currShowingData, setCurrShowingData] = useState<dataProp[]>([]);
+
+  useEffect(() => {
     if (!searchQuery) {
-      return originalData;
+      setFilteredData(data);
+      return;
     }
-    const newArray = originalData.filter(
+    const newArray = data.filter(
       (data) =>
         data.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         data.nim.toString().includes(searchQuery.toLowerCase())
     );
-    return sortData(newArray);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [originalData, searchQuery]);
+    setFilteredData(sortData(newArray));
+  }, [searchQuery, data]);
 
-  const currentShowingData = useMemo(() => {
+  useEffect(() => {
     const firstPageIndex = (currentPage - 1) * pageSize;
     const lastPageIndex = firstPageIndex + pageSize;
-    return filteredData.slice(firstPageIndex, lastPageIndex);
+    setCurrShowingData(filteredData.slice(firstPageIndex, lastPageIndex));
   }, [currentPage, filteredData]);
 
   return (
@@ -76,10 +79,10 @@ export default function Scoreboard() {
       </div>
       <div className="text-caption lg:text-sub-1 font-bold font-sen text-primaryDark-400 ">
         <ScoreboardHeader />
-        {currentShowingData.map((data, idx) => {
+        {currShowingData.map((data, idx) => {
           return (
             <SingleRow
-              rank={pageSize * (currentPage - 1) + idx + 1}
+              rank={data.rank}
               nim={data.nim}
               name={data.name}
               score={data.score}

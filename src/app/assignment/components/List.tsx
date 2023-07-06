@@ -1,17 +1,11 @@
 import React from "react";
 import Preview from "./Preview";
-import { AttachmentProps } from "@/components/LinkAttachment";
-
 
 export interface AssignmentProps {
   id: string;
   judulTugas: string;
   dayTugas: number;
-  startDate: Date;
   endDate: Date;
-  deskripsi: string;
-  attachment: AttachmentProps[];
-  submission: string[];
   isSubmitted: boolean;
 }
 

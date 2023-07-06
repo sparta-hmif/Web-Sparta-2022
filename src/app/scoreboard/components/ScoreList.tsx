@@ -28,18 +28,12 @@ const ScoreList: React.FC<ScoreListProps> = ({ users, userRank }) => {
   return (
     <>
       <div className="w-[95%] mx-auto flex flex-col justify-center items-center gap-4">
-        {currentShowingData.map((user) => {
+        {currentShowingData.map((user, idx) => {
           let isUser = false;
           if (user.rank === userRank) {
             isUser = true;
           }
-          return (
-            <ListContent
-              key={user.rank}
-              {...user}
-              isUser={isUser}
-            />
-          );
+          return <ListContent key={idx} {...user} isUser={isUser} />;
         })}
         <div className="my-5 w-full flex items-center justify-center">
           <Pagination

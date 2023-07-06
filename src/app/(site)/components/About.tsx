@@ -9,6 +9,7 @@ const About = () => {
         width={100}
         height={100}
         className="absolute w-full top-0 -translate-y-[96%] hidden"
+        priority={true}
       />
       {/* <div className="absolute top-0 left-0 -translate-x-[50%] bg-pink-500 h-80">
         <Image
@@ -26,6 +27,7 @@ const About = () => {
         width={200}
         height={200}
         className="absolute w-full left-0 top-[20%]"
+        priority={true}
       />
       <div className="overflow-hidden absolute h-80 left-1/2 -translate-x-1/2 w-full top-0 -translate-y-[60%]">
         <div className="relative w-full max-w-[39rem] h-full mx-auto">
@@ -35,6 +37,7 @@ const About = () => {
             width={100}
             height={100}
             className="absolute top-[10%] w-9/12 max-w-[40rem] right-0 translate-x-[100%]"
+            priority={true}
           />
           <Image
             alt="mountain"
@@ -42,6 +45,7 @@ const About = () => {
             width={100}
             height={100}
             className="absolute bottom-0 w-9/12 max-w-[40rem] left-0 -translate-x-[140%]"
+            priority={true}
           />
           <Image
             alt="mountain"
@@ -49,6 +53,7 @@ const About = () => {
             width={100}
             height={100}
             className="absolute bottom-[25%] lg:bottom-[10%] w-3/12 max-w-[40rem] left-0"
+            priority={true}
           />
           <Image
             alt="mountain"
@@ -56,6 +61,7 @@ const About = () => {
             width={100}
             height={100}
             className="absolute top-[25%] w-3/12 max-w-[40rem] left-0 -translate-x-full"
+            priority={true}
           />
         </div>
       </div>
@@ -67,6 +73,7 @@ const About = () => {
           width={200}
           height={200}
           className="mx-auto w-5/12 min-w-[20rem]"
+          priority={true}
         />
         <Image
           alt="about"
@@ -74,6 +81,7 @@ const About = () => {
           width={200}
           height={200}
           className="mx-auto w-[17rem] lg:w-[23rem] mt-12 mb-10 border-[10px] border-primaryDark-400"
+          priority={true}
         />
         <p className="text-primary-400 mt-5 lg:mt-10 mb-3 font-sen font-bold text-h6 lg:font-hammersmith lg:text-h4 lg:font-normal">
           Apa itu HMIF?
@@ -106,6 +114,7 @@ const About = () => {
               width={200}
               height={200}
               className="mx-auto w-4/12 my-8 lg:my-16"
+              priority={true}
             />
             <p className="font-sen font-bold text-h6 lg:font-hammersmith lg:text-h4 lg:font-normal">
               VISI
