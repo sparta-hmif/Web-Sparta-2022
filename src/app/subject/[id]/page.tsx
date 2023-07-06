@@ -24,7 +24,7 @@ interface Data {
 
 const SubjectDetail = ({ params }: { params: { id: string } }) => {
   const { data, error, isLoading } = useSwr(
-    `http://localhost:3000/api/materi/${params.id}`,
+    `https://www.sparta22hmif.com/api/materi/${params.id}`,
     fetcher
   );
   const mappedData: Data = {

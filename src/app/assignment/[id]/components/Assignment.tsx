@@ -60,7 +60,7 @@ const Assignment = ({
     formData.append("media", file);
 
     const res = await fetch(
-      `http://localhost:3000/api/tugas/upload?nim=${
+      `https://www.sparta22hmif.com/api/tugas/upload?nim=${
         (session.data?.user as User)?.nim
       }&tugas=${tugasId}`,
       {

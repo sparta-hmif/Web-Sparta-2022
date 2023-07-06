@@ -55,7 +55,7 @@ const AddAssignment = () => {
       })),
       dayNum: day,
     };
-    const res = await fetch("http://localhost:3000/api/tugas", {
+    const res = await fetch("https://www.sparta22hmif.com/api/tugas", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

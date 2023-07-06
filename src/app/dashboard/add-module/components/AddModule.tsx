@@ -73,7 +73,7 @@ const AddModule = () => {
         link: val.link,
       })),
     };
-    const res = await fetch("http://localhost:3000/api/materi", {
+    const res = await fetch("https://www.sparta22hmif.com/api/materi", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

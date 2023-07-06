@@ -10,7 +10,7 @@ const SingleRow = ({ rank, nim, name, score }: dataProp) => {
   const lastScoreSaved = useRef(score);
 
   const handleSave = async () => {
-    const res = await fetch(`http://localhost:3000/api/score/${nim}`, {
+    const res = await fetch(`https://www.sparta22hmif.com/api/score/${nim}`, {
       method: "PATCH",
       credentials: "include",
       body: JSON.stringify({

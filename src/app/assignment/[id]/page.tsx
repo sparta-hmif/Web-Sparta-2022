@@ -13,7 +13,7 @@ const Page = ({ params }: { params: { id: string } }) => {
 
   const { data, error, isLoading } = useSWR(
     () =>
-      "http://localhost:3000/api/tugas/" +
+      "https://www.sparta22hmif.com/api/tugas/" +
       (session.data?.user as User).nim +
       "/" +
       params.id,

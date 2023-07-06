@@ -14,7 +14,7 @@ interface Data {
 
 export default function SubjectContent(): JSX.Element {
   const { data, error, isLoading } = useSWR(
-    "http://localhost:3000/api/all-materi",
+    "https://www.sparta22hmif.com/api/all-materi",
     fetcher
   );
 

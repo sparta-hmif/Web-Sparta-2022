@@ -13,7 +13,8 @@ const Dashboard = () => {
 
   const { data, error, isLoading } = useSWR(
     () =>
-      "http://localhost:3000/api/all-tugas/" + (session.data?.user as User).nim,
+      "https://www.sparta22hmif.com/api/all-tugas/" +
+      (session.data?.user as User).nim,
     fetcher
   );
 

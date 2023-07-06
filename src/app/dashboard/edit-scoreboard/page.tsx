@@ -9,7 +9,7 @@ import Scoreboard, { dataProp } from "./components/Scoreboard";
 const Page = () => {
   let mappedData: dataProp[] = [];
   const { data, error, isLoading } = useSWR(
-    "http://localhost:3000/api/scoreboard",
+    "https://www.sparta22hmif.com/api/scoreboard",
     fetcher
   );
 

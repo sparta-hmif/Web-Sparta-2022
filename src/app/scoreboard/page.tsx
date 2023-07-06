@@ -16,7 +16,7 @@ const Scoreboard = async () => {
 
   const user = session.user as User;
 
-  const res = await fetch("http://localhost:3000/api/scoreboard", {
+  const res = await fetch("https://www.sparta22hmif.com/api/scoreboard", {
     headers: { Cookie: cookies().toString() },
   });
   const resJson = await res.json();
