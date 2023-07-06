@@ -180,7 +180,7 @@ export default function CarouselSekjen({
               }}
               className="flex items-center justify-start min-w-full py-5 transition-all duration-200 sm:hidden"
             >
-              <StaffCardShort {...sekre} bidang={bidang} />
+              <StaffCardShort {...sekre} divisi="sekretaris" bidang={bidang} />
             </div>
           ))}
           {bendahara.map((sekre, idx) => (
@@ -196,7 +196,7 @@ export default function CarouselSekjen({
               }}
               className="flex items-center justify-start min-w-full py-5 transition-all duration-200 sm:hidden"
             >
-              <StaffCardShort {...sekre} bidang={bidang} />
+              <StaffCardShort {...sekre} divisi="bendahara" bidang={bidang} />
             </div>
           ))}
 
@@ -208,13 +208,25 @@ export default function CarouselSekjen({
             className="hidden items-center justify-start min-w-full transition-all py-5 duration-200 gap-6 sm:justify-center sm:flex md:gap-8 lg:gap-10 xl:gap-16"
           >
             <div className="order-2">
-              <StaffCardShort {...sekretaris[0]} bidang={bidang} />
+              <StaffCardShort
+                {...sekretaris[0]}
+                divisi="sekretaris"
+                bidang={bidang}
+              />
             </div>
             <div className="order-1 mt-4 rotate-[3deg]">
-              <StaffCardShort {...sekretaris[1]} bidang={bidang} />
+              <StaffCardShort
+                {...sekretaris[1]}
+                divisi="sekretaris"
+                bidang={bidang}
+              />
             </div>
             <div className="order-3 mt-10 rotate-[-3deg]">
-              <StaffCardShort {...sekretaris[2]} bidang={bidang} />
+              <StaffCardShort
+                {...sekretaris[2]}
+                divisi="sekretaris"
+                bidang={bidang}
+              />
             </div>
           </div>
           <div
@@ -224,13 +236,25 @@ export default function CarouselSekjen({
             className="hidden items-center justify-start min-w-full transition-all py-5 duration-200 gap-6 sm:justify-center sm:flex md:gap-8 lg:gap-10 xl:gap-16"
           >
             <div className="order-2">
-              <StaffCardShort {...bendahara[0]} bidang={bidang} />
+              <StaffCardShort
+                {...bendahara[0]}
+                divisi="bendahara"
+                bidang={bidang}
+              />
             </div>
             <div className="order-1 mt-4 rotate-[3deg]">
-              <StaffCardShort {...bendahara[1]} bidang={bidang} />
+              <StaffCardShort
+                {...bendahara[1]}
+                divisi="bendahara"
+                bidang={bidang}
+              />
             </div>
             <div className="order-3 mt-10 rotate-[-3deg]">
-              <StaffCardShort {...bendahara[2]} bidang={bidang} />
+              <StaffCardShort
+                {...bendahara[2]}
+                divisi="bendahara"
+                bidang={bidang}
+              />
             </div>
           </div>
 

@@ -105,15 +105,15 @@ const BehindTheGreek = async () => {
         </div>
 
         <div className="w-full mt-[200px]">
+          <Carousel {...dataKonseptor} bidang="konseptor" />
+        </div>
+
+        <div className="w-full mt-[200px]">
           <Carousel {...dataPensuasanaan} bidang="pensuasanaan" />
         </div>
 
         <div className="w-full mt-[200px]">
           <Carousel {...dataOperasional} bidang="operasional" />
-        </div>
-
-        <div className="w-full mt-[200px]">
-          <Carousel {...dataKonseptor} bidang="konseptor" />
         </div>
 
         <div className="w-full mt-[200px]">

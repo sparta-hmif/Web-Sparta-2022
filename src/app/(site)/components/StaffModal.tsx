@@ -44,7 +44,7 @@ const StaffModal = ({
 
         <div
           style={{
-            transform: fullScale ? "scale(1)" : "scale(0.9)",
+            transform: fullScale ? "scale(1)" : "scale(0.8)",
           }}
           className="h-auto aspect-[295/524] w-[81.9vw] flex relative flex-col duration-500 transition-transform sm:w-[50.3vw] sm:aspect-[725/416] z-[70] sm:flex-row"
         >
