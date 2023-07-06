@@ -119,18 +119,18 @@ const BehindTheGreek = async () => {
         <div className="w-full mt-[200px]">
           <CarouselSekjen {...dataKesekjenan} bidang="kesekjenan" />
         </div>
-
+        {/* 
         <div className="w-full mt-[200px]">
           <Carousel {...dataMamet} bidang="materi dan metode" />
-        </div>
+        </div> */}
 
         <div className="w-full mt-[200px]">
           <Carousel {...dataKonseptor} bidang="konseptor" />
         </div>
 
-        <div className="w-full mt-[200px]">
+        {/* <div className="w-full mt-[200px]">
           <Carousel {...dataLapangan} bidang="lapangan" />
-        </div>
+        </div> */}
 
         <div className="w-full mt-[200px]">
           <Carousel {...dataPensuasanaan} bidang="pensuasanaan" />
