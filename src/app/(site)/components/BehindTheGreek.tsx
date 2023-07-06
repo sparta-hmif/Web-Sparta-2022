@@ -8,9 +8,7 @@ const BehindTheGreek = async () => {
   // Fetch zeus data
   const resZeus = await fetch("https://sparta22hmif.com/api/panitia/ketua");
   if (!resZeus.ok) {
-    return {
-      notFound: true,
-    };
+    return <div></div>;
   }
   const dataZeus = await resZeus.json();
 
@@ -19,18 +17,14 @@ const BehindTheGreek = async () => {
     "https://sparta22hmif.com/api/panitia/konseptor"
   );
   if (!resKonseptor.ok) {
-    return {
-      notFound: true,
-    };
+    return <div></div>;
   }
   const dataKonseptor = await resKonseptor.json();
 
   // Fetch mamet data
   const resMamet = await fetch("https://sparta22hmif.com/api/panitia/mamet");
   if (!resMamet.ok) {
-    return {
-      notFound: true,
-    };
+    return <div></div>;
   }
   const dataMamet = await resMamet.json();
 
@@ -39,9 +33,7 @@ const BehindTheGreek = async () => {
     "https://sparta22hmif.com/api/panitia/lapangan"
   );
   if (!resLapangan.ok) {
-    return {
-      notFound: true,
-    };
+    return <div></div>;
   }
   const dataLapangan = await resLapangan.json();
 
@@ -50,9 +42,7 @@ const BehindTheGreek = async () => {
     "https://sparta22hmif.com/api/panitia/pensuasanaan"
   );
   if (!resPensuasanaan.ok) {
-    return {
-      notFound: true,
-    };
+    return <div></div>;
   }
   const dataPensuasanaan = await resPensuasanaan.json();
 
@@ -61,9 +51,7 @@ const BehindTheGreek = async () => {
     "https://sparta22hmif.com/api/panitia/operasional"
   );
   if (!resOperasional.ok) {
-    return {
-      notFound: true,
-    };
+    return <div></div>;
   }
   const dataOperasional = await resOperasional.json();
 
@@ -72,9 +60,7 @@ const BehindTheGreek = async () => {
     "https://sparta22hmif.com/api/panitia/kesekjenan"
   );
   if (!resKesekjenan.ok) {
-    return {
-      notFound: true,
-    };
+    return <div></div>;
   }
   const dataKesekjenan = await resKesekjenan.json();
 
