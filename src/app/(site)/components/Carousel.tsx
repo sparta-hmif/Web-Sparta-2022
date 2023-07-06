@@ -23,7 +23,7 @@ export default function Carousel({
 }: CarouselProps): JSX.Element {
   const [carouselFlow, setCarouselFlow] = useState(0);
 
-  const isMobile = window.innerWidth < 768;
+  const isMobile = window.innerWidth < 640;
 
   const maxCardFlow = [
     0,
@@ -98,13 +98,13 @@ export default function Carousel({
       <button
         style={{ display: carouselFlow === 0 ? "none" : "flex" }}
         onClick={() => handleClick("left")}
-        className="z-40 w-[6vw] min-w-[63px] max-w-[100px] h-auto aspect-square bg-white rounded-full flex items-center justify-center absolute left-4 lg:left-10"
+        className="z-30 w-[6vw] min-w-[63px] max-w-[100px] h-auto aspect-square bg-white rounded-full flex items-center justify-center absolute left-4 lg:left-10"
       >
         <div className="w-[4.7vw] min-w-[42px] h-auto aspect-square relative max-w-[68px] max-h-[68px]">
           <Image src={ArrowLeft} fill={true} alt="" />
         </div>
       </button>
-      <div className="w-[225vw] flex shrink-0 overflow-hidden gap-2 lg:w-[79vw]">
+      <div className="w-[225vw] flex shrink-0 overflow-hidden gap-2 sm:w-[79vw]">
         <div
           style={{
             transform: isMobile
@@ -133,7 +133,7 @@ export default function Carousel({
                   )}vw)`
                 : `translateX(-${carouselFlow * 79.5}vw)`,
             }}
-            className="flex items-center justify-start min-w-full transition-all duration-200 lg:justify-center"
+            className="flex items-center justify-start min-w-full transition-all duration-200 sm:justify-center"
           >
             <StaffCardLong {...divisi} cardFlow={cardFlow[idx + 1]} />
           </div>
@@ -152,7 +152,7 @@ export default function Carousel({
             : "flex",
         }}
         onClick={() => handleClick("right")}
-        className="z-40 w-[6vw] min-w-[63px] max-w-[100px] h-auto aspect-square bg-white rounded-full flex items-center justify-center absolute right-4 lg:right-10"
+        className="z-30 w-[6vw] min-w-[63px] max-w-[100px] h-auto aspect-square bg-white rounded-full flex items-center justify-center absolute right-4 lg:right-10"
       >
         <div className="w-[4.7vw] min-w-[42px] h-auto aspect-square relative max-w-[68px] max-h-[68px]">
           <Image src={ArrowRight} fill={true} alt="" />
