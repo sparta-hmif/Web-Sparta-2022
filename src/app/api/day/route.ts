@@ -1,6 +1,6 @@
 import { PrismaClient, Prisma } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
-import moment from 'moment';
+import moment from "moment";
 
 const prisma = new PrismaClient();
 
@@ -41,14 +41,11 @@ async function POST(req: NextRequest) {
     let status = 500;
 
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
-      msg = err.message.replace(/\s{2,}/g, ' ').slice(1);
+      msg = err.message.replace(/\s{2,}/g, " ").slice(1);
       status = 400;
     }
 
-    return NextResponse.json(
-      { message: msg },
-      { status: status }
-    );
+    return NextResponse.json({ message: msg }, { status: status });
   }
 }
 
@@ -66,13 +63,13 @@ async function GET(req: Request) {
         number: "asc",
       },
 
-      include: {
-        EvalDay: {
-          where: {
-            userId: String(userId), // TODO: time zone
-          },
-        },
-      },
+      // include: {
+      //   EvalDay: {
+      //     where: {
+      //       userId: String(userId), // TODO: time zone
+      //     },
+      //   },
+      // },
     });
 
     return NextResponse.json(days);
@@ -81,14 +78,11 @@ async function GET(req: Request) {
     let status = 500;
 
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
-      msg = err.message.replace(/\s{2,}/g, ' ').slice(1);
+      msg = err.message.replace(/\s{2,}/g, " ").slice(1);
       status = 400;
     }
 
-    return NextResponse.json(
-      { message: msg },
-      { status: status }
-    );
+    return NextResponse.json({ message: msg }, { status: status });
   }
 }
 
