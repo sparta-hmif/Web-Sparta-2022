@@ -6,40 +6,76 @@ import CarouselSekjen from "./CarouselSekjen";
 
 const BehindTheGreek = async () => {
   // Fetch zeus data
-  const resZeus = await fetch("http://localhost:3000/api/panitia/ketua");
+  const resZeus = await fetch("https://sparta22hmif.com/api/panitia/ketua");
+  if (!resZeus.ok) {
+    return {
+      notFound: true,
+    };
+  }
   const dataZeus = await resZeus.json();
-  console.log(dataZeus);
 
   // Fetch konseptor data
   const resKonseptor = await fetch(
-    "https://www.sparta22hmif.com/api/panitia/konseptor"
+    "https://sparta22hmif.com/api/panitia/konseptor"
   );
+  if (!resKonseptor.ok) {
+    return {
+      notFound: true,
+    };
+  }
   const dataKonseptor = await resKonseptor.json();
 
   // Fetch mamet data
-  const resMamet = await fetch("http://localhost:3000/api/panitia/mamet");
+  const resMamet = await fetch("https://sparta22hmif.com/api/panitia/mamet");
+  if (!resMamet.ok) {
+    return {
+      notFound: true,
+    };
+  }
   const dataMamet = await resMamet.json();
 
   // Fetch lapangan data
-  const resLapangan = await fetch("http://localhost:3000/api/panitia/lapangan");
+  const resLapangan = await fetch(
+    "https://sparta22hmif.com/api/panitia/lapangan"
+  );
+  if (!resLapangan.ok) {
+    return {
+      notFound: true,
+    };
+  }
   const dataLapangan = await resLapangan.json();
 
   // Fetch pensuasanaan data
   const resPensuasanaan = await fetch(
-    "https://www.sparta22hmif.com/api/panitia/pensuasanaan"
+    "https://sparta22hmif.com/api/panitia/pensuasanaan"
   );
+  if (!resPensuasanaan.ok) {
+    return {
+      notFound: true,
+    };
+  }
   const dataPensuasanaan = await resPensuasanaan.json();
 
   // Fetch operasional data
   const resOperasional = await fetch(
-    "https://www.sparta22hmif.com/api/panitia/operasional"
+    "https://sparta22hmif.com/api/panitia/operasional"
   );
+  if (!resOperasional.ok) {
+    return {
+      notFound: true,
+    };
+  }
   const dataOperasional = await resOperasional.json();
 
   // Fetch kesekjenan data
   const resKesekjenan = await fetch(
-    "http://localhost:3000/api/panitia/kesekjenan"
+    "https://sparta22hmif.com/api/panitia/kesekjenan"
   );
+  if (!resKesekjenan.ok) {
+    return {
+      notFound: true,
+    };
+  }
   const dataKesekjenan = await resKesekjenan.json();
 
   return (
