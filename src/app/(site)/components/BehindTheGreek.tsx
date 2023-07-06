@@ -10,13 +10,13 @@ import CarouselSekjen from "./CarouselSekjen";
 
 const BehindTheGreek = async () => {
   // Fetch zeus data
-  const { data: dataZeus } = useSWR(
+  const { data: dataZeus, isLoading: ketuaLoading } = useSWR(
     "https://sparta22hmif.com/api/panitia/ketua",
     fetcher
   );
 
   // Fetch konseptor data
-  const { data: dataKonseptor } = useSWR(
+  const { data: dataKonseptor, isLoading: konseptorLoading } = useSWR(
     "https://sparta22hmif.com/api/panitia/konseptor",
     fetcher
   );
@@ -34,22 +34,31 @@ const BehindTheGreek = async () => {
   );
 
   // Fetch pensuasanaan data
-  const { data: dataPensuasanaan } = useSWR(
+  const { data: dataPensuasanaan, isLoading: pensuLoading } = useSWR(
     "https://sparta22hmif.com/api/panitia/pensuasanaan",
     fetcher
   );
 
   // Fetch operasional data
-  const { data: dataOperasional } = useSWR(
+  const { data: dataOperasional, isLoading: operasionalLoading } = useSWR(
     "https://sparta22hmif.com/api/panitia/operasional",
     fetcher
   );
 
   // Fetch kesekjenan data
-  const { data: dataKesekjenan } = useSWR(
+  const { data: dataKesekjenan, isLoading: sekjenLoading } = useSWR(
     "https://sparta22hmif.com/api/panitia/kesekjenan",
     fetcher
   );
+
+  if (
+    ketuaLoading ||
+    konseptorLoading ||
+    pensuLoading ||
+    operasionalLoading ||
+    sekjenLoading
+  )
+    return <div></div>;
 
   return (
     <div className="bg-gradient-to-b from-[#CA8E46] to-[#6F332E] relative h-[300rem] bg-no-repeat bg-cover bg-top">
