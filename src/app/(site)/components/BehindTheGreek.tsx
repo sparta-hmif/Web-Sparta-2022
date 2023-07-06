@@ -4,19 +4,19 @@ import Carousel from "./Carousel";
 const BehindTheGreek = async () => {
   // Fetch konseptor data
   const resKonseptor = await fetch(
-    "http://localhost:3000/api/panitia/konseptor"
+    "https://www.sparta22hmif.com/api/panitia/konseptor"
   );
   const dataKonseptor = await resKonseptor.json();
 
   // Fetch pensuasanaan data
   const resPensuasanaan = await fetch(
-    "http://localhost:3000/api/panitia/pensuasanaan"
+    "https://www.sparta22hmif.com/api/panitia/pensuasanaan"
   );
   const dataPensuasanaan = await resPensuasanaan.json();
 
   // Fetch operasional data
   const resOperasional = await fetch(
-    "http://localhost:3000/api/panitia/operasional"
+    "https://www.sparta22hmif.com/api/panitia/operasional"
   );
   const dataOperasional = await resOperasional.json();
 
