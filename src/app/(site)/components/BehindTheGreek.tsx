@@ -1,12 +1,28 @@
 import Image from "next/image";
+
+// Component imports
 import Carousel from "./Carousel";
+import CarouselSekjen from "./CarouselSekjen";
 
 const BehindTheGreek = async () => {
+  // Fetch zeus data
+  const resZeus = await fetch("http://localhost:3000/api/panitia/ketua");
+  const dataZeus = await resZeus.json();
+  console.log(dataZeus);
+
   // Fetch konseptor data
   const resKonseptor = await fetch(
     "https://www.sparta22hmif.com/api/panitia/konseptor"
   );
   const dataKonseptor = await resKonseptor.json();
+
+  // Fetch mamet data
+  const resMamet = await fetch("http://localhost:3000/api/panitia/mamet");
+  const dataMamet = await resMamet.json();
+
+  // Fetch lapangan data
+  const resLapangan = await fetch("http://localhost:3000/api/panitia/lapangan");
+  const dataLapangan = await resLapangan.json();
 
   // Fetch pensuasanaan data
   const resPensuasanaan = await fetch(
@@ -19,6 +35,12 @@ const BehindTheGreek = async () => {
     "https://www.sparta22hmif.com/api/panitia/operasional"
   );
   const dataOperasional = await resOperasional.json();
+
+  // Fetch kesekjenan data
+  const resKesekjenan = await fetch(
+    "http://localhost:3000/api/panitia/kesekjenan"
+  );
+  const dataKesekjenan = await resKesekjenan.json();
 
   return (
     <div className="bg-gradient-to-b from-[#CA8E46] to-[#6F332E] relative h-[300rem] bg-no-repeat bg-cover bg-top">
@@ -70,7 +92,7 @@ const BehindTheGreek = async () => {
         className="absolute w-full max-w-[50rem] top-[75%] right-0"
         priority={true}
       />
-      {/* INI TADINYA ADA MX AUTO */}
+
       <div className="text-center pt-[30%] w-full">
         <Image
           alt="background"
@@ -81,33 +103,32 @@ const BehindTheGreek = async () => {
           priority={true}
         />
 
-        {/* Masukinn ke sini rap kalo mau nyoba" */}
-        <div className="w-full mt-[220px]">
+        <div className="w-full mt-[90px]">
+          <Carousel kabid={dataZeus.ketua} divisiList={[]} bidang="ketua" />
+        </div>
+
+        <div className="w-full mt-[200px]">
+          <CarouselSekjen {...dataKesekjenan} bidang="kesekjenan" />
+        </div>
+
+        <div className="w-full mt-[200px]">
+          <Carousel {...dataMamet} bidang="materi dan metode" />
+        </div>
+
+        <div className="w-full mt-[200px]">
           <Carousel {...dataKonseptor} bidang="konseptor" />
         </div>
 
-        <div className="w-full mt-[220px]">
+        <div className="w-full mt-[200px]">
+          <Carousel {...dataLapangan} bidang="lapangan" />
+        </div>
+
+        <div className="w-full mt-[200px]">
           <Carousel {...dataPensuasanaan} bidang="pensuasanaan" />
         </div>
 
-        <div className="w-full mt-[220px]">
+        <div className="w-full mt-[200px]">
           <Carousel {...dataOperasional} bidang="operasional" />
-        </div>
-
-        <div className="w-full mt-[220px]">
-          <Carousel {...dataKonseptor} bidang="konseptor" />
-        </div>
-
-        <div className="w-full mt-[220px]">
-          <Carousel {...dataKonseptor} bidang="konseptor" />
-        </div>
-
-        <div className="w-full mt-[220px]">
-          <Carousel {...dataKonseptor} bidang="konseptor" />
-        </div>
-
-        <div className="w-full mt-[220px]">
-          <Carousel {...dataKonseptor} bidang="konseptor" />
         </div>
       </div>
     </div>

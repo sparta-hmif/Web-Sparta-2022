@@ -3,7 +3,7 @@ import NavDashboard from "./components/NavDashboard";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { Suspense } from "react";
 
 interface UserSession {
   id: string;

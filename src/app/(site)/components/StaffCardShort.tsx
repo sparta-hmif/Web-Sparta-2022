@@ -22,6 +22,32 @@ const jabatanMap = new Map<string, string>([
   ["KADIV", "Ketua Divisi"],
   ["WAKADIV", "Wakil Ketua Divisi"],
   ["KABID", "Ketua Bidang"],
+  ["SEKJEN", "Sekretaris Jendral"],
+  ["SEKRETARIS", "Sekretaris"],
+  ["BENDAHARA", "Bendahara"],
+  ["ZEUS", "Ketua SPARTA"],
+]);
+
+const yunaniMap = new Map<string, string>([
+  ["KETUA", "Zeus"],
+  ["KESEKJENAN", "Hermes"],
+  ["SEKRETARIS", "Epiphron"],
+  ["BENDAHARA", "Orthosie"],
+  ["MSDM_PANITIA", "Harmonia"],
+  ["ACARA", "Apollo"],
+  ["OPERASIONAL", "Ponos"],
+  ["IT", "Hephaestus"],
+  ["GRAFIS", "Charites"],
+  ["PUBDOK", "Pheme"],
+  ["MATERI DAN METODE", "Athena"],
+  ["MSDM_KADER", "Themis"],
+  ["MENTOR", "Chiron"],
+  ["KONSEPTOR", "Artemis"],
+  ["MEDIK", "Hestia"],
+  ["LAPANGAN", "Chronos"],
+  ["LOGISTIK", "Demeter"],
+  ["KEAMANAN", "Heracles"],
+  ["PENSUASANAAN", "Dionysus"],
 ]);
 
 export default function StaffCardShort({
@@ -49,7 +75,11 @@ export default function StaffCardShort({
         {divisi?.split("_").join(" ") ?? bidang}
       </h5>
       <p className="sub-1 w-full text-center text-secondaryDark-400 font-bold uppercase text-[10px] -mt-1 sm:-mt-0.5 sm:text-[8px] md:mt-0 lg:text-xs lg:mt-0">
-        {yunani ?? "Poseidon"}
+        {divisi
+          ? yunaniMap.get(divisi.toUpperCase())
+          : bidang
+          ? yunaniMap.get(bidang?.toUpperCase())
+          : ""}
       </p>
 
       <div className="mt-1 w-[32.7vw] h-auto aspect-square overflow-hidden rounded-full relative sm:w-[9.5vw] lg:mt-1.5 xl:mt-2.5">

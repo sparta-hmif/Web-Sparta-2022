@@ -48,7 +48,7 @@ export default function StaffCardLong({
             <Image src={DivisiBackground} fill={true} alt="" priority={true} />
           </div>
           <p className="z-10 sub-1 text-primary-400 w-full text-center text-[10px] mt-0.5 sm:mt-0 sm:text-[8px] lg:mt-0 md:mt-0.5 lg:text-[10px] xl:text-xs">
-            {ketua.divisi?.split("_").join(" ")}
+            {ketua?.divisi?.split("_").join(" ") || ""}
           </p>
         </div>
 

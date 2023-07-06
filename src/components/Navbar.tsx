@@ -30,12 +30,14 @@ interface ItemProps {
     name: string;
     href: string;
   }[];
+  role: string[];
 }
 
 const dataPage = [
   {
     name: "Home",
     href: "/",
+    role: ["MENTOR", "MAMET", "ADMIN", "PESERTA", "KASUH"],
   },
   {
     name: "Dashboard",
@@ -57,6 +59,7 @@ const dataPage = [
         href: "/dashboard/edit-scoreboard",
       },
     ],
+    role: ["MENTOR", "MAMET", "ADMIN"],
   },
   {
     name: "Tasks",
@@ -70,21 +73,23 @@ const dataPage = [
         href: "/assignment",
       },
     ],
+    role: ["MAMET", "ADMIN", "PESERTA"],
   },
   {
     name: "Scoreboard",
     href: "/scoreboard",
+    role: ["MENTOR", "MAMET", "ADMIN", "PESERTA"],
   },
   {
     name: "Journey",
     href: "/journey",
+    role: ["MAMET", "ADMIN", "PESERTA"],
   },
 ];
 const Navbar = ({ user }: NavbarProps) => {
   const [showMenu, setShowMenu] = useState(false);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(-1);
-  const router = useRouter();
   const pathName = usePathname();
 
   const isActive = useMemo(() => {
@@ -97,6 +102,10 @@ const Navbar = ({ user }: NavbarProps) => {
   }, [pathName]);
 
   const menuElements = (item: ItemProps) => {
+    if (!item.role.includes(user?.role as string)) {
+      return null;
+    }
+
     return (
       <>
         <div className="relative inline-block hover:bg-primaryDark-300 hover:text-primary-300 px-4 py-1 rounded-md peer cursor-pointer">
@@ -180,14 +189,11 @@ const Navbar = ({ user }: NavbarProps) => {
               <FaChevronDown size={15} />
             </div>
           ) : (
-            <div
-              onClick={() => {
-                router.push("/login");
-              }}
-              className="w-11/12 mx-auto border-2 border-primary-400 text-center rounded-full cursor-pointer hover:bg-primary-400 hover:text-primaryDark-400 transition"
-            >
-              LOGIN
-            </div>
+            <Link href="/login">
+              <div className="w-11/12 mx-auto border-2 border-primary-400 text-center rounded-full cursor-pointer hover:bg-primary-400 hover:text-primaryDark-400 transition">
+                LOGIN
+              </div>
+            </Link>
           )}
           {/* Dropdown menu */}
           <div
@@ -228,6 +234,10 @@ const Navbar = ({ user }: NavbarProps) => {
           </div>
           <div className="py-2">
             {dataPage.map((item, index) => {
+              if (!item.role.includes(user?.role as string)) {
+                return null;
+              }
+
               return (
                 <div key={index}>
                   <div
@@ -239,23 +249,31 @@ const Navbar = ({ user }: NavbarProps) => {
                         setShowDropdown((data) =>
                           data === index ? -1 : index
                         );
-                        console.log(showDropdown);
                       }
                     }}
                   >
-                    {item.name}
+                    {item.dropdown ? (
+                      item.name
+                    ) : (
+                      <Link href={item.href}>
+                        <button onClick={() => setShowMenu(false)}>
+                          {item.name}
+                        </button>
+                      </Link>
+                    )}
                   </div>
                   {showDropdown === index && (
                     <div className="">
                       {item.dropdown?.map((dropdown, idx) => {
                         return (
-                          <div
-                            key={idx}
-                            className="bg-primary-400/10 px-12 text-xl py-2"
-                            onClick={() => {}}
-                          >
-                            {dropdown.name}
-                          </div>
+                          <Link key={idx} href={dropdown.href}>
+                            <button
+                              onClick={() => setShowMenu(false)}
+                              className="bg-primary-400/10 px-12 text-xl py-2 w-full text-left"
+                            >
+                              {dropdown.name}
+                            </button>
+                          </Link>
                         );
                       })}
                     </div>
@@ -297,14 +315,9 @@ const Navbar = ({ user }: NavbarProps) => {
                 <p className="text-lg">{user.fullName}</p>
               </>
             ) : (
-              <div
-                onClick={() => {
-                  router.push("/login");
-                }}
-                className="text-xl text-center w-full"
-              >
-                LOGIN
-              </div>
+              <Link href="/login">
+                <div className="text-xl text-center w-full">LOGIN</div>
+              </Link>
             )}
           </div>
         </div>
