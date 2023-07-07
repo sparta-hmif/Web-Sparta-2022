@@ -79,8 +79,7 @@ export default function StaffCardShort({
           ? yunaniMap.get(bidang?.toUpperCase())
           : ""}
       </p>
-
-      <div className="mt-1 w-[32.7vw] h-auto aspect-square overflow-hidden rounded-full relative sm:w-[9.5vw] lg:mt-1.5 xl:mt-2.5">
+      <div className="z-10 mt-1 w-[32.7vw] h-auto aspect-square overflow-hidden rounded-full relative sm:w-[9.5vw] lg:mt-1.5 xl:mt-2.5">
         <Image
           src={imageURL || SpartaLogo}
           fill={true}
@@ -89,11 +88,11 @@ export default function StaffCardShort({
         />
       </div>
 
-      <div className="w-[90%] mt-0.5 h-auto min-h-[26px] aspect-[298/26] relative sm:-mt-1 xl:mt-1.5">
+      <div className="w-[90%] mt-0.5 h-auto aspect-[298/26] relative sm:-mt-1 xl:mt-1.5 md:mt-1">
         <Image src={CardLine} fill={true} alt="" priority={true} />
       </div>
 
-      <div className="relative w-[65%] h-auto aspect-[190/30] mt-1 flex items-center sm:-mt-1 lg:mt-1 xl:mt-2">
+      <div className="relative w-[65%] h-auto aspect-[190/30] mt-1 flex items-center sm:-mt-1 md:mt-1 xl:mt-2">
         <div className="-z-10 absolute left-0 top-0 w-full h-auto aspect-[190/30]">
           <Image src={JabatanBackground} fill={true} alt="" priority={true} />
         </div>
