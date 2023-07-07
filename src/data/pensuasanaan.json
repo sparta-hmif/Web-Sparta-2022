@@ -1,0 +1,137 @@
+{
+  "kabid": {
+      "namaPendek": "Farah Khairana H",
+      "nim": "18221139",
+      "jabatan": "KABID",
+      "imageURL": ""
+  },
+  "divisiList": [
+      {
+          "ketua": {
+              "namaPendek": "Rozan Ghosani",
+              "nim": "18221121",
+              "jabatan": "KADIV",
+              "divisi": "GRAFIS",
+              "imageURL": ""
+          },
+          "wakil1": {
+              "namaPendek": "Khairunnisa H",
+              "nim": "18221004",
+              "jabatan": "WAKADIV",
+              "divisi": "GRAFIS",
+              "imageURL": ""
+          },
+          "staff": [
+              {
+                  "namaPendek": "Antonio Natthan K",
+                  "nim": "13521162",
+                  "jabatan": "STAFF",
+                  "divisi": "GRAFIS",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Manuella Ivana U.S",
+                  "nim": "13521051",
+                  "jabatan": "STAFF",
+                  "divisi": "GRAFIS",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Arleen Chrysantha G",
+                  "nim": "13521059",
+                  "jabatan": "STAFF",
+                  "divisi": "GRAFIS",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Nicholas",
+                  "nim": "18221165",
+                  "jabatan": "STAFF",
+                  "divisi": "GRAFIS",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Hidayatullah Wildan",
+                  "nim": "13521015",
+                  "jabatan": "STAFF",
+                  "divisi": "GRAFIS",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Gyan Maiziko",
+                  "nim": "18221008",
+                  "jabatan": "STAFF",
+                  "divisi": "GRAFIS",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Puti Nabilla A",
+                  "nim": "13521088",
+                  "jabatan": "STAFF",
+                  "divisi": "GRAFIS",
+                  "imageURL": ""
+              }
+          ]
+      },
+      {
+          "ketua": {
+              "namaPendek": "Vania Salsabila",
+              "nim": "18221075",
+              "jabatan": "KADIV",
+              "divisi": "PUBDOK",
+              "imageURL": ""
+          },
+          "wakil1": {
+              "namaPendek": "Syauqi Jannatan",
+              "nim": "13521014",
+              "jabatan": "WAKADIV",
+              "divisi": "PUBDOK",
+              "imageURL": ""
+          },
+          "staff": [
+              {
+                  "namaPendek": "Raditya Naufal A",
+                  "nim": "13521022",
+                  "jabatan": "STAFF",
+                  "divisi": "PUBDOK",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Ditra Rizqa A",
+                  "nim": "13521019",
+                  "jabatan": "STAFF",
+                  "divisi": "PUBDOK",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "M Farrel Danendra R",
+                  "nim": "13521048",
+                  "jabatan": "STAFF",
+                  "divisi": "PUBDOK",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "M Rifky Fachrizain",
+                  "nim": "18221027",
+                  "jabatan": "STAFF",
+                  "divisi": "PUBDOK",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Karina Rahadiani",
+                  "nim": "18221104",
+                  "jabatan": "STAFF",
+                  "divisi": "PUBDOK",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Rayhan Maheswara",
+                  "nim": "18221130",
+                  "jabatan": "STAFF",
+                  "divisi": "PUBDOK",
+                  "imageURL": ""
+              }
+          ]
+      }
+  ]
+}

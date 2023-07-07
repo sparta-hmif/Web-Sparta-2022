@@ -1,0 +1,138 @@
+{
+  "kabid": {
+      "namaPendek": "Rahman Satya",
+      "nim": "18221117",
+      "jabatan": "SEKJEN",
+      "imageURL": ""
+  },
+  "sekretaris": [
+      {
+          "namaPendek": "Carissa Zahrani P",
+          "nim": "18221093",
+          "jabatan": "SEKRETARIS",
+          "imageURL": ""
+      },
+      {
+          "namaPendek": "Priscilla Auleader N",
+          "nim": "18221098",
+          "jabatan": "SEKRETARIS",
+          "imageURL": ""
+      },
+      {
+          "namaPendek": "Anindita Putri P",
+          "nim": "18221019",
+          "jabatan": "SEKRETARIS",
+          "imageURL": ""
+      }
+  ],
+  "bendahara": [
+      {
+          "namaPendek": "Victoria Angelique",
+          "nim": "18221153",
+          "jabatan": "BENDAHARA",
+          "imageURL": ""
+      },
+      {
+          "namaPendek": "Jessica",
+          "nim": "18221073",
+          "jabatan": "BENDAHARA",
+          "imageURL": ""
+      },
+      {
+          "namaPendek": "Nadine Aliya P",
+          "nim": "18221081",
+          "jabatan": "BENDAHARA",
+          "imageURL": ""
+      }
+  ],
+  "divisiList": [
+      {
+          "ketua": {
+              "namaPendek": "Miralistya Cahya F",
+              "nim": "18221116",
+              "jabatan": "KADIV",
+              "divisi": "MSDM_PANITIA",
+              "imageURL": ""
+          },
+          "wakil1": {
+              "namaPendek": "Rania Sasi K",
+              "nim": "18221168",
+              "jabatan": "WAKADIV",
+              "divisi": "MSDM_PANITIA",
+              "imageURL": ""
+          },
+          "staff": [
+              {
+                  "namaPendek": "Ahmad Rizki",
+                  "nim": "18221071",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_PANITIA",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Ilmagita Nariswari",
+                  "nim": "18221101",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_PANITIA",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Justin Yusuf A",
+                  "nim": "18221016",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_PANITIA",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Ken Azizan",
+                  "nim": "18221107",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_PANITIA",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Ananda A Hafizh",
+                  "nim": "18221167",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_PANITIA",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Nabilah Amanda P",
+                  "nim": "18221021",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_PANITIA",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Althaaf Khasyi A",
+                  "nim": "13521130",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_PANITIA",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Husnia Munzayana",
+                  "nim": "13521077",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_PANITIA",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Ferindya Aulia",
+                  "nim": "13521161",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_PANITIA",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "M Salman Hakim Alfarisi",
+                  "nim": "13521010",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_PANITIA",
+                  "imageURL": ""
+              }
+          ]
+      }
+  ]
+}

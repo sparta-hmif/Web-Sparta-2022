@@ -203,15 +203,18 @@ const Navbar = ({ user }: NavbarProps) => {
           >
             <div className="absolute h-2 w-full top-0 bg-primary-400" />
             <Link href="/profile">
-              <div className="w-full pt-2 py-2 items-center text-primary-400 text-lg px-2 cursor--pointer bg-primaryDark-400 hover:bg-primaryDark-300">
+              <button
+                onClick={toggleDropdown}
+                className="w-full pt-2 py-2 items-start text-left text-primary-400 text-lg px-2 cursor--pointer bg-primaryDark-400 hover:bg-primaryDark-300"
+              >
                 PROFILE
-              </div>
+              </button>
             </Link>
             <div
               onClick={() => {
                 handleSignOut();
               }}
-              className="w-full pt-2 py-2 items-center text-danger-200 text-lg px-2 cursor--pointer bg-primaryDark-400 hover:bg-primaryDark-300"
+              className="pointer w-full pt-2 py-2 items-center text-danger-200 text-lg px-2 cursor--pointer bg-primaryDark-400 hover:bg-primaryDark-300"
             >
               LOGOUT
             </div>
@@ -283,14 +286,11 @@ const Navbar = ({ user }: NavbarProps) => {
             })}
             {user && (
               <>
-                <div
-                  onClick={() => {
-                    handleSignOut();
-                  }}
-                  className="py-2 px-6 text-xl text-primary-400 hover:bg-primary-400/20 transition"
-                >
-                  PROFILE
-                </div>
+                <Link href="/profile">
+                  <div className="py-2 px-6 text-xl text-primary-400 hover:bg-primary-400/20 transition">
+                    PROFILE
+                  </div>
+                </Link>
                 <div
                   onClick={() => {
                     handleSignOut();

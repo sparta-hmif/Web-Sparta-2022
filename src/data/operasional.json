@@ -1,0 +1,151 @@
+{
+  "kabid": {
+      "namaPendek": "Fajar Maulana H",
+      "nim": "13521080",
+      "jabatan": "KABID",
+      "imageURL": ""
+  },
+  "divisiList": [
+      {
+          "ketua": {
+              "namaPendek": "Rava Maulana",
+              "nim": "13521149",
+              "jabatan": "KADIV",
+              "divisi": "IT",
+              "imageURL": ""
+          },
+          "wakil1": {
+              "namaPendek": "Kevin Sebastian",
+              "nim": "18221143",
+              "jabatan": "WAKADIV",
+              "divisi": "IT",
+              "imageURL": ""
+          },
+          "staff": [
+              {
+                  "namaPendek": "Salomo Manalu",
+                  "nim": "13521063",
+                  "jabatan": "STAFF",
+                  "divisi": "IT",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Sultan Alta A.V",
+                  "nim": "18221110",
+                  "jabatan": "STAFF",
+                  "divisi": "IT",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Ardhan Nur Urfan",
+                  "nim": "18221118",
+                  "jabatan": "STAFF",
+                  "divisi": "IT",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Imam R Ibrahim",
+                  "nim": "18221140",
+                  "jabatan": "STAFF",
+                  "divisi": "IT",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "M Farhan Fahrezy",
+                  "nim": "13521106",
+                  "jabatan": "STAFF",
+                  "divisi": "IT",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Rizky Abdillah R",
+                  "nim": "13521109",
+                  "jabatan": "STAFF",
+                  "divisi": "IT",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Chiquita Ahsanunnisa",
+                  "nim": "13521129",
+                  "jabatan": "STAFF",
+                  "divisi": "IT",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Vieri Fajar F",
+                  "nim": "13521099",
+                  "jabatan": "STAFF",
+                  "divisi": "IT",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Rasyadan Faza S.R",
+                  "nim": "18221103",
+                  "jabatan": "STAFF",
+                  "divisi": "IT",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Alexander Jason",
+                  "nim": "13521100",
+                  "jabatan": "STAFF",
+                  "divisi": "IT",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Gibran Fasha G",
+                  "nim": "18221069",
+                  "jabatan": "STAFF",
+                  "divisi": "IT",
+                  "imageURL": ""
+              }
+          ]
+      },
+      {
+          "ketua": {
+              "namaPendek": "Ariel Jovananda",
+              "nim": "13521086",
+              "jabatan": "KADIV",
+              "divisi": "LOGISTIK",
+              "imageURL": ""
+          },
+          "wakil1": {
+              "namaPendek": "Raka Admiharfan F",
+              "nim": "18221094",
+              "jabatan": "WAKADIV",
+              "divisi": "LOGISTIK",
+              "imageURL": ""
+          },
+          "staff": [
+              {
+                  "namaPendek": "Fariz Putra H",
+                  "nim": "18221015",
+                  "jabatan": "STAFF",
+                  "divisi": "LOGISTIK",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Athif Nirwasito",
+                  "nim": "13521053",
+                  "jabatan": "STAFF",
+                  "divisi": "LOGISTIK",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Muhammad Hanan",
+                  "nim": "13521041",
+                  "jabatan": "STAFF",
+                  "divisi": "LOGISTIK",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Shidqi Indy I",
+                  "nim": "13521097",
+                  "jabatan": "STAFF",
+                  "divisi": "LOGISTIK",
+                  "imageURL": ""
+              }
+          ]
+      }
+  ]
+}

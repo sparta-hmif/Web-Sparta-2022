@@ -1,0 +1,200 @@
+{
+  "kabid": {
+      "namaPendek": "Irsyad Nurwidianto B",
+      "nim": "13521072",
+      "jabatan": "KABID",
+      "imageURL": ""
+  },
+  "divisiList": [
+      {
+          "ketua": {
+              "namaPendek": "Reswara Trista A.C",
+              "nim": "18221122",
+              "jabatan": "KADIV",
+              "divisi": "ACARA",
+              "imageURL": ""
+          },
+          "wakil1": {
+              "namaPendek": "Aniqa Fayyaza A",
+              "nim": "18221020",
+              "jabatan": "WAKADIV",
+              "divisi": "ACARA",
+              "imageURL": ""
+          },
+          "staff": [
+              {
+                  "namaPendek": "Attariq A Azhar",
+                  "nim": "18221043",
+                  "jabatan": "STAFF",
+                  "divisi": "ACARA",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "M Bangkit Dwi C",
+                  "nim": "13521055",
+                  "jabatan": "STAFF",
+                  "divisi": "ACARA",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Fikri Naufal H",
+                  "nim": "18221096",
+                  "jabatan": "STAFF",
+                  "divisi": "ACARA",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Michael Sihotang",
+                  "nim": "18221054",
+                  "jabatan": "STAFF",
+                  "divisi": "ACARA",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Rifqi Syafiq",
+                  "nim": "18221070",
+                  "jabatan": "STAFF",
+                  "divisi": "ACARA",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Oncar Awwalu R",
+                  "nim": "18221068",
+                  "jabatan": "STAFF",
+                  "divisi": "ACARA",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "M Rizky Sya'ban",
+                  "nim": "13521119",
+                  "jabatan": "STAFF",
+                  "divisi": "ACARA",
+                  "imageURL": ""
+              }
+          ]
+      },
+      {
+          "ketua": {
+              "namaPendek": "Salman Ma'arif A",
+              "nim": "18221102",
+              "jabatan": "KADIV",
+              "divisi": "MSDM_KADER",
+              "imageURL": ""
+          },
+          "wakil1": {
+              "namaPendek": "Christopher Febrian N",
+              "nim": "18221115",
+              "jabatan": "WAKADIV",
+              "divisi": "MSDM_KADER",
+              "imageURL": ""
+          },
+          "wakil2": {
+              "namaPendek": "Harits Afiq N",
+              "nim": "18221012",
+              "jabatan": "WAKADIV",
+              "divisi": "MSDM_KADER",
+              "imageURL": ""
+          },
+          "staff": [
+              {
+                  "namaPendek": "Ahmad Nadil",
+                  "nim": "13521024",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_KADER",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Akbar Maulana R",
+                  "nim": "13521093",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_KADER",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Asyifa Nurul S",
+                  "nim": "13521125",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_KADER",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Bernardus Willson",
+                  "nim": "13521021",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_KADER",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Fawwaz Abrial S",
+                  "nim": "18221067",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_KADER",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Frendy Sanusi",
+                  "nim": "18221041",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_KADER",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Hugo Benedicto T",
+                  "nim": "18221131",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_KADER",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Jonathan Arthurito",
+                  "nim": "18221079",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_KADER",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Luthfi Hanif",
+                  "nim": "18221151",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_KADER",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "M.A Bismaramadhan",
+                  "nim": "18221028",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_KADER",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Maggie Zeta R.S",
+                  "nim": "13521117",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_KADER",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "M.A Maysan Abyan",
+                  "nim": "13521076",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_KADER",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Sulthan Dzaky A",
+                  "nim": "13521159",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_KADER",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Wan Aufa A",
+                  "nim": "18221001",
+                  "jabatan": "STAFF",
+                  "divisi": "MSDM_KADER",
+                  "imageURL": ""
+              }
+          ]
+      }
+  ]
+}

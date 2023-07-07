@@ -84,7 +84,7 @@ export async function PATCH(
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
 
-  const hashedPassword = await hash(password, 10);
+  const hashedPassword = password ? await hash(password, 10) : undefined;
 
   try {
     // Mengupdate data user berdasarkan ID
