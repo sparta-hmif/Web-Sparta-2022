@@ -81,7 +81,7 @@ const LinkAttachment: React.FC<LinkAttachmentProps> = ({
 
         <button
           type="button"
-          className="bg-secondary-400 w-full md:w-1/4 py-2 text-button text-white font-bold rounded-xl"
+          className="bg-secondary-400 w-full md:w-1/4 py-2 text-button text-white font-bold rounded-xl font-sen"
           onClick={handleAddLink}
         >
           Add Link
