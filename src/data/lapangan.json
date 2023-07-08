@@ -1,0 +1,547 @@
+{
+    "kabid": {
+        "namaPendek": "Muhamad Pedro",
+        "nim": "18221138",
+        "jabatan": "KABID",
+        "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/lapangan/muhammad-pedro.png"
+    },
+    "divisiList": [
+        {
+            "ketua": {
+                "namaPendek": "Kenneth Ezekiel",
+                "nim": "13521089",
+                "jabatan": "KADIV",
+                "divisi": "MENTOR",
+                "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/lapangan/kenneth-ezekiel.png"
+            },
+            "wakil1": {
+                "namaPendek": "Azmi Hasna Z",
+                "nim": "13521006",
+                "jabatan": "WAKADIV",
+                "divisi": "MENTOR",
+                "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/lapangan/azmi-hasna.png"
+            },
+            "wakil2": {
+                "namaPendek": "Akmal Natha A",
+                "nim": "18221082",
+                "jabatan": "WAKADIV",
+                "divisi": "MENTOR",
+                "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/lapangan/akmal-natha.png"
+            },
+            "staff": [
+                {
+                    "namaPendek": "Chiquita A",
+                    "nim": "13521129",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "M Aji Wibisono",
+                    "nim": "13521095",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Hans Stephano",
+                    "nim": "18221171",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Amjad Adhie P",
+                    "nim": "18221170",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Alisha Listya W",
+                    "nim": "13521171",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Vanessa Rebeca W",
+                    "nim": "13521151",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Alexander Jason",
+                    "nim": "13521100",
+                    "jabatan": "STAFF",
+                    "divisi": "IT",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Juan Christopher S",
+                    "nim": "13521116",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Made Debby A.P",
+                    "nim": "13521153",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Farchan Martha A.C",
+                    "nim": "18221011",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Cathleen Lauretta",
+                    "nim": "18221157",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Haikal Ardzi S",
+                    "nim": "13521012",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Agsha Athalla N",
+                    "nim": "13521027",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "M Syahrial Alzaidan",
+                    "nim": "18221055",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Antonio Natthan K",
+                    "nim": "13521162",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Esther Regina",
+                    "nim": "18221086",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Nixon Deflin K",
+                    "nim": "18221150",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Fakhri Putra M",
+                    "nim": "18221080",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Adrenalin Apprizal",
+                    "nim": "18221125",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Hosea Nathanael A",
+                    "nim": "13521057",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Arsa Izdihar I",
+                    "nim": "13521101",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Iskandar Muda R.P",
+                    "nim": "18221109",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Fatih Nararya R.I",
+                    "nim": "13521060",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Ahmad Rivai Y",
+                    "nim": "18221017",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Austin Gabriel P",
+                    "nim": "13521084",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Angger Ilham A",
+                    "nim": "13521001",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "M Hanif Al Faithoni",
+                    "nim": "18221135",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Kartini Copa",
+                    "nim": "13521026",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Nadira Rahmananda",
+                    "nim": "18221059",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Razzan Daksana Y",
+                    "nim": "13521087",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "I Dewa M.M.P",
+                    "nim": "18221047",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Nathania C.D",
+                    "nim": "13521139",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Carissa Tabina R",
+                    "nim": "18221120",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Syarifa Dwi P",
+                    "nim": "13521018",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Tara Chandani H",
+                    "nim": "18221146",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Cetta Reswara P",
+                    "nim": "13521133",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Adrian Fahri A",
+                    "nim": "18221002",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Akmal Mahardika",
+                    "nim": "13521070",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Dzikri M Raditya",
+                    "nim": "18221144",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "D Novlisariyanti",
+                    "nim": "13521132",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Razan Aditya P",
+                    "nim": "18221132",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Christophorus D.W",
+                    "nim": "13521009",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Reyhan Putra A",
+                    "nim": "18221161",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Johan Christiansen",
+                    "nim": "18221088",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Abraham Megantoro",
+                    "nim": "18221123",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Eunice Sarah",
+                    "nim": "13521013",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Muhammad Naufal",
+                    "nim": "18221089",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "M.A Aziz Ghazali",
+                    "nim": "13521128",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Fadhlan Nazhif A",
+                    "nim": "18221128",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Regine Fidellia H",
+                    "nim": "18221025",
+                    "jabatan": "STAFF",
+                    "divisi": "MENTOR",
+                    "imageURL": ""
+                }
+            ]
+        },
+        {
+            "ketua": {
+                "namaPendek": "Raden Dizi A.P",
+                "nim": "18221155",
+                "jabatan": "KADIV",
+                "divisi": "MEDIK",
+                "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/lapangan/raden-dizi.png"
+            },
+            "wakil1": {
+                "namaPendek": "Hilmi Baskara R",
+                "nim": "18221072",
+                "jabatan": "WAKADIV",
+                "divisi": "MEDIK",
+                "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/lapangan/hilmi-baskara.png"
+            },
+            "staff": [
+                {
+                    "namaPendek": "Afnan Edsa R",
+                    "nim": "13521011",
+                    "jabatan": "STAFF",
+                    "divisi": "MEDIK",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "M Aliefnaufal",
+                    "nim": "18221105",
+                    "jabatan": "STAFF",
+                    "divisi": "MEDIK",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Jauza Lathifah A",
+                    "nim": "13521030",
+                    "jabatan": "STAFF",
+                    "divisi": "MEDIK",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Naura Valda P",
+                    "nim": "18221173",
+                    "jabatan": "STAFF",
+                    "divisi": "MEDIK",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Shelma Salsabila",
+                    "nim": "13521115",
+                    "jabatan": "STAFF",
+                    "divisi": "MEDIK",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Sri Laksmi P",
+                    "nim": "18221009",
+                    "jabatan": "STAFF",
+                    "divisi": "MEDIK",
+                    "imageURL": ""
+                }
+            ]
+        },
+        {
+            "ketua": {
+                "namaPendek": "Athira Dhyanissa",
+                "nim": "18221022",
+                "jabatan": "KADIV",
+                "divisi": "KEAMANAN",
+                "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/lapangan/athira-dhayanissa.png"
+            },
+            "wakil1": {
+                "namaPendek": "Jennifer Grachel",
+                "nim": "18221018",
+                "jabatan": "WAKADIV",
+                "divisi": "KEAMANAN",
+                "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/lapangan/jennifer-grachel.png"
+            },
+            "staff": [
+                {
+                    "namaPendek": "M Zaydan Athallah",
+                    "nim": "13521104",
+                    "jabatan": "STAFF",
+                    "divisi": "KEAMANAN",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Raden Sjora O",
+                    "nim": "18221014",
+                    "jabatan": "STAFF",
+                    "divisi": "KEAMANAN",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Bagas Aryo S",
+                    "nim": "13521081",
+                    "jabatan": "STAFF",
+                    "divisi": "KEAMANAN",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Mario Nicholas R",
+                    "nim": "18221061",
+                    "jabatan": "STAFF",
+                    "divisi": "KEAMANAN",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Rei Arriel C",
+                    "nim": "18221084",
+                    "jabatan": "STAFF",
+                    "divisi": "KEAMANAN",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Filbert Felim",
+                    "nim": "18221097",
+                    "jabatan": "STAFF",
+                    "divisi": "KEAMANAN",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Riandra Diva A",
+                    "nim": "18221077",
+                    "jabatan": "STAFF",
+                    "divisi": "KEAMANAN",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Kelvin Rayhan A",
+                    "nim": "13521005",
+                    "jabatan": "STAFF",
+                    "divisi": "KEAMANAN",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Kenny Benaya N",
+                    "nim": "13521023",
+                    "jabatan": "STAFF",
+                    "divisi": "KEAMANAN",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Syasya Umaira",
+                    "nim": "18221026",
+                    "jabatan": "STAFF",
+                    "divisi": "KEAMANAN",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Anjani Ibrahim",
+                    "nim": "18221031",
+                    "jabatan": "STAFF",
+                    "divisi": "KEAMANAN",
+                    "imageURL": ""
+                },
+                {
+                    "namaPendek": "Vasya Izza P",
+                    "nim": "18221030",
+                    "jabatan": "STAFF",
+                    "divisi": "KEAMANAN",
+                    "imageURL": ""
+                }
+            ]
+        }
+    ]
+}
