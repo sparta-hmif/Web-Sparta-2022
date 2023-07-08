@@ -113,10 +113,14 @@ const AssignmentDetail = ({
 
   return (
     <div className="">
-      <div className="flex mx-[10px] md:mx-[100px] lg:mx-[220px] items-center gap-2 mb-4 cursor-pointer">
-        <FaChevronLeft size={20} className="text-primaryDark-400" />
-        <p className="font-sen font-bold text-xl text-primaryDark-400">Back</p>
-      </div>
+      <Link href="/dashboard/grade-assignment">
+        <div className="flex mx-[10px] md:mx-[100px] lg:mx-[220px] items-center gap-2 mb-4 cursor-pointer">
+          <FaChevronLeft size={20} className="text-primaryDark-400" />
+          <p className="font-sen font-bold text-xl text-primaryDark-400">
+            Back
+          </p>
+        </div>
+      </Link>
       <div className="">
         <div className="flex flex-wrap lg:flex-col-reverse justify-between mx-[20px] md:mx-[110px] lg:mx-[245px] pt-2">
           <div className="font-koulen break-words leading-[44px] lg:leading-normal max-w-[65%] text-[40px] md:text-[50px] md:max-w-[420px] font-bold text-primaryDark-400 lg:text-h2 lg:font-normal">

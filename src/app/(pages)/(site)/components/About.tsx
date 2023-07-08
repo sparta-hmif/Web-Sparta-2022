@@ -1,5 +1,8 @@
 import Image from "next/image";
 
+// Asset imports
+import hmifData from "@/data/hmif.json";
+
 const About = () => {
   return (
     <div className="bg-gradient-to-b from-[#6C2932] to-[#5D242A] to-35% lg:to-50% pt-56 relative">
@@ -86,27 +89,16 @@ const About = () => {
         <p className="text-primary-400 mt-5 lg:mt-10 mb-3 font-sen font-bold text-h6 lg:font-hammersmith lg:text-h4 lg:font-normal">
           Apa itu HMIF?
         </p>
-        <p className="body-2 lg:body-1 text-white lg:px-32">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro quaerat
-          atque eius distinctio debitis nulla corrupti autem, sed reprehenderit
-          obcaecati consectetur nisi unde maxime qui mollitia fugit voluptate
-          soluta quasi quibusdam dolorem sequi vel totam dolore quis. Iure quas
-          aliquam dignissimos harum repellat recusandae reiciendis quibusdam,
-          optio amet nesciunt debitis?
-        </p>
+        <p className="body-2 lg:body-1 text-white lg:px-32">{hmifData.hmif}</p>
         <div className="gap-5 grid grid-cols-2 lg:grid-cols-3 grid-flow-row lg:px-10 py-10 mt-10">
           <div className="col-span-2 lg:col-span-1 bg-[url('/images/landing/AboutSparta.svg')] rounded-lg h-[13rem] lg:h-[19rem] bg-cover bg-center bg-no-repeat py-5 lg:py-7 px-5 lg:px-10 text-primaryDark-400 text-start">
             <p className="font-sen font-bold text-h6 lg:font-hammersmith lg:text-h4 lg:font-normal">
               Apa itu SPARTA?
             </p>
-            <p className="caption lg:body-1">
-              SPARTA (Simulasi dan Pelatihan Keorganisasian Untuk Anggota)
-              adalah kaderisasi tahap awal pada rangkaian masa orientasi anggota
-              baru Himpunan Mahasiswa Informatika ITB.
-            </p>
+            <p className="caption lg:body-1">{hmifData.sparta}</p>
           </div>
-          <div className="rounded-lg lg:row-start-2 lg:row-span-2 bg-[url('/images/landing/AboutPlaceholder.jpg')] row-span-1 h-[12rem] lg:h-[38rem] bg-cover bg-no-repeat"></div>
-          <div className="rounded-lg lg:row-span-2 bg-[url('/images/landing/AboutPlaceholder.jpg')] row-span-1 h-[12rem] lg:h-[38rem] bg-cover bg-no-repeat"></div>
+          <div className="rounded-lg lg:row-start-2 lg:row-span-2 bg-[url('/images/landing/gambar3.jpg')] row-span-1 h-[12rem] lg:h-[38rem] bg-cover bg-no-repeat"></div>
+          <div className="rounded-lg lg:row-span-2 bg-[url('/images/landing/gambar1.jpg')] row-span-1 h-[12rem] lg:h-[38rem] bg-cover bg-no-repeat"></div>
           <div className="col-span-2 lg:col-span-1 lg:row-span-3 bg-[url('/images/landing/VisiMisi.svg')] pb-10 rounded-lg bg-no-repeat bg-cover px-10 text-primaryDark-400 text-start">
             <Image
               alt="about"
@@ -119,34 +111,17 @@ const About = () => {
             <p className="font-sen font-bold text-h6 lg:font-hammersmith lg:text-h4 lg:font-normal">
               VISI
             </p>
-            <p className="caption lg:body-1 mb-4 lg:mb-8">
-              Mewujudkan SPARTA HMIF ITB 2021 sebagai penanam kesadaran urgensi
-              berhimpun dalam mencapai tujuan HMIF ITB dan kebutuhan anggotanya.
-            </p>
+            <p className="caption lg:body-1 mb-4 lg:mb-8">{hmifData.visi}</p>
             <p className="font-sen font-bold text-h6 lg:font-hammersmith lg:text-h4 lg:font-normal">
               MISI
             </p>
             <ul className="caption lg:body-1 list-decimal pl-5">
-              <li>Membangun rasa kekeluargaan dan empati warga HMIF ITB</li>
-              <li>
-                Mengenalkan HMIF ITB sekaligus memantik dan menanamkan kesadaran
-                urgensi berhimpun di HMIF ITB
-              </li>
-              <li>
-                Menumbuhkan sikap profesional dalam lingkungan akademik maupun
-                nonakademik
-              </li>
-              <li>
-                Mengembangkan keahlian keinformatikaan dan mengaplikasikannya
-                untuk kebutuhan masyarakat
-              </li>
-              <li>
-                Meningkatkan kemampuan pemecahan masalah dan pengambilan
-                keputusan untuk memenuhi kebutuhan anggota HMIF ITB
-              </li>
+              {hmifData.misi.map((val, idx) => (
+                <li key={idx}>{val}</li>
+              ))}
             </ul>
           </div>
-          <div className="rounded-lg bg-white col-span-1 hidden lg:block bg-[url('/images/landing/AboutPlaceholder.jpg')] h-[19rem] bg-center bg-cover bg-no-repeat"></div>
+          <div className="rounded-lg bg-white col-span-1 hidden lg:block bg-[url('/images/landing/gambar2.jpg')] h-[19rem] bg-center bg-cover bg-no-repeat"></div>
         </div>
       </div>
     </div>

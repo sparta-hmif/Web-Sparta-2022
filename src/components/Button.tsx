@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import clsx from "clsx";
 import { MouseEventHandler } from "react";
@@ -18,11 +18,10 @@ const Button = ({
     <button
       type={type}
       onClick={onClick}
-      className={
-        `
+      className={`
         transition
         w-full 
-        py-3 px-2
+        py-3 px-2 font-sen
         ${isPrimary ? "border-none" : "border-[3px]"}
         border-secondary-400
         ${isPrimary ? "bg-secondary-400" : "bg-white"}
@@ -33,8 +32,7 @@ const Button = ({
         hover:drop-shadow-[0_3px_6px_rgba(188,83,23,0.55)]
         ${isPrimary ? "active:bg-[#BC5317]" : "active:bg-secondary-400"}       
         active:text-white
-        `
-      }
+        `}
     >
       {text}
     </button>

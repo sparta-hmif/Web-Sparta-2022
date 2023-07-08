@@ -4,13 +4,14 @@ import Link from "next/link";
 import { useState } from "react";
 import useSWR from "swr";
 import fetcher from "@/app/lib/fetcher";
+import { useSession } from "next-auth/react";
+import { User } from "@prisma/client";
+import { useS3Upload } from "next-s3-upload";
 
 // Component imports
 import Button from "@/components/Button";
 import TextFields from "@/components/TextFields";
 import DropzoneImage from "@/components/DropzoneImage";
-import { useSession } from "next-auth/react";
-import { User } from "@prisma/client";
 
 const EditProfile = () => {
   const session = useSession();
@@ -24,6 +25,7 @@ const EditProfile = () => {
   );
 
   const [file, setFile] = useState<File>();
+  const { uploadToS3 } = useS3Upload();
 
   let userDataDb: User | null = null;
 
@@ -50,9 +52,35 @@ const EditProfile = () => {
   };
 
   const handleSave = async () => {
-    if (!data?.user && userData.newPassword !== userData.confirmPassword) {
+    if (!data?.user) {
+      alert("Invalid user");
+      return;
+    }
+
+    if (userData.newPassword !== userData.confirmPassword) {
       alert("Password baru tidak sama");
       return;
+    }
+
+    if (file) {
+      const { url } = await uploadToS3(file);
+
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_WEB_URL}/api/user/profpic/${data.user.nim}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({ imageURL: url }),
+        }
+      );
+
+      if (res.status !== 200) {
+        alert("Gagal mengubah foto profil");
+        return;
+      }
     }
 
     const body: any = {};

@@ -1,5 +1,8 @@
 import Image from "next/image";
 
+// Asset imports
+import DefaultProfPic from "@/../public/images/landing/sparta.png";
+
 interface ListContentProps {
   rank: number;
   name: string;
@@ -24,12 +27,11 @@ const ListContent: React.FC<ListContentProps> = ({
       } gap-2 px-3 md:px-10 w-11/12 border-4 border-primaryDark-400 rounded-xl py-1 md:py-2 flex items-center font-koulen text-primaryDark-400`}
     >
       <p className="w-[6%] text-base md:text-5xl">#{rank}</p>
-      <div className="w-1/12 max-w-[5rem] aspect-square bg-primaryDark-400 rounded-full mx-0 md:mx-10 overflow-hidden">
+      <div className="w-1/12 max-w-[5rem] aspect-square bg-primaryDark-400 rounded-full mx-0 md:mx-10 overflow-hidden relative">
         <Image
-          src={image || "/images/landing/placeholder.jpg"}
+          src={image || DefaultProfPic}
           alt="user"
-          width={100}
-          height={100}
+          fill={true}
           className="object-cover"
         />
       </div>

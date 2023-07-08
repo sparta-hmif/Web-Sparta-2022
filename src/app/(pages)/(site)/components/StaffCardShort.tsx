@@ -21,6 +21,7 @@ const jabatanMap = new Map<string, string>([
   ["KADIV", "Ketua Divisi"],
   ["WAKADIV", "Wakil Ketua Divisi"],
   ["KABID", "Ketua Bidang"],
+  ["WAKABID", "Wakil Ketua Bidang"],
   ["SEKJEN", "Sekretaris Jendral"],
   ["SEKRETARIS", "Sekretaris"],
   ["BENDAHARA", "Bendahara"],
@@ -38,7 +39,7 @@ export const yunaniMap = new Map<string, string>([
   ["IT", "Hephaestus"],
   ["GRAFIS", "Charites"],
   ["PUBDOK", "Pheme"],
-  ["MATERI DAN METODE", "Athena"],
+  ["MATERI & METODE", "Athena"],
   ["MSDM_KADER", "Themis"],
   ["MENTOR", "Chiron"],
   ["KONSEPTOR", "Artemis"],
@@ -79,8 +80,7 @@ export default function StaffCardShort({
           ? yunaniMap.get(bidang?.toUpperCase())
           : ""}
       </p>
-
-      <div className="mt-1 w-[32.7vw] h-auto aspect-square overflow-hidden rounded-full relative sm:w-[9.5vw] lg:mt-1.5 xl:mt-2.5">
+      <div className="z-10 mt-1 w-[32.7vw] h-auto aspect-square overflow-hidden rounded-full relative sm:w-[9.5vw] lg:mt-1.5 xl:mt-2.5">
         <Image
           src={imageURL || SpartaLogo}
           fill={true}
@@ -89,11 +89,11 @@ export default function StaffCardShort({
         />
       </div>
 
-      <div className="w-[90%] mt-0.5 h-auto min-h-[26px] aspect-[298/26] relative sm:-mt-1 xl:mt-1.5">
+      <div className="w-[90%] mt-0.5 h-auto aspect-[298/26] relative sm:-mt-1 xl:mt-1.5 md:mt-1">
         <Image src={CardLine} fill={true} alt="" priority={true} />
       </div>
 
-      <div className="relative w-[65%] h-auto aspect-[190/30] mt-1 flex items-center sm:-mt-1 lg:mt-1 xl:mt-2">
+      <div className="relative w-[65%] h-auto aspect-[190/30] mt-1 flex items-center sm:-mt-1 md:mt-1 xl:mt-2">
         <div className="-z-10 absolute left-0 top-0 w-full h-auto aspect-[190/30]">
           <Image src={JabatanBackground} fill={true} alt="" priority={true} />
         </div>
@@ -102,10 +102,10 @@ export default function StaffCardShort({
         </p>
       </div>
 
-      <p className="w-full text-center text-secondaryDark-400 mt-0.5 font-bold text-sm sm:-mt-1 sm:text-[8px] md:mt-0.5 md:text-[10px] lg:mt-2 lg:text-xs xl:text-sm">
+      <p className="w-full font-sen text-center text-secondaryDark-400 mt-0.5 font-bold text-sm sm:-mt-1 sm:text-[8px] md:mt-0.5 md:text-[10px] lg:mt-2 lg:text-xs xl:text-sm">
         {namaPendek}
       </p>
-      <p className="w-full text-center text-secondaryDark-400 text-xs sm:-mt-2 sm:text-[8px] md:-mt-1 md:text-[10px] lg:mt-0">
+      <p className="w-full font-sen text-center text-secondaryDark-400 text-xs sm:-mt-2 sm:text-[8px] md:-mt-1 md:text-[10px] lg:mt-0">
         {nim}
       </p>
     </div>

@@ -44,6 +44,8 @@ export default function GradeAssignmentDetail({
       startTime: data.startTime,
       endTime: data.endTime,
       data: userList,
+      uploadCount: data.submisiTugas.length,
+      totalSpartan: data.submisiTugas.length + data.missingUsers.length,
     };
   }
   return (

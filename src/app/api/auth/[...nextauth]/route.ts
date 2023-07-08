@@ -86,6 +86,7 @@ export const authOptions: NextAuthOptions = {
           fullName: true,
           role: true,
           email: true,
+          imageURL: true,
         },
       });
 

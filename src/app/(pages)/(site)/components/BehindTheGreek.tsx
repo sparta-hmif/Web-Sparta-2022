@@ -10,6 +10,8 @@ import dataKesekjenan from "@/data/kesekjenan.json";
 import dataKonseptor from "@/data/konseptor.json";
 import dataPensuasanaan from "@/data/pensuasanaan.json";
 import dataOperasional from "@/data/operasional.json";
+import dataLapangan from "@/data/lapangan.json";
+import dataMamet from "@/data/mamet.json";
 
 const BehindTheGreek = async () => {
   return (
@@ -80,18 +82,18 @@ const BehindTheGreek = async () => {
         <div className="w-full mt-[200px]">
           <CarouselSekjen {...dataKesekjenan} bidang="kesekjenan" />
         </div>
-        {/* 
+
         <div className="w-full mt-[200px]">
-          <Carousel {...dataMamet} bidang="materi dan metode" />
-        </div> */}
+          <Carousel {...dataMamet} bidang="materi & metode" />
+        </div>
 
         <div className="w-full mt-[200px]">
           <Carousel {...dataKonseptor} bidang="konseptor" />
         </div>
 
-        {/* <div className="w-full mt-[200px]">
+        <div className="w-full mt-[200px]">
           <Carousel {...dataLapangan} bidang="lapangan" />
-        </div> */}
+        </div>
 
         <div className="w-full mt-[200px]">
           <Carousel {...dataPensuasanaan} bidang="pensuasanaan" />
