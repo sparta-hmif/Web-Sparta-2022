@@ -157,13 +157,15 @@ const Navbar = ({ user }: NavbarProps) => {
     <div className="fixed top-0 left-0 right-0 z-40 w-full text-h5 font-koulen text-primary-400 bg-primaryDark-400 shadow-xl">
       <div className="px-5 md:px-8 relative items-center flex flex-row justify-between py-3 lg:py-2 w-full">
         <div className="flex flex-row items-center justify-start w-full gap-12">
-          <Image
-            width={200}
-            height={200}
-            className="w-3/12 max-w-[6rem]"
-            alt="Logo"
-            src="/images/Logo/Logo.svg"
-          />
+          <Link href="/" className="block w-3/12">
+            <Image
+              width={200}
+              height={200}
+              className="w-full max-w-[6rem]"
+              alt="Logo"
+              src="/images/Logo/Logo.svg"
+            />
+          </Link>
           <div className="hidden lg:flex flex-row items-end justify-start gap-5 pt-2">
             {dataPage.map((item, index) => (
               <div key={index}>{menuElements(item)}</div>
@@ -227,7 +229,7 @@ const Navbar = ({ user }: NavbarProps) => {
           <IoMenu className="text-3xl md:text-5xl" />
         </div>
         <div
-          className={`transition block lg:hidden absolute right-0 top-0 w-1/2 h-screen bg-primaryDark-400 shadow-2xl ${
+          className={`transition block lg:hidden fixed right-0 top-0 w-1/2 h-full z-40 bg-primaryDark-400 shadow-2xl ${
             showMenu ? "translate-x-0" : "translate-x-full"
           }
           flex flex-col justify-start`}
@@ -258,8 +260,11 @@ const Navbar = ({ user }: NavbarProps) => {
                     {item.dropdown ? (
                       item.name
                     ) : (
-                      <Link href={item.href}>
-                        <button onClick={() => setShowMenu(false)}>
+                      <Link href={item.href} className="block w-full">
+                        <button
+                          className="w-full text-left"
+                          onClick={() => setShowMenu(false)}
+                        >
                           {item.name}
                         </button>
                       </Link>
@@ -286,10 +291,13 @@ const Navbar = ({ user }: NavbarProps) => {
             })}
             {user && (
               <>
-                <Link href="/profile">
-                  <div className="py-2 px-6 text-xl text-primary-400 hover:bg-primary-400/20 transition">
+                <Link href="/profile" className="w-full block">
+                  <button
+                    onClick={() => setShowMenu(false)}
+                    className="py-2 px-6 text-xl w-full text-left text-primary-400 hover:bg-primary-400/20 transition"
+                  >
                     PROFILE
-                  </div>
+                  </button>
                 </Link>
                 <div
                   onClick={() => {
@@ -315,8 +323,13 @@ const Navbar = ({ user }: NavbarProps) => {
                 <p className="text-lg">{user.fullName}</p>
               </>
             ) : (
-              <Link href="/login">
-                <div className="text-xl text-center w-full">LOGIN</div>
+              <Link href="/login" className="w-full">
+                <button
+                  onClick={() => setShowMenu(false)}
+                  className="text-xl text-center w-full"
+                >
+                  LOGIN
+                </button>
               </Link>
             )}
           </div>

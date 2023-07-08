@@ -101,10 +101,10 @@ export default function StaffCardShort({
         </p>
       </div>
 
-      <p className="w-full text-center text-secondaryDark-400 mt-0.5 font-bold text-sm sm:-mt-1 sm:text-[8px] md:mt-0.5 md:text-[10px] lg:mt-2 lg:text-xs xl:text-sm">
+      <p className="w-full font-sen text-center text-secondaryDark-400 mt-0.5 font-bold text-sm sm:-mt-1 sm:text-[8px] md:mt-0.5 md:text-[10px] lg:mt-2 lg:text-xs xl:text-sm">
         {namaPendek}
       </p>
-      <p className="w-full text-center text-secondaryDark-400 text-xs sm:-mt-2 sm:text-[8px] md:-mt-1 md:text-[10px] lg:mt-0">
+      <p className="w-full font-sen text-center text-secondaryDark-400 text-xs sm:-mt-2 sm:text-[8px] md:-mt-1 md:text-[10px] lg:mt-0">
         {nim}
       </p>
     </div>
