@@ -3,26 +3,26 @@
       "namaPendek": "Rahman Satya",
       "nim": "18221117",
       "jabatan": "SEKJEN",
-      "imageURL": ""
+      "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/ketua-dan-kesekjenan/rahman-satya.png"
   },
   "sekretaris": [
       {
           "namaPendek": "Carissa Zahrani P",
           "nim": "18221093",
           "jabatan": "SEKRETARIS",
-          "imageURL": ""
+          "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/ketua-dan-kesekjenan/carissa-zahrani.png"
       },
       {
           "namaPendek": "Priscilla Auleader N",
           "nim": "18221098",
           "jabatan": "SEKRETARIS",
-          "imageURL": ""
+          "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/ketua-dan-kesekjenan/pricilla-auleader.png"
       },
       {
           "namaPendek": "Anindita Putri P",
           "nim": "18221019",
           "jabatan": "SEKRETARIS",
-          "imageURL": ""
+          "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/ketua-dan-kesekjenan/anindita-putri.png"
       }
   ],
   "bendahara": [
@@ -30,19 +30,19 @@
           "namaPendek": "Victoria Angelique",
           "nim": "18221153",
           "jabatan": "BENDAHARA",
-          "imageURL": ""
+          "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/ketua-dan-kesekjenan/victoria-angelique.png"
       },
       {
           "namaPendek": "Jessica",
           "nim": "18221073",
           "jabatan": "BENDAHARA",
-          "imageURL": ""
+          "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/ketua-dan-kesekjenan/jessica.png"
       },
       {
           "namaPendek": "Nadine Aliya P",
           "nim": "18221081",
           "jabatan": "BENDAHARA",
-          "imageURL": ""
+          "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/ketua-dan-kesekjenan/nadine-aliya.png"
       }
   ],
   "divisiList": [
@@ -52,14 +52,14 @@
               "nim": "18221116",
               "jabatan": "KADIV",
               "divisi": "MSDM_PANITIA",
-              "imageURL": ""
+              "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/ketua-dan-kesekjenan/miralistya-cahya.png"
           },
           "wakil1": {
               "namaPendek": "Rania Sasi K",
               "nim": "18221168",
               "jabatan": "WAKADIV",
               "divisi": "MSDM_PANITIA",
-              "imageURL": ""
+              "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/ketua-dan-kesekjenan/rania-sasi.png"
           },
           "staff": [
               {
@@ -126,7 +126,7 @@
                   "imageURL": ""
               },
               {
-                  "namaPendek": "M Salman Hakim Alfarisi",
+                  "namaPendek": "M Salman Hakim A",
                   "nim": "13521010",
                   "jabatan": "STAFF",
                   "divisi": "MSDM_PANITIA",

@@ -1,0 +1,99 @@
+{
+  "kabid": {
+      "namaPendek": "Ceavin Rufus",
+      "nim": "18221162",
+      "jabatan": "KABID",
+      "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/mamet/ceavin-rufus.png"
+  },
+  "divisiList": [
+      {
+          "ketua": {
+              "namaPendek": "Ceavin Rufus",
+              "nim": "18221162",
+              "jabatan": "KABID",
+              "divisi": "MATERI & METODE",
+              "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/mamet/ceavin-rufus.png"
+          },
+          "wakil1": {
+              "namaPendek": "Gevyndo Gunawan",
+              "nim": "18221076",
+              "jabatan": "WAKABID",
+              "divisi": "MATERI & METODE",
+              "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/mamet/gevyndo-gunawan.png"
+          },
+          "staff": [
+              {
+                  "namaPendek": "Farhan Nabil S",
+                  "nim": "13521114",
+                  "jabatan": "STAFF",
+                  "divisi": "MATERI & METODE",
+                  "imageURL": ""
+              },
+              {
+                "namaPendek": "Matthew Mahendra",
+                "nim": "13521007",
+                "jabatan": "STAFF",
+                "divisi": "MATERI & METODE",
+                "imageURL": ""
+              },
+              {
+                  "namaPendek": "Yasmin Arum S",
+                  "nim": "18221142",
+                  "jabatan": "STAFF",
+                  "divisi": "MATERI & METODE",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Kevin Prayoga",
+                  "nim": "18221141",
+                  "jabatan": "MATERI & METODE",
+                  "divisi": "IT",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Eunice Sarah",
+                  "nim": "13521013",
+                  "jabatan": "STAFF",
+                  "divisi": "MATERI & METODE",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Gracia Theophilia",
+                  "nim": "18221078",
+                  "jabatan": "STAFF",
+                  "divisi": "MATERI & METODE",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Dwicakra Danielle",
+                  "nim": "18221092",
+                  "jabatan": "STAFF",
+                  "divisi": "MATERI & METODE",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Fakhri M Mahendra",
+                  "nim": "13521045",
+                  "jabatan": "STAFF",
+                  "divisi": "MATERI & METODE",
+                  "imageURL": ""
+              },
+              {
+                  "namaPendek": "Arifuddin Achmad S",
+                  "nim": "18221127",
+                  "jabatan": "STAFF",
+                  "divisi": "MATERI & METODE",
+                  "imageURL": ""
+              },
+
+              {
+                "namaPendek": "M Aji Wibisono",
+                "nim": "13521095",
+                "jabatan": "STAFF",
+                "divisi": "MATERI & METODE",
+                "imageURL": ""
+              }
+          ]
+      }
+    ]
+  }

@@ -3,7 +3,7 @@
       "namaPendek": "Farah Khairana H",
       "nim": "18221139",
       "jabatan": "KABID",
-      "imageURL": ""
+      "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/pensuasanaan/farah-khairana.png"
   },
   "divisiList": [
       {
@@ -12,14 +12,14 @@
               "nim": "18221121",
               "jabatan": "KADIV",
               "divisi": "GRAFIS",
-              "imageURL": ""
+              "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/pensuasanaan/rozan-ghosani.png"
           },
           "wakil1": {
               "namaPendek": "Khairunnisa H",
               "nim": "18221004",
               "jabatan": "WAKADIV",
               "divisi": "GRAFIS",
-              "imageURL": ""
+              "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/pensuasanaan/khairunnisa-hurun.png"
           },
           "staff": [
               {
@@ -79,14 +79,14 @@
               "nim": "18221075",
               "jabatan": "KADIV",
               "divisi": "PUBDOK",
-              "imageURL": ""
+              "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/pensuasanaan/vania-salsabila.png"
           },
           "wakil1": {
               "namaPendek": "Syauqi Jannatan",
               "nim": "13521014",
               "jabatan": "WAKADIV",
               "divisi": "PUBDOK",
-              "imageURL": ""
+              "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/pensuasanaan/syauqi-jannatan.png"
           },
           "staff": [
               {

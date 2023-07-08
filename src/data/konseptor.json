@@ -3,7 +3,7 @@
       "namaPendek": "Irsyad Nurwidianto B",
       "nim": "13521072",
       "jabatan": "KABID",
-      "imageURL": ""
+      "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/irsyad-nurwidianto.png"
   },
   "divisiList": [
       {
@@ -12,14 +12,14 @@
               "nim": "18221122",
               "jabatan": "KADIV",
               "divisi": "ACARA",
-              "imageURL": ""
+              "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/reswara-trista.png"
           },
           "wakil1": {
               "namaPendek": "Aniqa Fayyaza A",
               "nim": "18221020",
               "jabatan": "WAKADIV",
               "divisi": "ACARA",
-              "imageURL": ""
+              "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/aniqa-fayyaza.png"
           },
           "staff": [
               {
@@ -79,21 +79,21 @@
               "nim": "18221102",
               "jabatan": "KADIV",
               "divisi": "MSDM_KADER",
-              "imageURL": ""
+              "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/salman-maarif.png"
           },
           "wakil1": {
               "namaPendek": "Christopher Febrian N",
               "nim": "18221115",
               "jabatan": "WAKADIV",
               "divisi": "MSDM_KADER",
-              "imageURL": ""
+              "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/christopher-febrian.png"
           },
           "wakil2": {
               "namaPendek": "Harits Afiq N",
               "nim": "18221012",
               "jabatan": "WAKADIV",
               "divisi": "MSDM_KADER",
-              "imageURL": ""
+              "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/harits-afiq.png"
           },
           "staff": [
               {

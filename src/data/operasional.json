@@ -3,7 +3,7 @@
       "namaPendek": "Fajar Maulana H",
       "nim": "13521080",
       "jabatan": "KABID",
-      "imageURL": ""
+      "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/operasional/fajar-maulana.png"
   },
   "divisiList": [
       {
@@ -12,14 +12,14 @@
               "nim": "13521149",
               "jabatan": "KADIV",
               "divisi": "IT",
-              "imageURL": ""
+              "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/operasional/rava-maulana.png"
           },
           "wakil1": {
               "namaPendek": "Kevin Sebastian",
               "nim": "18221143",
               "jabatan": "WAKADIV",
               "divisi": "IT",
-              "imageURL": ""
+              "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/operasional/kevin-sebastian.png"
           },
           "staff": [
               {
@@ -30,11 +30,11 @@
                   "imageURL": ""
               },
               {
-                  "namaPendek": "Sultan Alta A.V",
-                  "nim": "18221110",
-                  "jabatan": "STAFF",
-                  "divisi": "IT",
-                  "imageURL": ""
+                "namaPendek": "Vieri Fajar F",
+                "nim": "13521099",
+                "jabatan": "STAFF",
+                "divisi": "IT",
+                "imageURL": ""
               },
               {
                   "namaPendek": "Ardhan Nur Urfan",
@@ -65,15 +65,8 @@
                   "imageURL": ""
               },
               {
-                  "namaPendek": "Chiquita Ahsanunnisa",
-                  "nim": "13521129",
-                  "jabatan": "STAFF",
-                  "divisi": "IT",
-                  "imageURL": ""
-              },
-              {
-                  "namaPendek": "Vieri Fajar F",
-                  "nim": "13521099",
+                  "namaPendek": "Gibran Fasha G",
+                  "nim": "18221069",
                   "jabatan": "STAFF",
                   "divisi": "IT",
                   "imageURL": ""
@@ -86,15 +79,23 @@
                   "imageURL": ""
               },
               {
-                  "namaPendek": "Alexander Jason",
-                  "nim": "13521100",
+                  "namaPendek": "Chiquita A",
+                  "nim": "13521129",
                   "jabatan": "STAFF",
                   "divisi": "IT",
                   "imageURL": ""
               },
+
               {
-                  "namaPendek": "Gibran Fasha G",
-                  "nim": "18221069",
+                "namaPendek": "Sultan Alta A.V",
+                "nim": "18221110",
+                "jabatan": "STAFF",
+                "divisi": "IT",
+                "imageURL": ""
+              },
+              {
+                  "namaPendek": "Alexander Jason",
+                  "nim": "13521100",
                   "jabatan": "STAFF",
                   "divisi": "IT",
                   "imageURL": ""
@@ -107,14 +108,14 @@
               "nim": "13521086",
               "jabatan": "KADIV",
               "divisi": "LOGISTIK",
-              "imageURL": ""
+              "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/operasional/ariel-jovananda.png"
           },
           "wakil1": {
               "namaPendek": "Raka Admiharfan F",
               "nim": "18221094",
               "jabatan": "WAKADIV",
               "divisi": "LOGISTIK",
-              "imageURL": ""
+              "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/operasional/raka-admiharfan.png"
           },
           "staff": [
               {
