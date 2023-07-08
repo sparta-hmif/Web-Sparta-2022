@@ -30,10 +30,10 @@ export default function StaffCardLong({
   const isMobile = window.innerWidth < 640;
 
   return (
-    <div className="flex mt-3 mb-2">
+    <div className="flex mt-3 mb-2 xl:justify-center">
       <StaffCardShort {...ketua} />
-      <div className="relative w-[73.6vw] h-auto aspect-[446/493] -mt-2 -mx-3 flex flex-col items-center sm:-mx-1.5 sm:-mt-1.5 sm:w-[24vw] md:-mx-2.5 md:-mt-2 lg:-mx-3">
-        <div className="top-0 left-0 w-[73.6vw] h-auto aspect-[446/493] absolute sm:w-[24vw]">
+      <div className="relative w-[73.6vw] h-auto aspect-[446/493] -mt-2 -mx-3 flex flex-col items-center sm:-mx-1.5 sm:-mt-1.5 sm:w-[24vw] md:-mx-2.5 md:-mt-2 lg:-mx-3 xl:max-w-[319px] xl:max-h-[353px]">
+        <div className="top-0 left-0 w-[73.6vw] h-auto aspect-[446/493] absolute sm:w-[24vw] xl:max-w-[319px] xl:max-h-[353px]">
           <Image src={StaffBackground} fill={true} alt="" priority={true} />
         </div>
 
@@ -49,25 +49,29 @@ export default function StaffCardLong({
           </p>
         </div>
 
-        <div className="overflow-hidden flex flex-col mt-5 z-10 w-[65vw] flex-wrap h-auto aspect-[386/268] gap-x-[1vw] sm:w-[20vw] sm:mt-3 md:mt-4 lg:mt-7 xl:mt-11">
-          {staff.map(({ namaPendek, nim }, idx) => (
+        <div className="overflow-hidden flex flex-col mt-5 z-10 w-[65vw] flex-wrap h-auto aspect-[386/268] gap-x-[1vw] sm:w-[20vw] sm:mt-3 md:mt-4 lg:mt-7 xl:mt-11 xl:max-w-[266px]">
+          {staff.map(({ namaPendek, nim, imageURL }, idx) => (
             <button
               onClick={() =>
                 handleOpen({
                   name: namaPendek,
                   nim,
                   divisi: ketua.divisi || "",
-                  imageURL: "",
+                  imageURL: imageURL || "",
                   isOpen: true,
                 })
               }
               key={idx}
               style={{
                 transform: `translateX(-${
-                  cardFlow * (isMobile ? 65.5 : 21)
-                }vw)`,
+                  cardFlow *
+                  Math.min(
+                    ((isMobile ? 65.5 : 21) * window.innerWidth) / 100,
+                    266 + (1.15 * window.innerWidth) / 100
+                  )
+                }px)`,
               }}
-              className="w-[31.9vw] group sm:w-[9.5vw] sm:min-w-0 transition-all duration-200 basis-1/4"
+              className="w-[31.9vw] group sm:w-[9.5vw] sm:min-w-0 transition-all duration-200 basis-1/4 xl:max-w-[126px]"
             >
               <p className="font-sen text-[10px] group-hover:text-primary-600 font-bold text-capitalize text-secondaryDark-400 sm:text-[6px] md:text-[8px] lg:text-[10px] xl:text-xs">
                 {namaPendek}
@@ -82,7 +86,7 @@ export default function StaffCardLong({
       <StaffCardShort {...wakil1} flipped={true} />
       {wakil2 ? (
         <div className="relative">
-          <div className="absolute -left-2 top-5 w-auto h-[73.8vw] bg-[linear-gradient(180deg,#FEDDB2_0%,#B08144_140%)] aspect-[23/343] z-20 sm:top-2.5 sm:h-[23.75vw] md:top-3 lg:top-4 xl:top-5">
+          <div className="absolute -left-2 top-5 w-auto h-[73.8vw] bg-[linear-gradient(180deg,#FEDDB2_0%,#B08144_140%)] aspect-[23/343] z-20 sm:top-2.5 sm:h-[23.75vw] md:top-3 lg:top-4 xl:top-5 xl:max-w-[21px] xl:max-h-[316px]">
             <Image src={Separator} fill={true} alt="" priority={true} />
           </div>
           <div className="-ml-1">

@@ -75,31 +75,31 @@ const BehindTheGreek = async () => {
           priority={true}
         />
 
-        <div className="w-full mt-[90px]">
+        <div className="w-full mt-[90px] mb-[220px]">
           <Carousel kabid={dataZeus.ketua} divisiList={[]} bidang="ketua" />
         </div>
 
-        <div className="w-full mt-[200px]">
+        <div className="w-full mb-[220px] xl:-mt-[3vw]">
           <CarouselSekjen {...dataKesekjenan} bidang="kesekjenan" />
         </div>
 
-        <div className="w-full mt-[200px]">
+        <div className="w-full mb-[220px] xl:-mt-[3vw]">
           <Carousel {...dataMamet} bidang="materi & metode" />
         </div>
 
-        <div className="w-full mt-[200px]">
+        <div className="w-full mb-[220px] xl:-mt-[3vw]">
           <Carousel {...dataKonseptor} bidang="konseptor" />
         </div>
 
-        <div className="w-full mt-[200px]">
+        <div className="w-full mb-[220px] xl:-mt-[3vw]">
           <Carousel {...dataLapangan} bidang="lapangan" />
         </div>
 
-        <div className="w-full mt-[200px]">
+        <div className="w-full mb-[220px] xl:-mt-[3vw]">
           <Carousel {...dataPensuasanaan} bidang="pensuasanaan" />
         </div>
 
-        <div className="w-full mt-[200px]">
+        <div className="w-full xl:-mt-[3vw]">
           <Carousel {...dataOperasional} bidang="operasional" />
         </div>
       </div>

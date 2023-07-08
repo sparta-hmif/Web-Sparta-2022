@@ -60,10 +60,10 @@ export default function StaffCardShort({
   bidang,
 }: StaffShortProps): JSX.Element {
   return (
-    <div className="z-10 relative w-[52.2vw] h-auto aspect-[319/484] flex flex-col items-center drop-shadow-[0_8px_10px_rgba(0,0,0,0.25)] sm:w-[16.7vw] lg:max-w-[319px] lg:max-h-[484px]">
+    <div className="z-10 relative w-[52.2vw] h-auto aspect-[319/484] flex flex-col items-center drop-shadow-[0_8px_10px_rgba(0,0,0,0.25)] sm:w-[16.7vw] lg:max-w-[222px] lg:max-h-[337px]">
       <div
         className={clsx(
-          "-z-10 w-[52.2vw] h-auto aspect-[319/484] absolute left-0 top-0 sm:w-[16.7vw] lg:max-w-[319px] lg:max-h-[484px]",
+          "-z-10 w-[52.2vw] h-auto aspect-[319/484] absolute left-0 top-0 sm:w-[16.7vw] lg:max-w-[222px] lg:max-h-[337px]",
           flipped ? "-scale-x-100" : ""
         )}
       >
@@ -80,7 +80,7 @@ export default function StaffCardShort({
           ? yunaniMap.get(bidang?.toUpperCase())
           : ""}
       </p>
-      <div className="z-10 mt-1 w-[32.7vw] h-auto aspect-square overflow-hidden rounded-full relative sm:w-[9.5vw] lg:mt-1.5 xl:mt-2.5">
+      <div className="z-10 mt-1 w-[32.7vw] h-auto aspect-square overflow-hidden rounded-full relative sm:w-[9.5vw] lg:mt-1.5 xl:mt-2.5 xl:max-w-[126px] xl:max-h-[126px]">
         <Image
           src={imageURL || SpartaLogo}
           fill={true}
@@ -89,7 +89,7 @@ export default function StaffCardShort({
         />
       </div>
 
-      <div className="w-[90%] mt-0.5 h-auto aspect-[298/26] relative sm:-mt-1 xl:mt-1.5 md:mt-1">
+      <div className="w-[90%] mt-0.5 h-auto aspect-[298/26] relative sm:-mt-1 xl:mt-1.5 md:mt-1 xl:max-w-[199px] xl:max-h-[17px]">
         <Image src={CardLine} fill={true} alt="" priority={true} />
       </div>
 

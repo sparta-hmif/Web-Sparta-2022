@@ -24,6 +24,7 @@ const Scoreboard = async () => {
   const res = await fetch(process.env.NEXT_PUBLIC_WEB_URL + "/api/scoreboard", {
     headers: { Cookie: cookies().toString() },
   });
+  console.log(res);
   const resJson = await res.json();
 
   let data: any = [];
