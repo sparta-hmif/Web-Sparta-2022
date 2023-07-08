@@ -6,21 +6,14 @@ import React from "react";
 import Image from "next/image";
 import { IoMenu, IoClose } from "react-icons/io5";
 import { FaChevronDown } from "react-icons/fa";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 import DefaultProfPic from "@/../public/images/landing/sparta.png";
-
-interface UserSession {
-  id: string;
-  email: string;
-  fullName: string;
-  nim: string;
-  role: string;
-}
+import { User } from "@prisma/client";
 
 interface NavbarProps {
-  user: UserSession | null;
+  user: User | null;
 }
 
 interface ItemProps {
@@ -95,7 +88,7 @@ const Navbar = ({ user }: NavbarProps) => {
   const isActive = useMemo(() => {
     return (item: ItemProps) => {
       if (item.dropdown) {
-        return item.dropdown.some((item) => pathName.startsWith(item.href));
+        return item.dropdown.some((item) => pathName?.startsWith(item.href));
       }
       return item.href === pathName;
     };
@@ -182,7 +175,7 @@ const Navbar = ({ user }: NavbarProps) => {
                 <Image
                   width={50}
                   height={50}
-                  src={DefaultProfPic}
+                  src={user.imageURL || DefaultProfPic}
                   className="w-7 rounded-full "
                   alt="Profile Picture"
                 />
@@ -316,7 +309,7 @@ const Navbar = ({ user }: NavbarProps) => {
                 <Image
                   width={50}
                   height={50}
-                  src={DefaultProfPic}
+                  src={user.imageURL || DefaultProfPic}
                   className="w-2/12 rounded-full "
                   alt="Profile Picture"
                 />

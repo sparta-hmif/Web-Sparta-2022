@@ -1,5 +1,8 @@
 import Image from "next/image";
 
+// Asset imports
+import DefaultProfPic from "@/../public/images/landing/sparta.png";
+
 interface PillarProps {
   name: string;
   nim: string;
@@ -32,16 +35,15 @@ const Pillar: React.FC<PillarProps> = ({ name, nim, score, order, image }) => {
     >
       <div className="py-2 px-1 flex flex-col items-center justify-around h-48 md:h-80 bg-white w-[95%] border-primaryDark-400 border-[3px] rounded-xl shadow-xl">
         <div className="w-1/2 aspect-square bg-gray-400 rounded-full relative">
-          <div className="w-full h-full overflow-hidden rounded-full">
+          <div className="w-full h-full overflow-hidden rounded-full relative">
             <Image
-              src={image || "/images/landing/placeholder.jpg"}
+              src={image || DefaultProfPic}
               alt="user"
-              width={200}
-              height={200}
+              fill={true}
               className="object-cover"
             />
           </div>
-          <div className="font-koulen w-6/12 aspect-square rounded-full bg-[#CD9741] flex items-center justify-center text-lg md:text-3xl text-primaryDark-500 -bottom-2 -right-2 absolute">
+          <div className="font-koulen w-6/12 aspect-square rounded-full bg-[#CD9741] flex items-center justify-center text-lg md:text-3xl text-primaryDark-500 -bottom-2 -right-2 pt-1.5 absolute">
             #{order}
           </div>
         </div>

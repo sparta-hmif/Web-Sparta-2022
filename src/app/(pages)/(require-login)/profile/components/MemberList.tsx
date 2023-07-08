@@ -29,7 +29,6 @@ const MemberList = () => {
 
   if (data) {
     member = { nomorKelompok: data.user.kelompok, anggotaMentor: data.mentors };
-    console.log(data);
   }
 
   return (

@@ -1,11 +1,16 @@
 import Image from "next/image";
-import ScoreList from "./components/ScoreList";
-import ScorePillar from "./components/ScorePillar";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
 import { User } from "@prisma/client";
 import { cookies } from "next/headers";
+
+// Asset imports
+import DefaultProfPic from "@/../public/images/landing/sparta.png";
+
+// Component imports
+import ScoreList from "./components/ScoreList";
+import ScorePillar from "./components/ScorePillar";
 
 const Scoreboard = async () => {
   const session = await getServerSession(authOptions);
@@ -23,7 +28,7 @@ const Scoreboard = async () => {
 
   let data: any = [];
   let userRank = 0;
-  let userIdx = 0;
+  let userIdx = -1;
 
   if (res.status === 200) {
     const { spartans } = resJson;
@@ -44,7 +49,7 @@ const Scoreboard = async () => {
         name: spartans[i].fullName,
         nim: spartans[i].nim,
         score: spartans[i].score,
-        image: "",
+        image: spartans[i].imageURL || "",
       };
 
       data = [...data, newData];
@@ -71,7 +76,7 @@ const Scoreboard = async () => {
           <div className="w-1/2 flex flex-col items-start justify-between">
             <div className="w-5/12 rounded-full aspect-square bg-primaryDark-400 overflow-hidden">
               <Image
-                src={"/images/landing/placeholder.jpg"}
+                src={user.imageURL || DefaultProfPic}
                 alt="user"
                 width={200}
                 height={200}
@@ -85,7 +90,7 @@ const Scoreboard = async () => {
           <div className="w-1/2 flex flex-col items-end justify-between">
             <p className="text-4xl md:text-7xl">#{userRank}</p>
             <div className="text-white bg-primaryDark-400 flex px-3 py-2 md:px-6 tracking-wide md:py-3 text-lg md:text-3xl rounded-lg">
-              {data[userIdx].score} PTS
+              {userIdx !== -1 ? data[userIdx].score : 0} PTS
             </div>
           </div>
         </div>

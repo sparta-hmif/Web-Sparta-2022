@@ -14,6 +14,11 @@ const DropzoneImage: React.FC<DropzoneProps> = ({ onFileUpload }) => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
     if (file) {
+      if (file.type !== "image/jpeg" && file.type !== "image/png") {
+        alert("File must be an image");
+        return;
+      }
+
       setSelectedFile(file);
       onFileUpload(file);
     }
@@ -41,7 +46,10 @@ const DropzoneImage: React.FC<DropzoneProps> = ({ onFileUpload }) => {
         style={{ display: "none" }}
         id="file-input"
       />
-      <label htmlFor="file-input" className="absolute p-3 bg-primaryDark-400 text-white rounded-xl bottom-0 right-0 translate-x-1/4 translate-y-1/4 cursor-pointer">
+      <label
+        htmlFor="file-input"
+        className="absolute p-3 bg-primaryDark-400 text-white rounded-xl bottom-0 right-0 translate-x-1/4 translate-y-1/4 cursor-pointer"
+      >
         <HiPencil size={32} />
       </label>
     </div>

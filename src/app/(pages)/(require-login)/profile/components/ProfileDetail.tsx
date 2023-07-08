@@ -45,13 +45,13 @@ const ProfileDetail = () => {
   return (
     <div className="bg-white border-primaryDark-400 border-[5px] rounded-xl flex flex-col items-center lg:items-end px-2 py-8 md:p-10 gap-8">
       <div className="flex flex-col md:flex-row w-full text-left gap-8 items-center justify-center ">
-        <div className="flex items-center overflow-hidden w-1/2 aspect-square lg:w-[35%] lg:h-[22rem] rounded-xl">
-          <div className="w-full h-auto relative aspect-square">
+        <div className="flex items-center overflow-hidden w-1/2 aspect-square lg:w-[35%] lg:h-[22rem] z-10 rounded-xl">
+          <div className="w-full h-auto relative aspect-square rounded-xl overflow-hidden z-10">
             <Image
               alt="profileSpartan"
               src={user.imageURL || SpartaLogo}
               fill={true}
-              className="w-full h-full object-cover object-center"
+              className="object-cover object-center"
               unoptimized={true}
             />
           </div>
