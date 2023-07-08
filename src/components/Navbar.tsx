@@ -11,9 +11,10 @@ import Link from "next/link";
 
 import DefaultProfPic from "@/../public/images/landing/sparta.png";
 import { User } from "@prisma/client";
+import { UserSession } from "./UserFetcher";
 
 interface NavbarProps {
-  user: User | null;
+  user: UserSession | null;
 }
 
 interface ItemProps {
