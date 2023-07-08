@@ -23,53 +23,53 @@
           },
           "staff": [
               {
-                  "namaPendek": "Attariq A Azhar",
+                  "namaPendek": "Attariq M Azhar",
                   "nim": "18221043",
                   "jabatan": "STAFF",
                   "divisi": "ACARA",
-                  "imageURL": ""
+                  "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/attariq-muhammad.png"
               },
               {
                   "namaPendek": "M Bangkit Dwi C",
                   "nim": "13521055",
                   "jabatan": "STAFF",
                   "divisi": "ACARA",
-                  "imageURL": ""
+                  "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/muhammad-bangkit.jpg"
               },
               {
                   "namaPendek": "Fikri Naufal H",
                   "nim": "18221096",
                   "jabatan": "STAFF",
                   "divisi": "ACARA",
-                  "imageURL": ""
+                  "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/fikri-naufal.jpg"
               },
               {
                   "namaPendek": "Michael Sihotang",
                   "nim": "18221054",
                   "jabatan": "STAFF",
                   "divisi": "ACARA",
-                  "imageURL": ""
+                  "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/michael-sihotang.jpg"
               },
               {
                   "namaPendek": "Rifqi Syafiq",
                   "nim": "18221070",
                   "jabatan": "STAFF",
                   "divisi": "ACARA",
-                  "imageURL": ""
+                  "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/rifqi-syafiq.jpg"
               },
               {
                   "namaPendek": "Oncar Awwalu R",
                   "nim": "18221068",
                   "jabatan": "STAFF",
                   "divisi": "ACARA",
-                  "imageURL": ""
+                  "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/oncar-awwalu.jpg"
               },
               {
                   "namaPendek": "M Rizky Sya'ban",
                   "nim": "13521119",
                   "jabatan": "STAFF",
                   "divisi": "ACARA",
-                  "imageURL": ""
+                  "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/rizky-syaban.jpg"
               }
           ]
       },
@@ -101,98 +101,98 @@
                   "nim": "13521024",
                   "jabatan": "STAFF",
                   "divisi": "MSDM_KADER",
-                  "imageURL": ""
+                  "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/ahmad-nadil.jpg"
               },
               {
                   "namaPendek": "Akbar Maulana R",
                   "nim": "13521093",
                   "jabatan": "STAFF",
                   "divisi": "MSDM_KADER",
-                  "imageURL": ""
+                  "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/akbar-maulana.png"
               },
               {
                   "namaPendek": "Asyifa Nurul S",
                   "nim": "13521125",
                   "jabatan": "STAFF",
                   "divisi": "MSDM_KADER",
-                  "imageURL": ""
+                  "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/asyifa-nurul.jpg"
               },
               {
                   "namaPendek": "Bernardus Willson",
                   "nim": "13521021",
                   "jabatan": "STAFF",
                   "divisi": "MSDM_KADER",
-                  "imageURL": ""
+                  "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/bernardus-wilson.jpg"
               },
               {
                   "namaPendek": "Fawwaz Abrial S",
                   "nim": "18221067",
                   "jabatan": "STAFF",
                   "divisi": "MSDM_KADER",
-                  "imageURL": ""
+                  "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/fawwaz-abrial.jpg"
               },
               {
                   "namaPendek": "Frendy Sanusi",
                   "nim": "18221041",
                   "jabatan": "STAFF",
                   "divisi": "MSDM_KADER",
-                  "imageURL": ""
+                  "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/frendy-sanusi.jpg"
               },
               {
                   "namaPendek": "Hugo Benedicto T",
                   "nim": "18221131",
                   "jabatan": "STAFF",
                   "divisi": "MSDM_KADER",
-                  "imageURL": ""
+                  "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/hugo-benedicto.jpg"
               },
               {
                   "namaPendek": "Jonathan Arthurito",
                   "nim": "18221079",
                   "jabatan": "STAFF",
                   "divisi": "MSDM_KADER",
-                  "imageURL": ""
+                  "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/jonathan-arthurito.jpg"
               },
               {
                   "namaPendek": "Luthfi Hanif",
                   "nim": "18221151",
                   "jabatan": "STAFF",
                   "divisi": "MSDM_KADER",
-                  "imageURL": ""
+                  "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/luthfi-hanif.jpg"
               },
               {
                   "namaPendek": "M.A Bismaramadhan",
                   "nim": "18221028",
                   "jabatan": "STAFF",
                   "divisi": "MSDM_KADER",
-                  "imageURL": ""
+                  "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/bismaramadhan.jpeg"
               },
               {
                   "namaPendek": "Maggie Zeta R.S",
                   "nim": "13521117",
                   "jabatan": "STAFF",
                   "divisi": "MSDM_KADER",
-                  "imageURL": ""
+                  "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/maggie-zeta.jpg"
               },
               {
                   "namaPendek": "M.A Maysan Abyan",
                   "nim": "13521076",
                   "jabatan": "STAFF",
                   "divisi": "MSDM_KADER",
-                  "imageURL": ""
+                  "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/mohammad-abyan.jpg"
               },
               {
                   "namaPendek": "Sulthan Dzaky A",
                   "nim": "13521159",
                   "jabatan": "STAFF",
                   "divisi": "MSDM_KADER",
-                  "imageURL": ""
+                  "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/sulthan-dzaky.png"
               },
               {
                   "namaPendek": "Wan Aufa A",
                   "nim": "18221001",
                   "jabatan": "STAFF",
                   "divisi": "MSDM_KADER",
-                  "imageURL": ""
+                  "imageURL": "https://spartahmif2022.s3.ap-southeast-1.amazonaws.com/panitia/konseptor/wan-aufa.jpg"
               }
           ]
       }
