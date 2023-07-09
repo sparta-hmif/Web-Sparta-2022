@@ -26,7 +26,10 @@ export async function PATCH(
       ((session.user as User).role !== "MENTOR" &&
         (session.user as User).role !== "ADMIN")
     ) {
-      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+      return NextResponse.json(
+        { message: "mau ngapain mas/mba ??" },
+        { status: 401 }
+      );
     }
 
     if (!nim || !score) {
