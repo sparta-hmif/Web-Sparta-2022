@@ -10,6 +10,7 @@ import { FileRejection } from "react-dropzone";
 import { useSession } from "next-auth/react";
 import { User } from "@prisma/client";
 import { useS3Upload } from "next-s3-upload";
+import toast from "react-hot-toast";
 
 interface AssignmentProps {
   judulTugas: string;
@@ -51,7 +52,11 @@ const Assignment = ({
   const session = useSession();
 
   const handleSubmission = async () => {
+    const toastId = toast.loading('Loading...');
     if (!file) {
+      toast.error("No file selected", {
+        id: toastId,
+      });
       return;
     }
 
@@ -66,6 +71,17 @@ const Assignment = ({
         body: JSON.stringify({ fileURL: url }),
       }
     );
+    if (res.status === 200) {
+      toast.success("File uploaded", {
+        id: toastId,
+      });
+      return;
+    }
+
+    toast.error("Failed to upload file", {
+      id: toastId,
+    });
+
     const resJson = await res.json();
     console.log(resJson);
   };
@@ -147,7 +163,7 @@ const Assignment = ({
         ) : (
           <>
             <div className="font-sen text-h6 md:text-h5 text-black font-bold pt-1 md:pt-3">
-              Submission
+              {isSubmitted ? "Resubmission" : "Submission"}
             </div>
             <Dropzone
               onFileSelected={handleFileSelected}
