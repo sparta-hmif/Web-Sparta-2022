@@ -9,7 +9,7 @@ import DayModal from "./components/DayModal";
 
 const Journey = () => {
   // Fetch data disini
-  const day: number = 1;
+  const day: number = 0;
 
   const [showModal, setShowModal] = useState(0);
 
