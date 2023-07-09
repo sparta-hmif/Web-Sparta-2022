@@ -109,6 +109,7 @@ export async function POST(req: NextRequest) {
     else {
       logger.log("ada yg salah di folder2an");
       logArr.push("ada yg salah di folder2an");
+      logArr.push(folder);
       throw new Error("Google API Error While Searching");
     }
 
