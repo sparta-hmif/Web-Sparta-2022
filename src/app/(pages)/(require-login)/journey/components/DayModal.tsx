@@ -18,7 +18,7 @@ const DayModal = ({
     starReview: number;
     story: string;
     reflection: string;
-  }
+  };
   onClose: () => void;
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -30,9 +30,15 @@ const DayModal = ({
       <FaStar
         size={20}
         className={`${
-          contentValue.starReview >= order ? "text-primary-400" : "text-primaryLight-700"
-        } cursor-pointer`}
-        onClick={() => setContentValue((prev) => ({ ...prev, starReview: order }))}
+          contentValue.starReview >= order
+            ? "text-primary-400"
+            : "text-primaryLight-700"
+        } ${viewMode ? "cursor-default" : "cursor-pointer"}`}
+        onClick={() => {
+          if (!viewMode) {
+            setContentValue((prev) => ({ ...prev, starReview: order }));
+          }
+        }}
       />
     );
   };
@@ -65,9 +71,9 @@ const DayModal = ({
               <StarElement order={3} />
               <StarElement order={4} />
               <StarElement order={5} />
-              <h5 className="font-bold leading-none text-lg ml-2">
+              {!viewMode && <h5 className="font-bold leading-none text-lg ml-2">
                 {contentValue.starReview}
-              </h5>
+              </h5>}
             </div>
           </div>
           <div className=" w-full flex flex-col h-[70%] lg:h-[65%] mt-4 mb-3">

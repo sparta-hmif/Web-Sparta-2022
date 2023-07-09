@@ -5,6 +5,7 @@ import Button from "@/components/Button";
 import { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const LoginForm = () => {
   const [nim, setNim] = useState("");
@@ -28,7 +29,9 @@ const LoginForm = () => {
       // print error if error
       if (res?.error) {
         console.log("error : ", res.error);
+        toast.error("Invalid credentials");
       } else {
+        toast.success("Login success");
         router.refresh();
       }
     } catch (error) {
