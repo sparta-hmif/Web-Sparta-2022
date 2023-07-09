@@ -47,8 +47,8 @@ const AddAssignment = () => {
     const data = {
       title,
       description: desc,
-      startTime: startDate,
-      endTime: endDate,
+      startTime: startDate?.toISOString(),
+      endTime: endDate?.toISOString(),
       attachments: attachment.map((val) => ({
         title: val.judul,
         link: val.link,

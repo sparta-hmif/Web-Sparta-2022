@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
       await req.json();
 
     const session = await getServerSession(authOptions);
-
+    console.log(startTime);
     // Route protection
     if (
       !session?.user ||
@@ -48,8 +48,8 @@ export async function POST(req: NextRequest) {
         title: title,
         dayId: day.id,
         description: description,
-        startTime: new Date(startTime),
-        endTime: new Date(endTime),
+        startTime: new Date(startTime).toISOString(),
+        endTime: new Date(endTime).toISOString(),
         attachments: attachments,
       },
     });
