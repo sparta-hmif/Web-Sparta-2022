@@ -32,7 +32,7 @@ const Scoreboard = async () => {
 
   for (let i = 65; i <= 90; i++) {
     const letter = String.fromCharCode(i);
-    data.push({ groupName: `Kelompok ${letter}`, score: 0 });
+    data.push({ name: `Kelompok ${letter}`, score: 0, nim: "", rank: 0 });
   }
 
   if (res.status === 200) {
@@ -40,16 +40,18 @@ const Scoreboard = async () => {
 
     for (let i = 0; i < spartans.length; i++) {
       if (spartans[i].kelompok) {
-        data[parseInt(spartans[i].kelompok) - 65].score += spartans[i].score;
+        data[spartans[i].kelompok.charCodeAt(0) - 65].score +=
+          spartans[i].score;
       }
     }
 
     data.sort((a: any, b: any) => b.score - a.score);
     for (let i = 0; i < data.length; i++) {
-      if (data[i].groupName === user.kelompok) {
+      data[i].rank = i + 1;
+
+      if (data[i].name === `Kelompok ${user.kelompok}`) {
         userIdx = i;
         userRank = i + 1;
-        break;
       }
     }
   }

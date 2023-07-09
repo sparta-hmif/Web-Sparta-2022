@@ -8,6 +8,7 @@ export interface UserSession {
   nim: string;
   role: string;
   imageURL: string;
+  kelompok: string;
 }
 
 interface UserFetcherProps {
