@@ -12,9 +12,12 @@ import { useS3Upload } from "next-s3-upload";
 import Button from "@/components/Button";
 import TextFields from "@/components/TextFields";
 import DropzoneImage from "@/components/DropzoneImage";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const EditProfile = () => {
   const session = useSession();
+  const router = useRouter();
 
   const { data, error, isLoading } = useSWR(
     () =>
@@ -52,13 +55,19 @@ const EditProfile = () => {
   };
 
   const handleSave = async () => {
+    const toastId = toast.loading('Loading...');
+    
     if (!data?.user) {
-      alert("Invalid user");
+      toast.error("Invalid credentials", {
+        id: toastId,
+      });
       return;
     }
 
     if (userData.newPassword !== userData.confirmPassword) {
-      alert("Password baru tidak sama");
+      toast.error("Password doesn't match!", {
+        id: toastId,
+      });
       return;
     }
 
@@ -78,7 +87,9 @@ const EditProfile = () => {
       );
 
       if (res.status !== 200) {
-        alert("Gagal mengubah foto profil");
+        toast.error("Failed to upload", {
+          id: toastId,
+        });
         return;
       }
     }
@@ -113,7 +124,14 @@ const EditProfile = () => {
     );
 
     if (res.status === 200) {
-      alert("Berhasil mengubah data");
+      toast.success("Profile Updated!", {
+        id: toastId,
+      });
+      router.push("/profile");
+    } else {
+      toast.error("Failed to update", {
+        id: toastId,
+      });
     }
   };
 

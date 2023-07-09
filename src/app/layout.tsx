@@ -3,6 +3,7 @@ import Provider from "../components/Provider";
 import UserFetcher from "@/components/UserFetcher";
 import "./globals.css";
 import { Koulen, Hammersmith_One, Sen } from "next/font/google";
+import ToasterContext from "./context/ToasterContext";
 
 const koulen = Koulen({
   subsets: ["latin"],
@@ -43,6 +44,7 @@ export default function RootLayout({
         className={`${koulen.variable} ${hammersmith.variable} ${sen.variable}`}
       >
         <Provider>
+          <ToasterContext />
           <UserFetcher>{({ user }) => <Navbar user={user} />}</UserFetcher>
           <div>{children}</div>
         </Provider>
