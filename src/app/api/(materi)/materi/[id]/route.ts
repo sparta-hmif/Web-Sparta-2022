@@ -13,7 +13,10 @@ export async function GET(
 
   // Route protection
   if (!session?.user) {
-    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    return NextResponse.json(
+      { message: "mau ngapain mas/mba ??" },
+      { status: 401 }
+    );
   }
 
   const materi = await prisma.materi.findUnique({

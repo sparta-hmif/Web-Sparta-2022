@@ -13,7 +13,10 @@ export async function GET() {
     ((session.user as User).role !== "MAMET" &&
       (session.user as User).role !== "ADMIN")
   ) {
-    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    return NextResponse.json(
+      { message: "mau ngapain mas/mba ??" },
+      { status: 401 }
+    );
   }
 
   const tugasList = await prisma.tugas.findMany({

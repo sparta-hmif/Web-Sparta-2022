@@ -9,6 +9,7 @@ import Dropzone from "@/components/Dropzone";
 import { FileRejection } from "react-dropzone";
 import { useSession } from "next-auth/react";
 import { User } from "@prisma/client";
+import { useS3Upload } from "next-s3-upload";
 
 interface AssignmentProps {
   judulTugas: string;
@@ -45,19 +46,16 @@ const Assignment = ({
   const isExpired = endDate.getTime() < today.getTime();
   const [file, setFile] = useState<File>();
 
+  const { uploadToS3 } = useS3Upload();
+
   const session = useSession();
 
   const handleSubmission = async () => {
     if (!file) {
       return;
     }
-    if (file.type !== "application/pdf") {
-      alert("File must be in PDF format");
-      return;
-    }
 
-    const formData = new FormData();
-    formData.append("media", file);
+    const { url } = await uploadToS3(file);
 
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_WEB_URL}/api/tugas/upload?nim=${
@@ -65,7 +63,7 @@ const Assignment = ({
       }&tugas=${tugasId}`,
       {
         method: "POST",
-        body: formData,
+        body: JSON.stringify({ fileURL: url }),
       }
     );
     const resJson = await res.json();

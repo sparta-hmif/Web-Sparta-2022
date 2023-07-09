@@ -16,7 +16,10 @@ export async function POST(req: NextRequest) {
       ((session.user as User).role !== "MAMET" &&
         (session.user as User).role !== "ADMIN")
     ) {
-      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+      return NextResponse.json(
+        { message: "mau ngapain mas/mba ??" },
+        { status: 401 }
+      );
     }
 
     await prisma.materi.create({
