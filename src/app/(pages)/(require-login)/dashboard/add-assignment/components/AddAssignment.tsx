@@ -5,6 +5,7 @@ import Button from "@/components/Button";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import LinkAttachment, { AttachmentProps } from "@/components/LinkAttachment";
+import toast from "react-hot-toast";
 
 const AddAssignment = () => {
   // Component states
@@ -55,6 +56,7 @@ const AddAssignment = () => {
       })),
       dayNum: day,
     };
+    const toastId = toast.loading('Loading...');
     const res = await fetch(process.env.NEXT_PUBLIC_WEB_URL + "/api/tugas", {
       method: "POST",
       headers: {
@@ -65,8 +67,15 @@ const AddAssignment = () => {
     const resJson = await res.json();
 
     if (resJson.message === "success") {
-      handleReset();
+      toast.success("Assignment added successfully", {
+        id: toastId,
+      });
+      return handleReset();
     }
+
+    toast.error(resJson.message, {
+      id: toastId,
+    });
   };
 
   return (
@@ -86,7 +95,7 @@ const AddAssignment = () => {
             <input
               type="text"
               id="judul"
-              className="py-2 px-3 text-[8px] font-sen text-secondaryDark-400 bg-primaryLight-400 rounded-lg border-secondaryDark-400 border-[1px] placeholder:text-secondaryDark-200 focus:outline-none focus:border-[1px] focus:border-secondary-400 lg:text-[16px]"
+              className="py-2 px-3 text-sm font-sen text-secondaryDark-400 bg-primaryLight-400 rounded-lg border-secondaryDark-400 border-[1px] placeholder:text-secondaryDark-200 focus:outline-none focus:border-[1px] focus:border-secondary-400 lg:text-base"
               placeholder="Judul"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -103,7 +112,7 @@ const AddAssignment = () => {
               <input
                 type="text"
                 id="Day"
-                className="py-2 px-3 text-[8px] font-sen text-secondaryDark-400 bg-primaryLight-400 rounded-lg border-secondaryDark-400 border-[1px] placeholder:text-secondaryDark-200 focus:outline-none focus:border-[1px] focus:border-secondary-400 lg:text-[16px]"
+                className="py-2 px-3 text-sm font-sen text-secondaryDark-400 bg-primaryLight-400 rounded-lg border-secondaryDark-400 border-[1px] placeholder:text-secondaryDark-200 focus:outline-none focus:border-[1px] focus:border-secondary-400 lg:text-base"
                 placeholder="Day"
                 value={day}
                 onChange={(e) => setDay(e.target.value)}
@@ -119,7 +128,7 @@ const AddAssignment = () => {
               <div className="relative flex flex-col justify-center">
                 <DatePicker
                   id="Start Date"
-                  className="w-full py-2 px-3 text-[8px] font-sen text-secondaryDark-400 bg-primaryLight-400 rounded-lg border-secondaryDark-400 border-[1px] placeholder:text-secondaryDark-200 focus:outline-none focus:border-[1px] focus:border-secondary-400 lg:text-[16px]"
+                  className="w-full py-2 px-3 text-sm font-sen text-secondaryDark-400 bg-primaryLight-400 rounded-lg border-secondaryDark-400 border-[1px] placeholder:text-secondaryDark-200 focus:outline-none focus:border-[1px] focus:border-secondary-400 lg:text-base"
                   placeholderText="Start Date"
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}
@@ -140,7 +149,7 @@ const AddAssignment = () => {
               <div className="relative flex flex-col justify-center">
                 <DatePicker
                   id="End Date"
-                  className="w-full py-2 px-3 text-[8px] font-sen text-secondaryDark-400 bg-primaryLight-400 rounded-lg border-secondaryDark-400 border-[1px] placeholder:text-secondaryDark-200 focus:outline-none focus:border-[1px] focus:border-secondary-400 lg:text-[16px]"
+                  className="w-full py-2 px-3 text-sm font-sen text-secondaryDark-400 bg-primaryLight-400 rounded-lg border-secondaryDark-400 border-[1px] placeholder:text-secondaryDark-200 focus:outline-none focus:border-[1px] focus:border-secondary-400 lg:text-base"
                   placeholderText="End Date"
                   selected={endDate}
                   onChange={(date) => setEndDate(date)}
@@ -162,7 +171,7 @@ const AddAssignment = () => {
             </label>
             <textarea
               id="Description"
-              className="py-2 px-3 h-[100px] text-[8px] font-sen text-secondaryDark-400 bg-primaryLight-400 rounded-lg border-secondaryDark-400 border-[1px] placeholder:text-secondaryDark-200 focus:outline-none focus:border-[1px] focus:border-secondary-400 lg:text-[16px] lg:h-[234px]"
+              className="py-2 px-3 h-[100px] text-sm font-sen text-secondaryDark-400 bg-primaryLight-400 rounded-lg border-secondaryDark-400 border-[1px] placeholder:text-secondaryDark-200 focus:outline-none focus:border-[1px] focus:border-secondary-400 lg:text-base lg:h-[234px]"
               placeholder="Description"
               value={desc}
               onChange={(e) => setDesc(e.target.value)}
@@ -183,7 +192,7 @@ const AddAssignment = () => {
               />
             </div>
           </div>
-          <div className="flex justify-center gap-2 my-7 lg:justify-end">
+          <div className="flex justify-center gap-2 mt-10 w-full max-w-[30rem] lg:justify-end md:ml-auto">
             <Button
               isPrimary={false}
               text={"Cancel"}

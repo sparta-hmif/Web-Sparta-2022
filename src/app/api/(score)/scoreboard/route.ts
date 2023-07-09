@@ -30,6 +30,7 @@ export async function GET(req: NextRequest) {
         fullName: true,
         score: true,
         imageURL: true,
+        kelompok: true,
       },
       where: {
         role: "PESERTA",

@@ -1,6 +1,24 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect } from "react";
 
 const Hero = () => {
+
+  useEffect(() => {
+    let mountain = document.getElementById("mountain");
+    const handleScroll = () => {
+      let value = window.scrollY;
+      if (mountain) {
+        mountain.style.bottom = (value * -0.5) + 40 + "px";
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  
   return (
     <div className="overflow-hidden min-h-screen bg-[url('/images/landing/HeroBackground.svg')] bg-no-repeat bg-center bg-cover relative">
       <Image
@@ -8,8 +26,9 @@ const Hero = () => {
         src="/images/landing/MountainHero.svg"
         width={200}
         height={200}
-        className="absolute w-screen bottom-[5%] inset-x-0"
+        className="absolute w-screen bottom-[40px] inset-x-0 "
         priority={true}
+        id="mountain"
       />
       <Image
         alt="mountain"
