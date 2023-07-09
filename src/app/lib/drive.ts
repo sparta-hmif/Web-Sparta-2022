@@ -48,6 +48,7 @@ export async function searchFolderIdByName(
     }
   } catch (error) {
     console.error("Error searching folder:", error);
+    logArr.push(error);
     return { status: 500, arr: logArr };
   }
 }
