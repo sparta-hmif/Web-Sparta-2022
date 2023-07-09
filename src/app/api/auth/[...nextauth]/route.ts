@@ -87,6 +87,7 @@ export const authOptions: NextAuthOptions = {
           role: true,
           email: true,
           imageURL: true,
+          kelompok: true,
         },
       });
 

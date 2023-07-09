@@ -9,8 +9,8 @@ import { cookies } from "next/headers";
 import DefaultProfPic from "@/../public/images/landing/sparta.png";
 
 // Component imports
-import ScoreList from "./components/ScoreList";
-import ScorePillar from "./components/ScorePillar";
+import ScoreList from "../components/ScoreList";
+import ScorePillar from "../components/ScorePillar";
 
 const Scoreboard = async () => {
   const session = await getServerSession(authOptions);
@@ -24,36 +24,35 @@ const Scoreboard = async () => {
   const res = await fetch(process.env.NEXT_PUBLIC_WEB_URL + "/api/scoreboard", {
     headers: { Cookie: cookies().toString() },
   });
-  console.log(res);
   const resJson = await res.json();
 
   let data: any = [];
   let userRank = 0;
   let userIdx = -1;
 
+  for (let i = 65; i <= 90; i++) {
+    const letter = String.fromCharCode(i);
+    data.push({ name: `Kelompok ${letter}`, score: 0, nim: "", rank: 0 });
+  }
+
   if (res.status === 200) {
     const { spartans } = resJson;
 
-    let count = 1;
     for (let i = 0; i < spartans.length; i++) {
-      if (i !== 0 && spartans[i - 1].score > spartans[i].score) {
-        count++;
+      if (spartans[i].kelompok) {
+        data[spartans[i].kelompok.charCodeAt(0) - 65].score +=
+          spartans[i].score;
       }
+    }
 
-      if (spartans[i].nim === user.nim) {
-        userRank = count;
+    data.sort((a: any, b: any) => b.score - a.score);
+    for (let i = 0; i < data.length; i++) {
+      data[i].rank = i + 1;
+
+      if (data[i].name === `Kelompok ${user.kelompok}`) {
         userIdx = i;
+        userRank = i + 1;
       }
-
-      const newData = {
-        rank: count,
-        name: spartans[i].fullName,
-        nim: spartans[i].nim,
-        score: spartans[i].score,
-        image: spartans[i].imageURL || "",
-      };
-
-      data = [...data, newData];
     }
   }
 
@@ -75,13 +74,13 @@ const Scoreboard = async () => {
       <div className="container mx-auto relative mt-16 md:mt-20 pb-10">
         <div className="shadow-lg px-4 py-3 md:px-7 md:py-5 mb-10 font-koulen text-primaryDark-400 w-[90%] max-w-[38rem] bg-white flex border-primaryDark-400 border-4 rounded-xl md:rounded-3xl mx-auto">
           <div className="w-1/2 flex flex-col items-start justify-between">
-            <div className="w-5/12 rounded-full aspect-square bg-primaryDark-400 overflow-hidden">
+            <div className="w-5/12 rounded-full aspect-square overflow-hidden">
               <Image
-                src={user.imageURL || DefaultProfPic}
+                src={DefaultProfPic}
                 alt="user"
-                width={200}
-                height={200}
-                className="object-cover object-center"
+                width={300}
+                height={300}
+                className="object-cover w-full h-full object-center"
               />
             </div>
             <p className="text-2xl md:text-4xl mt-5 md:mt-10 lg:mt-15 line-clamp-2">
