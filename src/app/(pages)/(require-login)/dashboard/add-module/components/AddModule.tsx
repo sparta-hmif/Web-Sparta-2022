@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import Button from "@/components/Button";
 import { MdClose } from "react-icons/md";
 import LinkAttachment, { AttachmentProps } from "@/components/LinkAttachment";
+import toast from "react-hot-toast";
 
 const AddModule = () => {
   // Component states
@@ -67,6 +68,8 @@ const AddModule = () => {
         link: val.link,
       })),
     };
+    const toastId = toast.loading('Loading...');
+
     const res = await fetch(process.env.NEXT_PUBLIC_WEB_URL + "/api/materi", {
       method: "POST",
       headers: {
@@ -78,8 +81,15 @@ const AddModule = () => {
     console.log(resJson);
 
     if (resJson.message === "success") {
-      handleReset();
+      toast.success("Module added successfully", {
+        id: toastId,
+      });
+      return handleReset();
     }
+
+    toast.error("Failed to add module", {
+      id: toastId,
+    });
   };
 
   // Handle form reset
@@ -111,7 +121,7 @@ const AddModule = () => {
             <input
               type="text"
               id="judul"
-              className="py-2 px-3 text-[8px] font-sen text-secondaryDark-400 bg-primaryLight-400 rounded-lg border-secondaryDark-400 border-[1px] placeholder:text-secondaryDark-200 focus:outline-none focus:border-[1px] focus:border-secondary-400 lg:text-[16px]"
+              className="py-2 px-3 text-sm font-sen text-secondaryDark-400 bg-primaryLight-400 rounded-lg border-secondaryDark-400 border-[1px] placeholder:text-secondaryDark-200 focus:outline-none focus:border-[1px] focus:border-secondary-400 lg:base"
               placeholder="Judul"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -152,7 +162,7 @@ const AddModule = () => {
                     (contentFocus == index
                       ? "border-secondary-400 "
                       : "border-secondaryDark-400 ") +
-                    "py-2 pl-3 pr-7 lg:pr-9 text-[8px] font-sen text-secondaryDark-400 bg-[#BEBEBE] rounded-lg rounded-b-none border-[1px] border-b-0 placeholder:text-secondaryDark-200 focus:outline-none lg:text-[16px]"
+                    "py-2 pl-3 pr-7 lg:pr-9 text-sm font-sen text-secondaryDark-400 bg-[#BEBEBE] rounded-lg rounded-b-none border-[1px] border-b-0 placeholder:text-secondaryDark-200 focus:outline-none lg:text-base"
                   }
                   placeholder="Section Title"
                 />
@@ -166,7 +176,7 @@ const AddModule = () => {
                     (contentFocus == index
                       ? "border-secondary-400 border-t-secondaryDark-400 "
                       : "border-secondaryDark-400 ") +
-                    "h-[64px] lg:h-[100px] py-2 px-3 text-[8px] font-sen text-secondaryDark-400 bg-primaryLight-400 rounded-lg rounded-t-none border-[1px] placeholder:text-secondaryDark-200 focus:outline-none lg:text-[16px]"
+                    "h-[64px] lg:h-[100px] py-2 px-3 text-sm font-sen text-secondaryDark-400 bg-primaryLight-400 rounded-lg rounded-t-none border-[1px] placeholder:text-secondaryDark-200 focus:outline-none lg:text-base"
                   }
                   placeholder="Description"
                 />
@@ -196,7 +206,7 @@ const AddModule = () => {
               />
             </div>
           </div>
-          <div className="flex justify-center gap-2 my-7 lg:justify-end">
+          <div className="flex justify-center gap-2 mt-10 w-full max-w-[30rem] lg:justify-end md:ml-auto">
             <Button
               isPrimary={false}
               text={"Cancel"}

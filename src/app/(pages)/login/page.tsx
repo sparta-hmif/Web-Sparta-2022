@@ -14,7 +14,6 @@ const Login = async () => {
   return (
     <>
       <div className="relative overflow-hidden max-h-screen">
-        <div className="absolute top-0 z-30 bg-red-600 w-screen">Navbar</div>
         <div className="hidden sm:block overflow-hidden min-h-screen bg-[url('/images/landing/HeroBackground.svg')] bg-no-repeat bg-center bg-cover ">
           <Image
             alt="mountain"
@@ -68,13 +67,14 @@ const Login = async () => {
         </div>
         <div className="min-h-full sm:w-1/2 bg-white sm:absolute sm:z-20 sm:top-0 sm:right-0 sm:flex sm:flex-row">
           <div className="hidden sm:block bg-repeat-y w-8 bg-center mx-0 bg-[url('/images/landing/Border.svg')]"></div>
-          <div className="sm:flex-auto flex flex-col pt-12 min-w-screen min-h-screen">
+          <div className="sm:flex-auto flex flex-col pt-28 min-w-screen min-h-screen">
             <div className="flex items-center justify-center gap-4 mx-4">
               <Image
                 alt="mountain"
                 src="/images/landing/Sling.svg"
                 width={100}
                 height={100}
+                className="w-1/5 max-w-[5rem]"
               />
               <h2 className="text-primary-400">Login</h2>
               <Image
@@ -82,10 +82,10 @@ const Login = async () => {
                 src="/images/landing/Sling.svg"
                 width={100}
                 height={100}
-                className="transform rotate-180"
+                className="transform rotate-180 w-1/5 max-w-[5rem]"
               />
             </div>
-            <div className="flex flex-col items-center justify-center gap-4 mx-12 mt-11 sm:mt-20">
+            <div className="flex flex-col items-center justify-center gap-4 mx-12 mt-11 sm:mt-5">
               <LoginForm />
               <div className="flex flex-col items-center justify-center">
                 <p className="body-1 text-center  sm:w-2/3">
