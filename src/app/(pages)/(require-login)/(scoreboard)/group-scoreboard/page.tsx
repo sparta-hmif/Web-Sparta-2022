@@ -9,8 +9,8 @@ import { cookies } from "next/headers";
 import DefaultProfPic from "@/../public/images/landing/sparta.png";
 
 // Component imports
-import ScoreList from "./components/ScoreList";
-import ScorePillar from "./components/ScorePillar";
+import ScoreList from "../components/ScoreList";
+import ScorePillar from "../components/ScorePillar";
 
 const Scoreboard = async () => {
   const session = await getServerSession(authOptions);
@@ -75,13 +75,13 @@ const Scoreboard = async () => {
       <div className="container mx-auto relative mt-16 md:mt-20 pb-10">
         <div className="shadow-lg px-4 py-3 md:px-7 md:py-5 mb-10 font-koulen text-primaryDark-400 w-[90%] max-w-[38rem] bg-white flex border-primaryDark-400 border-4 rounded-xl md:rounded-3xl mx-auto">
           <div className="w-1/2 flex flex-col items-start justify-between">
-            <div className="w-5/12 rounded-full aspect-square bg-primaryDark-400 overflow-hidden">
+            <div className="w-5/12 rounded-full aspect-square overflow-hidden">
               <Image
                 src={user.imageURL || DefaultProfPic}
                 alt="user"
-                width={200}
-                height={200}
-                className="object-cover object-center"
+                width={300}
+                height={300}
+                className="object-cover w-full h-full object-center"
               />
             </div>
             <p className="text-2xl md:text-4xl mt-5 md:mt-10 lg:mt-15 line-clamp-2">
