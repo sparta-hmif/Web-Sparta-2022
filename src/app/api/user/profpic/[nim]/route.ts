@@ -20,7 +20,10 @@ export async function PUT(
       (session.user as User).nim !== nim &&
       (session.user as User).role !== "ADMIN")
   ) {
-    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    return NextResponse.json(
+      { message: "mau ngapain mas/mba ??" },
+      { status: 401 }
+    );
   }
 
   if (!imageURL) {
@@ -39,7 +42,9 @@ export async function PUT(
       },
     });
 
-    return NextResponse.json({ message: "User's imageURL updated successfully" });
+    return NextResponse.json({
+      message: "User's imageURL updated successfully",
+    });
   } catch (error) {
     return NextResponse.json(
       { message: "Failed to update user's imageURL", error },

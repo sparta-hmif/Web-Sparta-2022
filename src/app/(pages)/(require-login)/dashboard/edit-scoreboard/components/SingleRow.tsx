@@ -2,6 +2,7 @@ import Button from "@/components/Button";
 import { dataProp } from "./Scoreboard";
 import { useRef, useState } from "react";
 import { IoMdCheckboxOutline, IoMdCloseCircleOutline } from "react-icons/io";
+import toast from "react-hot-toast";
 
 const SingleRow = ({ rank, nim, name, score }: dataProp) => {
   const [isEdit, setIsEdit] = useState(false);
@@ -9,6 +10,7 @@ const SingleRow = ({ rank, nim, name, score }: dataProp) => {
   const lastScoreSaved = useRef(score);
 
   const handleSave = async () => {
+    const toastId = toast.loading("Loading...");
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_WEB_URL}/api/score/${nim}`,
       {
@@ -22,7 +24,12 @@ const SingleRow = ({ rank, nim, name, score }: dataProp) => {
     if (res.status === 200) {
       setIsEdit(false);
       lastScoreSaved.current = scoreEdit;
+      toast.success("Score updated!", { id: toastId });
+      return;
     }
+
+    toast.error("Failed to update score", { id: toastId });
+
   };
 
   const handleCancel = () => {

@@ -24,36 +24,33 @@ const Scoreboard = async () => {
   const res = await fetch(process.env.NEXT_PUBLIC_WEB_URL + "/api/scoreboard", {
     headers: { Cookie: cookies().toString() },
   });
-  console.log(res);
   const resJson = await res.json();
 
   let data: any = [];
   let userRank = 0;
   let userIdx = -1;
 
+  for (let i = 65; i <= 90; i++) {
+    const letter = String.fromCharCode(i);
+    data.push({ groupName: `Kelompok ${letter}`, score: 0 });
+  }
+
   if (res.status === 200) {
     const { spartans } = resJson;
 
-    let count = 1;
     for (let i = 0; i < spartans.length; i++) {
-      if (i !== 0 && spartans[i - 1].score > spartans[i].score) {
-        count++;
+      if (spartans[i].kelompok) {
+        data[parseInt(spartans[i].kelompok) - 65].score += spartans[i].score;
       }
+    }
 
-      if (spartans[i].nim === user.nim) {
-        userRank = count;
+    data.sort((a: any, b: any) => b.score - a.score);
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].groupName === user.kelompok) {
         userIdx = i;
+        userRank = i + 1;
+        break;
       }
-
-      const newData = {
-        rank: count,
-        name: spartans[i].fullName,
-        nim: spartans[i].nim,
-        score: spartans[i].score,
-        image: spartans[i].imageURL || "",
-      };
-
-      data = [...data, newData];
     }
   }
 
@@ -77,7 +74,7 @@ const Scoreboard = async () => {
           <div className="w-1/2 flex flex-col items-start justify-between">
             <div className="w-5/12 rounded-full aspect-square overflow-hidden">
               <Image
-                src={user.imageURL || DefaultProfPic}
+                src={DefaultProfPic}
                 alt="user"
                 width={300}
                 height={300}

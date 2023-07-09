@@ -10,6 +10,8 @@ export async function searchFolderIdByName(
   _parentId: string,
   _foldername: string // folder
 ) {
+  const logArr = [];
+  logArr.push("masuk search folder");
   // Menginisialisasi Google Drive API
   const drive = google.drive({ version: "v3", auth });
 
@@ -22,6 +24,8 @@ export async function searchFolderIdByName(
       q: `mimeType='application/vnd.google-apps.folder' and '${_parentId}' in parents`,
       fields: "files(id, name)",
     });
+    logArr.push("kelar query");
+    logArr.push(res);
 
     if (res.data.files) {
       Array.prototype.push.apply(folders, res.data.files);
@@ -44,7 +48,8 @@ export async function searchFolderIdByName(
     }
   } catch (error) {
     console.error("Error searching folder:", error);
-    return { status: 500 };
+    logArr.push(error);
+    return { status: 500, arr: logArr };
   }
 }
 
