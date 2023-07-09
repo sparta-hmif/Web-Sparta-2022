@@ -55,6 +55,7 @@ export async function POST(req: NextRequest) {
     let folder = await searchFolderIdByName(parent_id, _nim);
     logger.log("kelar search folder");
     logArr.push("kelar search folder");
+    logArr.push(folder);
 
     // folder not found
     if (folder.status === 204) {
