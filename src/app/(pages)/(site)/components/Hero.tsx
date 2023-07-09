@@ -8,7 +8,7 @@ const Hero = () => {
         src="/images/landing/MountainHero.svg"
         width={200}
         height={200}
-        className="absolute w-screen bottom-[5%] inset-x-0"
+        className="absolute w-screen bottom-[5%] inset-x-0 "
         priority={true}
       />
       <Image

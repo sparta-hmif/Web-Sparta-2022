@@ -21,16 +21,16 @@ const LinkAttachment: React.FC<LinkAttachmentProps> = ({
   deleteLink,
 }) => {
   const [link, setLink] = useState<AttachmentProps>({
-    judul: linkArray[0]?.judul || "",
-    link: linkArray[0]?.link || "",
+    judul: "",
+    link: "",
   });
 
-  useEffect(() => {
-    setLink({
-      judul: linkArray[0]?.judul || "",
-      link: linkArray[0]?.link || "",
-    });
-  }, [linkArray]);
+  // useEffect(() => {
+  //   setLink({
+  //     judul: linkArray[0]?.judul || "",
+  //     link: linkArray[0]?.link || "",
+  //   });
+  // }, [linkArray]);
 
   const handleAddLink = () => {
     if (link.judul === "" || link.link === "") return;
@@ -81,7 +81,7 @@ const LinkAttachment: React.FC<LinkAttachmentProps> = ({
 
         <button
           type="button"
-          className="bg-secondary-400 w-full md:w-1/4 py-2 text-button text-white font-bold rounded-xl font-sen"
+          className="bg-secondary-400 w-full md:w-1/4 py-3 text-button text-white font-bold rounded-xl font-sen"
           onClick={handleAddLink}
         >
           Add Link
