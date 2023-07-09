@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
 
       // failed create folder
       if (newfolder.status == 500) {
-        throw new Error();
+        throw new Error("Google API Error While Creating Folder");
       }
 
       // success create folder
@@ -153,6 +153,6 @@ async function lateUploadCheck(id: string) {
       return true;
     }
   } catch {
-    throw new Error();
+    throw new Error("late upload error");
   }
 }
