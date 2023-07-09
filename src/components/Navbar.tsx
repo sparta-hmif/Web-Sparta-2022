@@ -71,7 +71,16 @@ const dataPage = [
   },
   {
     name: "Scoreboard",
-    href: "/scoreboard",
+    dropdown: [
+      {
+        name: "Spartans",
+        href: "/scoreboard",
+      },
+      {
+        name: "Kelompok",
+        href: "/group-scoreboard",
+      },
+    ],
     role: ["MENTOR", "MAMET", "ADMIN", "PESERTA"],
   },
   {
@@ -202,7 +211,7 @@ const Navbar = ({ user }: NavbarProps) => {
             <Link href="/profile">
               <button
                 onClick={toggleDropdown}
-                className="w-full pt-2 py-2 items-start text-left text-primary-400 text-lg px-2 cursor--pointer bg-primaryDark-400 hover:bg-primaryDark-300"
+                className="w-full pt-2 py-2 items-start text-left text-primary-400 text-lg px-2 cursor-pointer bg-primaryDark-400 hover:bg-primaryDark-300"
               >
                 PROFILE
               </button>
@@ -211,7 +220,7 @@ const Navbar = ({ user }: NavbarProps) => {
               onClick={() => {
                 handleSignOut();
               }}
-              className="pointer w-full pt-2 py-2 items-center text-danger-200 text-lg px-2 cursor--pointer bg-primaryDark-400 hover:bg-primaryDark-300"
+              className="w-full pt-2 py-2 items-center text-danger-200 text-lg px-2 cursor-pointer bg-primaryDark-400 hover:bg-primaryDark-300"
             >
               LOGOUT
             </div>
@@ -226,7 +235,11 @@ const Navbar = ({ user }: NavbarProps) => {
         >
           <IoMenu className="text-3xl md:text-5xl" />
         </div>
-        <div className={`bg-neutral-800/70 absolute inset-0 h-screen ${showMenu ? "block" : "hidden"}`}></div>
+        <div
+          className={`bg-neutral-800/70 absolute inset-0 h-screen ${
+            showMenu ? "block" : "hidden"
+          }`}
+        ></div>
         <div
           className={`transition-transform block lg:hidden fixed right-0 w-1/2 h-full top-0 z-40 bg-primaryDark-400 shadow-2xl ${
             showMenu ? "translate-x-0" : "translate-x-full"
