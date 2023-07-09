@@ -129,10 +129,7 @@ export async function POST(req: NextRequest) {
   } catch (err) {
     console.error(err);
 
-    return NextResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: err }, { status: 500 });
   }
 }
 
