@@ -50,12 +50,14 @@ const DesuhCard = ({
   alasan,
   photoUrl,
   disable = false,
+  onClick,
 }: {
   nama: string;
   nim: string;
   alasan: string;
   photoUrl: string;
   disable?: boolean;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }) => {
   return (
     <>
@@ -83,7 +85,7 @@ const DesuhCard = ({
                 isPrimary={true}
                 text={"Terima"}
                 type="button"
-                onClick={undefined}
+                onClick={onClick}
               />
             )}
           </div>
