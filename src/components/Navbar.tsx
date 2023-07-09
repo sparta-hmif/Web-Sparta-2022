@@ -8,7 +8,7 @@ import { IoMenu, IoClose } from "react-icons/io5";
 import { FaChevronDown } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-
+import { useScrollLock } from "@/app/hooks/useScroll";
 import DefaultProfPic from "@/../public/images/landing/sparta.png";
 import { User } from "@prisma/client";
 
@@ -84,6 +84,7 @@ const Navbar = ({ user }: NavbarProps) => {
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(-1);
   const pathName = usePathname();
+  const { lockScroll, unlockScroll } = useScrollLock();
 
   const isActive = useMemo(() => {
     return (item: ItemProps) => {
@@ -150,11 +151,11 @@ const Navbar = ({ user }: NavbarProps) => {
     <div className="fixed top-0 left-0 right-0 z-40 w-full text-h5 font-koulen text-primary-400 bg-primaryDark-400 shadow-xl">
       <div className="px-5 md:px-8 relative items-center flex flex-row justify-between py-3 lg:py-2 w-full">
         <div className="flex flex-row items-center justify-start w-full gap-12">
-          <Link href="/" className="block w-3/12">
+          <Link href="/" className="block w-3/12 max-w-[6rem]">
             <Image
               width={200}
               height={200}
-              className="w-full max-w-[6rem]"
+              className="w-full"
               alt="Logo"
               src="/images/Logo/Logo.svg"
             />
@@ -217,18 +218,28 @@ const Navbar = ({ user }: NavbarProps) => {
         </div>
         <div
           className="lg:hidden cursor-pointer"
-          onClick={() => setShowMenu(true)}
+          onClick={() => {
+            lockScroll();
+            setShowMenu(true);
+          }}
         >
           <IoMenu className="text-3xl md:text-5xl" />
         </div>
+        <div className={`bg-neutral-800/70 absolute inset-0 h-screen ${showMenu ? "block" : "hidden"}`}></div>
         <div
-          className={`transition block lg:hidden fixed right-0 top-0 w-1/2 h-full z-40 bg-primaryDark-400 shadow-2xl ${
+          className={`transition-transform block lg:hidden fixed right-0 w-1/2 h-full top-0 z-40 bg-primaryDark-400 shadow-2xl ${
             showMenu ? "translate-x-0" : "translate-x-full"
           }
           flex flex-col justify-start`}
         >
           <div className="pb-2 pt-4 flex items-center justify-end px-4">
-            <IoClose size={25} onClick={() => setShowMenu(false)} />
+            <IoClose
+              size={25}
+              onClick={() => {
+                unlockScroll();
+                setShowMenu(false);
+              }}
+            />
           </div>
           <div className="py-2">
             {dataPage.map((item, index) => {
