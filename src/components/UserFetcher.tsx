@@ -1,12 +1,13 @@
-import { authOptions } from '../app/api/auth/[...nextauth]/route';
-import { getServerSession } from 'next-auth/next';
+import { authOptions } from "../app/api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth/next";
 
-interface UserSession {
+export interface UserSession {
   id: string;
   email: string;
   fullName: string;
   nim: string;
   role: string;
+  imageURL: string;
 }
 
 interface UserFetcherProps {

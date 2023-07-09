@@ -17,15 +17,15 @@ const NavDashboard = () => {
                   <div
                     className={`w-full h-[6px] bg-[#E6B93D] 
                   ${
-                    pathName.startsWith("/dashboard/add-assignment") &&
+                    pathName?.startsWith("/dashboard/add-assignment") &&
                     "translate-x-[100%]"
                   } 
                   ${
-                    pathName.startsWith("/dashboard/grade-assignment") &&
+                    pathName?.startsWith("/dashboard/grade-assignment") &&
                     "translate-x-[200%]"
                   }
                   ${
-                    pathName.startsWith("/dashboard/edit-scoreboard") &&
+                    pathName?.startsWith("/dashboard/edit-scoreboard") &&
                     "translate-x-[300%]"
                   }
                   transition`}
