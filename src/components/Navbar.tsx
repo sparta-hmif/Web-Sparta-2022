@@ -167,6 +167,17 @@ const Navbar = ({ user }: NavbarProps) => {
     await signOut();
   };
 
+  const displayName = useMemo(() => {
+    const name = user?.fullName?.split(" ");
+    if (name) {
+      for (let i = 0; i < name.length; i++) {
+        if (name[i].length > 1) {
+          return name[i];
+        }
+      }
+    }
+  }, [user]);
+
   return (
     <div className="fixed top-0 left-0 right-0 z-40 w-full text-h5 font-koulen text-primary-400 bg-primaryDark-400 shadow-xl">
       <div className="px-5 md:px-8 relative items-center flex flex-row justify-between py-3 lg:py-2 w-full">
@@ -200,7 +211,7 @@ const Navbar = ({ user }: NavbarProps) => {
                   className="w-7 rounded-full "
                   alt="Profile Picture"
                 />
-                <p className="mt-0.5 truncate">{user.fullName.split(" ")[0]}</p>
+                <p className="mt-0.5 truncate">{displayName}</p>
               </div>
               <FaChevronDown size={15} />
             </div>
@@ -358,7 +369,7 @@ const Navbar = ({ user }: NavbarProps) => {
                   className="w-2/12 rounded-full "
                   alt="Profile Picture"
                 />
-                <p className="text-lg">{user.fullName}</p>
+                <p className="text-lg">{displayName}</p>
               </>
             ) : (
               <Link href="/login" className="w-full">
