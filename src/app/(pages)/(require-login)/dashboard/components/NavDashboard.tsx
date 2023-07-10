@@ -17,11 +17,11 @@ const NavDashboard = ({ role }: { role: string }) => {
             {allAccess && (
               <div className="flex-none w-1/3 lg:w-1/6 max-w-60 hover:bg-[#E8DDDF] relative">
                 <div
-                  className={`w-full h-1 md:h-2 bg-primary-400 bottom-0 ${
+                  className={`w-full h-1 md:h-2 bg-primary-400 top-0 ${
                     pathName === "/dashboard/add-module"
                       ? "scale-x-100"
                       : "scale-x-0"
-                  } absolute duration-300 rounded-t-md`}
+                  } absolute duration-300 rounded-b-md`}
                 ></div>
                 <Link href="/dashboard/add-module">
                   <li className="w-full h-full flex flex-col justify-center items-center pt-0 gap-y-2">
@@ -36,11 +36,11 @@ const NavDashboard = ({ role }: { role: string }) => {
             {allAccess && (
               <div className="flex-none w-1/3 lg:w-1/6 max-w-60 hover:bg-[#E8DDDF] relative">
                 <div
-                  className={`w-full h-1 md:h-2 bg-primary-400 bottom-0 ${
+                  className={`w-full h-1 md:h-2 bg-primary-400 top-0 ${
                     pathName === "/dashboard/add-assignment"
                       ? "scale-x-100"
                       : "scale-x-0"
-                  } absolute duration-300 rounded-t-md`}
+                  } absolute duration-300 rounded-b-md`}
                 ></div>
                 <Link href="/dashboard/add-assignment">
                   <li className="w-full h-full flex flex-col justify-center items-center pt-0 gap-y-2">
@@ -54,11 +54,11 @@ const NavDashboard = ({ role }: { role: string }) => {
 
             <div className="flex-none w-1/3 lg:w-1/6 max-w-60 hover:bg-[#E8DDDF] relative">
               <div
-                className={`w-full h-1 md:h-2 bg-primary-400 bottom-0 ${
+                className={`w-full h-1 md:h-2 bg-primary-400 top-0 ${
                   pathName === "/dashboard/grade-assignment"
                     ? "scale-x-100"
                     : "scale-x-0"
-                } absolute duration-300 rounded-t-md`}
+                } absolute duration-300 rounded-b-md`}
               ></div>
               <Link href="/dashboard/grade-assignment">
                 <li className="w-full h-full flex flex-col justify-center items-center pt-0 gap-y-2">
@@ -71,11 +71,11 @@ const NavDashboard = ({ role }: { role: string }) => {
 
             <div className="flex-none w-1/3 lg:w-1/6 py-3 max-w-60 hover:bg-[#E8DDDF] relative">
               <div
-                className={`w-full h-1 md:h-2 bg-primary-400 bottom-0 ${
+                className={`w-full h-1 md:h-2 bg-primary-400 top-0 ${
                   pathName === "/dashboard/edit-scoreboard"
                     ? "scale-x-100"
                     : "scale-x-0"
-                } absolute duration-300 rounded-t-md`}
+                } absolute duration-300 rounded-b-md`}
               ></div>
               <Link href="/dashboard/edit-scoreboard">
                 <li className="w-full h-full flex flex-col justify-center items-center pt-0 gap-y-2">
