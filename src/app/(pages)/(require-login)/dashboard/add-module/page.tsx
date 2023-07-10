@@ -9,12 +9,10 @@ const Page = async () => {
   const user = session?.user as UserSession;
 
   const roleAccess = user.role === "MAMET" || user.role === "ADMIN";
-  console.log(roleAccess);
-  
+
   if (!roleAccess) {
     redirect("/");
   }
-
 
   return <AddModule />;
 };

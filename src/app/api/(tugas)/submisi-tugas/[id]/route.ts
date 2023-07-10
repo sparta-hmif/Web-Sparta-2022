@@ -8,6 +8,7 @@ export async function GET(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  console.log("masuk");
   const { id } = params;
   const { searchParams } = new URL(req.url);
   const kelompok = searchParams.get("kelompok");
@@ -18,6 +19,7 @@ export async function GET(
   if (
     !session?.user ||
     ((session.user as User).role !== "MAMET" &&
+      (session.user as User).role !== "MENTOR" &&
       (session.user as User).role !== "ADMIN")
   ) {
     return NextResponse.json(
@@ -81,6 +83,6 @@ export async function GET(
   });
 
   const missingUsers = users.filter((user) => !nimList.includes(user.nim));
-
+  console.log(tugas, kelompok);
   return NextResponse.json({ ...tugas, missingUsers });
 }
