@@ -23,6 +23,7 @@ interface ItemProps {
   dropdown?: {
     name: string;
     href: string;
+    role?: string[];
   }[];
   role: string[];
 }
@@ -39,18 +40,22 @@ const dataPage = [
       {
         name: "Add Module",
         href: "/dashboard/add-module",
+        role: ["MAMET", "ADMIN"],
       },
       {
         name: "Add Assignment",
         href: "/dashboard/add-assignment",
+        role: ["MAMET", "ADMIN"],
       },
       {
         name: "Grade Assignment",
         href: "/dashboard/grade-assignment",
+        role: ["MENTOR", "MAMET", "ADMIN"],
       },
       {
         name: "Edit Scoreboard",
         href: "/dashboard/edit-scoreboard",
+        role: ["MENTOR", "MAMET", "ADMIN"],
       },
     ],
     role: ["MENTOR", "MAMET", "ADMIN"],
@@ -61,10 +66,12 @@ const dataPage = [
       {
         name: "Subject",
         href: "/subject",
+        role: ["MAMET", "ADMIN", "PESERTA"],
       },
       {
         name: "Assignment",
         href: "/assignment",
+        role: ["MAMET", "ADMIN", "PESERTA"],
       },
     ],
     role: ["MAMET", "ADMIN", "PESERTA"],
@@ -75,10 +82,12 @@ const dataPage = [
       {
         name: "Spartans",
         href: "/scoreboard",
+        role: ["MENTOR", "MAMET", "ADMIN", "PESERTA"],
       },
       {
         name: "Kelompok",
         href: "/group-scoreboard",
+        role: ["MENTOR", "MAMET", "ADMIN", "PESERTA"],
       },
     ],
     role: ["MENTOR", "MAMET", "ADMIN", "PESERTA"],
@@ -130,6 +139,9 @@ const Navbar = ({ user }: NavbarProps) => {
               <div className="absolute h-2 w-full top-0 bg-primary-400 rounded-tr-2xl y" />
               <ul className="pt-2 text-sm flex flex-col divide-y-2 divide-primary-400/30">
                 {item.dropdown.map((item, idx) => {
+                  if (!item.role?.includes(user?.role as string)) {
+                    return null;
+                  }
                   return (
                     <li key={idx}>
                       <Link
@@ -156,6 +168,17 @@ const Navbar = ({ user }: NavbarProps) => {
   const handleSignOut = async () => {
     await signOut();
   };
+
+  const displayName = useMemo(() => {
+    const name = user?.fullName?.split(" ");
+    if (name) {
+      for (let i = 0; i < name.length; i++) {
+        if (name[i].length > 1) {
+          return name[i];
+        }
+      }
+    }
+  }, [user]);
 
   return (
     <div className="fixed top-0 left-0 right-0 z-40 w-full text-h5 font-koulen text-primary-400 bg-primaryDark-400 shadow-xl">
@@ -190,7 +213,7 @@ const Navbar = ({ user }: NavbarProps) => {
                   className="w-7 rounded-full "
                   alt="Profile Picture"
                 />
-                <p className="mt-0.5 truncate">{user.fullName.split(" ")[0]}</p>
+                <p className="mt-0.5 truncate">{displayName}</p>
               </div>
               <FaChevronDown size={15} />
             </div>
@@ -281,7 +304,10 @@ const Navbar = ({ user }: NavbarProps) => {
                       <Link href={item.href} className="block w-full">
                         <button
                           className="w-full text-left"
-                          onClick={() => setShowMenu(false)}
+                          onClick={() => {
+                            unlockScroll();
+                            setShowMenu(false);
+                          }}
                         >
                           {item.name}
                         </button>
@@ -294,7 +320,10 @@ const Navbar = ({ user }: NavbarProps) => {
                         return (
                           <Link key={idx} href={dropdown.href}>
                             <button
-                              onClick={() => setShowMenu(false)}
+                              onClick={() => {
+                                unlockScroll();
+                                setShowMenu(false);
+                              }}
                               className="bg-primary-400/10 px-12 text-xl py-2 w-full text-left"
                             >
                               {dropdown.name}
@@ -311,7 +340,10 @@ const Navbar = ({ user }: NavbarProps) => {
               <>
                 <Link href="/profile" className="w-full block">
                   <button
-                    onClick={() => setShowMenu(false)}
+                    onClick={() => {
+                      unlockScroll();
+                      setShowMenu(false);
+                    }}
                     className="py-2 px-6 text-xl w-full text-left text-primary-400 hover:bg-primary-400/20 transition"
                   >
                     PROFILE
@@ -319,6 +351,7 @@ const Navbar = ({ user }: NavbarProps) => {
                 </Link>
                 <div
                   onClick={() => {
+                    unlockScroll();
                     handleSignOut();
                   }}
                   className="py-2 px-6 text-xl text-danger-200 hover:bg-primary-400/20 transition"
@@ -338,7 +371,7 @@ const Navbar = ({ user }: NavbarProps) => {
                   className="w-2/12 rounded-full "
                   alt="Profile Picture"
                 />
-                <p className="text-lg">{user.fullName}</p>
+                <p className="text-lg">{displayName}</p>
               </>
             ) : (
               <Link href="/login" className="w-full">
