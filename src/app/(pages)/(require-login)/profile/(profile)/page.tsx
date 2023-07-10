@@ -23,7 +23,10 @@ export default async function Home() {
   }
 
   const roleAccess =
-    user.role === "PESERTA" || user.role === "ADMIN" || user.role === "MAMET";
+    user.role === "PESERTA" ||
+    user.role === "ADMIN" ||
+    user.role === "MAMET" ||
+    user.role === "MENTOR";
 
   if (session && !roleAccess) {
     redirect("/");
