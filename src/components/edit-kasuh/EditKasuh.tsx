@@ -3,7 +3,7 @@ import Button from "../Button";
 const EditKasuh = () => {
   return (
     <>
-      <div className="pt-24 w-full px-7 lg:px-48 flex flex-col items-center gap-2">
+      <div className="px-7 py-[80px] lg:px-[208px] lg:py-[100px] w-full flex flex-col items-center gap-2">
         <p className="sub-1">Halo Calon Kasuh!</p>
         <p className="body- text-center">
           Silakan ceritakan tentang dirimu untuk memikat para SPARTANS! Kamu
