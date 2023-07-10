@@ -321,7 +321,10 @@ const Navbar = ({ user }: NavbarProps) => {
               <>
                 <Link href="/profile" className="w-full block">
                   <button
-                    onClick={() => setShowMenu(false)}
+                    onClick={() => {
+                      unlockScroll();
+                      setShowMenu(false);
+                    }}
                     className="py-2 px-6 text-xl w-full text-left text-primary-400 hover:bg-primary-400/20 transition"
                   >
                     PROFILE
@@ -329,6 +332,7 @@ const Navbar = ({ user }: NavbarProps) => {
                 </Link>
                 <div
                   onClick={() => {
+                    unlockScroll();
                     handleSignOut();
                   }}
                   className="py-2 px-6 text-xl text-danger-200 hover:bg-primary-400/20 transition"
