@@ -95,7 +95,7 @@ const Scoreboard = async () => {
             </div>
           </div>
         </div>
-        <ScoreList users={data} userRank={userRank} />
+        <ScoreList users={data} userRank={userIdx} />
       </div>
     </div>
   );

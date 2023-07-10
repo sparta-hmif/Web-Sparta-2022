@@ -25,14 +25,21 @@ const ScoreList: React.FC<ScoreListProps> = ({ users, userRank }) => {
     return users.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, postPerPage, users]);
 
+  const userIdxGap = useMemo(() => {
+    return postPerPage * (currentPage - 1);
+  }, [currentPage, postPerPage]);
+
   return (
     <>
       <div className="w-[95%] mx-auto flex flex-col justify-center items-center gap-4">
         {currentShowingData.map((user, idx) => {
           let isUser = false;
-          if (user.rank === userRank) {
+          console.log(idx);
+          console.log(userRank);
+          if (idx + userIdxGap === userRank) {
             isUser = true;
           }
+
           return <ListContent key={idx} {...user} isUser={isUser} />;
         })}
         <div className="my-5 w-full flex items-center justify-center">
