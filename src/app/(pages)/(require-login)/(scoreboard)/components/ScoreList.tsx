@@ -34,8 +34,6 @@ const ScoreList: React.FC<ScoreListProps> = ({ users, userRank }) => {
       <div className="w-[95%] mx-auto flex flex-col justify-center items-center gap-4">
         {currentShowingData.map((user, idx) => {
           let isUser = false;
-          console.log(idx);
-          console.log(userRank);
           if (idx + userIdxGap === userRank) {
             isUser = true;
           }

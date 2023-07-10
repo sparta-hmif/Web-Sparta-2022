@@ -54,7 +54,6 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     jwt: async ({ token, user }) => {
       if (user && user.id) {
-        console.log("User JWT ", user);
         token.uid = user.id as string; // Assign user's id to token
 
         // Get user's role

@@ -48,7 +48,6 @@ const Scoreboard = async () => {
     data.sort((a: any, b: any) => b.score - a.score);
     let count = 1;
     for (let i = 0; i < data.length; i++) {
-      
       if (i !== 0 && data[i - 1].score > data[i].score) {
         count++;
       }
@@ -58,7 +57,6 @@ const Scoreboard = async () => {
         userIdx = i;
       }
     }
-    console.log(data);
   }
 
   return (

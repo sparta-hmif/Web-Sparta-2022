@@ -54,7 +54,7 @@ const Assignment = ({
   const router = useRouter();
 
   const handleSubmission = async () => {
-    const toastId = toast.loading('Loading...');
+    const toastId = toast.loading("Loading...");
     if (!file) {
       toast.error("No file selected", {
         id: toastId,
@@ -86,7 +86,6 @@ const Assignment = ({
     });
 
     const resJson = await res.json();
-    console.log(resJson);
   };
 
   const handleFileSelected = (newFile: File) => {
@@ -100,7 +99,6 @@ const Assignment = ({
 
   const handleFileRejected = (fileRejections: FileRejection[]) => {
     // Handle rejected files
-    console.log(fileRejections);
   };
 
   return (
