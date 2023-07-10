@@ -23,6 +23,7 @@ interface ItemProps {
   dropdown?: {
     name: string;
     href: string;
+    role?: string[];
   }[];
   role: string[];
 }
@@ -39,18 +40,22 @@ const dataPage = [
       {
         name: "Add Module",
         href: "/dashboard/add-module",
+        role: ["MAMET", "ADMIN"],
       },
       {
         name: "Add Assignment",
         href: "/dashboard/add-assignment",
+        role: ["MAMET", "ADMIN"],
       },
       {
         name: "Grade Assignment",
         href: "/dashboard/grade-assignment",
+        role: ["MENTOR", "MAMET", "ADMIN"],
       },
       {
         name: "Edit Scoreboard",
         href: "/dashboard/edit-scoreboard",
+        role: ["MENTOR", "MAMET", "ADMIN"],
       },
     ],
     role: ["MENTOR", "MAMET", "ADMIN"],
@@ -75,10 +80,12 @@ const dataPage = [
       {
         name: "Spartans",
         href: "/scoreboard",
+        role: ["MENTOR", "MAMET", "ADMIN", "PESERTA"],
       },
       {
         name: "Kelompok",
         href: "/group-scoreboard",
+        role: ["MENTOR", "MAMET", "ADMIN", "PESERTA"],
       },
     ],
     role: ["MENTOR", "MAMET", "ADMIN", "PESERTA"],
@@ -130,6 +137,9 @@ const Navbar = ({ user }: NavbarProps) => {
               <div className="absolute h-2 w-full top-0 bg-primary-400 rounded-tr-2xl y" />
               <ul className="pt-2 text-sm flex flex-col divide-y-2 divide-primary-400/30">
                 {item.dropdown.map((item, idx) => {
+                  if (!item.role?.includes(user?.role as string)) {
+                    return null;
+                  }
                   return (
                     <li key={idx}>
                       <Link
