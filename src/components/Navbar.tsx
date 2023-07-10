@@ -291,7 +291,10 @@ const Navbar = ({ user }: NavbarProps) => {
                       <Link href={item.href} className="block w-full">
                         <button
                           className="w-full text-left"
-                          onClick={() => setShowMenu(false)}
+                          onClick={() => {
+                            unlockScroll();
+                            setShowMenu(false);
+                          }}
                         >
                           {item.name}
                         </button>
@@ -304,7 +307,10 @@ const Navbar = ({ user }: NavbarProps) => {
                         return (
                           <Link key={idx} href={dropdown.href}>
                             <button
-                              onClick={() => setShowMenu(false)}
+                              onClick={() => {
+                                unlockScroll();
+                                setShowMenu(false);
+                              }}
                               className="bg-primary-400/10 px-12 text-xl py-2 w-full text-left"
                             >
                               {dropdown.name}
