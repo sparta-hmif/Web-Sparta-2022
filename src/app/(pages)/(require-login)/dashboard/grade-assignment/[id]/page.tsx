@@ -8,14 +8,24 @@ import AssignmentDetail, {
   assignmentDetailProps,
   assignmentProps,
 } from "../components/AssignmentDetail";
+import { useSession } from "next-auth/react";
+import { User } from "@prisma/client";
 
 export default function GradeAssignmentDetail({
   params,
 }: {
   params: { id: string };
 }) {
+  const session = useSession();
+
   const { data, error, isLoading } = useSWR(
-    process.env.NEXT_PUBLIC_WEB_URL + "/api/submisi-tugas/" + params.id,
+    () =>
+      process.env.NEXT_PUBLIC_WEB_URL +
+      "/api/submisi-tugas/" +
+      params.id +
+      ((session.data?.user as User).role === "MENTOR"
+        ? `?kelompok=${(session.data?.user as User).kelompok}`
+        : ""),
     fetcher
   );
 

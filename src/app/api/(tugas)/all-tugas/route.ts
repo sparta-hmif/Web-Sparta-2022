@@ -11,6 +11,7 @@ export async function GET() {
   if (
     !session?.user ||
     ((session.user as User).role !== "MAMET" &&
+      (session.user as User).role !== "MENTOR" &&
       (session.user as User).role !== "ADMIN")
   ) {
     return NextResponse.json(

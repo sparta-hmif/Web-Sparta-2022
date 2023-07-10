@@ -7,7 +7,6 @@ const NavDashboard = ({ role }: { role: string }) => {
   const pathName = usePathname();
 
   const allAccess = role !== "MENTOR";
-  console.log(allAccess);
 
   return (
     <>
