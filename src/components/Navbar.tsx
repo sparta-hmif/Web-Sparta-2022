@@ -66,10 +66,12 @@ const dataPage = [
       {
         name: "Subject",
         href: "/subject",
+        role: ["MAMET", "ADMIN", "PESERTA"],
       },
       {
         name: "Assignment",
         href: "/assignment",
+        role: ["MAMET", "ADMIN", "PESERTA"],
       },
     ],
     role: ["MAMET", "ADMIN", "PESERTA"],
