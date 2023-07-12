@@ -27,6 +27,23 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const task = await prisma.tugas.findUnique({
+      where: {
+        id: _tugas,
+      },
+    });
+
+    if (!task) {
+      return NextResponse.json({ message: "Tugas not found" }, { status: 404 });
+    }
+
+    if (new Date() > task?.endTime) {
+      return NextResponse.json(
+        { message: "Tugas sudah berakhir" },
+        { status: 400 }
+      );
+    }
+
     const lastSubmission = await prisma.submisiTugas.findFirst({
       where: {
         user: {
@@ -75,29 +92,5 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ message: "success" });
   } catch (err) {
     return NextResponse.json({ message: err }, { status: 500 });
-  }
-}
-
-async function lateUploadCheck(id: string) {
-  try {
-    // query tugas from mongodb
-    const task = await prisma.tugas.findUnique({
-      where: {
-        id: id,
-      },
-    });
-
-    const currentDateTime = moment().tz("Asia/Jakarta");
-    const deadlineDateTime = moment(task?.endTime).tz("Asia/Jakarta");
-
-    if (currentDateTime.isAfter(deadlineDateTime)) {
-      // Waktu saat ini (server) sudah melewati deadline
-      return false;
-    } else {
-      // Waktu saat ini masih sebelum deadline
-      return true;
-    }
-  } catch {
-    throw new Error("late upload error");
   }
 }
