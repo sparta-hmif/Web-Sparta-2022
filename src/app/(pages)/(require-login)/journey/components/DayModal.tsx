@@ -24,6 +24,7 @@ const DayModal = ({
     starReview: number;
     story: string;
     reflection: string;
+    isVisible: boolean;
   };
   onClose: () => void;
 }) => {
@@ -91,6 +92,10 @@ const DayModal = ({
 
   const [viewMode, setViewMode] = useState(true);
   const [contentValue, setContentValue] = useState(content);
+  const [fullScale, setFullScale] = useState(false);
+
+  setTimeout(() => (content?.isVisible ? setFullScale(true) : null), 50);
+
   return (
     <div className="fixed z-50 h-screen top-0 inset-x-0 bg-neutral-800/70 backdrop-blur-[2px]">
       <div className="w-full h-full relative flex justify-center items-center">
@@ -100,9 +105,17 @@ const DayModal = ({
           width={375}
           height={375}
           className="absolute w-full bottom-0"
-          onClick={onClose}
+          onClick={() => {
+            setFullScale(false);
+            onClose();
+          }}
         />
-        <div className="w-11/12 h-[90vh] max-w-2xl bg-white border-4 border-primaryDark-400 z-10 rounded-2xl py-3 px-5 md:p-10 flex flex-col items-center">
+        <div
+          style={{
+            transform: fullScale ? "scale(1)" : "scale(0.8)",
+          }}
+          className="w-11/12 h-[90vh] max-w-2xl duration-500 transition-transform bg-white border-4 border-primaryDark-400 z-10 rounded-2xl py-3 px-5 md:p-10 flex flex-col items-center scale-50"
+        >
           <div className="w-11/12 max-w-[20rem] flex items-center flex-col gap-3">
             <Image
               src="/images/journey/Awesome.svg"
@@ -149,7 +162,14 @@ const DayModal = ({
             </div>
           </div>
           <div className="w-full md:w-1/2 gap-4 flex mt-auto">
-            <Button text="Close" isPrimary={false} onClick={onClose} />
+            <Button
+              text="Close"
+              isPrimary={false}
+              onClick={() => {
+                setFullScale(false);
+                onClose();
+              }}
+            />
             {viewMode ? (
               <Button
                 text="Edit"
