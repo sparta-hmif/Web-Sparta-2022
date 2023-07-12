@@ -114,7 +114,7 @@ const DayModal = ({
           style={{
             transform: fullScale ? "scale(1)" : "scale(0.8)",
           }}
-          className="w-11/12 h-[90vh] max-w-2xl duration-500 transition-transform bg-white border-4 border-primaryDark-400 z-10 rounded-2xl py-3 px-5 md:p-10 flex flex-col items-center scale-50"
+          className="overflow-auto w-11/12 h-[90vh] max-w-2xl duration-500 transition-transform bg-white border-4 border-primaryDark-400 z-10 rounded-2xl py-3 px-5 md:p-10 flex flex-col items-center scale-50"
         >
           <div className="w-11/12 max-w-[20rem] flex items-center flex-col gap-3">
             <Image
