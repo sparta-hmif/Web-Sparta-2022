@@ -10,7 +10,6 @@ export async function POST(req: NextRequest) {
       await req.json();
 
     const session = await getServerSession(authOptions);
-    console.log(startTime);
     // Route protection
     if (
       !session?.user ||

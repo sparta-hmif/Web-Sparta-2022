@@ -29,7 +29,7 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
       <DashboardHeader title="DASHBOARD" />
-      <NavDashboard />
+      <NavDashboard role={user.role}/>
       {children}
     </div>
   );

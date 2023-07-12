@@ -9,6 +9,8 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   const { id } = params;
+  const { searchParams } = new URL(req.url);
+  const kelompok = searchParams.get("kelompok");
 
   const session = await getServerSession(authOptions);
 
@@ -16,6 +18,7 @@ export async function GET(
   if (
     !session?.user ||
     ((session.user as User).role !== "MAMET" &&
+      (session.user as User).role !== "MENTOR" &&
       (session.user as User).role !== "ADMIN")
   ) {
     return NextResponse.json(
@@ -24,7 +27,7 @@ export async function GET(
     );
   }
 
-  const tugas = await prisma.tugas.findUnique({
+  let tugas = await prisma.tugas.findUnique({
     select: {
       title: true,
       day: {
@@ -41,6 +44,7 @@ export async function GET(
             select: {
               nim: true,
               fullName: true,
+              kelompok: true,
             },
           },
         },
@@ -55,6 +59,15 @@ export async function GET(
     return NextResponse.json({ message: "Tugas not found" }, { status: 404 });
   }
 
+  if (kelompok) {
+    tugas = {
+      ...tugas,
+      submisiTugas: tugas.submisiTugas.filter(
+        (submisi) => submisi.user.kelompok === kelompok
+      ),
+    };
+  }
+
   const nimList = tugas.submisiTugas.map((submisi) => submisi.user.nim);
 
   const users = await prisma.user.findMany({
@@ -64,10 +77,10 @@ export async function GET(
     },
     where: {
       role: "PESERTA",
+      kelompok: kelompok ?? undefined,
     },
   });
 
   const missingUsers = users.filter((user) => !nimList.includes(user.nim));
-
   return NextResponse.json({ ...tugas, missingUsers });
 }

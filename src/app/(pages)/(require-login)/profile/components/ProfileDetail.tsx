@@ -86,9 +86,6 @@ const ProfileDetail = () => {
             <p className="font-koulen text-secondaryDark-500 text-h6 md:text-h5">
               NIM: {user.nim}
             </p>
-            <p className="font-koulen text-secondaryDark-500 text-h6 md:text-h5">
-              JURUSAN: {user.jurusan?.toUpperCase()}
-            </p>
           </div>
           <div className="flex flex-col items-start">
             <p className="font-koulen text-black pt-10 text-h4 md:text-h3">

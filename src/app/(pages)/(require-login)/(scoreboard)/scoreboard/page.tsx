@@ -24,7 +24,6 @@ const Scoreboard = async () => {
   const res = await fetch(process.env.NEXT_PUBLIC_WEB_URL + "/api/scoreboard", {
     headers: { Cookie: cookies().toString() },
   });
-  console.log(res);
   const resJson = await res.json();
 
   let data: any = [];
@@ -95,7 +94,7 @@ const Scoreboard = async () => {
             </div>
           </div>
         </div>
-        <ScoreList users={data} userRank={userRank} />
+        <ScoreList users={data} userRank={userIdx} />
       </div>
     </div>
   );

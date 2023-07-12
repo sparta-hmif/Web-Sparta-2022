@@ -47,7 +47,6 @@ export async function searchFolderIdByName(
       throw new Error();
     }
   } catch (error) {
-    console.error("Error searching folder:", error);
     logArr.push(error);
     return { status: 500, arr: logArr };
   }
@@ -87,7 +86,6 @@ export async function postFile2Drive(
 
     return { status: res.status, link: res.data.webViewLink };
   } catch (error) {
-    console.error("Error searching folder:", error);
     return { status: 500 };
   }
 }
@@ -111,7 +109,6 @@ export async function newDriveFolder(parentID: string, _foldername: string) {
 
     return { status: 200, data: res.data.id };
   } catch (error) {
-    console.error("Error searching folder:", error);
     return { status: 500 };
   }
 }

@@ -5,11 +5,21 @@ import fetcher from "@/app/lib/fetcher";
 
 // Component imports
 import Scoreboard, { dataProp } from "./components/Scoreboard";
+import { useSession } from "next-auth/react";
+import { User } from "@prisma/client";
 
 const Page = () => {
   let mappedData: dataProp[] = [];
+
+  const session = useSession();
+
   const { data, error, isLoading } = useSWR(
-    process.env.NEXT_PUBLIC_WEB_URL + "/api/scoreboard",
+    () =>
+      process.env.NEXT_PUBLIC_WEB_URL +
+      "/api/scoreboard" +
+      ((session.data?.user as User).role === "MENTOR"
+        ? `?kelompok=${(session.data?.user as User).kelompok}`
+        : ""),
     fetcher
   );
 

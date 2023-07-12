@@ -24,23 +24,21 @@ const LoginForm = () => {
         callbackUrl: "/",
       });
 
-      console.log("res", res)
-
       // print error if error
       if (res?.error) {
-        console.log("error : ", res.error);
         toast.error("Invalid credentials");
       } else {
         toast.success("Login success");
         router.refresh();
       }
-    } catch (error) {
-      console.log("error : ", error);
-    }
+    } catch (error) {}
   };
 
   return (
-    <form className="flex flex-col gap-5 items-center w-full lg:w-5/12" onSubmit={handleSubmit}>
+    <form
+      className="flex flex-col gap-5 items-center w-full lg:w-5/12"
+      onSubmit={handleSubmit}
+    >
       <TextFields
         placeholder="NIM"
         value={nim}
@@ -53,11 +51,7 @@ const LoginForm = () => {
         onChange={(e) => setPassword(e.target.value)}
       />
       <div className="w-8/12">
-        <Button
-          text="Login"
-          isPrimary={true}
-          type="submit"
-        />
+        <Button text="Login" isPrimary={true} type="submit" />
       </div>
     </form>
   );

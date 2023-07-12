@@ -68,7 +68,7 @@ const AddModule = () => {
         link: val.link,
       })),
     };
-    const toastId = toast.loading('Loading...');
+    const toastId = toast.loading("Loading...");
 
     const res = await fetch(process.env.NEXT_PUBLIC_WEB_URL + "/api/materi", {
       method: "POST",
@@ -78,7 +78,6 @@ const AddModule = () => {
       body: JSON.stringify(data),
     });
     const resJson = await res.json();
-    console.log(resJson);
 
     if (resJson.message === "success") {
       toast.success("Module added successfully", {
@@ -100,7 +99,6 @@ const AddModule = () => {
     if (titleRef.current && linkRef.current) {
       titleRef.current.value = "";
       linkRef.current.value = "";
-      console.log(titleRef);
     }
   };
 

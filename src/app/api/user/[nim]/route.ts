@@ -41,7 +41,6 @@ export async function GET(
     });
 
     if (!user) {
-      console.log("User Not Found");
       return NextResponse.json({ message: "User not found" }, { status: 400 });
     }
 
@@ -60,7 +59,6 @@ export async function GET(
 
     return NextResponse.json({ user, mentors });
   } catch (error) {
-    console.log("Error");
     return NextResponse.json(
       { message: "Failed to fetch user", error },
       { status: 500 }

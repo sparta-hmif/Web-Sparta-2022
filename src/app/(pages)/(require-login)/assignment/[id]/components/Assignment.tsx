@@ -11,6 +11,7 @@ import { useSession } from "next-auth/react";
 import { User } from "@prisma/client";
 import { useS3Upload } from "next-s3-upload";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface AssignmentProps {
   judulTugas: string;
@@ -50,9 +51,10 @@ const Assignment = ({
   const { uploadToS3 } = useS3Upload();
 
   const session = useSession();
+  const router = useRouter();
 
   const handleSubmission = async () => {
-    const toastId = toast.loading('Loading...');
+    const toastId = toast.loading("Loading...");
     if (!file) {
       toast.error("No file selected", {
         id: toastId,
@@ -75,6 +77,7 @@ const Assignment = ({
       toast.success("File uploaded", {
         id: toastId,
       });
+      router.push("/assignment");
       return;
     }
 
@@ -83,7 +86,6 @@ const Assignment = ({
     });
 
     const resJson = await res.json();
-    console.log(resJson);
   };
 
   const handleFileSelected = (newFile: File) => {
@@ -97,7 +99,6 @@ const Assignment = ({
 
   const handleFileRejected = (fileRejections: FileRejection[]) => {
     // Handle rejected files
-    console.log(fileRejections);
   };
 
   return (

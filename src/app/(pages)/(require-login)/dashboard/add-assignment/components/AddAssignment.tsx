@@ -45,6 +45,7 @@ const AddAssignment = () => {
 
   // Handle form submision
   const handlePost = async () => {
+    endDate?.setHours(23, 59, 59);
     const data = {
       title,
       description: desc,
@@ -56,7 +57,7 @@ const AddAssignment = () => {
       })),
       dayNum: day,
     };
-    const toastId = toast.loading('Loading...');
+    const toastId = toast.loading("Loading...");
     const res = await fetch(process.env.NEXT_PUBLIC_WEB_URL + "/api/tugas", {
       method: "POST",
       headers: {

@@ -46,12 +46,15 @@ const Scoreboard = async () => {
     }
 
     data.sort((a: any, b: any) => b.score - a.score);
+    let count = 1;
     for (let i = 0; i < data.length; i++) {
-      data[i].rank = i + 1;
+      if (i !== 0 && data[i - 1].score > data[i].score) {
+        count++;
+      }
+      data[i].rank = count;
 
       if (data[i].name === `Kelompok ${user.kelompok}`) {
         userIdx = i;
-        userRank = i + 1;
       }
     }
   }
@@ -94,7 +97,7 @@ const Scoreboard = async () => {
             </div>
           </div>
         </div>
-        <ScoreList users={data} userRank={userRank} />
+        <ScoreList users={data} userRank={userIdx} />
       </div>
     </div>
   );
