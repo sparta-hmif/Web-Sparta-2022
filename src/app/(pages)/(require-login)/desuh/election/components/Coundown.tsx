@@ -1,6 +1,8 @@
 "use client";
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import NumberTime from "./NumberTime";
+
+const NumberTime = dynamic(() => import("./NumberTime"), { ssr: false });
 
 const useCountdown = (targetDate: number) => {
   const countDownDate = new Date(targetDate).getTime();
@@ -57,10 +59,10 @@ const Countdown = ({ target }: { target: number }) => {
   return (
     <>
       <div className="py-3 lg:pt-4 lg:pb-9">
-        <p className="sub-1 text-[12px] lg:text-[16px] text-center">
+        <p className="sub-1 text-sm md:text-xl text-center">
           Kamu baru bisa memilih Desuh pada Tanggal
         </p>
-        <p className="sub-1 text-[12px] lg:text-[16px] text-center mb-2 lg:mb-6">
+        <p className="sub-1 text-sm md:text-lg text-center mb-2 lg:mb-6">
           {date}
         </p>
         <div className="flex gap-2 lg:gap-6 justify-center">
