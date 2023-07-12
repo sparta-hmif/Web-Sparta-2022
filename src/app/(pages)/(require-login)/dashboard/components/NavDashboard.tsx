@@ -54,7 +54,7 @@ const NavDashboard = ({ role }: { role: string }) => {
             <div className="flex-none w-1/3 md:w-1/6 max-w-60 hover:bg-[#E8DDDF] relative">
               <div
                 className={`w-full h-1 md:h-2 bg-primary-400 top-0 ${
-                  pathName === "/dashboard/grade-assignment"
+                  pathName?.startsWith("/dashboard/grade-assignment")
                     ? "scale-x-100"
                     : "scale-x-0"
                 } absolute duration-300 rounded-b-md`}
@@ -88,7 +88,7 @@ const NavDashboard = ({ role }: { role: string }) => {
             <div className="flex-none w-1/3 md:w-1/6 py-3 max-w-60 hover:bg-[#E8DDDF] relative">
               <div
                 className={`w-full h-1 md:h-2 bg-primary-400 top-0 ${
-                  pathName === "/dashboard/view-journey"
+                  pathName?.startsWith("/dashboard/view-journey")
                     ? "scale-x-100"
                     : "scale-x-0"
                 } absolute duration-300 rounded-b-md`}
