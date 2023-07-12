@@ -57,6 +57,11 @@ const dataPage = [
         href: "/dashboard/edit-scoreboard",
         role: ["MENTOR", "MAMET", "ADMIN"],
       },
+      {
+        name: "View Journey",
+        href: "/dashboard/view-journey",
+        role: ["MENTOR", "MAMET", "ADMIN"],
+      },
     ],
     role: ["MENTOR", "MAMET", "ADMIN"],
   },
