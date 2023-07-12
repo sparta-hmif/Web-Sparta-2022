@@ -15,15 +15,15 @@ async function PUT(
   { params }: { params: { nim: string; number: string } }
 ) {
   try {
-    const { rating, evaluation } = await req.json();
+    const { rating, story, reflection } = await req.json();
 
     const session = await getServerSession(authOptions);
 
     // Route protection
     if (
       !session?.user ||
-      (session.user as User).nim !== params.nim ||
-      (session.user as User).role !== "ADMIN"
+      ((session.user as User).nim !== params.nim &&
+        (session.user as User).role !== "ADMIN")
     ) {
       return NextResponse.json(
         { message: "mau ngapain mas/mba ??" },
@@ -31,11 +31,11 @@ async function PUT(
       );
     }
 
-    if (!((rating || rating === 0) && evaluation))
+    if (!((rating || rating === 0) && story && reflection))
       return NextResponse.json(
         {
           message:
-            "Request body must at least contain 'rating', and 'evaluation'",
+            "Request body must at least contain 'rating', 'story', and 'reflection'",
         },
         { status: 400 }
       );
@@ -87,14 +87,16 @@ async function PUT(
         },
         data: {
           rating: rating || undefined,
-          evaluation: evaluation || undefined,
+          story: story || undefined,
+          reflection: reflection || undefined,
         },
       });
     } else {
       await prisma.evalDay.create({
         data: {
           rating: rating,
-          evaluation: evaluation,
+          story: story,
+          reflection: reflection,
           userId: user.id,
           dayId: day.id,
         },

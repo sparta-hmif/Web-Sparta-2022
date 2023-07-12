@@ -1,5 +1,5 @@
 import { Prisma, User } from "@prisma/client";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
@@ -10,15 +10,15 @@ import { prisma } from "@/app/lib/prisma";
  *
  * Endpoint dipake di page day buat nampilin semua day ke peserta + nampilin evaluasi day yang udah pernah dibuat sama peserta
  */
-async function GET({ params }: { params: { nim: string } }) {
+async function GET(req: NextRequest, { params }: { params: { nim: string } }) {
   try {
     const session = await getServerSession(authOptions);
 
     // Route protection
     if (
       !session?.user ||
-      (session.user as User).nim !== params.nim ||
-      (session.user as User).role !== "ADMIN"
+      ((session.user as User).nim !== params.nim &&
+        (session.user as User).role !== "ADMIN")
     ) {
       return NextResponse.json(
         { message: "mau ngapain mas/mba ??" },
@@ -47,7 +47,8 @@ async function GET({ params }: { params: { nim: string } }) {
         evalDay: {
           select: {
             rating: true,
-            evaluation: true,
+            story: true,
+            reflection: true,
           },
           where: {
             userId: user?.id,
@@ -59,7 +60,9 @@ async function GET({ params }: { params: { nim: string } }) {
       },
     });
 
-    return NextResponse.json(days);
+    const filteredDays = days.filter((day) => day.date <= new Date());
+
+    return NextResponse.json(filteredDays);
   } catch (err) {
     let msg = "Internal Server Error";
     let status = 500;

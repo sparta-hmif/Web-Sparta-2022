@@ -2,42 +2,72 @@
 
 import { useState } from "react";
 import { redirect } from "next/navigation";
+import useSWR from "swr";
+import fetcher from "@/app/lib/fetcher";
 
 // Component imports
 import Day from "./components/Day";
 import DayModal from "./components/DayModal";
+import { useSession } from "next-auth/react";
+import { User } from "@prisma/client";
 
 const Journey = () => {
-  // Fetch data disini
-  const day: number = 0;
-
   const [showModal, setShowModal] = useState(0);
+  const [contentData, setContentData] = useState({
+    day: 0,
+    date: new Date().toISOString(),
+    starReview: 0,
+    story: "",
+    reflection: "",
+    isVisible: false,
+  });
 
-  if (day === 0) {
-    return redirect("/");
+  const session = useSession();
+
+  const { data, error, isLoading } = useSWR(
+    () =>
+      process.env.NEXT_PUBLIC_WEB_URL +
+      "/api/day/" +
+      (session.data?.user as User).nim,
+    fetcher
+  );
+
+  if (!data) {
+    return <div></div>;
   }
 
   const onClose = () => {
-    setShowModal(0);
+    setShowModal((prev) => {
+      setContentData({
+        day: 0,
+        date: new Date().toISOString(),
+        starReview: 0,
+        story: "",
+        reflection: "",
+        isVisible: false,
+      });
+      return 0;
+    });
   };
 
   const onOpen = (day: number) => {
-    setShowModal(day);
-  };
-
-  const contentData = {
-    starReview: 3,
-    story: "Aku hari ini...",
-    reflection: "Aku bersyukur karena...",
+    setContentData({
+      day: day,
+      date: data[day - 1].date,
+      starReview: data[day - 1].evalDay[0]?.rating,
+      story: data[day - 1].evalDay[0]?.story,
+      reflection: data[day - 1].evalDay[0]?.reflection,
+      isVisible: true,
+    });
   };
 
   return (
     <div className="pt-10 relative">
-      <Day day={day} onOpen={onOpen} />
-      {showModal !== 0 && (
+      <Day day={data.length} onOpen={onOpen} />
+      {contentData.isVisible && (
         <DayModal
-          day={showModal}
-          date="10/03/2023"
+          day={contentData.day}
+          date={contentData.date}
           content={contentData}
           onClose={onClose}
         />
