@@ -34,12 +34,18 @@ export default function ViewJourneyDetail({
         rank: index + 1,
         name: val.user.fullName,
         nim: val.user.nim,
+        rating: val.rating,
+        reflection: val.reflection,
+        story: val.story,
         status: true,
       })),
       ...data.missingUsers.map((val: any, index: number) => ({
         rank: index + 1,
         name: val.fullName,
         nim: val.nim,
+        rating: 0,
+        reflection: "",
+        story: "",
         status: false,
       })),
     ];

@@ -1,21 +1,22 @@
 import { FaStar } from "react-icons/fa";
 import Button from "@/components/Button";
 
+export interface JourneyModalProps {
+  name: string;
+  nim: string;
+  rating: number;
+  story: string;
+  reflection: string;
+}
+
 const JourneyModal = ({
   name,
   nim,
-  star,
+  rating,
   story,
   reflection,
   onClose,
-}: {
-  name: string;
-  nim: string;
-  star: number;
-  story: string;
-  reflection: string;
-  onClose: () => void;
-}) => {
+}: JourneyModalProps & { onClose: () => void }) => {
   const StarElement = ({ star }: { star: number }) => {
     return (
       <div className="flex gap-1">
@@ -47,7 +48,7 @@ const JourneyModal = ({
             </h5>
           </div>
           <div className="w-full max-w-[21rem] drop-shadow-lg rounded-2xl bg-white flex py-3 px-5 justify-center items-center gap-2">
-            <StarElement star={star} />
+            <StarElement star={rating} />
           </div>
           <div className="h-[60%] w-full flex flex-col mt-5">
             <h3 className="text-xl">What Spartan Did</h3>

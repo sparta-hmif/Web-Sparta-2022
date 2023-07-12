@@ -19,8 +19,8 @@ const ViewJourney = () => {
 
   return (
     <div className="container mx-auto py-10">
-      {(data as any[]).map((assignment, index) => (
-        <Journey key={index} {...assignment} />
+      {(data as any[]).map((journey, index) => (
+        <Journey key={index} {...journey} />
       ))}
     </div>
   );

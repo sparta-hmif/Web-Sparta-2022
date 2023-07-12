@@ -8,15 +8,18 @@ import Link from "next/link";
 import Button from "@/components/Button";
 import TextFields from "@/components/TextFields";
 import Pagination from "@/components/Pagination/Pagination";
+import JourneyModal from "./JourneyModal";
 
 import { formatDate } from "../../../assignment/components/Preview";
 
 export interface journeyProps {
   rank: number;
-  nim: number;
+  nim: string;
   name: string;
   status: boolean;
-  onOpen: () => void;
+  rating: number;
+  reflection: string;
+  story: string;
 }
 
 export interface journeyDetailProps {
@@ -27,7 +30,13 @@ export interface journeyDetailProps {
   totalSpartan?: number;
 }
 
-const JourneyRow = ({ rank, nim, name, status, onOpen }: journeyProps) => {
+const JourneyRow = ({
+  rank,
+  nim,
+  name,
+  status,
+  onOpen,
+}: journeyProps & { onOpen: () => void }) => {
   return (
     <div className="grid grid-cols-10 bg-primaryLight-400 border-b-[2px] border-secondaryDark-100 gap-1 px-[5px] py-[10px] items-center justify-center text-center">
       <div className="">{rank}</div>
@@ -72,6 +81,14 @@ const JourneyDetail = ({
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(3);
+  const [modalContent, setModalContent] = useState({
+    name: "",
+    nim: "",
+    rating: 0,
+    story: "",
+    reflection: "",
+    isVisible: false,
+  });
 
   const [filteredData, setFilteredData] = useState<journeyProps[]>(data || []);
   const [currShowingData, setCurrShowingData] = useState<journeyProps[]>([]);
@@ -105,7 +122,22 @@ const JourneyDetail = ({
 
   return (
     <div className="">
-      <Link href="/dashboard/grade-assignment">
+      {modalContent.isVisible ? (
+        <JourneyModal
+          {...modalContent}
+          onClose={() =>
+            setModalContent({
+              name: "",
+              nim: "",
+              rating: 0,
+              story: "",
+              reflection: "",
+              isVisible: false,
+            })
+          }
+        />
+      ) : null}
+      <Link href="/dashboard/view-journey">
         <div className="flex mx-[10px] md:mx-[100px] lg:mx-[220px] items-center gap-2 mb-4 cursor-pointer">
           <FaChevronLeft size={20} className="text-primaryDark-400" />
           <p className="font-sen font-bold text-xl text-primaryDark-400">
@@ -115,9 +147,6 @@ const JourneyDetail = ({
       </Link>
       <div className="">
         <div className="flex flex-wrap lg:flex-col-reverse justify-between mx-[20px] md:mx-[110px] lg:mx-[245px] pt-2">
-          {/* <div className="font-koulen break-words leading-[44px] lg:leading-normal max-w-[65%] text-[40px] md:text-[50px] md:max-w-[420px] font-bold text-primaryDark-400 lg:text-h2 lg:font-normal">
-            Day {title}
-          </div> */}
           <div className="font-hammersmith text-[14px] lg:flex lg:gap-5 lg:items-center ">
             <div className="text-right lg:text-left md:text-[22px] lg:text-h4">
               DAY {number}
@@ -145,12 +174,15 @@ const JourneyDetail = ({
             {currShowingData.map((data, idx) => {
               return (
                 <JourneyRow
+                  {...data}
                   rank={pageSize * (currentPage - 1) + idx + 1}
-                  nim={data.nim}
-                  name={data.name}
-                  status={data.status}
                   key={idx}
-                  onOpen={() => null}
+                  onOpen={() =>
+                    setModalContent({
+                      ...data,
+                      isVisible: true,
+                    })
+                  }
                 />
               );
             })}

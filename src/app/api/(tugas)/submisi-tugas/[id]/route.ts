@@ -45,6 +45,7 @@ export async function GET(
               nim: true,
               fullName: true,
               kelompok: true,
+              role: true,
             },
           },
         },
@@ -58,6 +59,13 @@ export async function GET(
   if (!tugas) {
     return NextResponse.json({ message: "Tugas not found" }, { status: 404 });
   }
+
+  tugas = {
+    ...tugas,
+    submisiTugas: tugas.submisiTugas.filter(
+      (val) => val.user.role === "PESERTA"
+    ),
+  };
 
   if (kelompok) {
     tugas = {

@@ -33,11 +33,15 @@ export async function GET(
       date: true,
       evalDay: {
         select: {
+          rating: true,
+          story: true,
+          reflection: true,
           user: {
             select: {
               nim: true,
               fullName: true,
               kelompok: true,
+              role: true,
             },
           },
         },
@@ -51,6 +55,11 @@ export async function GET(
   if (!day) {
     return NextResponse.json({ message: "Day not found" }, { status: 404 });
   }
+
+  day = {
+    ...day,
+    evalDay: day.evalDay.filter((val) => val.user.role === "PESERTA"),
+  };
 
   if (kelompok) {
     day = {
