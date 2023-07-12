@@ -66,7 +66,7 @@ const Journey = ({
         </div>
       </div>
       <div className="col-span-2 mr-4 ml-2 mb-3 md:mr-6 md:ml-4 lg:ml-[125px] lg:mr-[50px] flex flex-col justify-end">
-        <Link href={`/dashboard/grade-assignment/${number}`}>
+        <Link href={`/dashboard/view-journey/${number}`}>
           <Button isPrimary={true} text="Open" />
         </Link>
       </div>
