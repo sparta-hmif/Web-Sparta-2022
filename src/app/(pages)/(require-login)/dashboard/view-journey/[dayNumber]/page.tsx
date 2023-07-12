@@ -4,10 +4,7 @@ import useSWR from "swr";
 import fetcher from "@/app/lib/fetcher";
 
 // Component imports
-import AssignmentDetail, {
-  assignmentDetailProps,
-  assignmentProps,
-} from "../components/AssignmentDetail";
+import JourneyDetail, { journeyDetailProps } from "../components/JourneyDetail";
 import { useSession } from "next-auth/react";
 import { User } from "@prisma/client";
 
@@ -29,16 +26,15 @@ export default function ViewJourneyDetail({
     fetcher
   );
 
-  let mappedData: assignmentDetailProps = {};
+  let mappedData: journeyDetailProps = {};
 
   if (data) {
     const userList = [
-      ...data.submisiTugas.map((val: any, index: number) => ({
+      ...data.evalDay.map((val: any, index: number) => ({
         rank: index + 1,
         name: val.user.fullName,
         nim: val.user.nim,
         status: true,
-        link: val.link,
       })),
       ...data.missingUsers.map((val: any, index: number) => ({
         rank: index + 1,
@@ -49,18 +45,16 @@ export default function ViewJourneyDetail({
     ];
 
     mappedData = {
-      title: data.title,
-      dayNumber: data.day.number,
-      startTime: data.startTime,
-      endTime: data.endTime,
+      number: data.number,
+      date: data.date,
       data: userList,
-      uploadCount: data.submisiTugas.length,
-      totalSpartan: data.submisiTugas.length + data.missingUsers.length,
+      uploadCount: data.evalDay.length,
+      totalSpartan: data.evalDay.length + data.missingUsers.length,
     };
   }
   return (
     <div className="container mx-auto py-10">
-      <AssignmentDetail {...mappedData} />
+      <JourneyDetail {...mappedData} />
     </div>
   );
 }
