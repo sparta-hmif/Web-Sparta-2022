@@ -1,8 +1,10 @@
-import { PrismaClient, Prisma } from "@prisma/client";
+import { Prisma, User } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import moment from "moment";
+import { getServerSession } from "next-auth";
 
-const prisma = new PrismaClient();
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { prisma } from "@/app/lib/prisma";
 
 /**
  * Endpoint Penambahan Day
@@ -14,6 +16,16 @@ const prisma = new PrismaClient();
 async function POST(req: NextRequest) {
   try {
     const { number, date, description } = await req.json();
+
+    const session = await getServerSession(authOptions);
+
+    // Route protection
+    if (!session?.user || (session.user as User).role !== "ADMIN") {
+      return NextResponse.json(
+        { message: "mau ngapain mas/mba ??" },
+        { status: 401 }
+      );
+    }
 
     if (!((number || number === 0) && date))
       return NextResponse.json(
@@ -31,7 +43,7 @@ async function POST(req: NextRequest) {
       data: {
         number: number,
         description: description,
-        date: new Date(date), // TODO: time zone
+        date: new Date(date),
       },
     });
 
@@ -49,41 +61,4 @@ async function POST(req: NextRequest) {
   }
 }
 
-/**
- * Endpoint Lihat Semua Day
- *
- * Endpoint dipake di page day buat nampilin semua day ke peserta + nampilin evaluasi day yang udah pernah dibuat sama peserta
- */
-async function GET(req: Request) {
-  try {
-    const { searchParams } = new URL(req.url);
-    const userId = searchParams.get("userId");
-    const days = await prisma.day.findMany({
-      orderBy: {
-        number: "asc",
-      },
-
-      // include: {
-      //   EvalDay: {
-      //     where: {
-      //       userId: String(userId), // TODO: time zone
-      //     },
-      //   },
-      // },
-    });
-
-    return NextResponse.json(days);
-  } catch (err) {
-    let msg = "Internal Server Error";
-    let status = 500;
-
-    if (err instanceof Prisma.PrismaClientKnownRequestError) {
-      msg = err.message.replace(/\s{2,}/g, " ").slice(1);
-      status = 400;
-    }
-
-    return NextResponse.json({ message: msg }, { status: status });
-  }
-}
-
-export { POST, GET };
+export { POST };

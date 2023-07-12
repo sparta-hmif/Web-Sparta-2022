@@ -84,8 +84,6 @@ const Assignment = ({
     toast.error("Failed to upload file", {
       id: toastId,
     });
-
-    const resJson = await res.json();
   };
 
   const handleFileSelected = (newFile: File) => {

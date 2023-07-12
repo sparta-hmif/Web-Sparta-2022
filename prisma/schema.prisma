@@ -16,43 +16,6 @@ enum Role {
   ADMIN
 }
 
-enum Jabatan {
-  ZEUS
-  SEKJEN
-  SEKRETARIS
-  BENDAHARA
-  KABID
-  WAKABID
-  KADIV
-  WAKADIV
-  STAFF
-}
-
-enum Bidang {
-  KETUA
-  KESEKJENAN
-  MAMET
-  KONSEPTOR
-  LAPANGAN
-  PENSUASANAAN
-  OPERASIONAL
-}
-
-enum Divisi {
-  KESEKJENAN
-  MSDM_PANITIA
-  MAMET
-  ACARA
-  MSDM_KADER
-  MENTOR
-  KEAMANAN
-  MEDIK
-  GRAFIS
-  PUBDOK
-  IT
-  LOGISTIK
-}
-
 // Types
 type Section {
   title       String
@@ -79,6 +42,36 @@ model User {
   kelompok     String?
   evalUser     EvalDay[]
   submisiTugas SubmisiTugas[]
+  UserKasuh    UserKasuh?
+  UserDesuh    UserDesuh?
+}
+
+model UserKasuh {
+  id                String             @id @default(auto()) @map("_id") @db.ObjectId
+  user              User               @relation(fields: [userId], references: [id])
+  userId            String             @unique @db.ObjectId
+  birthDate         DateTime?
+  deskripsi         String?
+  kuota             Int?
+  pendaftarSekarang Int?               @default(0)
+  PendaftaranKasuh  PendaftaranKasuh[]
+}
+
+model UserDesuh {
+  id               String             @id @default(auto()) @map("_id") @db.ObjectId
+  user             User               @relation(fields: [userId], references: [id])
+  userId           String             @unique @db.ObjectId
+  PendaftaranKasuh PendaftaranKasuh[]
+}
+
+model PendaftaranKasuh {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  kasuh    UserKasuh @relation(fields: [kasuhId], references: [id])
+  kasuhId  String    @db.ObjectId
+  desuh    UserDesuh @relation(fields: [desuhId], references: [id])
+  desuhId  String    @db.ObjectId
+  alasan   String?
+  approved Boolean   @default(false)
 }
 
 model Tugas {
@@ -122,20 +115,10 @@ model Day {
 model EvalDay {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   rating     Int
-  evaluation String
+  story      String
+  reflection String
   user       User   @relation(fields: [userId], references: [id])
   userId     String @db.ObjectId
   day        Day    @relation(fields: [dayId], references: [id])
   dayId      String @db.ObjectId
-}
-
-model Panitia {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
-  namaLengkap String
-  namaPendek  String
-  nim         String  @unique
-  jabatan     Jabatan
-  bidang      Bidang
-  divisi      Divisi?
-  imageURL    String?
 }
