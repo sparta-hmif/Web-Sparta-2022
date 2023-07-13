@@ -8,11 +8,13 @@ const Button = ({
   text,
   onClick,
   type,
+  color,
 }: {
   isPrimary: boolean;
   text: string;
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
   type?: "button" | "reset" | "submit" | undefined;
+  color?: string;
 }) => {
   return (
     <button
@@ -24,7 +26,7 @@ const Button = ({
         py-3 px-2 font-sen
         ${isPrimary ? "border-none" : "border-[3px]"}
         border-secondary-400
-        ${isPrimary ? "bg-secondary-400" : "bg-white"}
+        ${isPrimary ? (color ? color : "bg-secondary-400") : "bg-white"}
         rounded-xl md:rounded-2xl
         font-bold 
         ${isPrimary ? "text-white" : "text-secondary-400"}
