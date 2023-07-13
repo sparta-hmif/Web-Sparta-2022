@@ -14,7 +14,7 @@ const NavDashboard = ({ role }: { role: string }) => {
         <div className="w-full h-auto flex items-center">
           <ul className="w-full h-auto flex justify-start md:justify-center gap-0 relative">
             {allAccess && (
-              <div className="flex-none w-1/3 lg:w-1/6 max-w-60 hover:bg-[#E8DDDF] relative">
+              <div className="flex-none w-1/3 md:w-1/6 max-w-60 hover:bg-[#E8DDDF] relative">
                 <div
                   className={`w-full h-1 md:h-2 bg-primary-400 top-0 ${
                     pathName === "/dashboard/add-module"
@@ -33,7 +33,7 @@ const NavDashboard = ({ role }: { role: string }) => {
             )}
 
             {allAccess && (
-              <div className="flex-none w-1/3 lg:w-1/6 max-w-60 hover:bg-[#E8DDDF] relative">
+              <div className="flex-none w-1/3 md:w-1/6 max-w-60 hover:bg-[#E8DDDF] relative">
                 <div
                   className={`w-full h-1 md:h-2 bg-primary-400 top-0 ${
                     pathName === "/dashboard/add-assignment"
@@ -51,10 +51,10 @@ const NavDashboard = ({ role }: { role: string }) => {
               </div>
             )}
 
-            <div className="flex-none w-1/3 lg:w-1/6 max-w-60 hover:bg-[#E8DDDF] relative">
+            <div className="flex-none w-1/3 md:w-1/6 max-w-60 hover:bg-[#E8DDDF] relative">
               <div
                 className={`w-full h-1 md:h-2 bg-primary-400 top-0 ${
-                  pathName === "/dashboard/grade-assignment"
+                  pathName?.startsWith("/dashboard/grade-assignment")
                     ? "scale-x-100"
                     : "scale-x-0"
                 } absolute duration-300 rounded-b-md`}
@@ -68,7 +68,7 @@ const NavDashboard = ({ role }: { role: string }) => {
               </Link>
             </div>
 
-            <div className="flex-none w-1/3 lg:w-1/6 py-3 max-w-60 hover:bg-[#E8DDDF] relative">
+            <div className="flex-none w-1/3 md:w-1/6 py-3 max-w-60 hover:bg-[#E8DDDF] relative">
               <div
                 className={`w-full h-1 md:h-2 bg-primary-400 top-0 ${
                   pathName === "/dashboard/edit-scoreboard"
@@ -80,6 +80,23 @@ const NavDashboard = ({ role }: { role: string }) => {
                 <li className="w-full h-full flex flex-col justify-center items-center pt-0 gap-y-2">
                   <p className="font-koulen text-[14px] lg:text-[24px] text-[#E6B93D]">
                     EDIT SCOREBOARD
+                  </p>
+                </li>
+              </Link>
+            </div>
+
+            <div className="flex-none w-1/3 md:w-1/6 py-3 max-w-60 hover:bg-[#E8DDDF] relative">
+              <div
+                className={`w-full h-1 md:h-2 bg-primary-400 top-0 ${
+                  pathName?.startsWith("/dashboard/view-journey")
+                    ? "scale-x-100"
+                    : "scale-x-0"
+                } absolute duration-300 rounded-b-md`}
+              ></div>
+              <Link href="/dashboard/view-journey">
+                <li className="w-full h-full flex flex-col justify-center items-center pt-0 gap-y-2">
+                  <p className="font-koulen text-[14px] lg:text-[24px] text-[#E6B93D]">
+                    VIEW JOURNEY
                   </p>
                 </li>
               </Link>

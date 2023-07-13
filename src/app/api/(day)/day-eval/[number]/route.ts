@@ -6,9 +6,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { number: string } }
 ) {
-  const { id } = params;
+  const { number } = params;
   const { searchParams } = new URL(req.url);
   const kelompok = searchParams.get("kelompok");
 
@@ -27,19 +27,15 @@ export async function GET(
     );
   }
 
-  let tugas = await prisma.tugas.findUnique({
+  let day = await prisma.day.findUnique({
     select: {
-      title: true,
-      day: {
+      number: true,
+      date: true,
+      evalDay: {
         select: {
-          number: true,
-        },
-      },
-      startTime: true,
-      endTime: true,
-      submisiTugas: {
-        select: {
-          link: true,
+          rating: true,
+          story: true,
+          reflection: true,
           user: {
             select: {
               nim: true,
@@ -52,31 +48,27 @@ export async function GET(
       },
     },
     where: {
-      id,
+      number: Number(number),
     },
   });
 
-  if (!tugas) {
-    return NextResponse.json({ message: "Tugas not found" }, { status: 404 });
+  if (!day) {
+    return NextResponse.json({ message: "Day not found" }, { status: 404 });
   }
 
-  tugas = {
-    ...tugas,
-    submisiTugas: tugas.submisiTugas.filter(
-      (val) => val.user.role === "PESERTA"
-    ),
+  day = {
+    ...day,
+    evalDay: day.evalDay.filter((val) => val.user.role === "PESERTA"),
   };
 
   if (kelompok) {
-    tugas = {
-      ...tugas,
-      submisiTugas: tugas.submisiTugas.filter(
-        (submisi) => submisi.user.kelompok === kelompok
-      ),
+    day = {
+      ...day,
+      evalDay: day.evalDay.filter((val) => val.user.kelompok === kelompok),
     };
   }
 
-  const nimList = tugas.submisiTugas.map((submisi) => submisi.user.nim);
+  const nimList = day.evalDay.map((val) => val.user.nim);
 
   const users = await prisma.user.findMany({
     select: {
@@ -90,5 +82,5 @@ export async function GET(
   });
 
   const missingUsers = users.filter((user) => !nimList.includes(user.nim));
-  return NextResponse.json({ ...tugas, missingUsers });
+  return NextResponse.json({ ...day, missingUsers });
 }
