@@ -50,11 +50,11 @@ const JourneyModal = ({
           style={{
             transform: fullScale ? "scale(1)" : "scale(0.8)",
           }}
-          className="duration-500 transition-transform w-11/12 h-[90%] overflow-auto max-w-[43rem] bg-white border-4 border-primaryDark-400 rounded-xl px-5 md:px-10 py-7 items-center flex flex-col justify-between gap-3"
+          className="duration-500 transition-transform w-11/12 h-[90%] overflow-y-auto max-w-[43rem] bg-white border-4 border-primaryDark-400 rounded-xl px-5 md:px-10 py-7 items-center flex flex-col justify-between gap-3"
         >
           <div className="flex flex-col items-center relative">
             <h2 className="text-primaryDark-400 text-5xl md:text-7xl text-center truncate">
-              {name}
+              {name.split(" ")[0]}
             </h2>
             <h5 className="text-primaryDark-400 font-bold bg-white relative">
               {nim}
