@@ -1,6 +1,6 @@
 import { prisma } from "@/app/lib/prisma";
 import { NextResponse } from "next/server";
-import { authOptions } from "../../auth/[...nextauth]/route";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 /*
   Endpoint Mendapatkan daftar seluruh kasuh
@@ -18,16 +18,15 @@ export async function GET() {
 
   const kasuh = await prisma.userKasuh.findMany({
     select: {
-        pendaftarSekarang: true,
-        kuota: true,
-        user: {
-          select: {
-            fullName: true,
-            nim: true,
-          },
+      kuota: true,
+      user: {
+        select: {
+          fullName: true,
+          nim: true,
+          imageURL: true,
         },
       },
-
+    },
   });
 
   return NextResponse.json(kasuh);

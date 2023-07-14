@@ -2,14 +2,15 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { prisma } from "@/app/lib/prisma";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
+
 /*
   Endpoint Mendapatkan kasuh berdasarkan parameter id
 */
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { nim: string } }
 ) {
-  const { id } = params;
+  const { nim } = params;
 
   const session = await getServerSession(authOptions);
 
@@ -21,25 +22,26 @@ export async function GET(
     );
   }
 
-  const kasuh = await prisma.userKasuh.findUnique({
+  const kasuh = await prisma.user.findUnique({
     where: {
-      id
+      nim,
     },
-    select:{
-        birthDate: true,
-        deskripsi:true,
-        user:{
-            select:{
-                fullName:true,
-                shortName:true,
-                nim:true,
-                instagram:true,
-            }
-        }
-    }
+    select: {
+      fullName: true,
+      shortName: true,
+      nim: true,
+      instagram: true,
+      imageURL: true,
+      UserKasuh: {
+        select: {
+          birthDate: true,
+          deskripsi: true,
+        },
+      },
+    },
   });
 
-  if (!kasuh) {
+  if (!kasuh || !kasuh.UserKasuh) {
     return NextResponse.json({ message: "Kasuh not found" }, { status: 400 });
   }
 
