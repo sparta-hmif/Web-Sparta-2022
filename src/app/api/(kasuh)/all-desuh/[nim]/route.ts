@@ -26,7 +26,28 @@ export async function GET(
 
     const user = await prisma.user.findUnique({
       select: {
-        id: true,
+        UserKasuh: {
+          select: {
+            PendaftaranKasuh: {
+              select: {
+                id: true,
+                alasan: true,
+                approved: true,
+                desuh: {
+                  select: {
+                    user: {
+                      select: {
+                        fullName: true,
+                        nim: true,
+                        imageURL: true,
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
       },
       where: {
         nim: params.nim,
@@ -37,20 +58,11 @@ export async function GET(
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
 
-    const kasuh = await prisma.userKasuh.findUnique({
-      select: {
-        PendaftaranKasuh: true,
-      },
-      where: {
-        id: user.id,
-      },
-    });
-
-    if (!kasuh) {
+    if (!user.UserKasuh) {
       return NextResponse.json({ message: "Kasuh not found" }, { status: 400 });
     }
 
-    const adikAsuh = kasuh.PendaftaranKasuh;
+    const adikAsuh = user.UserKasuh.PendaftaranKasuh;
 
     return NextResponse.json({ adikAsuh }, { status: 200 });
   } catch (error) {

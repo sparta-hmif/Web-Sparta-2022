@@ -51,3 +51,114 @@ export async function DELETE(
     );
   }
 }
+
+/*
+  Endpoint Pendaftaran kasuh berdasarkan parameter desuhId, kasuhId serta alasan
+*/
+export async function POST(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const session = await getServerSession(authOptions);
+
+    const nimDesuh = params.id;
+
+    // Route protection
+    if (
+      !session?.user ||
+      ((session.user as User).nim !== nimDesuh &&
+        (session.user as User).role !== "ADMIN")
+    ) {
+      return NextResponse.json(
+        { message: "mau ngapain mas/mba ??" },
+        { status: 401 }
+      );
+    }
+
+    const { alasan, nimKasuh } = await req.json();
+
+    if (!alasan || !nimKasuh) {
+      return NextResponse.json(
+        { message: "Alasan dan nimKasuh tidak boleh kosong" },
+        { status: 400 }
+      );
+    }
+
+    const kasuh = await prisma.user.findUnique({
+      where: {
+        nim: nimKasuh,
+      },
+      include: {
+        UserKasuh: true,
+      },
+    });
+
+    if (!kasuh?.UserKasuh) {
+      return NextResponse.json({ message: "Kasuh not found" }, { status: 404 });
+    }
+
+    const desuh = await prisma.user.findUnique({
+      where: {
+        nim: nimDesuh,
+      },
+      include: {
+        UserDesuh: true,
+      },
+    });
+
+    if (!desuh) {
+      return NextResponse.json({ message: "Desuh not found" }, { status: 404 });
+    }
+
+    let desuhId = desuh.UserDesuh?.id ?? "";
+    if (!desuh.UserDesuh) {
+      const userDesuh = await prisma.userDesuh.create({
+        data: {
+          userId: desuh.id,
+        },
+      });
+      desuhId = userDesuh.id;
+    }
+
+    const pendaftaranKasuh = await prisma.pendaftaranKasuh.findFirst({
+      where: {
+        kasuhId: kasuh.UserKasuh?.id,
+        desuhId: desuhId,
+      },
+    });
+
+    // update pendaftaran kasuh apabila sudah mendaftar
+    if (pendaftaranKasuh) {
+      return NextResponse.json(
+        { message: "Anda sudah mendaftar kasuh ini" },
+        { status: 400 }
+      );
+    }
+
+    // create pendaftaran kasuh
+    await prisma.pendaftaranKasuh.create({
+      data: {
+        kasuhId: kasuh.UserKasuh.id,
+        desuhId: desuhId,
+        alasan: alasan,
+      },
+    });
+
+    // update user kasuh
+    await prisma.userKasuh.update({
+      where: {
+        id: kasuh.UserKasuh.id,
+      },
+      data: {
+        pendaftarSekarang: kasuh.UserKasuh.pendaftarSekarang
+          ? kasuh.UserKasuh.pendaftarSekarang + 1
+          : 1,
+      },
+    });
+
+    return NextResponse.json({ message: "success" });
+  } catch (err) {
+    return NextResponse.json({ message: err }, { status: 500 });
+  }
+}
