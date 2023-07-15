@@ -162,3 +162,59 @@ export async function POST(
     return NextResponse.json({ message: err }, { status: 500 });
   }
 }
+
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const nimDesuh = params.id;
+
+  const session = await getServerSession(authOptions);
+
+  // Route protection
+  if (
+    !session?.user ||
+    ((session.user as User).nim !== nimDesuh &&
+      (session.user as User).role !== "ADMIN")
+  ) {
+    return NextResponse.json(
+      { message: "mau ngapain mas/mba ??" },
+      { status: 401 }
+    );
+  }
+
+  const pendaftaran = await prisma.user.findUnique({
+    select: {
+      UserDesuh: {
+        select: {
+          PendaftaranKasuh: {
+            select: {
+              alasan: true,
+              kasuh: {
+                select: {
+                  kuota: true,
+                  user: {
+                    select: {
+                      nim: true,
+                      fullName: true,
+                      imageURL: true,
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    where: {
+      nim: nimDesuh,
+    },
+  });
+
+  if (!pendaftaran) {
+    return NextResponse.json({ message: "User not found" }, { status: 404 });
+  }
+
+  return NextResponse.json(pendaftaran);
+}
