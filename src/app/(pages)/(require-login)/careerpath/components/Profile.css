@@ -1,0 +1,84 @@
+.profile-transition-enter {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  
+  .profile-transition-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 800ms, transform 650ms;
+  }
+  
+  .profile-transition-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .profile-transition-exit-active {
+    opacity: 0;
+    transition: opacity 500ms
+  }
+
+  .button-transition-enter {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  
+  .button-transition-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 800ms, transform 800ms;
+  }
+
+  .button-transition-exit {
+    opacity: 0;
+    transform: translateY(50%);
+  }
+  
+  .button-transition-exit-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 800ms, transform 800ms;
+  }
+
+  .position-transition-enter {
+    transform: translateY(-130%);
+  }
+  
+  .position-transition-enter-active {
+    transform: translateY(0);
+    transition: transform 650ms;
+  }
+  
+  .position-transition-exit {
+    transform: translateY(0);
+  }
+  
+  .position-transition-exit-active {
+    transform: translateY(-60%);
+    transition: transform 650ms;
+  }
+
+  @media (min-width: 768px){
+    .position-transition-enter {
+      transform: translateY(-130%);
+    }
+    
+    .position-transition-enter-active {
+      transform: translateY(0);
+      transition: transform 650ms;
+    }
+    
+    .position-transition-exit {
+      transform: translateY(0);
+    }
+    
+    .position-transition-exit-active {
+      transform: translateY(-73%);
+      transition: transform 650ms;
+    }
+  }
+
+
+  
+  
