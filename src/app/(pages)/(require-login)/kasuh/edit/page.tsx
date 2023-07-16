@@ -46,7 +46,6 @@ export default function Page() {
     val.nimDesuh = user && user.nim;
   });
 
-  console.log("pilihanKasuh", pilihanKasuh)
   return (
     <div className="container mx-auto w-[87%] max-w-[65rem] py-10">
       <Link href="/kasuh">

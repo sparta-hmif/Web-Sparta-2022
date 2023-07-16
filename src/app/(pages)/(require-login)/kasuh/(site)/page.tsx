@@ -30,7 +30,6 @@ const Page = () => {
     fetcher
   );
 
-  console.log("dataMyKasuh", dataMyKasuh)
   //masukin atribut kuota ke atribut user
   const processedData = dataAllKasuh?.map((val: any) => {
     return {

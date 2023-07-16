@@ -20,8 +20,6 @@ const Page = ({ params }: { params: { nim: string } }) => {
   const { nim: nimKasuh } = params;
   const session = useSession();
   const user = session?.data?.user as UserSession;
-  console.log("user?.nim", user?.nim)
-  console.log("nimKasuh", nimKasuh)
 
   const { data } = useSWR(
     () => process.env.NEXT_PUBLIC_WEB_URL + `/api/kasuh/${nimKasuh}`,

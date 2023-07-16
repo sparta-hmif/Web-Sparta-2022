@@ -50,8 +50,6 @@ const DaftarKasuh = ({
       body: JSON.stringify({ nimKasuh: nimKasuh, alasan: value }),
     });
 
-    console.log("res", res);
-
     setIsRegistered(true);
     setIsModalOpen(false);
   };
@@ -64,8 +62,6 @@ const DaftarKasuh = ({
       },
       body: JSON.stringify({ alasan: value }),
     });
-
-    console.log("res", res);
 
     setIsModalOpen(false);
   }

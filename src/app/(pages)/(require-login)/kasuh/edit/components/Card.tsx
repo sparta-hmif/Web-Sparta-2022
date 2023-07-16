@@ -38,8 +38,6 @@ const Card = ({
       body: JSON.stringify({ alasan: alasanMemilih }),
     });
 
-    console.log("res", res);
-
     setIsModalOpen(false);
   }
 
