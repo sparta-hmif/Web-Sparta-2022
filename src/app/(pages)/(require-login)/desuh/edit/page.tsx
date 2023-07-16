@@ -1,12 +1,50 @@
 "use client";
 
 import Button from "@/components/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import useSWR from "swr";
+import fetcher from "@/app/lib/fetcher";
+
+interface UserSession {
+  id: string;
+  email: string;
+  fullName: string;
+  nim: string;
+  role: string;
+}
 
 const Page = () => {
+  const session = useSession();
+  const user = session?.data?.user as UserSession;
+
+  const { data: deskripsiKasuh } = useSWR(
+    `${process.env.NEXT_PUBLIC_WEB_URL}/api/kasuh/${user?.nim}`,
+    fetcher
+  );
+
   const [description, setDescription] = useState("");
 
-  const handleSubmit = () => {};
+  useEffect (() => {
+    setDescription(deskripsiKasuh?.UserKasuh?.deskripsi);
+  }
+  , [deskripsiKasuh?.UserKasuh?.deskripsi])
+
+  const handleSave = async () => {
+    // send put request to {{URL}}/deskripsi-kasuh/:user.nim
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_WEB_URL}/api/deskripsi-kasuh/${user.nim}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          deskripsi: description,
+        }),
+      }
+    );
+  };
 
   return (
     <>
@@ -42,7 +80,7 @@ const Page = () => {
             isPrimary={true}
             text={"Save"}
             type={"button"}
-            onClick={handleSubmit}
+            onClick={handleSave}
           />{" "}
         </div>
       </div>

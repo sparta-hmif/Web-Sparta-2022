@@ -1,5 +1,17 @@
+"use client"
 import Countdown from "./components/Coundown";
 import ListDesuh from "./components/ListDesuh";
+import useSWR from "swr";
+import fetcher from "@/app/lib/fetcher";
+import { useSession } from "next-auth/react";
+
+interface UserSession {
+  id: string;
+  email: string;
+  fullName: string;
+  nim: string;
+  role: string;
+}
 
 const data = [
   {
@@ -47,6 +59,21 @@ const data = [
 const Page = () => {
   const date = new Date("08/17/2023 23:59:59").getTime();
 
+  const session = useSession();
+  const user = session?.data?.user as UserSession;
+
+  const { data: dataMyDesuh } = useSWR(() => process.env.NEXT_PUBLIC_WEB_URL + `/api/all-desuh/${user?.nim}`, fetcher);
+
+  const processedData = dataMyDesuh?.adikAsuh?.map((val: any) => {
+    return {
+      nama: val?.desuh.user.fullName || "",
+      nim: val?.desuh.user.nim || "",
+      alasan: val?.alasan || "",
+      photoUrl: val?.desuh.user.imageURL || "",
+      accepted: val?.approved,
+    };
+  });
+
   return (
     <div className="py-10 md:py-20 px-7 lg:px-0 w-full container max-w-[80rem] mx-auto">
       <Countdown target={date} />
@@ -61,7 +88,7 @@ const Page = () => {
           </p>
         </div>
       </div>
-      <ListDesuh data={data}/>
+      {processedData && <ListDesuh data={processedData} />}
     </div>
   );
 };
