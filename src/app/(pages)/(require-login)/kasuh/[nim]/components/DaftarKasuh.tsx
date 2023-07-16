@@ -6,10 +6,16 @@ import AlasanModal from "./AlasanModal";
 
 const DaftarKasuh = ({
   registered,
+  nimKasuh,
+  nimDesuh,
   alasan,
-} : {
+  idPendaftaranKasuh
+}: {
   registered: boolean;
+  nimKasuh: string;
+  nimDesuh: string;
   alasan: string;
+  idPendaftaranKasuh: string;
 }) => {
   const [isRegistered, setIsRegistered] = useState(registered);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,7 +25,15 @@ const DaftarKasuh = ({
     setIsModalOpen(true);
   };
 
-  const handleCancel = () => {
+  const handleCancel = async () => {
+    // send a delete req to {{URL}}/pendaftaran-kasuh/:idPendaftaranKasuh
+    const res = await fetch(process.env.NEXT_PUBLIC_WEB_URL + `/api/pendaftaran-kasuh/${idPendaftaranKasuh}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    
     setIsRegistered(false);
   };
 
@@ -27,19 +41,39 @@ const DaftarKasuh = ({
     setValue(e.target.value);
   };
 
-  const handleSubmitAlasan = () => {
+  const handleSubmitAlasan = async () => {
+    const res = await fetch(process.env.NEXT_PUBLIC_WEB_URL + `/api/pendaftaran-kasuh/${nimDesuh}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ nimKasuh: nimKasuh, alasan: value }),
+    });
+
     setIsRegistered(true);
     setIsModalOpen(false);
   };
 
+  const handleUpdateAlasan = async () => {
+    const res = await fetch(process.env.NEXT_PUBLIC_WEB_URL + `/api/pendaftaran-kasuh/alasan/${nimDesuh}/${nimKasuh}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ alasan: value }),
+    });
+
+    setIsModalOpen(false);
+  }
+
   return (
     <>
-      {isModalOpen && <AlasanModal alasan={value} onChange={handleChange} onClose={() => setIsModalOpen(false)} onSubmit={handleSubmitAlasan} />}
+      {isModalOpen && <AlasanModal alasan={value} onChange={handleChange} onClose={() => setIsModalOpen(false)} onSubmit={isRegistered ? handleUpdateAlasan : handleSubmitAlasan} />}
       <div className="w-full flex justify-center md:justify-end mt-5">
         <div className="w-5/6 max-w-[25rem] flex gap-3 justify-center md:justify-end">
           {isRegistered ? (
             <>
-              <Button text="Edit Alasan" isPrimary color="bg-primary-400" onClick={() => setIsModalOpen(true)}/>
+              <Button text="Edit Alasan" isPrimary color="bg-primary-400" onClick={() => setIsModalOpen(true)} />
               <Button
                 text="Batal"
                 isPrimary

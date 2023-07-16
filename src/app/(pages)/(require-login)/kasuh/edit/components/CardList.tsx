@@ -10,13 +10,16 @@ export interface KasuhProps {
   nim: string;
   kuota: number;
   image: string;
+  alasan: string;
+  nimDesuh: string;
+  idPendaftaranKasuh: string;
 }
 
 const CardList = ({ pilihanKasuh }: { pilihanKasuh: KasuhProps[] }) => {
   const [pilihan, setPilihan] = useState(pilihanKasuh); // [{id: 1, nama: "Nama Kakak 1", nim: "13518201"}, {id: 2, nama: "Nama Kakak 2", nim: "13518202"}, {id: 3, nama: "Nama Kakak 3", nim: "13518203"}
 
   const isChanged = useMemo(() => {
-    return pilihan.some((pil, index) => pil.rank !== index + 1);
+    return pilihan && pilihan.some((pil, index) => pil.rank !== index + 1);
   }, [pilihan]);
 
   const handleUp = (rank: number) => {
@@ -49,7 +52,7 @@ const CardList = ({ pilihanKasuh }: { pilihanKasuh: KasuhProps[] }) => {
   };
 
   const handleCancel = () => {
-    const initialPilihan = pilihan.map((pil, index) => {
+    const initialPilihan = pilihan && pilihan.map((pil, index) => {
       return { ...pil, rank: index + 1 };
     });
     setPilihan(initialPilihan);
@@ -58,7 +61,7 @@ const CardList = ({ pilihanKasuh }: { pilihanKasuh: KasuhProps[] }) => {
   return (
     <>
       <div className="relative my-10 h-[25rem] md:h-[32rem]">
-        {pilihan.map((pil) => (
+        {pilihan && pilihan.map((pil) => (
           <Card
             key={pil.nim}
             rank={pil.rank}
@@ -66,6 +69,9 @@ const CardList = ({ pilihanKasuh }: { pilihanKasuh: KasuhProps[] }) => {
             nim={pil.nim}
             kuota={pil.kuota}
             image={pil.image}
+            alasan={pil.alasan}
+            nimDesuh={pil.nimDesuh}
+            idPendaftaranKasuh={pil.idPendaftaranKasuh}
             handleUp={handleUp}
             handleDown={handleDown}
           />

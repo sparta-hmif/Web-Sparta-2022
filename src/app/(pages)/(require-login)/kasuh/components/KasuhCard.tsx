@@ -3,14 +3,14 @@ import { dataProp } from "./PemilihanKasuh";
 import Image from "next/image";
 import Link from "next/link";
 
-const KasuhCard = ({ nim, name, kuota, image }: dataProp) => {
+const KasuhCard = ({ nim, name, kuota, imageURL }: dataProp) => {
   return (
     <>
       <div className=" px-[11px] py-[7px] lg:px-[29px] lg:py-[27px] border-primaryDark-500 border flex rounded-2xl justify-between items-center mt-[20px] mb-[20px]">
         <div className="flex items-center">
           <div className=" rounded-full h-10 w-10 md:h-14 md:w-14 lg:min-h-[110px] lg:min-w-[110px] overflow-hidden">
             <Image
-              src={image || "/images/landing/sparta.png"}
+              src={imageURL ? imageURL : "/images/landing/sparta.png"}
               alt="profile"
               width={1000}
               height={1000}

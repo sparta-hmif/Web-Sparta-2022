@@ -11,12 +11,13 @@ export interface dataProp {
   nim: number;
   name: string;
   kuota: number;
-  image: string;
+  imageURL: string;
 }
 
 export default function PemilihanKasuh({ data }: { data: dataProp[] }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
+
   const handleSearchQueryChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -43,7 +44,7 @@ export default function PemilihanKasuh({ data }: { data: dataProp[] }) {
   useEffect(() => {
     const firstPageIndex = (currentPage - 1) * pageSize;
     const lastPageIndex = firstPageIndex + pageSize;
-    setCurrShowingData(filteredData.slice(firstPageIndex, lastPageIndex));
+    setCurrShowingData(filteredData && filteredData.slice(firstPageIndex, lastPageIndex));
   }, [currentPage, filteredData]);
 
   return (
@@ -54,20 +55,20 @@ export default function PemilihanKasuh({ data }: { data: dataProp[] }) {
           value={searchQuery}
           placeholder="Search"
         />
-        {currShowingData.map((data, idx) => {
+        {currShowingData && currShowingData.map((data, idx) => {
           return (
             <KasuhCard
               nim={data.nim}
               name={data.name}
               key={idx}
-              kuota={3}
-              image=""
+              kuota={data.kuota}
+              imageURL={data.imageURL}
             />
           );
         })}
         <div className=" mb-[90px] mt-[20px]">
           <Pagination
-            totalDataCount={filteredData.length}
+            totalDataCount={filteredData && filteredData.length}
             currentPage={currentPage}
             pageSize={pageSize}
             onPageChange={(page) => {

@@ -9,6 +9,9 @@ const Card = ({
   nim,
   kuota,
   image,
+  alasan,
+  nimDesuh,
+  idPendaftaranKasuh,
   handleUp,
   handleDown,
 }: {
@@ -17,18 +20,50 @@ const Card = ({
   nim: string;
   kuota: number;
   image: string;
+  alasan: string;
+  nimDesuh: string;
+  idPendaftaranKasuh: string;
   handleUp: (rank: number) => void;
   handleDown: (rank: number) => void;
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [alasan, setAlasan] = useState("");
+  const [alasanMemilih, setAlasan] = useState(alasan);
+
+  const handleUpdateAlasan = async () => {
+    const res = await fetch(process.env.NEXT_PUBLIC_WEB_URL + `/api/pendaftaran-kasuh/alasan/${nimDesuh}/${nim}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ alasan: alasanMemilih }),
+    });
+
+    setIsModalOpen(false);
+  }
+
+  const handleCancel = async () => {
+    // send a delete req to {{URL}}/pendaftaran-kasuh/:idPendaftaranKasuh
+    const res = await fetch(process.env.NEXT_PUBLIC_WEB_URL + `/api/pendaftaran-kasuh/${idPendaftaranKasuh}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    // refresh after res is ok
+    if (res.ok) {
+      location.reload();
+    }
+  };
+
+
   return (
     <>
       {isModalOpen && (
         <AlasanModal
-          alasan={alasan}
+          alasan={alasanMemilih}
           onClose={() => setIsModalOpen(false)}
-          onSubmit={() => {}}
+          onSubmit={handleUpdateAlasan}
           onChange={(e) => setAlasan(e.target.value)}
         />
       )}
@@ -75,7 +110,11 @@ const Card = ({
             isPrimary
             onClick={() => setIsModalOpen(true)}
           />
-          <Button text="Hapus" isPrimary color="bg-danger-300" />
+          <Button
+            text="Hapus"
+            isPrimary color="bg-danger-300"
+            onClick={handleCancel}
+          />
         </div>
       </div>
     </>

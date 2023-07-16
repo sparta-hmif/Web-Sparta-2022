@@ -9,7 +9,7 @@ export async function GET() {
   // Route protection
   if (!session?.user) {
     return NextResponse.json(
-      { message: "mau ngapain mas/mba ??" },
+      { message: "Ayolah mas/mba fokus sparta, daripada iseng-iseng gini, entar servernya malah numpuk, mohon kerja samanya ya :D semangat mas/mba <3!" },
       { status: 401 }
     );
   }

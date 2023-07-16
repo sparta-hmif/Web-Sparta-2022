@@ -12,6 +12,8 @@ const AlasanModal = ({
   onSubmit: () => void;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }) => {
+
+  
   return (
     <div className="fixed z-50 h-screen top-0 inset-x-0 bg-neutral-800/70 backdrop-blur-[2px]">
       <div className="w-full h-full flex items-center justify-center">
@@ -24,7 +26,7 @@ const AlasanModal = ({
           </p>
           <textarea
             className="w-full h-52 resize-none text-sm md:text-base px-2 flex-1 rounded-xl body-1 bg-neutral-100 mt-2 border-secondaryDark-400 hover:border-secondary-400 focus:outline-none focus:ring-0 focus:border-secondary-400"
-            placeholder="Ketik disini..."
+            placeholder="Ketik di sini..."
             value={alasan}
             onChange={onChange}
           />
