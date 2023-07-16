@@ -102,6 +102,16 @@ const dataPage = [
     href: "/journey",
     role: ["MAMET", "ADMIN", "PESERTA"],
   },
+  {
+    name: "Kasuh",
+    href: "/kasuh",
+    role: ["PESERTA", "ADMIN"],
+  },
+  {
+    name: "Desuh",
+    href: "/desuh/election",
+    role: ["KASUH", "ADMIN"],
+  },
 ];
 const Navbar = ({ user }: NavbarProps) => {
   const [showMenu, setShowMenu] = useState(false);

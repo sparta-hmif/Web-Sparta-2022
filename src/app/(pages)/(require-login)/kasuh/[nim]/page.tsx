@@ -83,7 +83,7 @@ const Page = ({ params }: { params: { nim: string } }) => {
               </div>
               <div className="flex items-center gap-1">
                 <AiOutlineGift size={24} />
-                <p>{data && data?.UserKasuh?.birthDate.split("T")[0]}</p>
+                <p>{data && data?.UserKasuh?.line}</p>
               </div>
             </div>
             <h4 className="text-primaryDark-400 font-koulen text-3xl md:text-5xl my-2">

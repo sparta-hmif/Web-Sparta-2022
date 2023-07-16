@@ -12,6 +12,12 @@ export async function DELETE(
   try {
     const pendaftaranKasuh = await prisma.pendaftaranKasuh.findUnique({
       select: {
+        kasuh: {
+          select: {
+            id: true,
+            pendaftarSekarang: true,
+          },
+        },
         desuh: {
           select: {
             userId: true,
@@ -47,6 +53,15 @@ export async function DELETE(
     await prisma.pendaftaranKasuh.delete({
       where: {
         id: params.id,
+      },
+    });
+
+    await prisma.userKasuh.update({
+      where: {
+        id: pendaftaranKasuh.kasuh.id,
+      },
+      data: {
+        pendaftarSekarang: pendaftaranKasuh.kasuh.pendaftarSekarang - 1,
       },
     });
 
@@ -112,8 +127,14 @@ export async function POST(
       where: {
         nim: nimDesuh,
       },
-      include: {
-        UserDesuh: true,
+      select: {
+        id: true,
+        UserDesuh: {
+          select: {
+            id: true,
+            PendaftaranKasuh: true,
+          },
+        },
       },
     });
 
@@ -146,12 +167,22 @@ export async function POST(
       );
     }
 
+    const rank = (desuh.UserDesuh?.PendaftaranKasuh.length ?? 0) + 1;
+
+    if (rank > 3) {
+      return NextResponse.json(
+        { message: "Anda sudah mendaftar kasuh 3 kali" },
+        { status: 400 }
+      );
+    }
+
     // create pendaftaran kasuh
     await prisma.pendaftaranKasuh.create({
       data: {
         kasuhId: kasuh.UserKasuh.id,
         desuhId: desuhId,
         alasan: alasan,
+        rank: rank,
       },
     });
 

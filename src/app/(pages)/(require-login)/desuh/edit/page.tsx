@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import useSWR from "swr";
 import fetcher from "@/app/lib/fetcher";
+import toast from "react-hot-toast";
 
 interface UserSession {
   id: string;
@@ -16,24 +17,28 @@ interface UserSession {
 
 const Page = () => {
   const session = useSession();
-  const user = session?.data?.user as UserSession;
 
   const { data: deskripsiKasuh } = useSWR(
-    `${process.env.NEXT_PUBLIC_WEB_URL}/api/kasuh/${user?.nim}`,
+    () =>
+      process.env.NEXT_PUBLIC_WEB_URL +
+      "/api/kasuh/" +
+      (session?.data?.user as UserSession).nim,
     fetcher
   );
 
   const [description, setDescription] = useState("");
 
-  useEffect (() => {
+  useEffect(() => {
     setDescription(deskripsiKasuh?.UserKasuh?.deskripsi);
-  }
-  , [deskripsiKasuh?.UserKasuh?.deskripsi])
+  }, [deskripsiKasuh?.UserKasuh?.deskripsi]);
 
   const handleSave = async () => {
+    const toastId = toast.loading("Loading...");
     // send put request to {{URL}}/deskripsi-kasuh/:user.nim
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_WEB_URL}/api/deskripsi-kasuh/${user.nim}`,
+      `${process.env.NEXT_PUBLIC_WEB_URL}/api/deskripsi-kasuh/${
+        (session?.data?.user as UserSession).nim
+      }`,
       {
         method: "PUT",
         headers: {
@@ -44,6 +49,12 @@ const Page = () => {
         }),
       }
     );
+
+    if (res.status === 200) {
+      toast.success("Successfully Updated!", { id: toastId });
+    } else {
+      toast.error("Failed to update", { id: toastId });
+    }
   };
 
   return (

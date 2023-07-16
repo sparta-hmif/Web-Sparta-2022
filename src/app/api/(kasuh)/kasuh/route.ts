@@ -13,7 +13,10 @@ export async function POST(req: NextResponse) {
     // Route protection
     if (!session?.user || (session.user as User).role !== "ADMIN") {
       return NextResponse.json(
-        { message: "Ayolah mas/mba fokus sparta, daripada iseng-iseng gini, entar servernya malah numpuk, mohon kerja samanya ya :D semangat mas/mba <3!" },
+        {
+          message:
+            "Ayolah mas/mba fokus sparta, daripada iseng-iseng gini, entar servernya malah numpuk, mohon kerja samanya ya :D semangat mas/mba <3!",
+        },
         { status: 401 }
       );
     }
@@ -24,7 +27,8 @@ export async function POST(req: NextResponse) {
       shortName,
       email,
       password,
-      birthDate,
+      instagram,
+      line,
       deskripsi,
       kuota,
     } = await req.json();
@@ -38,10 +42,11 @@ export async function POST(req: NextResponse) {
         password: hashedPassword,
         fullName,
         shortName,
+        instagram,
         role: "KASUH",
         UserKasuh: {
           create: {
-            birthDate: new Date(birthDate).toISOString(),
+            line,
             deskripsi,
             kuota,
           },

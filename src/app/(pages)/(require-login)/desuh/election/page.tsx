@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Countdown from "./components/Coundown";
 import ListDesuh from "./components/ListDesuh";
 import useSWR from "swr";
@@ -13,56 +13,18 @@ interface UserSession {
   role: string;
 }
 
-const data = [
-  {
-    nama: "ADEK ASUH 1",
-    nim: "19222001",
-    alasan:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-    photoUrl: "",
-    accepted: true,
-  },
-  {
-    nama: "ADEK ASUH 2",
-    nim: "19222002",
-    alasan:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-    photoUrl: "",
-    accepted: false,
-  },
-  {
-    nama: "ADEK ASUH 3",
-    nim: "19222003",
-    alasan:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-    photoUrl: "",
-    accepted: false,
-  },
-  {
-    nama: "ADEK ASUH 4",
-    nim: "19222004",
-    alasan:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-    photoUrl: "",
-    accepted: false,
-  },
-  {
-    nama: "ADEK ASUH 5",
-    nim: "19222005",
-    alasan:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-    photoUrl: "",
-    accepted: false,
-  },
-];
-
 const Page = () => {
   const date = new Date("08/17/2023 23:59:59").getTime();
 
   const session = useSession();
-  const user = session?.data?.user as UserSession;
 
-  const { data: dataMyDesuh } = useSWR(() => process.env.NEXT_PUBLIC_WEB_URL + `/api/all-desuh/${user?.nim}`, fetcher);
+  const { data: dataMyDesuh } = useSWR(
+    () =>
+      process.env.NEXT_PUBLIC_WEB_URL +
+      "/api/all-desuh/" +
+      (session?.data?.user as UserSession).nim,
+    fetcher
+  );
 
   const processedData = dataMyDesuh?.adikAsuh?.map((val: any) => {
     return {
