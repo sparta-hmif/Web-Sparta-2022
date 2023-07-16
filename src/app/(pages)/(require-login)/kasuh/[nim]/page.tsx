@@ -1,5 +1,6 @@
 "use client";
-import { AiFillInstagram, AiOutlineGift } from "react-icons/ai";
+import { AiFillInstagram } from "react-icons/ai";
+import { FaLine } from "react-icons/fa";
 import { FaChevronLeft } from "react-icons/fa";
 import DaftarKasuh from "./components/DaftarKasuh";
 import Link from "next/link";
@@ -82,7 +83,7 @@ const Page = ({ params }: { params: { nim: string } }) => {
                 <p>{data && data.instagram}</p>
               </div>
               <div className="flex items-center gap-1">
-                <AiOutlineGift size={24} />
+                <FaLine size={24} />
                 <p>{data && data?.UserKasuh?.birthDate.split("T")[0]}</p>
               </div>
             </div>
