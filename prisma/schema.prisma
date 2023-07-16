@@ -122,3 +122,10 @@ model EvalDay {
   day        Day    @relation(fields: [dayId], references: [id])
   dayId      String @db.ObjectId
 }
+
+model CareerPath {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  kuota     Int
+  pendaftar Int    @default(0)
+}
