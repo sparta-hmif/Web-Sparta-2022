@@ -47,6 +47,7 @@ const Assignment = ({
   const today = new Date();
   const isExpired = endDate.getTime() < today.getTime();
   const [file, setFile] = useState<File>();
+  const [isLoading, setIsLoading] = useState(false);
 
   const { uploadToS3 } = useS3Upload();
 
@@ -54,6 +55,9 @@ const Assignment = ({
   const router = useRouter();
 
   const handleSubmission = async () => {
+    if (isLoading) return;
+    setIsLoading(true);
+
     const toastId = toast.loading("Loading...");
     if (!file) {
       toast.error("No file selected", {
@@ -73,6 +77,7 @@ const Assignment = ({
         body: JSON.stringify({ fileURL: url }),
       }
     );
+    setIsLoading(false);
     if (res.status === 200) {
       toast.success("File uploaded", {
         id: toastId,
@@ -179,6 +184,7 @@ const Assignment = ({
                   text="Submit"
                   type="button"
                   onClick={handleSubmission}
+                  disabled={isLoading}
                 />
               </div>
             </div>
