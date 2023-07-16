@@ -121,7 +121,7 @@ const About = () => {
               ))}
             </ul>
           </div>
-          <div className="rounded-lg bg-white col-span-1 hidden lg:block bg-[url('/images/landing/gambar2.jpg')] h-[19rem] bg-center bg-cover bg-no-repeat"></div>
+          <div className="rounded-lg bg-white col-span-1 hidden lg:block bg-[url('/images/landing/gambar2.jpg')] h-[19rem] bg-top bg-cover bg-no-repeat"></div>
         </div>
       </div>
     </div>
