@@ -8,7 +8,7 @@ import KasuhCard from "./KasuhCard";
 let pageSize = 10;
 
 export interface dataProp {
-  nim: number;
+  nim: string;
   name: string;
   kuota: number;
   imageURL: string;
@@ -44,7 +44,9 @@ export default function PemilihanKasuh({ data }: { data: dataProp[] }) {
   useEffect(() => {
     const firstPageIndex = (currentPage - 1) * pageSize;
     const lastPageIndex = firstPageIndex + pageSize;
-    setCurrShowingData(filteredData && filteredData.slice(firstPageIndex, lastPageIndex));
+    setCurrShowingData(
+      filteredData && filteredData.slice(firstPageIndex, lastPageIndex)
+    );
   }, [currentPage, filteredData]);
 
   return (
@@ -55,17 +57,18 @@ export default function PemilihanKasuh({ data }: { data: dataProp[] }) {
           value={searchQuery}
           placeholder="Search"
         />
-        {currShowingData && currShowingData.map((data, idx) => {
-          return (
-            <KasuhCard
-              nim={data.nim}
-              name={data.name}
-              key={idx}
-              kuota={data.kuota}
-              imageURL={data.imageURL}
-            />
-          );
-        })}
+        {currShowingData &&
+          currShowingData.map((data, idx) => {
+            return (
+              <KasuhCard
+                nim={data.nim}
+                name={data.name}
+                key={idx}
+                kuota={data.kuota}
+                imageURL={data.imageURL}
+              />
+            );
+          })}
         <div className=" mb-[90px] mt-[20px]">
           <Pagination
             totalDataCount={filteredData && filteredData.length}

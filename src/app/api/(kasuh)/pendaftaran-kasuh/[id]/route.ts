@@ -12,7 +12,11 @@ export async function DELETE(
   try {
     const pendaftaranKasuh = await prisma.pendaftaranKasuh.findUnique({
       select: {
-        desuhId: true,
+        desuh: {
+          select: {
+            userId: true,
+          },
+        },
       },
       where: {
         id: params.id,
@@ -28,11 +32,14 @@ export async function DELETE(
     // Route protection
     if (
       !session?.user ||
-      ((session.user as User).id !== pendaftaranKasuh.desuhId &&
+      ((session.user as User).id !== pendaftaranKasuh.desuh?.userId &&
         (session.user as User).role !== "ADMIN")
     ) {
       return NextResponse.json(
-        { message: "Ayolah mas/mba fokus sparta, daripada iseng-iseng gini, entar servernya malah numpuk, mohon kerja samanya ya :D semangat mas/mba <3!" },
+        {
+          message:
+            "Ayolah mas/mba fokus sparta, daripada iseng-iseng gini, entar servernya malah numpuk, mohon kerja samanya ya :D semangat mas/mba <3!",
+        },
         { status: 401 }
       );
     }
@@ -71,7 +78,10 @@ export async function POST(
         (session.user as User).role !== "ADMIN")
     ) {
       return NextResponse.json(
-        { message: "Ayolah mas/mba fokus sparta, daripada iseng-iseng gini, entar servernya malah numpuk, mohon kerja samanya ya :D semangat mas/mba <3!" },
+        {
+          message:
+            "Ayolah mas/mba fokus sparta, daripada iseng-iseng gini, entar servernya malah numpuk, mohon kerja samanya ya :D semangat mas/mba <3!",
+        },
         { status: 401 }
       );
     }
@@ -178,7 +188,10 @@ export async function GET(
       (session.user as User).role !== "ADMIN")
   ) {
     return NextResponse.json(
-      { message: "Ayolah mas/mba fokus sparta, daripada iseng-iseng gini, entar servernya malah numpuk, mohon kerja samanya ya :D semangat mas/mba <3!" },
+      {
+        message:
+          "Ayolah mas/mba fokus sparta, daripada iseng-iseng gini, entar servernya malah numpuk, mohon kerja samanya ya :D semangat mas/mba <3!",
+      },
       { status: 401 }
     );
   }

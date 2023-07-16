@@ -22,7 +22,7 @@ const KasuhCard = ({ nim, name, kuota, imageURL }: dataProp) => {
               {name}
             </p>
             <p className=" text-primaryDark-400 text-xs md:text-lg lg:text-2xl font-sen font-bold">
-              {nim}
+              {nim?.slice(5)}
             </p>
             <p className="  text-[8px] md:text-sm lg:text-base font-sen font-bold">
               Kuota : {kuota}

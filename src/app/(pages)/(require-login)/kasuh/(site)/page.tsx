@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import useSWR from "swr";
 import fetcher from "@/app/lib/fetcher";
@@ -18,15 +18,21 @@ interface UserSession {
 
 const Page = () => {
   const session = useSession();
-  const user = session?.data?.user as UserSession;
 
-  const { data: dataAllKasuh } = useSWR(
-    () => process.env.NEXT_PUBLIC_WEB_URL + "/api/all-kasuh",
+  const {
+    data: dataMyKasuh,
+    error,
+    isLoading,
+  } = useSWR(
+    () =>
+      process.env.NEXT_PUBLIC_WEB_URL +
+      "/api/pendaftaran-kasuh/" +
+      (session?.data?.user as UserSession).nim,
     fetcher
   );
 
-  const { data: dataMyKasuh } = useSWR(
-    () => process.env.NEXT_PUBLIC_WEB_URL + `/api/pendaftaran-kasuh/${user?.nim}`,
+  const { data: dataAllKasuh } = useSWR(
+    () => process.env.NEXT_PUBLIC_WEB_URL + "/api/all-kasuh",
     fetcher
   );
 
@@ -52,7 +58,12 @@ const Page = () => {
       </p>
       <Link href="/kasuh/edit">
         <div className=" my-5 w-full">
-          <Button isPrimary={true} text={`Pilihan Kakak Asuhku - ${dataMyKasuh ? dataMyKasuh.UserDesuh.PendaftaranKasuh.length : ""}/3`} />
+          <Button
+            isPrimary={true}
+            text={`Pilihan Kakak Asuhku - ${
+              dataMyKasuh?.UserDesuh?.PendaftaranKasuh.length ?? 0
+            }/3`}
+          />
         </div>
       </Link>
       <PemilihanKasuh data={processedData} />
