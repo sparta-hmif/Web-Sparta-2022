@@ -72,7 +72,7 @@ model PendaftaranKasuh {
   desuhId  String    @db.ObjectId
   alasan   String
   approved Boolean   @default(false)
-  rank     Int?
+  rank     Int
 }
 
 model Tugas {

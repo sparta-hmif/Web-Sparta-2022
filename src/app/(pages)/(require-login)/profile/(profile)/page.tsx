@@ -26,6 +26,7 @@ export default async function Home() {
     user.role === "PESERTA" ||
     user.role === "ADMIN" ||
     user.role === "MAMET" ||
+    user.role === "KASUH" ||
     user.role === "MENTOR";
 
   if (session && !roleAccess) {

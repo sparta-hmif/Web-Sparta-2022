@@ -12,6 +12,7 @@ export async function DELETE(
   try {
     const pendaftaranKasuh = await prisma.pendaftaranKasuh.findUnique({
       select: {
+        desuhId: true,
         kasuh: {
           select: {
             id: true,
@@ -63,6 +64,34 @@ export async function DELETE(
       data: {
         pendaftarSekarang: pendaftaranKasuh.kasuh.pendaftarSekarang - 1,
       },
+    });
+
+    const pendaftaran = await prisma.pendaftaranKasuh.findMany({
+      where: {
+        desuhId: pendaftaranKasuh.desuhId,
+      },
+    });
+
+    const sortedPendaftaran = pendaftaran.sort((a, b) => {
+      return a.rank - b.rank;
+    });
+
+    const mappedPendaftaran = sortedPendaftaran.map((pendaftaran, index) => {
+      return {
+        ...pendaftaran,
+        rank: index + 1,
+      };
+    });
+
+    mappedPendaftaran.forEach(async (pendaftaran) => {
+      await prisma.pendaftaranKasuh.update({
+        where: {
+          id: pendaftaran.id,
+        },
+        data: {
+          rank: pendaftaran.rank,
+        },
+      });
     });
 
     return NextResponse.json({ message: "success" }, { status: 200 });
@@ -235,6 +264,7 @@ export async function GET(
             select: {
               id: true,
               alasan: true,
+              rank: true,
               kasuh: {
                 select: {
                   kuota: true,
@@ -260,6 +290,11 @@ export async function GET(
   if (!pendaftaran) {
     return NextResponse.json({ message: "User not found" }, { status: 404 });
   }
+
+  // sort pendaftaran by rank
+  const mappedData = pendaftaran.UserDesuh?.PendaftaranKasuh.sort((a, b) => {
+    return a.rank - b.rank;
+  });
 
   return NextResponse.json(pendaftaran);
 }

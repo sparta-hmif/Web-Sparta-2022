@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import useSWR from "swr";
 import fetcher from "@/app/lib/fetcher";
 import Link from "next/link";
@@ -22,29 +22,33 @@ interface UserSession {
 
 export default function Page() {
   const session = useSession();
-  const user = session?.data?.user as UserSession;
 
   const { data: dataMyKasuh } = useSWR(
-    () => process.env.NEXT_PUBLIC_WEB_URL + `/api/pendaftaran-kasuh/${user && user.nim}`,
+    () =>
+      process.env.NEXT_PUBLIC_WEB_URL +
+      "/api/pendaftaran-kasuh/" +
+      (session?.data?.user as UserSession).nim,
     fetcher
   );
 
-  
-  const pilihanKasuh = dataMyKasuh && dataMyKasuh.UserDesuh?.PendaftaranKasuh?.map((val: any) => {
-    return { 
-      nama: val?.kasuh?.user?.fullName,
-      nim: val?.kasuh?.user?.nim,
-      kuota: val?.kasuh?.kuota,
-      image: val?.kasuh?.user?.imageURL,
-      alasan: val?.alasan,
-      idPendaftaranKasuh: val?.id
-    };
-  });
+  const pilihanKasuh =
+    dataMyKasuh &&
+    dataMyKasuh.UserDesuh?.PendaftaranKasuh?.map((val: any) => {
+      return {
+        nama: val?.kasuh?.user?.fullName,
+        nim: val?.kasuh?.user?.nim,
+        kuota: val?.kasuh?.kuota,
+        image: val?.kasuh?.user?.imageURL,
+        alasan: val?.alasan,
+        idPendaftaranKasuh: val?.id,
+      };
+    });
 
-  pilihanKasuh && pilihanKasuh?.forEach((val: any, index: any) => {
-    val.rank = index + 1;
-    val.nimDesuh = user && user.nim;
-  });
+  pilihanKasuh &&
+    pilihanKasuh?.forEach((val: any, index: any) => {
+      val.rank = index + 1;
+      val.nimDesuh = (session?.data?.user as UserSession).nim;
+    });
 
   return (
     <div className="container mx-auto w-[87%] max-w-[65rem] py-10">
@@ -62,9 +66,7 @@ export default function Page() {
       <p className=" body-1 text-sm md:text-lg">
         Kamu bisa mengurutkan prioritas pilihan kasuhmu di sini!
       </p>
-      <div>
-        {pilihanKasuh && <CardList pilihanKasuh={pilihanKasuh} />}
-      </div>
+      <div>{pilihanKasuh && <CardList pilihanKasuh={pilihanKasuh} />}</div>
     </div>
   );
 }

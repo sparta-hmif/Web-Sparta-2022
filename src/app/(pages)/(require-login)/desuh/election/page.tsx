@@ -50,7 +50,7 @@ const Page = () => {
           </p>
         </div>
       </div>
-      <ListDesuh data={data} />
+      {processedData && <ListDesuh data={processedData} />}
     </div>
   );
 };

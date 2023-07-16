@@ -2,6 +2,7 @@ import Button from "@/components/Button";
 import { useState } from "react";
 import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
 import AlasanModal from "../../[nim]/components/AlasanModal";
+import Image from "next/image";
 
 const Card = ({
   rank,
@@ -30,32 +31,39 @@ const Card = ({
   const [alasanMemilih, setAlasan] = useState(alasan);
 
   const handleUpdateAlasan = async () => {
-    const res = await fetch(process.env.NEXT_PUBLIC_WEB_URL + `/api/pendaftaran-kasuh/alasan/${nimDesuh}/${nim}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ alasan: alasanMemilih }),
-    });
+    const res = await fetch(
+      process.env.NEXT_PUBLIC_WEB_URL +
+        `/api/pendaftaran-kasuh/alasan/${nimDesuh}/${nim}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ alasan: alasanMemilih }),
+      }
+    );
 
     setIsModalOpen(false);
-  }
+  };
 
   const handleCancel = async () => {
     // send a delete req to {{URL}}/pendaftaran-kasuh/:idPendaftaranKasuh
-    const res = await fetch(process.env.NEXT_PUBLIC_WEB_URL + `/api/pendaftaran-kasuh/${idPendaftaranKasuh}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      process.env.NEXT_PUBLIC_WEB_URL +
+        `/api/pendaftaran-kasuh/${idPendaftaranKasuh}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     // refresh after res is ok
     if (res.ok) {
       location.reload();
     }
   };
-
 
   return (
     <>
@@ -96,11 +104,17 @@ const Card = ({
             onClick={() => handleDown(rank)}
           />
         </div>
-        <div className="w-1/6 max-w-[8rem] aspect-square bg-primaryDark-400 rounded-full"></div>
+        <div className="w-1/6 max-w-[8rem] relative aspect-square bg-primaryDark-400 rounded-full">
+          <Image
+            src={image || "/images/landing/sparta.png"}
+            fill={true}
+            alt=""
+          />
+        </div>
         <div className="flex flex-col md:ml-2 lg:ml-4">
           <h1 className="text-xl md:text-4xl line-clamp-2">{name}</h1>
           <h1 className="text-lg md:text-3xl text-primaryDark-400 leading-none">
-            {nim}
+            {nim.slice(5)}
           </h1>
           <h6 className="text-sm md:text-xl font-bold">Kuota : {kuota}</h6>
         </div>
@@ -112,7 +126,8 @@ const Card = ({
           />
           <Button
             text="Hapus"
-            isPrimary color="bg-danger-300"
+            isPrimary
+            color="bg-danger-300"
             onClick={handleCancel}
           />
         </div>

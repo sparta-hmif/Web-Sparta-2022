@@ -11,7 +11,7 @@ export interface dataProp {
   nim: string;
   name: string;
   kuota: number;
-  imageURL: string;
+  image: string;
 }
 
 export default function PemilihanKasuh({ data }: { data: dataProp[] }) {
@@ -65,7 +65,7 @@ export default function PemilihanKasuh({ data }: { data: dataProp[] }) {
                 name={data.name}
                 key={idx}
                 kuota={data.kuota}
-                imageURL={data.imageURL}
+                image={data.image}
               />
             );
           })}
