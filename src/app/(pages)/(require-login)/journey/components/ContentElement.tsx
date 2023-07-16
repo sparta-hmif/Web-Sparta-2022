@@ -12,10 +12,10 @@ const ContentElement = ({
   name : string,
 }) => {
   return (
-    <div className="h-1/2 w-full flex flex-col">
-      <h5 className="text-base font-bold md:text-xl">{title}</h5>
+    <div className="h-[26vh] md:h-[22vh] w-full flex flex-col">
+      <h5 className="text-base font-bold md:text-xl flex-none">{title}</h5>
       {viewMode ? (
-        <div className="w-full overflow-auto ">
+        <div className="flex-1 w-full overflow-y-auto">
           <p className={`body-1 text-sm md:text-base ${!value && "text-neutral-400"}`}>
             {value || "Belum ada catatan"}
           </p>

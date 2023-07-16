@@ -9,12 +9,14 @@ const Button = ({
   onClick,
   type,
   color,
+  disabled,
 }: {
   isPrimary: boolean;
   text: string;
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
   type?: "button" | "reset" | "submit" | undefined;
   color?: string;
+  disabled?: boolean;
 }) => {
   return (
     <button
@@ -34,7 +36,9 @@ const Button = ({
         hover:drop-shadow-[0_3px_6px_rgba(188,83,23,0.55)]
         ${isPrimary ? "active:bg-[#BC5317]" : "active:bg-secondary-400"}       
         active:text-white
+        disabled:cursor-not-allowed disabled:bg-neutral-300 disabled:text-neutral-400 disabled:hover:drop-shadow-none
         `}
+      disabled={disabled}
     >
       {text}
     </button>
