@@ -59,7 +59,7 @@ const Page = () => {
 
   return (
     <>
-      <div className="w-full py-10 md:py-20 px-7 lg:px-0 flex flex-col gap-2 text-center container max-w-[80rem] mx-auto">
+      <div className="w-full py-10 md:py-20 px-7 md:px-10 flex flex-col gap-2 text-center container max-w-[80rem] mx-auto">
         <p className="text-base md:text-lg font-sen font-bold">
           Halo Calon Kasuh!
         </p>
