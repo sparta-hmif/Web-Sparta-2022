@@ -9,7 +9,7 @@ const PemilihanDesuh = () => {
   return (
     <>
       <div className="px-7 py-[80px] lg:px-[208px] lg:py-[100px] w-full">
-        <Countdown target={date} pemilihan="Desuh" />
+        <Countdown target={date} />
         <div className="my-5 lg:my-[54px] flex flex-col lg:flex-row lg:justify-between lg:items-center">
           <div>
             <h2 className="text-primaryDark-400 text-[40px] lg:text-[64px]">

@@ -32,13 +32,7 @@ const getReturnValues = (countDown: number) => {
   return [days, hours, minutes, seconds];
 };
 
-const Countdown = ({
-  target,
-  pemilihan,
-}: {
-  target: number;
-  pemilihan: string;
-}) => {
+const Countdown = ({ target }: { target: number }) => {
   const [days, hours, minutes, seconds] = useCountdown(target);
   var dateFormat = new Date(target);
   var date =
@@ -64,7 +58,7 @@ const Countdown = ({
     <>
       <div className="py-3 lg:pt-4 lg:pb-9">
         <p className="sub-1 text-[12px] lg:text-[16px] text-center">
-          Kamu baru bisa memilih {pemilihan} pada Tanggal
+          Kamu baru bisa memilih Desuh pada Tanggal
         </p>
         <p className="sub-1 text-[12px] lg:text-[16px] text-center mb-2 lg:mb-6">
           {date}
