@@ -75,7 +75,7 @@ const Page = () => {
   });
 
   return (
-    <div className="py-10 md:py-20 px-7 lg:px-0 w-full container max-w-[80rem] mx-auto">
+    <div className="py-10 md:py-20 px-7 md:px-10 w-full container max-w-[80rem] mx-auto">
       <Countdown target={date} />
       <div className="my-5 lg:my-[54px] flex flex-col lg:flex-row lg:justify-between lg:items-center">
         <div>
@@ -88,7 +88,7 @@ const Page = () => {
           </p>
         </div>
       </div>
-      {processedData && <ListDesuh data={processedData} />}
+      <ListDesuh data={data} />
     </div>
   );
 };

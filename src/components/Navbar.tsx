@@ -125,7 +125,7 @@ const Navbar = ({ user }: NavbarProps) => {
     }
 
     return (
-      <>
+      <div>
         <div className="relative inline-block hover:bg-primaryDark-300 hover:text-primary-300 px-4 py-1 rounded-md peer cursor-pointer">
           {item.href ? (
             <Link href={item.href}>{item.name}</Link>
@@ -162,7 +162,7 @@ const Navbar = ({ user }: NavbarProps) => {
             </div>
           </div>
         )}
-      </>
+      </div>
     );
   };
 
@@ -200,7 +200,7 @@ const Navbar = ({ user }: NavbarProps) => {
           </Link>
           <div className="hidden lg:flex flex-row items-end justify-start gap-5 pt-2">
             {dataPage.map((item, index) => (
-              <div key={index}>{menuElements(item)}</div>
+              menuElements(item)
             ))}
           </div>
         </div>
