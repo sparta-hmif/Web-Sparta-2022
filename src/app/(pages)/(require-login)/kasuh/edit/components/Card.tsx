@@ -56,7 +56,6 @@ const Card = ({
     }
   };
 
-
   return (
     <>
       {isModalOpen && (
