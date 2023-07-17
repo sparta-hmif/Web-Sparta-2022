@@ -98,9 +98,9 @@ const Page = ({ params }: { params: { nim: string } }) => {
             </h6>
             <h6 className="text-secondaryDark-500 text-xl md:text-2xl font-koulen">
               JURUSAN:{" "}
-              {data && (data.nim?.substring(5, 3) === "182" ? "STI" : "IF")}
+              {data && (data.nim?.slice(5, 8) === "182" ? "STI" : "IF")}
             </h6>
-            <p className="caption md:body-1">
+            <p className="caption whitespace-pre-line md:body-1">
               {data && data.UserKasuh?.deskripsi}
             </p>
           </div>

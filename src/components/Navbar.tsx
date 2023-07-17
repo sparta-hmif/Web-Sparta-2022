@@ -129,13 +129,13 @@ const Navbar = ({ user }: NavbarProps) => {
     };
   }, [pathName]);
 
-  const menuElements = (item: ItemProps) => {
+  const menuElements = (item: ItemProps, index: number) => {
     if (!item.role.includes(user?.role as string)) {
       return null;
     }
 
     return (
-      <div>
+      <div key={index}>
         <div className="relative inline-block hover:bg-primaryDark-300 hover:text-primary-300 px-4 py-1 rounded-md peer cursor-pointer">
           {item.href ? (
             <Link href={item.href}>{item.name}</Link>
@@ -209,9 +209,7 @@ const Navbar = ({ user }: NavbarProps) => {
             />
           </Link>
           <div className="hidden lg:flex flex-row items-end justify-start gap-5 pt-2">
-            {dataPage.map((item, index) => (
-              menuElements(item)
-            ))}
+            {dataPage.map((item, index) => menuElements(item, index))}
           </div>
         </div>
         <div className="hidden lg:block w-[17rem] relative">

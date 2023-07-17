@@ -38,7 +38,7 @@ const Page = () => {
 
   return (
     <div className="py-10 md:py-20 px-7 md:px-10 w-full container max-w-[80rem] mx-auto">
-      <Countdown target={date} />
+      {/* <Countdown target={date} /> */}
       <div className="my-5 lg:my-[54px] flex flex-col lg:flex-row lg:justify-between lg:items-center">
         <div>
           <h2 className="text-primaryDark-400 text-[40px] lg:text-[64px]">

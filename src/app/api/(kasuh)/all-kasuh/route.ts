@@ -11,7 +11,10 @@ export async function GET() {
   // Route protection
   if (!session?.user) {
     return NextResponse.json(
-      { message: "Ayolah mas/mba fokus sparta, daripada iseng-iseng gini, entar servernya malah numpuk, mohon kerja samanya ya :D semangat mas/mba <3!" },
+      {
+        message:
+          "Ayolah mas/mba fokus sparta, daripada iseng-iseng gini, entar servernya malah numpuk, mohon kerja samanya ya :D semangat mas/mba <3!",
+      },
       { status: 401 }
     );
   }
@@ -29,5 +32,14 @@ export async function GET() {
     },
   });
 
-  return NextResponse.json(kasuh);
+  const sortedKasuh = kasuh.sort((a, b) => {
+    if (a.user.fullName < b.user.fullName) {
+      return -1;
+    }
+    if (a.user.fullName > b.user.fullName) {
+      return 1;
+    }
+    return 0;
+  });
+  return NextResponse.json(sortedKasuh);
 }
