@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 
 import { prisma } from "@/app/lib/prisma";
@@ -6,7 +6,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { User } from "@prisma/client";
 import { hash } from "bcryptjs";
 
-export async function POST(req: NextResponse) {
+export async function POST(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
 
