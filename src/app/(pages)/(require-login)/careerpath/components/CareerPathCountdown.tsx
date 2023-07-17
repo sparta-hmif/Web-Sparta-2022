@@ -1,15 +1,12 @@
-import dynamic from "next/dynamic";
+import Countdown from "../../desuh/election/components/Coundown";
 
 const CareerPathCountdown = ({ targetDate }: { targetDate: Date }) => {
   const targetDateTime = targetDate.getTime();
-  const DynamicCountdown = dynamic(
-    () => import("@/components/pemilihan-desuh/components/Coundown"),
-    { ssr: false }
-  );
+
   return (
     <>
       <div className="lg:scale-90">
-        <DynamicCountdown target={targetDateTime} pemilihan="Career Path" />
+        <Countdown target={targetDateTime} />
       </div>
     </>
   );

@@ -3,10 +3,10 @@
 import Button from "@/components/Button";
 import Image from "next/image";
 
-const CareerIcon = ({ type }: { type: string }) => {
+const CareerIcon = ({ id }: { id: number }) => {
   const getImage = () => {
-    switch (type) {
-      case "webdev":
+    switch (id) {
+      case 1:
         return (
           <Image
             alt="Web Development Icon"
@@ -16,7 +16,7 @@ const CareerIcon = ({ type }: { type: string }) => {
             className="scale-[0.85] lg:scale-[0.9]"
           />
         );
-      case "datascience":
+      case 2:
         return (
           <Image
             alt="Data Science Icon"
@@ -26,7 +26,7 @@ const CareerIcon = ({ type }: { type: string }) => {
             className="scale-75"
           />
         );
-      case "gamedev":
+      case 3:
         return (
           <Image
             alt="Game Development Icon"
@@ -36,7 +36,7 @@ const CareerIcon = ({ type }: { type: string }) => {
             className="scale-90"
           />
         );
-      case "mobiledev":
+      case 4:
         return (
           <Image
             alt="Mobile Development Icon"
@@ -46,7 +46,7 @@ const CareerIcon = ({ type }: { type: string }) => {
             className="scale-[0.55]"
           />
         );
-      case "uiux":
+      case 5:
         return (
           <Image
             alt="UI UX Icon"
@@ -66,57 +66,51 @@ const CareerIcon = ({ type }: { type: string }) => {
 };
 
 const CareerCard = ({
-  type,
+  id,
+  name,
   kuota,
   pendaftar,
   isDisabled,
   onClick,
+  onCancel,
+  selected,
 }: {
-  type: string;
+  id: number;
+  name: string;
   kuota: number;
   pendaftar: number;
   isDisabled?: boolean;
-  onClick?: () => void;
+  onClick: () => void;
+  onCancel: () => void;
+  selected: boolean;
 }) => {
-  const getName = (type: string) => {
-    switch (type) {
-      case "webdev":
-        return "Web Dev";
-      case "mobiledev":
-        return "Mobile Dev";
-      case "gamedev":
-        return "Game Dev";
-      case "datascience":
-        return "Data Science";
-      case "uiux":
-        return "UI UX";
-    }
-  };
-  let baseClassName =
-    "flex flex-col border-2 rounded-xl border-primaryDark-400 mb-3";
-  let disabledClass =
-    " opacity-80 cursor-not-allowed pointer-events-none bg-gray-400";
-  if (isDisabled || kuota == pendaftar) {
-    baseClassName += disabledClass;
-  }
   return (
-    <div className={baseClassName}>
+    <div
+      className={`flex flex-col border-2 rounded-xl border-primaryDark-400 mb-3 ${
+        isDisabled &&
+        "opacity-80 cursor-not-allowed pointer-events-none bg-neutral-400"
+      }`}
+    >
       <div className="m-3 mb-4">
-        <CareerIcon type={type} />
+        <CareerIcon id={id} />
         <p className="text-center mb-2 mt-3 font-sen font-bold text-[20px]">
-          {getName(type)}
+          {name}
         </p>
         <div className="flex flex-col justify-center items-center mb-4 font-sen text-[16px]">
           <p>Kuota: {kuota}</p>
           <p>Pendaftar: {pendaftar}</p>
         </div>
         <div className="mx-2">
-          <Button
-            isPrimary={true}
-            text="Pilih"
-            type="button"
-            onClick={() => console.log("CLICKED!")}
-          />
+          {selected ? (
+            <Button
+              isPrimary
+              text="Batal"
+              color="bg-danger-300"
+              onClick={() => onCancel()}
+            />
+          ) : (
+            <Button isPrimary text="Pilih" onClick={() => onClick()} />
+          )}
         </div>
       </div>
     </div>

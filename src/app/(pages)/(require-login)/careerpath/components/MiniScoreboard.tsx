@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { PersonData, testData } from "./DataDiri";
+import { PersonData } from "./DataDiri";
 
 interface EntryProps {
   rank?: number;
@@ -21,27 +20,8 @@ const Entry = ({ rank, nama, pts }: EntryProps) => {
   );
 };
 
-const EntryList = ({
-  first,
-  second,
-  third,
-}: {
-  first?: PersonData;
-  second?: PersonData;
-  third?: PersonData;
-}) => {
-  return (
-    <>
-      <Entry nama={first?.name} pts={first?.points} rank={first?.rank} />
-      <Entry nama={second?.name} pts={second?.points} rank={second?.rank} />
-      <Entry nama={third?.name} pts={third?.points} rank={third?.rank} />
-    </>
-  );
-};
-
 export interface MiniScoreboardProps {
-  currPerson: PersonData;
-  scoreboardLimit: number;
+  scoreboard: PersonData[];
 }
 
 // Data fetching di sini.
@@ -49,28 +29,14 @@ export interface MiniScoreboardProps {
 // Orang Terakhir = Fetch orang terakhir - 2 dan terakhir - 1
 // Otherwise, fetch orang sebelum dan sesudah
 // Return array of Person (PersonData: {rank: number, name: string, points: number})
-const getPersonData = (currPerson: PersonData) => {
-  // Seeded with test data
-  let personArray: PersonData[] = [testData[1], testData[2]];
-  return personArray;
-};
 
 const MiniScoreboard = ({
-  currPerson,
-  scoreboardLimit,
+  scoreboard,
 }: MiniScoreboardProps) => {
-  const initialData: PersonData[] = [];
-  const [personData, setPersonData] = useState<PersonData[]>(initialData);
-  const [first, setFirst] = useState<PersonData>();
-  const [second, setSecond] = useState<PersonData>();
-  useEffect(() => {
-    setPersonData(getPersonData(currPerson));
-  }, []);
 
-  useEffect(() => {
-    setFirst(personData[0]);
-    setSecond(personData[1]);
-  }, [personData]);
+  // useEffect(() => {
+  //   setPersonData(getPersonData(currPerson));
+  // }, [currPerson]);
 
   return (
     <div>
@@ -78,15 +44,14 @@ const MiniScoreboard = ({
         . . .
       </div>
       <div className="">
-        {currPerson.rank == 1 ? (
-          <EntryList first={currPerson} second={first} third={second} />
-        ) : null}
-        {currPerson.rank > 1 && currPerson.rank < scoreboardLimit ? (
-          <EntryList first={first} second={currPerson} third={second} />
-        ) : null}
-        {currPerson.rank == scoreboardLimit ? (
-          <EntryList first={first} second={second} third={currPerson} />
-        ) : null}
+        {scoreboard.map((person, index) => (
+          <Entry
+            key={index}
+            nama={person.name}
+            pts={person.points}
+            rank={person.rank}
+          />
+        ))}
       </div>
       <div className="text-gray-400 font-koulen font-bold text-[20px] text-center">
         . . .
