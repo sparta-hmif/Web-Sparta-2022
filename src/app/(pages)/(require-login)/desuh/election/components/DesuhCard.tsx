@@ -57,6 +57,16 @@ const DesuhCard = ({
   photoUrl: string;
   accepted?: boolean;
 }) => {
+  const handleTerima = async () => {
+    // update approved to true
+    // send PATCH request to {{URL}}/
+  };
+
+  const handleBatalkan = async () => {
+    // update approved to false
+    // send PATCH request to {{URL}}/
+  };
+
   return (
     <>
       <div className="py-2 px-3 lg:py-7 lg:px-7 w-full rounded-[15px] border-2 border-primaryDark-400 mb-2 lg:mb-4">
@@ -90,9 +100,9 @@ const DesuhCard = ({
           </div>
         </div>
         <p className="sub-1 text-base md:text-xl lg:mb-2">Alasan</p>
-        <p className="body-1 text-sm md:text-lg text-justify">
+        <div className="body-1 text-sm md:text-lg text-justify">
           <ReadMore>{alasan}</ReadMore>
-        </p>
+        </div>
       </div>
     </>
   );

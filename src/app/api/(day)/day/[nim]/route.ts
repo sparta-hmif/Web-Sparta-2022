@@ -21,7 +21,7 @@ async function GET(req: NextRequest, { params }: { params: { nim: string } }) {
         (session.user as User).role !== "ADMIN")
     ) {
       return NextResponse.json(
-        { message: "mau ngapain mas/mba ??" },
+        { message: "Ayolah mas/mba fokus sparta, daripada iseng-iseng gini, entar servernya malah numpuk, mohon kerja samanya ya :D semangat mas/mba <3!" },
         { status: 401 }
       );
     }

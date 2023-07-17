@@ -32,10 +32,13 @@ const DayModal = ({
     setContentValue((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const session = useSession();
   const router = useRouter();
 
   const handleSubmit = async () => {
+    setIsLoading(true);
     const toastId = toast.loading("Loading...");
 
     if (!session?.data) {
@@ -60,6 +63,7 @@ const DayModal = ({
       }
     );
 
+    setIsLoading(false);
     if (res.status === 200) {
       toast.success("Journey Updated!", {
         id: toastId,
@@ -114,15 +118,15 @@ const DayModal = ({
           style={{
             transform: fullScale ? "scale(1)" : "scale(0.8)",
           }}
-          className="overflow-auto w-11/12 h-[90vh] max-w-2xl duration-500 transition-transform bg-white border-4 border-primaryDark-400 z-10 rounded-2xl py-3 px-5 md:p-10 flex flex-col items-center scale-50"
+          className="overflow-hidden w-11/12 h-[95vh] max-w-2xl duration-500 transition-transform bg-white border-4 border-primaryDark-400 z-10 rounded-2xl py-3 px-5 md:p-10 flex flex-col items-center scale-50"
         >
-          <div className="w-11/12 max-w-[20rem] flex items-center flex-col gap-3">
+          <div className="flex-none w-11/12 max-w-[20rem] flex items-center flex-col gap-2">
             <Image
               src="/images/journey/Awesome.svg"
               alt="Awesome"
               width={375}
               height={375}
-              className="object-contain w-10/12"
+              className="object-contain w-9/12"
             />
             <div className="w-full drop-shadow-lg rounded-2xl bg-white flex py-3 px-5 justify-center items-center gap-2">
               <StarElement order={1} />
@@ -137,14 +141,14 @@ const DayModal = ({
               )}
             </div>
           </div>
-          <div className=" w-full flex flex-col h-[70%] lg:h-[65%] mt-4 mb-3">
-            <h2 className="text-primaryDark-400 leading-none text-4xl md:text-6xl">
+          <div className=" w-full flex flex-col flex-1 mt-4 mb-3">
+            <h2 className="flex-none text-primaryDark-400 leading-none text-4xl md:text-6xl">
               DAY {day}
             </h2>
-            <p className="body-1 text-xs md:text-sm mb-2">
+            <p className="flex-none body-1 text-xs md:text-sm mb-2">
               {formatDate(new Date(date))}
             </p>
-            <div className="w-full h-[85%] lg:h-[75%] mt-auto flex-col gap-3 flex">
+            <div className="w-full flex-1 flex-col gap-2 flex overflow-auto">
               <ContentElement
                 title="What Spartan Did?"
                 value={contentValue.story}
@@ -161,24 +165,31 @@ const DayModal = ({
               />
             </div>
           </div>
-          <div className="w-full md:w-1/2 gap-4 flex mt-auto">
-            <Button
-              text="Close"
-              isPrimary={false}
-              onClick={() => {
-                setFullScale(false);
-                onClose();
-              }}
-            />
-            {viewMode ? (
+          <div className="flex flex-none w-full">
+            <div className="w-full md:w-1/2 gap-4 flex mt-auto mx-auto">
               <Button
-                text="Edit"
-                isPrimary={true}
-                onClick={() => setViewMode(false)}
+                text="Close"
+                isPrimary={false}
+                onClick={() => {
+                  setFullScale(false);
+                  onClose();
+                }}
               />
-            ) : (
-              <Button text="Save" isPrimary={true} onClick={handleSubmit} />
-            )}
+              {viewMode ? (
+                <Button
+                  text="Edit"
+                  isPrimary={true}
+                  onClick={() => setViewMode(false)}
+                />
+              ) : (
+                <Button
+                  text="Save"
+                  isPrimary={true}
+                  onClick={handleSubmit}
+                  disabled={isLoading}
+                />
+              )}
+            </div>
           </div>
         </div>
       </div>

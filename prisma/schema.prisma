@@ -50,10 +50,10 @@ model UserKasuh {
   id                String             @id @default(auto()) @map("_id") @db.ObjectId
   user              User               @relation(fields: [userId], references: [id])
   userId            String             @unique @db.ObjectId
-  birthDate         DateTime?
+  line              String?
   deskripsi         String?
-  kuota             Int?
-  pendaftarSekarang Int?               @default(0)
+  kuota             Int                @default(0)
+  pendaftarSekarang Int                @default(0)
   PendaftaranKasuh  PendaftaranKasuh[]
 }
 
@@ -70,8 +70,9 @@ model PendaftaranKasuh {
   kasuhId  String    @db.ObjectId
   desuh    UserDesuh @relation(fields: [desuhId], references: [id])
   desuhId  String    @db.ObjectId
-  alasan   String?
+  alasan   String
   approved Boolean   @default(false)
+  rank     Int
 }
 
 model Tugas {
@@ -121,4 +122,11 @@ model EvalDay {
   userId     String @db.ObjectId
   day        Day    @relation(fields: [dayId], references: [id])
   dayId      String @db.ObjectId
+}
+
+model CareerPath {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  kuota     Int
+  pendaftar Int    @default(0)
 }

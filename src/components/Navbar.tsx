@@ -102,6 +102,16 @@ const dataPage = [
     href: "/journey",
     role: ["MAMET", "ADMIN", "PESERTA"],
   },
+  {
+    name: "Kasuh",
+    href: "/kasuh",
+    role: ["PESERTA", "ADMIN"],
+  },
+  {
+    name: "Desuh",
+    href: "/desuh/election",
+    role: ["KASUH", "ADMIN"],
+  },
 ];
 const Navbar = ({ user }: NavbarProps) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -119,13 +129,13 @@ const Navbar = ({ user }: NavbarProps) => {
     };
   }, [pathName]);
 
-  const menuElements = (item: ItemProps) => {
+  const menuElements = (item: ItemProps, index: number) => {
     if (!item.role.includes(user?.role as string)) {
       return null;
     }
 
     return (
-      <>
+      <div key={index}>
         <div className="relative inline-block hover:bg-primaryDark-300 hover:text-primary-300 px-4 py-1 rounded-md peer cursor-pointer">
           {item.href ? (
             <Link href={item.href}>{item.name}</Link>
@@ -162,7 +172,7 @@ const Navbar = ({ user }: NavbarProps) => {
             </div>
           </div>
         )}
-      </>
+      </div>
     );
   };
 
@@ -199,9 +209,7 @@ const Navbar = ({ user }: NavbarProps) => {
             />
           </Link>
           <div className="hidden lg:flex flex-row items-end justify-start gap-5 pt-2">
-            {dataPage.map((item, index) => (
-              <div key={index}>{menuElements(item)}</div>
-            ))}
+            {dataPage.map((item, index) => menuElements(item, index))}
           </div>
         </div>
         <div className="hidden lg:block w-[17rem] relative">

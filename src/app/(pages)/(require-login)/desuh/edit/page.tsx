@@ -1,16 +1,65 @@
 "use client";
 
 import Button from "@/components/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import useSWR from "swr";
+import fetcher from "@/app/lib/fetcher";
+import toast from "react-hot-toast";
+
+interface UserSession {
+  id: string;
+  email: string;
+  fullName: string;
+  nim: string;
+  role: string;
+}
 
 const Page = () => {
+  const session = useSession();
+
+  const { data: deskripsiKasuh } = useSWR(
+    () =>
+      process.env.NEXT_PUBLIC_WEB_URL +
+      "/api/kasuh/" +
+      (session?.data?.user as UserSession).nim,
+    fetcher
+  );
+
   const [description, setDescription] = useState("");
 
-  const handleSubmit = () => {};
+  useEffect(() => {
+    setDescription(deskripsiKasuh?.UserKasuh?.deskripsi);
+  }, [deskripsiKasuh?.UserKasuh?.deskripsi]);
+
+  const handleSave = async () => {
+    const toastId = toast.loading("Loading...");
+    // send put request to {{URL}}/deskripsi-kasuh/:user.nim
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_WEB_URL}/api/deskripsi-kasuh/${
+        (session?.data?.user as UserSession).nim
+      }`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          deskripsi: description,
+        }),
+      }
+    );
+
+    if (res.status === 200) {
+      toast.success("Successfully Updated!", { id: toastId });
+    } else {
+      toast.error("Failed to update", { id: toastId });
+    }
+  };
 
   return (
     <>
-      <div className="w-full py-10 md:py-20 px-7 lg:px-0 flex flex-col gap-2 text-center container max-w-[80rem] mx-auto">
+      <div className="w-full py-10 md:py-20 px-7 md:px-10 flex flex-col gap-2 text-center container max-w-[80rem] mx-auto">
         <p className="text-base md:text-lg font-sen font-bold">
           Halo Calon Kasuh!
         </p>
@@ -42,7 +91,7 @@ const Page = () => {
             isPrimary={true}
             text={"Save"}
             type={"button"}
-            onClick={handleSubmit}
+            onClick={handleSave}
           />{" "}
         </div>
       </div>
