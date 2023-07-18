@@ -65,16 +65,15 @@ const Page = ({ params }: { params: { nim: string } }) => {
           </div>
         </Link>
         <div className="w-full flex flex-col justify-between items-center md:items-start md:flex-row gap-4 md:gap-11">
-          <div className="w-2/3 aspect-square max-w-[20rem] bg-[#D9D9D9] rounded-xl">
-            <Image
-              src={
-                data?.imageURL ? data.imageURL : "/images/landing/sparta.png"
-              }
-              alt="Profile Kasuh"
-              width={200}
-              height={200}
-              className="w-full aspect-square object-cover object-center"
-            />
+          <div className="w-2/3 aspect-square max-w-[20rem] bg-[#D9D9D9] rounded-xl overflow-hidden z-10">
+            <div className="w-full aspect-square relative">
+              <Image
+                src={data?.imageURL || "/images/landing/sparta.png"}
+                alt="Profile Kasuh"
+                fill={true}
+                className="object-cover object-center"
+              />
+            </div>
           </div>
           <div className="w-full md:flex-1 flex flex-col gap-1">
             <div className="flex justify-between mb-1 font-koulen text-black text-xl">
