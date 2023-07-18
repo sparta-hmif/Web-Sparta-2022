@@ -1,10 +1,22 @@
 "use client";
 
+import { useMemo } from "react";
 import { PersonData } from "./DataDiri";
-import MiniScoreboard, { MiniScoreboardProps } from "./MiniScoreboard";
+import MiniScoreboard from "./MiniScoreboard";
 import ScoreboardBar from "./ScoreboardBar";
 
-const AdditionalProfile = ({ currPerson }: { currPerson: PersonData }) => {
+const AdditionalProfile = ({
+  scoreboard,
+  currPersonIndex,
+}: {
+  scoreboard: PersonData[];
+  currPersonIndex: number;
+}) => {
+  const currPerson = useMemo(
+    () => scoreboard[currPersonIndex],
+    [scoreboard, currPersonIndex]
+  );
+
   const barSize = 50;
   const multiplier = Math.floor(currPerson.rank / (barSize + 1)) + 1;
   const leftRank = multiplier * barSize;
@@ -23,7 +35,7 @@ const AdditionalProfile = ({ currPerson }: { currPerson: PersonData }) => {
         />
       </div>
       <div>
-        <MiniScoreboard currPerson={currPerson} scoreboardLimit={300} />
+        <MiniScoreboard scoreboard={scoreboard}/>
       </div>
     </div>
   );

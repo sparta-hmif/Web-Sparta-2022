@@ -12,13 +12,10 @@ export interface PersonData {
   points: number;
 }
 
-export const testData = [
+const testData = [
   { name: "Jane Doe", rank: 1, points: 9999 },
-  { name: "John Doe", rank: 2, points: 9988 },
+  { name: "John Doe", rank: 2, points: 9918 },
   { name: "Jen Doe", rank: 3, points: 9977 },
-  { name: "Jin Doe", rank: 4, points: 9900 },
-  { name: "Jun Doe", rank: 5, points: 8003 },
-  { name: "Jog Doe", rank: 6, points: 5060 },
 ];
 
 const DataDiri = ({ targetDate }: { targetDate: Date }) => {
@@ -34,7 +31,8 @@ const DataDiri = ({ targetDate }: { targetDate: Date }) => {
         <Profile
           isAdditionalProfileShown={isArrowPressed}
           targetDate={targetDate}
-          currPerson={testData[0]}
+          dataPerson={testData}
+          currPersonIndex={0}
         />
         <CSSTransition
           in={isArrowPressed}

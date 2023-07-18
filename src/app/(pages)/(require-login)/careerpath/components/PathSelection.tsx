@@ -4,8 +4,50 @@ import Button from "@/components/Button";
 import CareerCard from "./CareerCard";
 import { useState } from "react";
 
+const career = [
+  {
+    id: 1,
+    name: "Web Dev",
+    kuota: 100,
+    pendaftar: 0,
+  },
+  {
+    id: 2,
+    name: "Mobile Dev",
+    kuota: 100,
+    pendaftar: 0,
+  },
+  {
+    id: 3,
+    name: "Data Sci",
+    kuota: 100,
+    pendaftar: 0,
+  },
+  {
+    id: 4,
+    name: "UI/UX",
+    kuota: 100,
+    pendaftar: 0,
+  },
+  {
+    id: 5,
+    name: "Game Dev",
+    kuota: 100,
+    pendaftar: 0,
+  },
+];
+
 const PathSelection = () => {
-  const [choices, setChoices] = useState(0);
+  const [choices, setChoices] = useState<number[]>([]);
+  const handleSelect = (id: number) => {
+    if (choices.length >= 2) return;
+    setChoices([...choices, id]);
+  };
+
+  const handleUnselect = (id: number) => {
+    setChoices(choices.filter((choice) => choice !== id));
+  };
+
   return (
     <div>
       <div className="font-sen">
@@ -17,31 +59,19 @@ const PathSelection = () => {
       </div>
 
       <div className="flex gap-x-5 lg:flex-wrap lg:justify-center overflow-auto lg:overflow-visible mb-3">
-        <CareerCard type="webdev" kuota={100} pendaftar={0} />
-        <CareerCard
-          type="mobiledev"
-          kuota={100}
-          pendaftar={100}
-          onClick={() => setChoices(choices + 1)}
-        />
-        <CareerCard
-          type="gamedev"
-          kuota={100}
-          pendaftar={0}
-          onClick={() => setChoices(choices + 1)}
-        />
-        <CareerCard
-          type="datascience"
-          kuota={100}
-          pendaftar={0}
-          onClick={() => setChoices(choices + 1)}
-        />
-        <CareerCard
-          type="uiux"
-          kuota={100}
-          pendaftar={0}
-          onClick={() => setChoices(choices + 1)}
-        />
+        {career.map((c) => (
+          <CareerCard
+            key={c.id}
+            id={c.id}
+            name={c.name}
+            kuota={c.kuota}
+            pendaftar={c.pendaftar}
+            isDisabled={choices.length >= 2 && !choices.includes(c.id)}
+            onClick={() => handleSelect(c.id)}
+            onCancel={() => handleUnselect(c.id)}
+            selected={choices.includes(c.id)}
+          />
+        ))}
       </div>
 
       <div className="flex justify-center text-center mb-5">

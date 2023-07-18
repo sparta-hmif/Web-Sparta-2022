@@ -1,5 +1,3 @@
-"use client";
-
 import CareerPathCountdown from "./components/CareerPathCountdown";
 import CareerPathInfo from "./components/CareerPathInfo";
 import DataDiri from "./components/DataDiri";

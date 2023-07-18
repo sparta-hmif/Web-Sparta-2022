@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React from "react";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const ReadMore = ({ children }: { children: string }) => {
   const text = children;
@@ -45,26 +46,72 @@ const ReadMore = ({ children }: { children: string }) => {
 };
 
 const DesuhCard = ({
+  pendaftaranId,
   nama,
   nim,
   alasan,
   photoUrl,
   accepted = false,
 }: {
+  pendaftaranId: string;
   nama: string;
   nim: string;
   alasan: string;
   photoUrl: string;
   accepted?: boolean;
 }) => {
+  const [isAccepted, setIsAccepted] = useState(accepted);
+
   const handleTerima = async () => {
-    // update approved to true
-    // send PATCH request to {{URL}}/
+    const toastId = toast.loading("Loading...");
+
+    const res = await fetch(
+      process.env.NEXT_PUBLIC_WEB_URL +
+        "/api/pendaftaran-kasuh/approve/" +
+        pendaftaranId,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          approved: true,
+        }),
+      }
+    );
+
+    if (res.status === 200) {
+      toast.success("Adik asuh berhasil diterima!", { id: toastId });
+      setIsAccepted(true);
+    } else {
+      toast.error("Terjadi kesalahan", { id: toastId });
+    }
   };
 
   const handleBatalkan = async () => {
-    // update approved to false
-    // send PATCH request to {{URL}}/
+    const toastId = toast.loading("Loading...");
+
+    const res = await fetch(
+      process.env.NEXT_PUBLIC_WEB_URL +
+        "/api/pendaftaran-kasuh/approve/" +
+        pendaftaranId,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          approved: false,
+        }),
+      }
+    );
+
+    if (res.status === 200) {
+      toast.success("Pembatalan berhasil dilakukan!", { id: toastId });
+      setIsAccepted(false);
+    } else {
+      toast.error("Terjadi kesalahan", { id: toastId });
+    }
   };
 
   return (
@@ -90,12 +137,12 @@ const DesuhCard = ({
           </div>
           <div className="w-1/4 max-w-[10rem] flex items-center">
             <button
+              onClick={isAccepted ? handleBatalkan : handleTerima}
               className={`w-full py-2 md:py-3 ${
-                accepted ? "bg-danger-300" : "bg-secondary-400 "
+                isAccepted ? "bg-danger-300" : "bg-secondary-400 "
               } transition font-sen text-white font-bold text-sm md:text-base rounded-lg md:rounded-xl hover:drop-shadow-[0_3px_6px_rgba(188,83,23,0.55)]`}
-              onClick={() => {}}
             >
-              {accepted ? "Batalkan" : "Terima"}
+              {isAccepted ? "Batalkan" : "Terima"}
             </button>
           </div>
         </div>

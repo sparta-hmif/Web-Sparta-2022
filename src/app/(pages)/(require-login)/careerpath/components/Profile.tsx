@@ -3,19 +3,21 @@
 import { CSSTransition } from "react-transition-group";
 import AdditionalProfile from "./AdditionalProfile";
 import "./Profile.css";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { PersonData } from "./DataDiri";
 
 interface ProfileProps {
   isAdditionalProfileShown: boolean;
   targetDate: Date;
-  currPerson: PersonData;
+  dataPerson: PersonData[];
+  currPersonIndex: number;
 }
 
 const Profile = ({
   isAdditionalProfileShown,
   targetDate,
-  currPerson,
+  dataPerson,
+  currPersonIndex,
 }: ProfileProps) => {
   const [screenSize, setScreenSize] = useState(640);
   useEffect(() => {
@@ -31,6 +33,10 @@ const Profile = ({
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  const currPerson = useMemo(
+    () => dataPerson[currPersonIndex],
+    [dataPerson, currPersonIndex]
+  );
   return (
     <div className="rounded-xl mx-[1.5px] px-3 lg:pr-5 bg-white">
       <div>
@@ -84,12 +90,12 @@ const Profile = ({
             unmountOnExit
           >
             <div>
-              <AdditionalProfile currPerson={currPerson} />
+              <AdditionalProfile scoreboard={dataPerson} currPersonIndex={currPersonIndex} />
             </div>
           </CSSTransition>
         ) : (
           <div>
-            <AdditionalProfile currPerson={currPerson} />
+            <AdditionalProfile scoreboard={dataPerson} currPersonIndex={currPersonIndex} />
           </div>
         )}
       </div>
