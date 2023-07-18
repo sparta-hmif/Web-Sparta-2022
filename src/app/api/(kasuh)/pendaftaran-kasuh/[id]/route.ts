@@ -13,6 +13,7 @@ export async function DELETE(
     const pendaftaranKasuh = await prisma.pendaftaranKasuh.findUnique({
       select: {
         desuhId: true,
+        approved: true,
         kasuh: {
           select: {
             id: true,
@@ -48,6 +49,13 @@ export async function DELETE(
             "Ayolah mas/mba fokus sparta, daripada iseng-iseng gini, entar servernya malah numpuk, mohon kerja samanya ya :D semangat mas/mba <3!",
         },
         { status: 401 }
+      );
+    }
+
+    if (pendaftaranKasuh.approved) {
+      return NextResponse.json(
+        { message: "User is already approved" },
+        { status: 400 }
       );
     }
 

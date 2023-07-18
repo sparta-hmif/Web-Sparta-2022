@@ -5,6 +5,7 @@ import DesuhCard from "./DesuhCard";
 import { useMemo, useState } from "react";
 
 interface DesuhProps {
+  id: string;
   nama: string;
   nim: string;
   alasan: string;
@@ -28,6 +29,7 @@ const ListDesuh = ({ data }: { data: DesuhProps[] }) => {
         {currentShowingData.map((desuh, index) => (
           <DesuhCard
             key={index}
+            pendaftaranId={desuh.id}
             nama={desuh.nama}
             nim={desuh.nim}
             alasan={desuh.alasan}
