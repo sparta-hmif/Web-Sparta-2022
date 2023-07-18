@@ -28,11 +28,12 @@ const Page = () => {
 
   const processedData = dataMyDesuh?.adikAsuh?.map((val: any) => {
     return {
+      id: val?.id || "",
       nama: val?.desuh.user.fullName || "",
       nim: val?.desuh.user.nim || "",
       alasan: val?.alasan || "",
       photoUrl: val?.desuh.user.imageURL || "",
-      accepted: val?.approved,
+      accepted: val?.approved || false,
     };
   });
 

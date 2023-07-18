@@ -3,6 +3,7 @@ import { useState } from "react";
 import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
 import AlasanModal from "../../[nim]/components/AlasanModal";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 const Card = ({
   rank,
@@ -31,6 +32,8 @@ const Card = ({
   const [alasanMemilih, setAlasan] = useState(alasan);
 
   const handleUpdateAlasan = async () => {
+    const toastId = toast.loading("Loading...");
+
     const res = await fetch(
       process.env.NEXT_PUBLIC_WEB_URL +
         `/api/pendaftaran-kasuh/alasan/${nimDesuh}/${nim}`,
@@ -43,10 +46,17 @@ const Card = ({
       }
     );
 
-    setIsModalOpen(false);
+    if (res.status === 200) {
+      toast.success("Successfully Updated!", { id: toastId });
+      setIsModalOpen(false);
+    } else {
+      toast.error("Failed to update", { id: toastId });
+    }
   };
 
   const handleCancel = async () => {
+    const toastId = toast.loading("Loading...");
+
     // send a delete req to {{URL}}/pendaftaran-kasuh/:idPendaftaranKasuh
     const res = await fetch(
       process.env.NEXT_PUBLIC_WEB_URL +
@@ -60,8 +70,11 @@ const Card = ({
     );
 
     // refresh after res is ok
-    if (res.ok) {
+    if (res.status === 200) {
+      toast.success("Successfully Deleted!", { id: toastId });
       location.reload();
+    } else {
+      toast.error("Failed to delete", { id: toastId });
     }
   };
 
@@ -104,7 +117,7 @@ const Card = ({
             onClick={() => handleDown(rank)}
           />
         </div>
-        <div className="w-1/6 max-w-[8rem] relative aspect-square bg-primaryDark-400 rounded-full">
+        <div className="w-1/6 max-w-[8rem] relative aspect-square bg-primaryDark-400 rounded-full z-10 overflow-hidden">
           <Image
             src={image || "/images/landing/sparta.png"}
             fill={true}

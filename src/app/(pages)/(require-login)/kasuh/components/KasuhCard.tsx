@@ -14,7 +14,7 @@ const KasuhCard = ({ nim, name, kuota, image }: dataProp) => {
               alt="profile"
               width={1000}
               height={1000}
-              className="w-full h-full bg-cover bg-center"
+              className="w-full h-full object-cover object-center"
             />
           </div>
           <div className=" flex flex-col ml-[7px] md:ml-5 lg:ml-[40px]">
