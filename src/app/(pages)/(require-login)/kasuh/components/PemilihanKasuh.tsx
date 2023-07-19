@@ -5,6 +5,11 @@ import TextFields from "@/components/TextFields";
 import Pagination from "@/components/Pagination/Pagination";
 import KasuhCard from "./KasuhCard";
 
+import {
+  usePagination,
+  usePaginationDispatch,
+} from "../context/PaginationContext";
+
 let pageSize = 10;
 
 export interface dataProp {
@@ -15,14 +20,18 @@ export interface dataProp {
 }
 
 export default function PemilihanKasuh({ data }: { data: dataProp[] }) {
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [currentPage, setCurrentPage] = useState(1);
+
+  const currentPage = usePagination();
+  const dispatchPage = usePaginationDispatch();
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearchQueryChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setSearchQuery(event.target.value);
-    setCurrentPage(1);
+    // setCurrentPage(1);
+    dispatchPage({ type: "SET_PAGE", payload: 1 });
   };
 
   const [filteredData, setFilteredData] = useState<dataProp[]>(data);
@@ -78,7 +87,8 @@ export default function PemilihanKasuh({ data }: { data: dataProp[] }) {
               if (typeof page === "string") {
                 return;
               }
-              setCurrentPage(page);
+              // setCurrentPage(page);
+              dispatchPage({ type: "SET_PAGE", payload: page });
             }}
           />
         </div>

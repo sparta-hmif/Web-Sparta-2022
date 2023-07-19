@@ -1,9 +1,10 @@
 import Footer from "@/components/Footer";
+import PaginationProvider from "./context/PaginationContext";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
-      {children}
+      <PaginationProvider>{children}</PaginationProvider>
       <Footer />
     </div>
   );
