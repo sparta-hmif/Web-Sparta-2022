@@ -19,7 +19,10 @@ export async function GET(
         (session.user as User).role !== "ADMIN")
     ) {
       return NextResponse.json(
-        { message: "Ayolah mas/mba fokus sparta, daripada iseng-iseng gini, entar servernya malah numpuk, mohon kerja samanya ya :D semangat mas/mba <3!" },
+        {
+          message:
+            "Ayolah mas/mba fokus sparta, daripada iseng-iseng gini, entar servernya malah numpuk, mohon kerja samanya ya :D semangat mas/mba <3!",
+        },
         { status: 401 }
       );
     }
@@ -33,6 +36,7 @@ export async function GET(
                 id: true,
                 alasan: true,
                 approved: true,
+                rank: true,
                 desuh: {
                   select: {
                     user: {

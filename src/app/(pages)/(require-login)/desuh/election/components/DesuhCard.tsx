@@ -53,6 +53,7 @@ const DesuhCard = ({
   alasan,
   photoUrl,
   accepted = false,
+  rank,
   mutate,
 }: {
   pendaftaranId: string;
@@ -61,6 +62,7 @@ const DesuhCard = ({
   alasan: string;
   photoUrl: string;
   accepted?: boolean;
+  rank: number;
   mutate?: KeyedMutator<any>;
 }) => {
   const [isAccepted, setIsAccepted] = useState(accepted);
@@ -140,6 +142,7 @@ const DesuhCard = ({
               <h5 className="text-primaryDark-400 text-sm md:text-xl font-bold">
                 {nim}
               </h5>
+              <h5 className="text-xs md:text-lg">Prioritas kasuh: {rank}</h5>
             </div>
           </div>
           <div className="w-1/4 max-w-[10rem] flex items-center">

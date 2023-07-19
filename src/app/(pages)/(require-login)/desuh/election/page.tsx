@@ -34,6 +34,7 @@ const Page = () => {
       alasan: val?.alasan || "",
       photoUrl: val?.desuh.user.imageURL || "",
       accepted: val?.approved || false,
+      rank: val?.rank || 0,
     };
   });
 
