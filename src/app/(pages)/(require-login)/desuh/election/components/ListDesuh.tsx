@@ -3,6 +3,7 @@
 import Pagination from "@/components/Pagination/Pagination";
 import DesuhCard from "./DesuhCard";
 import { useMemo, useState } from "react";
+import { KeyedMutator } from "swr";
 
 interface DesuhProps {
   id: string;
@@ -13,7 +14,10 @@ interface DesuhProps {
   accepted?: boolean;
 }
 
-const ListDesuh = ({ data }: { data: DesuhProps[] }) => {
+const ListDesuh = ({
+  data,
+  mutate,
+}: { data: DesuhProps[] } & { mutate: KeyedMutator<any> }) => {
   const [postPerPage, setPostPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -35,6 +39,7 @@ const ListDesuh = ({ data }: { data: DesuhProps[] }) => {
             alasan={desuh.alasan}
             photoUrl={desuh.photoUrl}
             accepted={desuh.accepted}
+            mutate={mutate}
           />
         ))}
       </div>

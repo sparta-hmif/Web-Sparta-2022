@@ -18,7 +18,7 @@ const Page = () => {
 
   const session = useSession();
 
-  const { data: dataMyDesuh } = useSWR(
+  const { data: dataMyDesuh, mutate } = useSWR(
     () =>
       process.env.NEXT_PUBLIC_WEB_URL +
       "/api/all-desuh/" +
@@ -51,7 +51,7 @@ const Page = () => {
           </p>
         </div>
       </div>
-      {processedData && <ListDesuh data={processedData} />}
+      {processedData && <ListDesuh data={processedData} mutate={mutate} />}
     </div>
   );
 };

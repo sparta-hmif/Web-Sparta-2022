@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { KeyedMutator } from "swr";
 
 const ReadMore = ({ children }: { children: string }) => {
   const text = children;
@@ -52,6 +53,7 @@ const DesuhCard = ({
   alasan,
   photoUrl,
   accepted = false,
+  mutate,
 }: {
   pendaftaranId: string;
   nama: string;
@@ -59,8 +61,11 @@ const DesuhCard = ({
   alasan: string;
   photoUrl: string;
   accepted?: boolean;
+  mutate?: KeyedMutator<any>;
 }) => {
   const [isAccepted, setIsAccepted] = useState(accepted);
+
+  useEffect(() => setIsAccepted(accepted), [accepted]);
 
   const handleTerima = async () => {
     const toastId = toast.loading("Loading...");
@@ -83,6 +88,7 @@ const DesuhCard = ({
     if (res.status === 200) {
       toast.success("Adik asuh berhasil diterima!", { id: toastId });
       setIsAccepted(true);
+      mutate && mutate();
     } else {
       toast.error("Terjadi kesalahan", { id: toastId });
     }
@@ -109,6 +115,7 @@ const DesuhCard = ({
     if (res.status === 200) {
       toast.success("Pembatalan berhasil dilakukan!", { id: toastId });
       setIsAccepted(false);
+      mutate && mutate();
     } else {
       toast.error("Terjadi kesalahan", { id: toastId });
     }
