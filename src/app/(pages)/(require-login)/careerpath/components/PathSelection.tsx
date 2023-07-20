@@ -2,7 +2,7 @@
 
 import Button from "@/components/Button";
 import CareerCard from "./CareerCard";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 const career = [
   {
@@ -37,8 +37,10 @@ const career = [
   },
 ];
 
+const selection = [1, 2];
+
 const PathSelection = () => {
-  const [choices, setChoices] = useState<number[]>([]);
+  const [choices, setChoices] = useState<number[]>(selection || []);
   const handleSelect = (id: number) => {
     if (choices.length >= 2) return;
     setChoices([...choices, id]);
@@ -48,13 +50,25 @@ const PathSelection = () => {
     setChoices(choices.filter((choice) => choice !== id));
   };
 
+  const isChanged = useMemo(() => {
+    return (
+      choices.sort().join(",") !== selection.sort().join(",") &&
+      choices.length === 2
+    );
+  }, [choices]);
+
+  const isSame = useMemo(() => {
+    return choices.sort().join(",") === selection.sort().join(",");
+  }
+  , [choices]);
+
   return (
     <div>
       <div className="font-sen">
         <div className="font-bold text-[24px] mb-3">Pilihan Karir</div>
         <div className="text-[13px] md:text-[15px] mb-5">
-          Kamu bisa memilih dua karir yang kamu minati. Jangan lewatkan
-          kesempatan ini!
+          Kamu bisa memilih <span className="font-bold">dua karir</span> yang
+          kamu minati. Jangan lewatkan kesempatan ini!
         </div>
       </div>
 
@@ -76,7 +90,8 @@ const PathSelection = () => {
 
       <div className="flex justify-center text-center mb-5">
         <div className="w-[130px] h-[50px]">
-          <Button isPrimary={true} text="Submit" type="submit" />
+          {isChanged && <Button isPrimary={true} text="Submit" type="submit" />}
+          {isSame && <Button isPrimary disabled text="Submitted" type="submit" />}
         </div>
       </div>
     </div>
