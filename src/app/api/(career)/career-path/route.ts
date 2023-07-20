@@ -4,6 +4,9 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { prisma } from "@/app/lib/prisma";
 import { User } from "@prisma/client";
 
+// GET
+// Ambil semua pilihan CareerPath
+// api/career-path
 export async function GET(req: NextRequest) {
   const session = await getServerSession(authOptions);
 

@@ -4,6 +4,10 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { prisma } from "@/app/lib/prisma";
 import { User } from "@prisma/client";
 
+// POST
+// Memilih CareerPath satu2
+// POST /api/career-path/[nim]/[idCareerPath]
+
 export async function POST(
   req: NextRequest,
   { params }: { params: { nim: string; idCareerPath: string } }
@@ -25,16 +29,16 @@ export async function POST(
     );
   }
 
+  // Deadline
+  //   if (new Date() > ) {
+  //     return NextResponse.json({ message: "Waktu pemilihan sudah berakhir" }, { status: 404 });
+  //   }
+
   const career = await prisma.careerPath.findUnique({
     where: {
       id: params.idCareerPath,
     },
   });
-
-  // Deadline
-  //   if (new Date() > ) {
-  //     return NextResponse.json({ message: "Waktu pemilihan sudah berakhir" }, { status: 404 });
-  //   }
 
   if (!career) {
     return NextResponse.json({ message: "Career not found" }, { status: 404 });
@@ -75,6 +79,10 @@ export async function POST(
   }
 }
 
+// DELETE
+// Menghapus CareerPath spesifik sesuai idCareerPath
+// DELETE /api/career-path/[nim]/[idCareerPath]
+
 export async function DELETE(
   req: NextRequest,
   { params }: { params: { nim: string; idCareerPath: string } }
@@ -95,6 +103,11 @@ export async function DELETE(
       { status: 401 }
     );
   }
+
+  // Deadline
+  //   if (new Date() > ) {
+  //     return NextResponse.json({ message: "Waktu pemilihan sudah berakhir" }, { status: 404 });
+  //   }
 
   const user = await prisma.user.findUnique({ where: { nim: params.nim } });
 

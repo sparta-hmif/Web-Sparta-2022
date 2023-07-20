@@ -4,6 +4,9 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { prisma } from "@/app/lib/prisma";
 import { User } from "@prisma/client";
 
+// GET
+// Ambil semua pilihan CareerPath yg dipilih user
+// GET /api/career-path/[nim]
 export async function GET(
   req: NextRequest,
   { params }: { params: { nim: string } }
@@ -41,6 +44,14 @@ export async function GET(
 
   return NextResponse.json(spartansCareer);
 }
+
+// POST
+// Memilih CareerPath 2 sekaligus
+// POST /api/career-path/[nim]
+// {
+//    idCareerPath1 : "",
+//    idCareerPath2 : ""
+// }
 
 export async function POST(
   req: NextRequest,
@@ -101,20 +112,18 @@ export async function POST(
     }
   }
 
+  await prisma.user.update({
+    where: { nim: params.nim },
+    data: {
+      careerPathId: idCareers,
+    },
+    include: {
+      CareerPath: true,
+    },
+  });
+
   for (const id of idCareers) {
     try {
-      await prisma.user.update({
-        where: { nim: params.nim },
-        data: {
-          careerPathId: {
-            push: id,
-          },
-        },
-        include: {
-          CareerPath: true,
-        },
-      });
-
       await prisma.careerPath.update({
         where: { id: id },
         data: {
@@ -130,6 +139,10 @@ export async function POST(
 
   return NextResponse.json({ message: "success" }, { status: 201 });
 }
+
+// DELETE
+// Hapus CareerPath 2 sekaligus
+// DELETE /api/career-path/[nim]
 
 export async function DELETE(
   req: NextRequest,
