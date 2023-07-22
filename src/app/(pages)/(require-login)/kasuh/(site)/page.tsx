@@ -54,7 +54,8 @@ const Page = () => {
       <p className=" body-1 text-sm md:text-lg">
         Berisi sekumpulan aa kasep dan neng geulis HMIF ITB 2021 yang akan
         memberikan warna di dunia perkuliahanmu! Silakan pilih 3 calon kandidat
-        kakak asuh yang kamu mau! #TakeKasuhOut
+        kakak asuh yang kamu mau! #TakeKasuhOut (Sebelum milih jangan lupa pdkt
+        dulu yakk)
       </p>
       <Link href="/kasuh/edit">
         <div className=" my-5 w-full">

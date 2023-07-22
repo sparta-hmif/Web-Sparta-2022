@@ -18,7 +18,7 @@ const AdditionalProfile = ({
   );
 
   const barSize = 50;
-  const multiplier = Math.floor(currPerson.rank / (barSize + 1)) + 1;
+  const multiplier = Math.floor(currPerson?.rank / (barSize + 1)) + 1;
   const leftRank = multiplier * barSize;
   const rightRank = 1 + (multiplier - 1) * barSize;
   return (
@@ -31,11 +31,11 @@ const AdditionalProfile = ({
         <ScoreboardBar
           leftRank={leftRank}
           rightRank={rightRank}
-          currRank={currPerson.rank}
+          currRank={currPerson?.rank}
         />
       </div>
       <div>
-        <MiniScoreboard scoreboard={scoreboard}/>
+        <MiniScoreboard scoreboard={scoreboard} />
       </div>
     </div>
   );
