@@ -14,10 +14,10 @@ const CareerPathInfo = ({ targetDate }: { targetDate: Date }) => {
           kamu agar lebih fokus mendalami bidang keinformatikaan yang kamu
           minati!
         </p>
-        <p>
+        {/* <p>
           Jangan lupa untuk cek modul terbaru agar kamu bisa paham lebih jauh
           mengenai karir yang akan kamu pilih
-        </p>
+        </p> */}
       </div>
       {/* <div className="flex justify-center">
         <div className="min-w-[50%]">

@@ -44,7 +44,7 @@ const DataDiri = ({ targetDate }: { targetDate: Date }) => {
   }
 
   const personData: PersonData[] = [];
-  if (data) {
+  if (data.spartans) {
     const spartans = data.spartans;
 
     const index = spartans.findIndex((val: User) => val.nim === nim);
@@ -56,11 +56,11 @@ const DataDiri = ({ targetDate }: { targetDate: Date }) => {
 
     otherIndexes.forEach((val: number) =>
       personData.push({
-        nim: spartans[val].nim,
-        name: spartans[val].fullName,
+        nim: spartans[val]?.nim,
+        name: spartans[val]?.fullName,
         rank: val + 1,
-        points: spartans[val].score,
-        imageURL: spartans[val].imageURL,
+        points: spartans[val]?.score,
+        imageURL: spartans[val]?.imageURL,
       })
     );
 
