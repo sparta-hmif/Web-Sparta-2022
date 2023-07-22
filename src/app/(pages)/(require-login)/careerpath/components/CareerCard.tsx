@@ -3,10 +3,17 @@
 import Button from "@/components/Button";
 import Image from "next/image";
 
-const CareerIcon = ({ id }: { id: number }) => {
+// Constants
+const WEB_DEV_ID = "64b7aa5a6dad435a2ee716b4";
+const MOBILE_DEV_ID = "64b89f31a759a38451333240";
+const DATA_SCI_ID = "64bb9797ea5d6e248e6ef9f9";
+const UI_UX_ID = "64bb97a4ea5d6e248e6ef9fa";
+const GAME_DEV_ID = "64bb97b0ea5d6e248e6ef9fb";
+
+const CareerIcon = ({ id }: { id: string }) => {
   const getImage = () => {
     switch (id) {
-      case 1:
+      case WEB_DEV_ID:
         return (
           <Image
             alt="Web Development Icon"
@@ -16,7 +23,7 @@ const CareerIcon = ({ id }: { id: number }) => {
             className="scale-[0.85] lg:scale-[0.9]"
           />
         );
-      case 2:
+      case MOBILE_DEV_ID:
         return (
           <Image
             alt="Data Science Icon"
@@ -26,7 +33,7 @@ const CareerIcon = ({ id }: { id: number }) => {
             className="scale-75"
           />
         );
-      case 3:
+      case DATA_SCI_ID:
         return (
           <Image
             alt="Game Development Icon"
@@ -36,7 +43,7 @@ const CareerIcon = ({ id }: { id: number }) => {
             className="scale-90"
           />
         );
-      case 4:
+      case UI_UX_ID:
         return (
           <Image
             alt="Mobile Development Icon"
@@ -46,7 +53,7 @@ const CareerIcon = ({ id }: { id: number }) => {
             className="scale-[0.55]"
           />
         );
-      case 5:
+      case GAME_DEV_ID:
         return (
           <Image
             alt="UI UX Icon"
@@ -75,7 +82,7 @@ const CareerCard = ({
   onCancel,
   selected,
 }: {
-  id: number;
+  id: string;
   name: string;
   kuota: number;
   pendaftar: number;

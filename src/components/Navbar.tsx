@@ -112,6 +112,11 @@ const dataPage = [
     href: "/desuh/election",
     role: ["KASUH", "ADMIN"],
   },
+  {
+    name: "Career Path",
+    href: "/careerpath",
+    role: ["PESERTA", "ADMIN"],
+  },
 ];
 const Navbar = ({ user }: NavbarProps) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -330,6 +335,10 @@ const Navbar = ({ user }: NavbarProps) => {
                   {showDropdown === index && (
                     <div className="">
                       {item.dropdown?.map((dropdown, idx) => {
+                        if (!dropdown.role?.includes(user?.role as string)) {
+                          return null;
+                        }
+
                         return (
                           <Link key={idx} href={dropdown.href}>
                             <button

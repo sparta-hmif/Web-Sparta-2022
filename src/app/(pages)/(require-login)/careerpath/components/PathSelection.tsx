@@ -3,6 +3,10 @@
 import Button from "@/components/Button";
 import CareerCard from "./CareerCard";
 import { useMemo, useState } from "react";
+import { useSession } from "next-auth/react";
+import useSWR from "swr";
+import fetcher from "@/app/lib/fetcher";
+import { User } from "@prisma/client";
 
 const career = [
   {
@@ -37,16 +41,40 @@ const career = [
   },
 ];
 
-const selection = [1, 2];
+// const selection = [1, 2];
 
 const PathSelection = () => {
-  const [choices, setChoices] = useState<number[]>(selection || []);
-  const handleSelect = (id: number) => {
+  const [choices, setChoices] = useState<string[]>([]);
+
+  const session = useSession();
+
+  const { data: careerList } = useSWR(
+    process.env.NEXT_PUBLIC_WEB_URL + "/api/career-path",
+    fetcher,
+    {
+      refreshInterval: 1000,
+    }
+  );
+
+  const { data: userCareer } = useSWR(
+    () =>
+      `${process.env.NEXT_PUBLIC_WEB_URL}/api/career-path/${
+        (session?.data?.user as User).nim
+      }`,
+    fetcher
+  );
+
+  const selection: string[] = useMemo(
+    () => userCareer?.CareerPath?.map((c: any) => c.id) || [],
+    [userCareer]
+  );
+
+  const handleSelect = (id: string) => {
     if (choices.length >= 2) return;
     setChoices([...choices, id]);
   };
 
-  const handleUnselect = (id: number) => {
+  const handleUnselect = (id: string) => {
     setChoices(choices.filter((choice) => choice !== id));
   };
 
@@ -55,12 +83,11 @@ const PathSelection = () => {
       choices.sort().join(",") !== selection.sort().join(",") &&
       choices.length === 2
     );
-  }, [choices]);
+  }, [choices, selection]);
 
   const isSame = useMemo(() => {
     return choices.sort().join(",") === selection.sort().join(",");
-  }
-  , [choices]);
+  }, [choices, selection]);
 
   return (
     <div>
@@ -73,11 +100,11 @@ const PathSelection = () => {
       </div>
 
       <div className="flex gap-x-5 lg:flex-wrap lg:justify-center overflow-auto lg:overflow-visible mb-3">
-        {career.map((c) => (
+        {(careerList || []).map((c: any) => (
           <CareerCard
             key={c.id}
             id={c.id}
-            name={c.name}
+            name={c.title}
             kuota={c.kuota}
             pendaftar={c.pendaftar}
             isDisabled={choices.length >= 2 && !choices.includes(c.id)}
@@ -91,7 +118,9 @@ const PathSelection = () => {
       <div className="flex justify-center text-center mb-5">
         <div className="w-[130px] h-[50px]">
           {isChanged && <Button isPrimary={true} text="Submit" type="submit" />}
-          {isSame && <Button isPrimary disabled text="Submitted" type="submit" />}
+          {isSame && (
+            <Button isPrimary disabled text="Submitted" type="submit" />
+          )}
         </div>
       </div>
     </div>

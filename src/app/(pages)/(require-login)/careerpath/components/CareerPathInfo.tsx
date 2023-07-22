@@ -19,7 +19,7 @@ const CareerPathInfo = ({ targetDate }: { targetDate: Date }) => {
           mengenai karir yang akan kamu pilih
         </p>
       </div>
-      <div className="flex justify-center">
+      {/* <div className="flex justify-center">
         <div className="min-w-[50%]">
           <Button
             isPrimary={true}
@@ -28,7 +28,7 @@ const CareerPathInfo = ({ targetDate }: { targetDate: Date }) => {
             type="button"
           />
         </div>
-      </div>
+      </div> */}
       <div className="w-full h-[3px] my-6 bg-primaryLight-400"></div>
     </>
   );
