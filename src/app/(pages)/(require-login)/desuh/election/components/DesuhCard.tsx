@@ -1,4 +1,5 @@
 "use client";
+import Button from "@/components/Button";
 import Image from "next/image";
 import React from "react";
 import { useEffect, useState } from "react";
@@ -145,15 +146,20 @@ const DesuhCard = ({
               <h5 className="text-xs md:text-lg">Prioritas kasuh: {rank}</h5>
             </div>
           </div>
-          <div className="w-1/4 max-w-[10rem] flex items-center">
-            <button
+          <div className="w-1/4 max-w-[10rem] flex flex-col items-center gap-2">
+            <Button
+              text={isAccepted ? "Batalkan" : "Terima"}
               onClick={isAccepted ? handleBatalkan : handleTerima}
-              className={`w-full py-2 md:py-3 ${
-                isAccepted ? "bg-danger-300" : "bg-secondary-400 "
-              } transition font-sen text-white font-bold text-sm md:text-base rounded-lg md:rounded-xl hover:drop-shadow-[0_3px_6px_rgba(188,83,23,0.55)]`}
-            >
-              {isAccepted ? "Batalkan" : "Terima"}
-            </button>
+              isPrimary
+              color={isAccepted ? "bg-danger-300" : ""}
+            />
+            <Button
+              text="Tolak"
+              onClick={() => {}}
+              isPrimary
+              color="bg-danger-300"
+              disabled={isAccepted}
+            />
           </div>
         </div>
         <p className="sub-1 text-base md:text-xl lg:mb-2">Alasan</p>
