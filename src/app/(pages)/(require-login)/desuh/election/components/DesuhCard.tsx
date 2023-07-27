@@ -53,8 +53,9 @@ const DesuhCard = ({
   nim,
   alasan,
   photoUrl,
-  accepted = false,
+  accepted = 0,
   rank,
+  eligible,
   mutate,
 }: {
   pendaftaranId: string;
@@ -62,13 +63,16 @@ const DesuhCard = ({
   nim: string;
   alasan: string;
   photoUrl: string;
-  accepted?: boolean;
+  accepted?: number;
   rank: number;
+  eligible: boolean;
   mutate?: KeyedMutator<any>;
 }) => {
   const [isAccepted, setIsAccepted] = useState(accepted);
+  const [isEligible, setIsEligible] = useState(eligible);
 
   useEffect(() => setIsAccepted(accepted), [accepted]);
+  useEffect(() => setIsEligible(eligible), [eligible]);
 
   const handleTerima = async () => {
     const toastId = toast.loading("Loading...");
@@ -83,17 +87,18 @@ const DesuhCard = ({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          approved: true,
+          approved: 1,
         }),
       }
     );
 
     if (res.status === 200) {
       toast.success("Adik asuh berhasil diterima!", { id: toastId });
-      setIsAccepted(true);
+      setIsAccepted(1);
       mutate && mutate();
     } else {
-      toast.error("Terjadi kesalahan", { id: toastId });
+      const resJson = await res.json();
+      toast.error(resJson?.message, { id: toastId });
     }
   };
 
@@ -110,17 +115,47 @@ const DesuhCard = ({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          approved: false,
+          approved: 0,
         }),
       }
     );
 
     if (res.status === 200) {
       toast.success("Pembatalan berhasil dilakukan!", { id: toastId });
-      setIsAccepted(false);
+      setIsAccepted(0);
       mutate && mutate();
     } else {
-      toast.error("Terjadi kesalahan", { id: toastId });
+      const resJson = await res.json();
+      toast.error(resJson?.message, { id: toastId });
+    }
+  };
+
+  const handleTolak = async () => {
+    const toastId = toast.loading("Loading...");
+
+    const res = await fetch(
+      process.env.NEXT_PUBLIC_WEB_URL +
+        "/api/pendaftaran-kasuh/approve/" +
+        pendaftaranId,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          approved: -1,
+        }),
+      }
+    );
+
+    if (res.status === 200) {
+      toast.success("Penolakan berhasil dilakukan!", { id: toastId });
+      setIsEligible(false);
+      setIsAccepted(-1);
+      mutate && mutate();
+    } else {
+      const resJson = await res.json();
+      toast.error(resJson?.message, { id: toastId });
     }
   };
 
@@ -147,19 +182,23 @@ const DesuhCard = ({
             </div>
           </div>
           <div className="w-1/4 max-w-[10rem] flex flex-col items-center gap-2">
-            <Button
-              text={isAccepted ? "Batalkan" : "Terima"}
-              onClick={isAccepted ? handleBatalkan : handleTerima}
-              isPrimary
-              color={isAccepted ? "bg-danger-300" : ""}
-            />
-            <Button
-              text="Tolak"
-              onClick={() => {}}
-              isPrimary
-              color="bg-danger-300"
-              disabled={isAccepted}
-            />
+            {isEligible && isAccepted !== -1 ? (
+              <>
+                <Button
+                  text={isAccepted === 1 ? "Batalkan" : "Terima"}
+                  onClick={isAccepted === 1 ? handleBatalkan : handleTerima}
+                  isPrimary
+                  color={isAccepted === 1 ? "bg-danger-300" : ""}
+                />
+                <Button
+                  text="Tolak"
+                  onClick={handleTolak}
+                  isPrimary
+                  color="bg-danger-300"
+                  disabled={isAccepted === 1}
+                />
+              </>
+            ) : null}
           </div>
         </div>
         <p className="sub-1 text-base md:text-xl lg:mb-2">Alasan</p>

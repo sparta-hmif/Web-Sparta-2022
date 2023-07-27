@@ -122,6 +122,7 @@ const Card = ({
             src={image || "/images/landing/sparta.png"}
             fill={true}
             alt=""
+            className="object-cover object-center"
           />
         </div>
         <div className="flex flex-col md:ml-2 lg:ml-4">

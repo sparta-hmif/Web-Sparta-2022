@@ -5,6 +5,13 @@ import { User } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
+import {
+  ACCEPT_START,
+  FIRST_PRIO_END,
+  SECOND_PRIO_END,
+  THIRD_PRIO_END,
+} from "@/app/api/(kasuh)/constants/date";
+
 export async function PATCH(
   req: NextRequest,
   { params }: { params: { id: string } }
@@ -43,19 +50,82 @@ export async function PATCH(
       );
     }
 
+    const currDate: Date = new Date();
+
+    if (currDate < ACCEPT_START) {
+      return NextResponse.json(
+        { message: "Waktu penerimaan desuh belum dimulai" },
+        { status: 400 }
+      );
+    }
+
+    if (pendaftaranKasuh.rank === 1 && currDate > FIRST_PRIO_END) {
+      return NextResponse.json(
+        { message: "Waktu terima/tolak sudah habis" },
+        { status: 400 }
+      );
+    } else if (pendaftaranKasuh.rank === 2 && currDate > SECOND_PRIO_END) {
+      return NextResponse.json(
+        { message: "Waktu terima/tolak sudah habis" },
+        { status: 400 }
+      );
+    } else if (pendaftaranKasuh.rank === 3 && currDate > THIRD_PRIO_END) {
+      return NextResponse.json(
+        { message: "Waktu terima/tolak sudah habis" },
+        { status: 400 }
+      );
+    }
+
+    const otherPriority = await prisma.pendaftaranKasuh.findMany({
+      where: {
+        desuhId: pendaftaranKasuh.desuhId,
+      },
+    });
+
+    let isEligible: boolean = false;
+    if (currDate < ACCEPT_START || currDate > THIRD_PRIO_END) {
+      isEligible = false;
+    } else if (pendaftaranKasuh.rank === 1) {
+      isEligible = currDate >= ACCEPT_START && currDate < FIRST_PRIO_END;
+    } else if (pendaftaranKasuh.rank === 2) {
+      isEligible =
+        otherPriority.filter((val) => val.rank < 2 && val.approved === -1)
+          .length === 1 ||
+        (currDate >= FIRST_PRIO_END && currDate < SECOND_PRIO_END);
+    } else if (pendaftaranKasuh.rank === 3) {
+      isEligible =
+        otherPriority.filter((val) => val.rank < 3 && val.approved === -1)
+          .length === 2 ||
+        (currDate >= SECOND_PRIO_END && currDate < THIRD_PRIO_END);
+    }
+
+    if (!isEligible) {
+      return NextResponse.json(
+        { message: "Kamu belum bisa menerima/menolak desuh" },
+        { status: 400 }
+      );
+    }
+
     const { approved } = await req.json();
 
-    if (approved) {
+    if (approved === 1) {
       const approvedDesuh = await prisma.pendaftaranKasuh.findMany({
         where: {
           kasuhId: pendaftaranKasuh.kasuhId,
-          approved: true,
+          approved: 1,
         },
       });
 
       if (approvedDesuh.length >= pendaftaranKasuh.kasuh?.kuota) {
         return NextResponse.json(
           { message: "Kuota kasuh sudah penuh" },
+          { status: 400 }
+        );
+      }
+
+      if (otherPriority.filter((val) => val.approved === 1).length >= 1) {
+        return NextResponse.json(
+          { message: "Desuh sudah diterima di pilihan lain" },
           { status: 400 }
         );
       }

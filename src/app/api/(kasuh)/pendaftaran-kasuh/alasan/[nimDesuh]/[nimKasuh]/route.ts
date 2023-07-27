@@ -5,6 +5,8 @@ import { prisma } from "@/app/lib/prisma";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { User } from "@prisma/client";
 
+import { FIRST_PRIO_START } from "@/app/api/(kasuh)/constants/date";
+
 /*
   Endpoint Penggantian alasan berdasarkan parameter desuhId, kasuhId serta alasan
 */
@@ -21,8 +23,19 @@ export async function PATCH(
         (session.user as User).role !== "ADMIN")
     ) {
       return NextResponse.json(
-        { message: "Ayolah mas/mba fokus sparta, daripada iseng-iseng gini, entar servernya malah numpuk, mohon kerja samanya ya :D semangat mas/mba <3!" },
+        {
+          message:
+            "Ayolah mas/mba fokus sparta, daripada iseng-iseng gini, entar servernya malah numpuk, mohon kerja samanya ya :D semangat mas/mba <3!",
+        },
         { status: 401 }
+      );
+    }
+
+    const currDate: Date = new Date();
+    if (currDate >= FIRST_PRIO_START) {
+      return NextResponse.json(
+        { message: "Waktu memilih kasuh sudah habis" },
+        { status: 400 }
       );
     }
 

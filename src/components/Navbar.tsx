@@ -112,11 +112,11 @@ const dataPage = [
     href: "/desuh/election",
     role: ["KASUH", "ADMIN"],
   },
-  {
-    name: "Career Path",
-    href: "/careerpath",
-    role: ["PESERTA", "ADMIN"],
-  },
+  // {
+  //   name: "Career Path",
+  //   href: "/careerpath",
+  //   role: ["PESERTA", "ADMIN"],
+  // },
 ];
 const Navbar = ({ user }: NavbarProps) => {
   const [showMenu, setShowMenu] = useState(false);
