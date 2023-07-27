@@ -1,6 +1,6 @@
 import Button from "@/components/Button";
 import { dataProp } from "./Scoreboard";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoMdCheckboxOutline, IoMdCloseCircleOutline } from "react-icons/io";
 import toast from "react-hot-toast";
 
@@ -8,6 +8,8 @@ const SingleRow = ({ rank, nim, name, score }: dataProp) => {
   const [isEdit, setIsEdit] = useState(false);
   const [scoreEdit, setScoreEdit] = useState(score);
   const lastScoreSaved = useRef(score);
+
+  useEffect(() => setScoreEdit(score), [score]);
 
   const handleSave = async () => {
     const toastId = toast.loading("Loading...");
@@ -29,7 +31,6 @@ const SingleRow = ({ rank, nim, name, score }: dataProp) => {
     }
 
     toast.error("Failed to update score", { id: toastId });
-
   };
 
   const handleCancel = () => {
