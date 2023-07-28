@@ -17,7 +17,7 @@ const AdditionalProfile = ({
     [scoreboard, currPersonIndex]
   );
 
-  const barSize = 50;
+  const barSize = 304;
   const multiplier = Math.floor(currPerson?.rank / (barSize + 1)) + 1;
   const leftRank = multiplier * barSize;
   const rightRank = 1 + (multiplier - 1) * barSize;

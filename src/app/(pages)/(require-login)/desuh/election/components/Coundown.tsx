@@ -1,19 +1,32 @@
 "use client";
+import fetcher from "@/app/lib/fetcher";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import useSWR from "swr";
 
 const NumberTime = dynamic(() => import("./NumberTime"), { ssr: false });
 
 const useCountdown = (targetDate: number) => {
   const countDownDate = new Date(targetDate).getTime();
 
+  const { data } = useSWR(
+    process.env.NEXT_PUBLIC_WEB_URL + "/api/time",
+    fetcher
+  );
+
   const [countDown, setCountDown] = useState(
     countDownDate - new Date().getTime()
   );
 
   useEffect(() => {
+    if (data?.time) {
+      setCountDown(countDownDate - new Date(data.time).getTime());
+    }
+  }, [data?.time, countDownDate]);
+
+  useEffect(() => {
     const interval = setInterval(() => {
-      setCountDown(countDownDate - new Date().getTime());
+      setCountDown((prev) => prev - 1000);
     }, 1000);
 
     return () => clearInterval(interval);
