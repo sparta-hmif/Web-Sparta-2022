@@ -14,8 +14,6 @@ interface UserSession {
 }
 
 const Page = () => {
-  const date = new Date("08/17/2023 23:59:59").getTime();
-
   const session = useSession();
 
   const { data: dataMyDesuh, mutate } = useSWR(
@@ -33,8 +31,9 @@ const Page = () => {
       nim: val?.desuh.user.nim || "",
       alasan: val?.alasan || "",
       photoUrl: val?.desuh.user.imageURL || "",
-      accepted: val?.approved || false,
+      accepted: val?.approved || 0,
       rank: val?.rank || 0,
+      isEligible: val?.isEligible || false,
     };
   });
 

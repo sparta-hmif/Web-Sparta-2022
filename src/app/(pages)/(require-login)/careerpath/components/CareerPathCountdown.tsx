@@ -5,7 +5,7 @@ const CareerPathCountdown = ({ targetDate }: { targetDate: Date }) => {
   return (
     <>
       <div className="lg:scale-90">
-        {/* <Countdown target={targetDateTime} /> */}
+        <Countdown target={targetDateTime} />
       </div>
     </>
   );

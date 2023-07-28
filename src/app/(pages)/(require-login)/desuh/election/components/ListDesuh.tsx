@@ -11,8 +11,9 @@ interface DesuhProps {
   nim: string;
   alasan: string;
   photoUrl: string;
-  accepted?: boolean;
+  accepted?: number;
   rank: number;
+  isEligible: boolean;
 }
 
 const ListDesuh = ({
@@ -41,6 +42,7 @@ const ListDesuh = ({
             photoUrl={desuh.photoUrl}
             accepted={desuh.accepted}
             rank={desuh.rank}
+            eligible={desuh.isEligible}
             mutate={mutate}
           />
         ))}

@@ -5,6 +5,8 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import { User } from "@prisma/client";
 
+import { FIRST_PRIO_START } from "@/app/api/(kasuh)/constants/date";
+
 export async function DELETE(
   req: NextRequest,
   { params }: { params: { id: string } }
@@ -49,6 +51,14 @@ export async function DELETE(
             "Ayolah mas/mba fokus sparta, daripada iseng-iseng gini, entar servernya malah numpuk, mohon kerja samanya ya :D semangat mas/mba <3!",
         },
         { status: 401 }
+      );
+    }
+
+    const currDate: Date = new Date();
+    if (currDate >= FIRST_PRIO_START) {
+      return NextResponse.json(
+        { message: "Waktu memilih kasuh sudah habis" },
+        { status: 400 }
       );
     }
 
@@ -126,7 +136,8 @@ export async function POST(
     // Route protection
     if (
       !session?.user ||
-      ((session.user as User).nim !== nimDesuh &&
+      (((session.user as User).nim !== nimDesuh ||
+        (session.user as User).role !== "PESERTA") &&
         (session.user as User).role !== "ADMIN")
     ) {
       return NextResponse.json(
@@ -135,6 +146,14 @@ export async function POST(
             "Ayolah mas/mba fokus sparta, daripada iseng-iseng gini, entar servernya malah numpuk, mohon kerja samanya ya :D semangat mas/mba <3!",
         },
         { status: 401 }
+      );
+    }
+
+    const currDate: Date = new Date();
+    if (currDate >= FIRST_PRIO_START) {
+      return NextResponse.json(
+        { message: "Waktu memilih kasuh sudah habis" },
+        { status: 400 }
       );
     }
 

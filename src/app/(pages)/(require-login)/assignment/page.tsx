@@ -36,7 +36,8 @@ const Dashboard = () => {
   );
   const submited = mappedData.filter((val: any) => val.isSubmitted);
   const expired = mappedData.filter(
-    (val: any) => val.endDate.getTime() < new Date().getTime()
+    (val: any) =>
+      val.endDate.getTime() < new Date().getTime() && !val.isSubmitted
   );
 
   const concatData = [...nonExpired, ...submited, ...expired];

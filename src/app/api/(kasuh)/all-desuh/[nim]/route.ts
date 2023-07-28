@@ -5,6 +5,13 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import { User } from "@prisma/client";
 
+import {
+  ACCEPT_START,
+  FIRST_PRIO_END,
+  SECOND_PRIO_END,
+  THIRD_PRIO_END,
+} from "@/app/api/(kasuh)/constants/date";
+
 export async function GET(
   req: NextRequest,
   { params }: { params: { nim: string } }
@@ -39,6 +46,7 @@ export async function GET(
                 rank: true,
                 desuh: {
                   select: {
+                    id: true,
                     user: {
                       select: {
                         fullName: true,
@@ -67,8 +75,39 @@ export async function GET(
     }
 
     const adikAsuh = user.UserKasuh.PendaftaranKasuh;
+    const mappedDesuh: any = [];
 
-    return NextResponse.json({ adikAsuh }, { status: 200 });
+    for (let desuh of adikAsuh) {
+      const otherPriority = await prisma.pendaftaranKasuh.findMany({
+        where: {
+          desuhId: desuh.desuh.id,
+        },
+      });
+
+      const currDate: Date = new Date();
+      let isEligible: boolean = false;
+
+      if (currDate < ACCEPT_START || currDate > THIRD_PRIO_END) {
+        isEligible = false;
+      } else if (desuh.rank === 1) {
+        isEligible = currDate >= ACCEPT_START && currDate < FIRST_PRIO_END;
+      } else if (desuh.rank === 2) {
+        isEligible =
+          (otherPriority.filter((val) => val.rank < 2 && val.approved === -1)
+            .length === 1 ||
+            currDate >= FIRST_PRIO_END) &&
+          currDate < SECOND_PRIO_END;
+      } else if (desuh.rank === 3) {
+        isEligible =
+          (otherPriority.filter((val) => val.rank < 3 && val.approved === -1)
+            .length === 2 ||
+            (currDate >= SECOND_PRIO_END && currDate)) < THIRD_PRIO_END;
+      }
+
+      mappedDesuh.push({ ...desuh, isEligible });
+    }
+
+    return NextResponse.json({ adikAsuh: mappedDesuh }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
       { message: "Failed to fetch user", error },

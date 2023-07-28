@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 import { prisma } from "@/app/lib/prisma";
+import { FIRST_PRIO_START } from "@/app/api/(kasuh)/constants/date";
 
 export async function PATCH(
   req: NextRequest,
@@ -26,6 +27,14 @@ export async function PATCH(
             "Ayolah mas/mba fokus sparta, daripada iseng-iseng gini, entar servernya malah numpuk, mohon kerja samanya ya :D semangat mas/mba <3!",
         },
         { status: 401 }
+      );
+    }
+
+    const currDate: Date = new Date();
+    if (currDate >= FIRST_PRIO_START) {
+      return NextResponse.json(
+        { message: "Waktu memilih kasuh sudah habis" },
+        { status: 400 }
       );
     }
 
