@@ -14,11 +14,7 @@ export async function GET(
   const session = await getServerSession(authOptions);
 
   // Route protection
-  if (
-    !session?.user ||
-    ((session.user as User).nim !== params.nim &&
-      (session.user as User).role !== "ADMIN")
-  ) {
+  if (!session?.user || (session.user as User).role !== "ADMIN") {
     return NextResponse.json(
       {
         message:
@@ -60,11 +56,7 @@ export async function POST(
   const session = await getServerSession(authOptions);
 
   // Route protection
-  if (
-    !session?.user ||
-    ((session.user as User).nim !== params.nim &&
-      (session.user as User).role !== "ADMIN")
-  ) {
+  if (!session?.user || (session.user as User).role !== "ADMIN") {
     return NextResponse.json(
       {
         message:
@@ -151,11 +143,7 @@ export async function DELETE(
   const session = await getServerSession(authOptions);
 
   // Route protection
-  if (
-    !session?.user ||
-    ((session.user as User).nim !== params.nim &&
-      (session.user as User).role !== "ADMIN")
-  ) {
+  if (!session?.user || (session.user as User).role !== "ADMIN") {
     return NextResponse.json(
       {
         message:
