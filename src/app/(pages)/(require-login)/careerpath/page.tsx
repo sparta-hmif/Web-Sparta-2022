@@ -42,7 +42,7 @@ const CareerPath = async () => {
 
   let targetDate = new Date();
   if (userRank >= 1 && userRank <= 17) {
-    targetDate = new Date(2023, 6, 28, 11, 40, 0);
+    targetDate = new Date(2023, 6, 28, 13, 0, 0);
   } else if (userRank >= 18 && userRank <= 26) {
     targetDate = new Date(2023, 6, 28, 13, 15, 0);
   } else if (userRank >= 27 && userRank <= 35) {

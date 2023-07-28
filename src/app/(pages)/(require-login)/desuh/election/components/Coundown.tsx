@@ -73,7 +73,7 @@ const Countdown = ({ target }: { target: number }) => {
     <>
       <div className="py-3 lg:pt-4 lg:pb-9">
         <p className="sub-1 text-sm md:text-xl text-center">
-          Kamu baru bisa memilih Desuh pada Tanggal
+          Kamu baru bisa memilih career path pada Tanggal
         </p>
         <p className="sub-1 text-sm md:text-lg text-center mb-2 lg:mb-6">
           {date}
