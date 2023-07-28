@@ -5,7 +5,7 @@ import { prisma } from "@/app/lib/prisma";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { User } from "@prisma/client";
 
-import { FIRST_PRIO_START } from "@/app/api/(kasuh)/constants/date";
+import { ACCEPT_START } from "@/app/api/(kasuh)/constants/date";
 
 /*
   Endpoint Penggantian alasan berdasarkan parameter desuhId, kasuhId serta alasan
@@ -32,7 +32,7 @@ export async function PATCH(
     }
 
     const currDate: Date = new Date();
-    if (currDate >= FIRST_PRIO_START) {
+    if (currDate >= ACCEPT_START) {
       return NextResponse.json(
         { message: "Waktu memilih kasuh sudah habis" },
         { status: 400 }

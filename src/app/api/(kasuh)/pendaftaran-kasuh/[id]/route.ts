@@ -5,7 +5,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import { User } from "@prisma/client";
 
-import { FIRST_PRIO_START } from "@/app/api/(kasuh)/constants/date";
+import { ACCEPT_START } from "@/app/api/(kasuh)/constants/date";
 
 export async function DELETE(
   req: NextRequest,
@@ -55,7 +55,7 @@ export async function DELETE(
     }
 
     const currDate: Date = new Date();
-    if (currDate >= FIRST_PRIO_START) {
+    if (currDate >= ACCEPT_START) {
       return NextResponse.json(
         { message: "Waktu memilih kasuh sudah habis" },
         { status: 400 }
@@ -150,7 +150,7 @@ export async function POST(
     }
 
     const currDate: Date = new Date();
-    if (currDate >= FIRST_PRIO_START) {
+    if (currDate >= ACCEPT_START) {
       return NextResponse.json(
         { message: "Waktu memilih kasuh sudah habis" },
         { status: 400 }
