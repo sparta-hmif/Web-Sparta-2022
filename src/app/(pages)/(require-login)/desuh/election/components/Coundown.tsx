@@ -11,7 +11,10 @@ const useCountdown = (targetDate: number) => {
 
   const { data } = useSWR(
     process.env.NEXT_PUBLIC_WEB_URL + "/api/time",
-    fetcher
+    fetcher,
+    {
+      refreshInterval: 1000,
+    }
   );
 
   const [countDown, setCountDown] = useState(
