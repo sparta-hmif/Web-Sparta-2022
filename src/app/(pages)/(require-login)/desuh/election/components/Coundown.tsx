@@ -24,6 +24,7 @@ const useCountdown = (targetDate: number) => {
   useEffect(() => {
     if (data?.time) {
       setCountDown(countDownDate - new Date(data.time).getTime());
+      console.log(data.time);
     }
   }, [data?.time, countDownDate]);
 
