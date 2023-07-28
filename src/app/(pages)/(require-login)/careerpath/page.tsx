@@ -42,15 +42,15 @@ const CareerPath = async () => {
 
   let targetDate = new Date();
   if (userRank >= 1 && userRank <= 17) {
-    targetDate = new Date(2023, 6, 28, 9, 0, 0);
-  } else if (userRank >= 18 && userRank <= 26) {
-    targetDate = new Date(2023, 6, 28, 9, 15, 0);
-  } else if (userRank >= 27 && userRank <= 35) {
-    targetDate = new Date(2023, 6, 28, 9, 30, 0);
-  } else if (userRank >= 36 && userRank <= 58) {
-    targetDate = new Date(2023, 6, 28, 9, 45, 0);
-  } else if (userRank >= 59) {
     targetDate = new Date(2023, 6, 28, 10, 0, 0);
+  } else if (userRank >= 18 && userRank <= 26) {
+    targetDate = new Date(2023, 6, 28, 10, 15, 0);
+  } else if (userRank >= 27 && userRank <= 35) {
+    targetDate = new Date(2023, 6, 28, 10, 30, 0);
+  } else if (userRank >= 36 && userRank <= 58) {
+    targetDate = new Date(2023, 6, 28, 10, 45, 0);
+  } else if (userRank >= 59) {
+    targetDate = new Date(2023, 6, 28, 11, 0, 0);
   }
 
   const ress = await fetch(process.env.NEXT_PUBLIC_WEB_URL + "/api/time", {
