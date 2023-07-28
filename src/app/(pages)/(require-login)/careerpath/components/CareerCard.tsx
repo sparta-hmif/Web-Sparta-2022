@@ -26,42 +26,42 @@ const CareerIcon = ({ id }: { id: string }) => {
       case MOBILE_DEV_ID:
         return (
           <Image
-            alt="Data Science Icon"
-            src={"images/careerpath/DataSciIcon.svg"}
-            width={82}
-            height={82}
-            className="scale-75"
-          />
+          alt="Mobile Development Icon"
+          src={"images/careerpath/MobileDevIcon.svg"}
+          width={82}
+          height={82}
+          className="scale-[0.55]"
+        />
         );
       case DATA_SCI_ID:
         return (
           <Image
-            alt="Game Development Icon"
-            src={"images/careerpath/GameDevIcon.svg"}
-            width={82}
-            height={82}
-            className="scale-90"
-          />
+          alt="Data Science Icon"
+          src={"images/careerpath/DataSciIcon.svg"}
+          width={82}
+          height={82}
+          className="scale-75"
+        />
         );
       case UI_UX_ID:
         return (
           <Image
-            alt="Product Manager Icon"
-            src={"images/careerpath/MobileDevIcon.svg"}
-            width={82}
-            height={82}
-            className="scale-[0.55]"
-          />
+          alt="UI UX Icon"
+          src={"images/careerpath/UIUXIcon.svg"}
+          width={82}
+          height={82}
+          className=""
+        />
         );
       case GAME_DEV_ID:
         return (
           <Image
-            alt="UI UX Icon"
-            src={"images/careerpath/UIUXIcon.svg"}
-            width={82}
-            height={82}
-            className=""
-          />
+          alt="Game Development Icon"
+          src={"images/careerpath/GameDevIcon.svg"}
+          width={82}
+          height={82}
+          className="scale-90"
+        />
         );
     }
   };
