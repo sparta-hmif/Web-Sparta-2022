@@ -43,24 +43,48 @@ const DataDiri = ({ targetDate }: { targetDate: Date }) => {
     return <div></div>;
   }
 
+  let userRank;
+  let data2: any[] = [];
+
   const personData: PersonData[] = [];
   if (data.spartans) {
     const spartans = data.spartans;
 
-    const index = spartans.findIndex((val: User) => val.nim === nim);
+    let count = 1;
+    for (let i = 0; i < spartans.length; i++) {
+      if (i !== 0 && spartans[i - 1].score > spartans[i].score) {
+        count++;
+      }
+
+      if (spartans[i].nim === nim) {
+        userRank = count;
+      }
+
+      const newData = {
+        rank: count,
+        name: spartans[i].fullName,
+        nim: spartans[i].nim,
+        score: spartans[i].score,
+        image: spartans[i].imageURL || "",
+      };
+
+      data2 = [...data2, newData];
+    }
+
+    const index = data2.findIndex((val: User) => val.nim === nim);
     const otherIndexes = [
       index === 0 ? 2 : index - 1,
       index,
-      index === spartans.length - 1 ? spartans.length - 3 : index + 1,
+      index === data2.length - 1 ? data2.length - 3 : index + 1,
     ].sort((a: number, b: number): number => a - b);
 
     otherIndexes.forEach((val: number) =>
       personData.push({
-        nim: spartans[val]?.nim,
-        name: spartans[val]?.fullName,
-        rank: val + 1,
-        points: spartans[val]?.score,
-        imageURL: spartans[val]?.imageURL,
+        nim: data2[val]?.nim,
+        name: data2[val]?.name,
+        rank: data2[val]?.rank,
+        points: data2[val]?.score,
+        imageURL: data2[val]?.imageURL,
       })
     );
 

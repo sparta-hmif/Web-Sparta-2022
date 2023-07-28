@@ -46,7 +46,7 @@ const CareerIcon = ({ id }: { id: string }) => {
       case UI_UX_ID:
         return (
           <Image
-            alt="Mobile Development Icon"
+            alt="Product Manager Icon"
             src={"images/careerpath/MobileDevIcon.svg"}
             width={82}
             height={82}

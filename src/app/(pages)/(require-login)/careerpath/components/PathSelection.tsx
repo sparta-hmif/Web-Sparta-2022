@@ -18,7 +18,7 @@ const career = [
   },
   {
     id: 2,
-    name: "Mobile Dev",
+    name: "PM",
     kuota: 100,
     pendaftar: 0,
   },
