@@ -21,7 +21,9 @@ export async function GET() {
 
   const kasuh = await prisma.userKasuh.findMany({
     select: {
+      id: true,
       kuota: true,
+      pendaftarSekarang: true,
       user: {
         select: {
           fullName: true,
@@ -32,7 +34,24 @@ export async function GET() {
     },
   });
 
-  const sortedKasuh = kasuh.sort((a, b) => {
+  const mappedKasuh = [];
+
+  for (let i = 0; i < kasuh.length; i++) {
+    const pendaftarPertama = await prisma.pendaftaranKasuh.findMany({
+      where: {
+        kasuhId: kasuh[i].id,
+        rank: 1,
+      },
+    });
+
+    if (pendaftarPertama.length >= 3 * kasuh[i].kuota) {
+      mappedKasuh.push({ ...kasuh[i] });
+    } else {
+      mappedKasuh.push({ ...kasuh[i], pendaftarSekarang: -1 });
+    }
+  }
+
+  const sortedKasuh = mappedKasuh.sort((a, b) => {
     if (a.user.fullName < b.user.fullName) {
       return -1;
     }
