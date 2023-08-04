@@ -125,7 +125,7 @@ export async function DELETE(
         },
       },
     });
-    // p
+
     return NextResponse.json({ message: "deleted" }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
