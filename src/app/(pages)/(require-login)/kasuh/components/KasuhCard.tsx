@@ -3,7 +3,7 @@ import { dataProp } from "./PemilihanKasuh";
 import Image from "next/image";
 import Link from "next/link";
 
-const KasuhCard = ({ nim, name, kuota, image }: dataProp) => {
+const KasuhCard = ({ nim, name, kuota, image, pendaftar }: dataProp) => {
   return (
     <>
       <div className=" px-[11px] py-[7px] lg:px-[29px] lg:py-[27px] border-primaryDark-500 border flex rounded-2xl justify-between items-center mt-[20px] mb-[20px]">
@@ -27,6 +27,11 @@ const KasuhCard = ({ nim, name, kuota, image }: dataProp) => {
             <p className="  text-[8px] md:text-sm lg:text-base font-sen font-bold">
               Kuota : {kuota}
             </p>
+            {pendaftar !== -1 && (
+              <p className="text-[8px] md:text-sm lg:text-base font-sen font-bold">
+                Pendaftar : {pendaftar}
+              </p>
+            )}
           </div>
         </div>
         <Link href={`/kasuh/${nim}`}>

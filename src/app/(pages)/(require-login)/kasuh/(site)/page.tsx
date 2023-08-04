@@ -43,6 +43,7 @@ const Page = () => {
       name: val?.user.fullName || "",
       kuota: val?.kuota || 0,
       image: val?.user.imageURL || "",
+      pendaftar: val?.pendaftarSekarang,
     };
   });
 
