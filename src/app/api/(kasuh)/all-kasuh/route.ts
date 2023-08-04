@@ -44,7 +44,7 @@ export async function GET() {
       },
     });
 
-    if (pendaftarPertama.length >= 3 * kasuh[i].kuota) {
+    if (pendaftarPertama.length > 2 * kasuh[i].kuota) {
       mappedKasuh.push({ ...kasuh[i] });
     } else {
       mappedKasuh.push({ ...kasuh[i], pendaftarSekarang: -1 });
