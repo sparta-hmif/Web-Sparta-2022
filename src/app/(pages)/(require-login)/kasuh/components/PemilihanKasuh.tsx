@@ -17,6 +17,7 @@ export interface dataProp {
   name: string;
   kuota: number;
   image: string;
+  pendaftar?: number;
 }
 
 export default function PemilihanKasuh({ data }: { data: dataProp[] }) {
@@ -75,6 +76,7 @@ export default function PemilihanKasuh({ data }: { data: dataProp[] }) {
                 key={idx}
                 kuota={data.kuota}
                 image={data.image}
+                pendaftar={data.pendaftar}
               />
             );
           })}
