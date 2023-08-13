@@ -35,9 +35,9 @@ const Preview = (props: AssignmentProps) => {
           Due Date : {formatDate(endDate!)}
         </div>
         <div className="flex justify-end w-full pt-2">
-          <Link href={`/assignment/${id}`} className="w-4/12 md:w-2/12 mt-2">
+          <Link href={`/assignment/${id}`} className="mt-2">
             <button
-              className={`w-full py-3 px-4 rounded-xl font-sen text-white text-button font-bold transition ${
+              className={`w-full py-3 px-4 md:px-6 rounded-xl font-sen text-white text-button font-bold transition ${
                 isSubmitted
                   ? "bg-success-200 hover:drop-shadow-[0_3px_6px_rgba(61,213,152,0.55)]"
                   : isExpired
