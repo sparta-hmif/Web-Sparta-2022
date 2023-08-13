@@ -95,19 +95,19 @@ const Card = ({
         }}
       >
         <div className="flex flex-col justify-between gap-3 w-[12%] max-w-[4rem]">
-          <BsFillCaretUpFill
+          {/* <BsFillCaretUpFill
             className="text-neutral-400 text-xl hover:text-primaryDark-400 cursor-pointer md:hidden"
             onClick={() => handleUp(rank)}
-          />
+          /> */}
           <h1 className="text-neutral-400 text-2xl md:text-7xl leading-none">
             #{rank}
           </h1>
-          <BsFillCaretDownFill
+          {/* <BsFillCaretDownFill
             className="text-neutral-400 text-xl hover:text-primaryDark-400 cursor-pointer md:hidden"
             onClick={() => handleDown(rank)}
-          />
+          /> */}
         </div>
-        <div className="hidden md:flex md:flex-col md:mx-2 lg:mx-4">
+        {/* <div className="hidden md:flex md:flex-col md:mx-2 lg:mx-4">
           <BsFillCaretUpFill
             className="text-neutral-400 text-4xl cursor-pointer hover:text-primaryDark-400 hover:-translate-y-0.5 hover:scale-110 transition"
             onClick={() => handleUp(rank)}
@@ -116,7 +116,7 @@ const Card = ({
             className="text-neutral-400 text-4xl cursor-pointer  hover:text-primaryDark-400 hover:translate-y-0.5 hover:scale-110 transition"
             onClick={() => handleDown(rank)}
           />
-        </div>
+        </div> */}
         <div className="w-1/6 max-w-[8rem] relative aspect-square bg-primaryDark-400 rounded-full z-10 overflow-hidden">
           <Image
             src={image || "/images/landing/sparta.png"}
@@ -132,7 +132,7 @@ const Card = ({
           </h1>
           <h6 className="text-sm md:text-xl font-bold">Kuota : {kuota}</h6>
         </div>
-        <div className="flex flex-col gap-2 ml-auto w-1/5 md:gap-4">
+        {/* <div className="flex flex-col gap-2 ml-auto w-1/5 md:gap-4">
           <Button
             text="Edit Alasan"
             isPrimary
@@ -144,7 +144,7 @@ const Card = ({
             color="bg-danger-300"
             onClick={handleCancel}
           />
-        </div>
+        </div> */}
       </div>
     </>
   );
