@@ -104,7 +104,7 @@ const Page = ({ params }: { params: { nim: string } }) => {
             </p>
           </div>
         </div>
-        {dataMyKasuh && (
+        {/* {dataMyKasuh && (
           <DaftarKasuh
             registered={isAlreadyChoose || false}
             nimKasuh={nimKasuh}
@@ -112,7 +112,7 @@ const Page = ({ params }: { params: { nim: string } }) => {
             alasan={alasan || ""}
             idPendaftaranKasuh={idPendaftaranKasuh}
           />
-        )}
+        )} */}
       </div>
     </div>
   );

@@ -64,7 +64,7 @@ export default function Page() {
         PILIHANKU
       </h2>
       <p className=" body-1 text-sm md:text-lg">
-        Kamu bisa mengurutkan prioritas pilihan kasuhmu di sini!
+        Kamu bisa melihat prioritas pilihan kasuhmu di sini!
       </p>
       <div>{pilihanKasuh && <CardList pilihanKasuh={pilihanKasuh} />}</div>
     </div>
