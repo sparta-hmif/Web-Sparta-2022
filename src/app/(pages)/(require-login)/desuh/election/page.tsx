@@ -23,7 +23,6 @@ const Page = () => {
       (session?.data?.user as UserSession).nim,
     fetcher
   );
-
   const processedData = dataMyDesuh?.adikAsuh?.map((val: any) => {
     return {
       id: val?.id || "",

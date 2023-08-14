@@ -101,7 +101,8 @@ export async function GET(
         isEligible =
           (otherPriority.filter((val) => val.rank < 3 && val.approved === -1)
             .length === 2 ||
-            (currDate >= SECOND_PRIO_END && currDate)) < THIRD_PRIO_END;
+            currDate >= SECOND_PRIO_END) &&
+          currDate < THIRD_PRIO_END;
       }
 
       mappedDesuh.push({ ...desuh, isEligible });
