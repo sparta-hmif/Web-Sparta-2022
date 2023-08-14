@@ -89,14 +89,16 @@ export async function PATCH(
       isEligible = currDate >= ACCEPT_START && currDate < FIRST_PRIO_END;
     } else if (pendaftaranKasuh.rank === 2) {
       isEligible =
-        otherPriority.filter((val) => val.rank < 2 && val.approved === -1)
+        (otherPriority.filter((val) => val.rank < 2 && val.approved === -1)
           .length === 1 ||
-        (currDate >= FIRST_PRIO_END && currDate < SECOND_PRIO_END);
+          currDate >= FIRST_PRIO_END) &&
+        currDate < SECOND_PRIO_END;
     } else if (pendaftaranKasuh.rank === 3) {
       isEligible =
-        otherPriority.filter((val) => val.rank < 3 && val.approved === -1)
+        (otherPriority.filter((val) => val.rank < 3 && val.approved === -1)
           .length === 2 ||
-        (currDate >= SECOND_PRIO_END && currDate < THIRD_PRIO_END);
+          currDate >= SECOND_PRIO_END) &&
+        currDate < THIRD_PRIO_END;
     }
 
     if (!isEligible) {
